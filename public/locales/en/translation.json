@@ -1,0 +1,359 @@
+{
+  "common": {
+    "details": "Details",
+    "home": "Home",
+    "backToOverview": "Back to Overview",
+    "contact": "Contact",
+    "partnershipCta": "Start Strategic Partnership",
+    "isoCertified": "Security & Operational Excellence Certified",
+    "startPartnership": "Start Strategic Partnership",
+    "capabilityView": "View Our Capabilities",
+    "strategicAlliances": "Strategic Alliances",
+    "globalPartner": "Global Partner Network",
+    "startNextProject": "Start a Project",
+    "inquiryForm": "Inquiry Form",
+    "preciseEngineering": "Precise Engineering. Infinite Possibilities.",
+    "securityExcellence": "Security & Operational Excellence Certified",
+    "strategicDeliveryNetwork": "Strategic Delivery Network",
+    "pillar1": "Pillar 01",
+    "pillar2": "Pillar 02",
+    "pillar3": "Pillar 03",
+    "structuralInfrastructure": "Structural Infrastructure.",
+    "infrastructureDesc": "Ethiopia's most resilient physical assets, from industrial power grids to mission-critical telecom towers.",
+    "digitalConvergence": "Digital Convergence.",
+    "digitalConvergenceDesc": "Integrating AI, IoT, and high-speed ICT backbones to accelerate industrial intelligence.",
+    "integrityFramework": "Integrity Framework.",
+    "certified": "Certified",
+    "hqAddis": "HQ Addis Ababa",
+    "links": "Quick Links",
+    "infrastructure": "Infrastructure",
+    "innovation": "Innovation",
+    "academy": "Academy",
+    "copyright": "© 2026 InfinEth Solutions. All Rights Reserved.",
+    "heroTitle": "Precise Engineering. Infinite Possibilities.",
+    "heroSub": "Ethiopia's leading ICT & Engineering solutions partner",
+    "telecom": "Telecom",
+    "power": "Power",
+    "ict": "ICT",
+    "services": {
+      "telecom": {
+        "title": "Telecom Systems",
+        "items": ["Tower Civil Works", "Mobile Network Rollout"]
+      },
+      "power": {
+        "title": "Power & Energy",
+        "items": ["Industrial Electrification", "Solar Microgrids"]
+      },
+      "ict": {
+        "title": "ICT Systems",
+        "items": ["Data Centers", "Enterprise Networks"]
+      },
+      "ai_iot": {
+        "title": "Smart AI",
+        "items": ["IoT Integrations", "Predictive Ops"]
+      },
+      "mobility": {
+        "title": "Vertical Mobility",
+        "items": ["Elevator Systems", "Traffic Analytics"]
+      }
+    },
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "sending": "Sending...",
+    "sendMessage": "Send Message",
+    "contactTitle": "Connect with our Technical Board.",
+    "contactDesc": "Direct access to our engineering leads for complex project inquiries."
+  },
+  "hero": {
+    "slide1": {
+      "title": "Engineering the Digital Future.",
+      "subtitle": "Ethiopia's leader in Telecom Infrastructure & ICT Systems Design."
+    },
+    "slide2": {
+      "title": "Infinite Power, Resilient Grids.",
+      "subtitle": "Industrial Electrification and Renewable Energy Solutions."
+    },
+    "slide3": {
+      "title": "Strategic Technical Mastery.",
+      "subtitle": "Certified Excellence in Integrated Management Systems."
+    }
+  },
+  "stats": {
+    "chapters": "Chapters",
+    "fieldStaff": "Field Staff",
+    "projects": "Projects",
+    "uptime": "Uptime"
+  },
+  "footer": {
+    "tagline": "Infinite Possibilities in Engineering & ICT.",
+    "address": "Bole, Addis Ababa, Ethiopia"
+  },
+  "nav": {
+    "telecommunications": "TELECOMMUNICATIONS",
+    "ict_consultancy": "ICT & CONSULTANCY",
+    "power_automation": "POWER & AUTOMATION",
+    "training": "TRAINING",
+    "telecom_solutions": "Telecom Solutions",
+    "telecom_desc": "Pioneering end-to-end network rollout and resilient infrastructure.",
+    "view_works": "View Works",
+    "connectivity": "Connectivity",
+    "digital_systems": "Digital Systems",
+    "digital_desc": "Design, implementation, and managed services for modern enterprises.",
+    "explore_tech": "Explore Tech",
+    "digital_core": "Digital Core",
+    "industrial_power": "Industrial Power",
+    "industrial_power_desc": "High-voltage systems and intelligent factory plant engineering.",
+    "power_grid": "Power Grid",
+    "industrial": "Industrial",
+    "academia": "Academia",
+    "academia_desc": "Center of Excellence for professional technicians and safety standards.",
+    "view_academy": "View Academy",
+    "education": "Education",
+    "tower": "Tower +",
+    "civil_works": "Civil Works",
+    "mobile_rollout": "Mobile Telecom Rollout ((RAN) + Power) +",
+    "fiber_optics": "Fiber Optics",
+    "sourcing": "Sourcing +",
+    "om": "Operations and Maintenance (O&M)",
+    "warehouse": "Warehouse Management",
+    "engineering_design": "Engineering Design",
+    "installation": "Installation, Commissioning, Services",
+    "maintenance": "Maintenance",
+    "supplies": "Supplies ICT and infra",
+    "ai_iot": "AI & IOT",
+    "software": "Software Solutions",
+    "mobility": "Elevators & Escalators",
+    "mv_hv": "MV, HV Systems Implementation",
+    "backup": "Backup System (DG, Solar)",
+    "factory": "Factory Plants Engineering",
+    "ehs": "EHS",
+    "telecom_training": "Telecom Professional Training",
+    "industrial_automation": "Industrial Automation",
+    "facility_dc": "Facility and Data Center",
+    "infrastructure": "Infrastructure",
+    "rollout": "Rollout",
+    "transmission": "Transmission",
+    "supply": "Supply",
+    "field_service": "Field Service",
+    "logistics": "Logistics",
+    "consultancy": "Consultancy",
+    "field": "Field",
+    "procurement": "Procurement",
+    "innovation": "Innovation",
+    "solutions": "Solutions",
+    "grid": "Grid",
+    "energy": "Energy",
+    "automation": "Automation",
+    "safety": "Safety",
+    "technical": "Technical",
+    "identity": "Corporate Identity",
+    "leadership": "Leadership Team",
+    "board": "Board of Directors",
+    "portfolio": "Portfolio",
+    "presence": "Global Presence",
+    "awards": "Awards",
+    "iso": "ISO Certification",
+    "academy": "Academy",
+    "coresite": "CoreSite",
+    "datacenters": "Data Centers",
+    "network": "Network Rollout"
+  },
+  "iso": {
+    "9001": {
+      "title": "ISO 9001:2015",
+      "description": "Quality Management Systems. Meeting statutory and stakeholder requirements."
+    },
+    "14001": {
+      "title": "ISO 14001:2015",
+      "description": "Environmental Management. Systematic management of environmental footprints."
+    },
+    "45001": {
+      "title": "ISO 45001:2018",
+      "description": "Health & Safety. The foundation of our nationwide field operations."
+    },
+    "27001": {
+      "title": "ISO 27001:2022",
+      "description": "Information Security. Rigorous risk-based security controls."
+    },
+    "22301": {
+      "title": "ISO 22301:2019",
+      "description": "Business Continuity. Maintaining operations during disruptions."
+    }
+  },
+  "corporate": {
+    "identity": {
+      "tag": "Corporate Identity",
+      "title": "Foundations of Reliability.",
+      "description": "Pioneering Ethiopia's infrastructure landscape since 1995.",
+      "legacy_title": "A Legacy of Resilience",
+      "legacy_desc": "Maintaining a zero-failure record on mission-critical national assets.",
+      "mission_title": "Strategic Mission",
+      "mission_desc": "Accelerating digital transformation through resilient infrastructure."
+    },
+    "leadership": {
+      "tag": "Leadership Team",
+      "title": "Architects of Growth.",
+      "description": "Global technical mastery fused with regional intelligence.",
+      "members": [
+        { "n": "Dawit Amare", "r": "CEO", "b": "25+ years in rollout." },
+        { "n": "Sara Teferra", "r": "CTO", "b": "Digital convergence strategies." },
+        { "n": "Elias Bekele", "r": "VP Operations", "b": "Nationwide field services." }
+      ]
+    },
+    "board": {
+      "tag": "Governance",
+      "title": "Board of Directors.",
+      "description": "Committed to maintaining global ethical standards and transparency.",
+      "oversight_title": "Strategic Oversight",
+      "oversight_desc": "Providing independent oversight of our strategy, ESG commitments, and financial integrity.",
+      "items": ["Advisory Councils", "ESG Oversight", "Technical Audit Board"]
+    },
+    "portfolio": {
+      "tag": "Portfolio",
+      "title": "Impact Case Studies.",
+      "description": "Scalable infrastructure projects across the southern corridor.",
+      "items": [
+        { "t": "Energy Grid", "d": "MV/HV Substation deployment." },
+        { "t": "Smart Fiber", "d": "2,500km backbone deployment." }
+      ]
+    },
+    "presence": {
+      "tag": "Global Presence",
+      "title": "Localized Precision.",
+      "description": "Regional hubs ensuring rapid deployment and technical oversight.",
+      "items": [
+        { "c": "Addis Ababa", "t": "HQ & Design" },
+        { "c": "Bahir Dar", "t": "Northern Hub" },
+        { "c": "Dire Dawa", "t": "Logistics Hub" },
+        { "c": "Mekelle", "t": "Support Center" }
+      ]
+    }
+  },
+  "infrastructure": {
+    "telecom": {
+      "tag": "Telecom",
+      "title": "Telecom Excellence.",
+      "description": "Pioneering mission-critical networks nationwide.",
+      "items": [
+        { "t": "Tower Works", "d": "Certified engineering for resilient structures and signal integration." },
+        { "t": "Active Radio", "d": "Certified engineering for resilient structures and signal integration." },
+        { "t": "Fiber Optic", "d": "Certified engineering for resilient structures and signal integration." }
+      ]
+    },
+    "power": {
+      "tag": "Power Systems",
+      "title": "Stable Energy Grid.",
+      "description": "Robust solutions from industrial substations to renewable microgrids.",
+      "electrification_title": "Electrification",
+      "electrification_desc": "MV/HV system design for industrial clusters.",
+      "solar_title": "Solar Microgrids",
+      "solar_desc": "Hybrid solutions for remote off-grid operations.",
+      "proficiency_title": "Technical Proficiency",
+      "proficiency_items": ["Switchgear Supply", "HV Transformer O&M", "Automation Panels", "Lightning Protection"]
+    },
+    "om": {
+      "tag": "O&M",
+      "title": "Zero-Failure Ops.",
+      "description": "Maintaining 99.9% uptime through 24/7 field service.",
+      "items": [
+        { "l": "Monitoring" },
+        { "l": "Audit" },
+        { "l": "Logistics" },
+        { "l": "Radio O&M" }
+      ]
+    },
+    "network": {
+      "tag": "Rollout",
+      "title": "Network Expansion.",
+      "description": "Accelerating the implementation of 4G/5G networks.",
+      "carrier_title": "Carrier Implementation",
+      "carrier_desc": "Handling acquisition to technical commissioning for global carriers."
+    },
+    "energy": {
+      "tag": "Energy",
+      "title": "Intelligent Efficiency.",
+      "description": "IoT and automation to minimize environmental footprint.",
+      "items": [
+        { "t": "Analytics", "d": "Modeling consumption to optimize operational spend." },
+        { "t": "Controllers", "d": "Modeling consumption to optimize operational spend." },
+        { "t": "Green Footprint", "d": "Modeling consumption to optimize operational spend." }
+      ]
+    }
+  },
+  "innovation": {
+    "ict": {
+      "tag": "ICT",
+      "title": "Network Convergence.",
+      "description": "Deploying high-speed network backbones.",
+      "solution_title": "Core Solution",
+      "solution_desc": "Scaling digital infrastructure with next-gen AI and connected compute."
+    },
+    "coresite": {
+      "tag": "CoreSite",
+      "title": "Carrier Neutral.",
+      "description": "Edge compute and low-latency cloud access.",
+      "solution_title": "Core Solution",
+      "solution_desc": "Scaling digital infrastructure with next-gen AI and connected compute."
+    },
+    "ai_iot": {
+      "tag": "AI & IoT",
+      "title": "Predictive Insights.",
+      "description": "Industrial monitoring via real-time sensors.",
+      "solution_title": "Core Solution",
+      "solution_desc": "Scaling digital infrastructure with next-gen AI and connected compute."
+    },
+    "mobility": {
+      "tag": "Vertical",
+      "title": "Smart Transit.",
+      "description": "Elevator systems and traffic analysis.",
+      "solution_title": "Core Solution",
+      "solution_desc": "Scaling digital infrastructure with next-gen AI and connected compute."
+    },
+    "datacenters": {
+      "tag": "Data Centers",
+      "title": "Tier-3 Ops.",
+      "description": "High-availability facility design.",
+      "solution_title": "Core Solution",
+      "solution_desc": "Scaling digital infrastructure with next-gen AI and connected compute."
+    }
+  },
+  "excellence": {
+    "awards": {
+      "tag": "Awards",
+      "title": "Carrier Grade.",
+      "description": "Celebrating 30 years of precision.",
+      "pillar_title": "Standard Pillar",
+      "pillar_desc": "Validating leadership through rigorous audits and world-class technical certification."
+    },
+    "iso": {
+      "tag": "ISO",
+      "title": "IMS Quality.",
+      "description": "Rigorous Integrated Management Systems.",
+      "pillar_title": "Standard Pillar",
+      "pillar_desc": "Validating leadership through rigorous audits and world-class technical certification."
+    },
+    "academy": {
+      "tag": "Academy",
+      "title": "Mastery Hub.",
+      "description": "Investing in African engineering talent.",
+      "pillar_title": "Standard Pillar",
+      "pillar_desc": "Validating leadership through rigorous audits and world-class technical certification."
+    },
+    "consultancy": {
+      "tag": "Consultancy",
+      "title": "Strategic Advisory.",
+      "description": "Feasibility studies and PMO.",
+      "pillar_title": "Standard Pillar",
+      "pillar_desc": "Validating leadership through rigorous audits and world-class technical certification."
+    },
+    "ehs": {
+      "tag": "EHS Center",
+      "title": "Zero Incident.",
+      "description": "Occupational health and green stewardship.",
+      "pillar_title": "Standard Pillar",
+      "pillar_desc": "Validating leadership through rigorous audits and world-class technical certification."
+    }
+  }
+}
