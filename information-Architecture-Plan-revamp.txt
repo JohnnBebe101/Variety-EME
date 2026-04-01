@@ -1,0 +1,825 @@
+All three decisions locked in. Let me do a final cross-check against everything analyzed before delivering the definitive prompt sets.
+
+All sources fully re-verified. Every data point cross-checked. Here are the definitive, bulletproof prompt sets — restructured for maximum clarity and agent compliance.
+
+---
+
+# InfinEth Portal — Definitive AI Coding Agent Prompt Sets
+### *(Final Version — All 3 Decisions Resolved & Embedded)*
+
+---
+
+## **PROMPT 1 OF 4 — Codebase Audit & Route Architecture**
+
+```
+## YOUR ROLE
+You are a senior front-end developer rebuilding the InfinEth Solutions web portal.
+This is a PLAN-FIRST engagement. For every task below:
+  1. Analyze and document what you find
+  2. Write your full implementation plan
+  3. WAIT for my explicit approval before writing any code
+  4. If anything is ambiguous or requires a judgment call, FLAG IT — do not assume
+
+---
+
+
+IMPORTANT TECHNICAL CONSTRAINT: This site will be deployed on shared
+hosting with no Node.js runtime. The final deliverable must be pure
+static HTML/CSS files. If the current codebase is a JS framework SPA,
+flag this immediately as the top priority decision before any work begins —
+the approach must be confirmed as static HTML output before proceeding.
+
+
+---
+
+## STEP 1 — AUDIT THE EXISTING CODEBASE
+Inspect the current project (live at https://infinethv1.netlify.app) and report:
+
+a) Tech stack: framework, CSS approach, bundler, any component library in use
+b) Full folder and file structure
+c) Current navigation items and routing/linking setup
+d) All placeholder values — specifically locate and list every instance of:
+   "0 Chapters" / "0+" / "0.0%" / "Field Staff" / "Projects" / "Uptime"
+e) All unsubstantiated content — locate and list every instance of:
+   "Smart AI" / "IoT Integrations" / "Predictive Ops" / "Vertical Mobility" /
+   "Traffic Analytics" / "Digital Convergence" / "Structural Infrastructure" /
+   "Integrity Framework" / "Pillar 01" / "Pillar 02" / "Pillar 03"
+f) Footer quick links ("Infrastructure", "Innovation", "Academy") — note their
+   current link targets
+
+---
+
+## STEP 2 — AFTER APPROVAL, SET UP THE ROUTE ARCHITECTURE
+Create stub/shell components for ALL routes below. Each stub renders only its
+page title for now — no real content yet. Preserve ALL existing brand assets
+(logo, colors, fonts, partner marquee, hero image).
+
+TOP-LEVEL ROUTES (7 pages):
+  /                    → Home (existing — preserve, do not rebuild yet)
+  /telecommunications  → Telecommunications
+  /ict-datacenter      → ICT & Data Center
+  /power               → Power
+  /academy             → Academy & Managed Services
+  /portfolio           → Portfolio & Projects
+  /about               → About InfinEth
+  /contact             → Contact Us
+
+SUB-ROUTES — TELECOMMUNICATIONS (5):
+  /telecommunications/mobile-rollout
+  /telecommunications/fiber-optics
+  /telecommunications/tower-civil-works
+  /telecommunications/operations-maintenance
+  /telecommunications/warehouse-management
+
+SUB-ROUTES — ICT & DATA CENTER (5):
+  /ict-datacenter/data-center-design
+  /ict-datacenter/enterprise-networking
+  /ict-datacenter/system-development
+  /ict-datacenter/cybersecurity-managed
+  /ict-datacenter/training-consultancy
+
+SUB-ROUTES — POWER (4):
+  /power/transmission-distribution
+  /power/minigrid-systems
+  /power/backup-power
+  /power/building-electromechanical
+
+SUB-ROUTES — ACADEMY & MANAGED SERVICES (5):
+  /academy/overview
+  /academy/fiber-optics-certification
+  /academy/telecom-automation-training
+  /academy/managed-services
+  /academy/institutional-partnerships
+
+---
+
+## CONTENT RULES — ENFORCE THROUGHOUT THE ENTIRE PROJECT
+These rules apply to every prompt in this series. Never violate them:
+
+REMOVE PERMANENTLY — never use these terms anywhere in the project:
+  ✗ "Smart AI"
+  ✗ "IoT Integrations" or "IoT"
+  ✗ "Predictive Ops"
+  ✗ "Vertical Mobility"
+  ✗ "Traffic Analytics"
+  ✗ "Pillar 01 / 02 / 03"
+  ✗ "Structural Infrastructure"
+  ✗ "Digital Convergence"
+  ✗ "Integrity Framework"
+  ✗ Any stat counter showing 0 or 0.0%
+
+PRESERVE PERMANENTLY — never remove or alter:
+  ✓ Logo and brand mark
+  ✓ Color palette and typography
+  ✓ Hero headline: "Precise Engineering. Infinite Possibilities."
+  ✓ Partner marquee: Nokia, Safaricom, UN, Ethio Telecom, Huawei,
+    Ericsson, ZTE, ABB
+  ✓ All 5 ISO certification references (9001, 14001, 45001, 27001, 22301)
+
+---
+
+## DELIVERABLE FOR THIS PROMPT
+Share your audit report + full route plan with folder structure diagram.
+Wait for my approval before touching any code.
+```
+
+---
+
+## **PROMPT 2 OF 4 — Global Navigation & Complete Homepage**
+
+```
+## YOUR ROLE
+Senior front-end developer. PLAN FIRST — share your section-by-section build
+plan and wait for my approval before writing code. Flag any decision point.
+
+## CONTEXT
+The route architecture from Prompt 1 is now approved and in place.
+Your task is to rebuild the GLOBAL NAVIGATION and the complete HOMEPAGE.
+Do not touch any sub-pages yet.
+
+---
+
+## PART A — GLOBAL NAVIGATION
+
+Build a persistent top navigation bar present on every page with EXACTLY
+these 6 items in this order:
+
+  Home | Telecommunications | ICT & Data Center | Power |
+  Academy & Managed Services | Contact Us
+
+RULES:
+- "About InfinEth" does NOT appear in the top nav — it lives on the
+  hero banner only
+- The 4 middle items each open a dropdown revealing their sub-pages.
+  Use the exact route slugs from Prompt 1 and these display labels:
+
+  TELECOMMUNICATIONS dropdown:
+    → Mobile Telecom Rollout (RAN + Power)
+    → Fiber Optics
+    → Tower & Civil Works
+    → Operations & Maintenance (O&M)
+    → Warehouse Management
+
+  ICT & DATA CENTER dropdown:
+    → Data Center Design & Build
+    → Enterprise Networking, Storage & Backup
+    → System Development & Consultancy
+    → Cybersecurity & Managed Services
+    → Training & ICT Consultancy
+
+  POWER dropdown:
+    → Transmission, Distribution & Substation
+    → Minigrid Systems
+    → Backup Power Systems (DG, Solar & Hybrid)
+    → Building Electromechanical Works
+
+  ACADEMY & MANAGED SERVICES dropdown:
+    → Academy Overview
+    → Fiber Optics Certification (CFOT / CFOS)
+    → Telecom & Industrial Automation Training
+    → Managed Services
+    → Corporate & Institutional Partnerships
+
+- Navigation must be fully responsive with a mobile hamburger menu
+- Retain existing visual style — restructure items only, do not redesign
+
+---
+
+## PART B — HOMEPAGE
+
+Build the homepage in this EXACT scroll order. Use ONLY the content
+specified below — do not add, invent, or embellish anything.
+
+### SECTION 1 — HERO
+H1 (keep existing): "Precise Engineering. Infinite Possibilities."
+
+Sub-headline (replace existing):
+"One partner across Telecommunications, Power, and ICT — turnkey
+delivery from survey to support, since 2004."
+
+Two side-by-side CTA buttons:
+  Primary:   "Start Strategic Partnership"  → links to /contact
+  Secondary: "View Our Capabilities"        → links to /portfolio
+
+About InfinEth narrative block (place directly below CTAs):
+"Founded in October 2004, InfinEth Solutions PLC is Ethiopia's leading
+multidisciplinary engineering and ICT provider. We serve private
+companies, NGOs, and government institutions with integrated solutions
+spanning Telecommunications, Power, and Digital Infrastructure. Our
+model combines engineering depth, field execution, and a customer-focused
+turnkey delivery approach — from site survey to long-term operational
+support."
+
+Operating principles — render as a compact horizontal icon row:
+  Integrity · Professionalism · Safety First · Zero Accidents ·
+  Customer Focus
+
+### SECTION 2 — PARTNER MARQUEE
+Keep the existing scrolling logo strip exactly as-is:
+Nokia · Safaricom · United Nations (UN) · Ethio Telecom · Huawei ·
+Ericsson · ZTE · ABB
+
+### SECTION 3 — FOUR EXPERTISE CARDS
+Four equal cards linking to the 4 main division routes:
+
+Card 1 — Telecommunications → /telecommunications
+  "RAN rollout, fiber optics, tower and civil works, O&M and
+  warehouse management."
+
+Card 2 — ICT & Data Center → /ict-datacenter
+  "Data centers, enterprise networks, system development,
+  cybersecurity and managed IT services."
+
+Card 3 — Power → /power
+  "Transmission, distribution, minigrids, backup power and
+  building electromechanical works."
+
+Card 4 — Academy & Managed Services → /academy
+  "FOA-certified fiber optics training, telecom and industrial
+  automation programs, and managed services."
+
+Each card has an "Explore →" link to its route.
+
+### SECTION 4 — TURNKEY DELIVERY MODEL
+Horizontal 5-stage process flow strip. Use these exact labels and
+descriptions — no changes:
+
+  1. Assess      → Site survey, right-of-way, needs assessment
+  2. Design      → System design, BOQ, specifications, planning
+  3. Build       → Civil works, installation, cabling, integration
+  4. Commission  → Testing, cut-over, acceptance and handover
+  5. Support     → Operations, maintenance, training, consultancy
+
+### SECTION 5 — IMPACT NUMBERS
+Replace ALL zero-value placeholders with these exact verified figures:
+
+  66 Stations   → Optical transmission commissioned across 3 national routes
+  67 Towns      → Rural electrification coverage (EEPCO programs)
+  500+ Nodes    → Network deployments including data center and LAN works
+  20+ Years     → In-field engineering and ICT delivery since 2004
+  47+ Staff     → Engineers, technicians, riggers and ICT specialists
+
+Remove "Chapters" and "0.0% Uptime" labels entirely.
+
+### SECTION 6 — ISO CERTIFICATIONS ROW
+Five badges in a horizontal row with name and scope:
+
+  ISO 9001:2015  → Quality Management Systems
+  ISO 14001:2015 → Environmental Management Systems
+  ISO 45001:2018 → Occupational Health & Safety
+  ISO 27001:2022 → Information Security Management
+  ISO 22301:2019 → Business Continuity Management
+
+### SECTION 7 — SELECTED CLIENTS
+Display these client names in a clean grid (text — use logos only if
+assets already exist in the project, do not source new ones):
+
+  Ethio Telecom · Nokia / Nokia-Siemens · Ericsson · ZTE · Safaricom ·
+  KEC International · EEPCO · MoFED · OXFAM-America ·
+  Clinton Foundation · WFP · GIZ
+
+Footer note: "Specific client references available on request."
+CTA: "View Full Portfolio →" → links to /portfolio
+
+---
+
+## FOOTER (rebuild — present on all pages)
+Structure: 4 columns + contact column
+
+  Column 1: Telecommunications (links to 5 sub-pages)
+  Column 2: ICT & Data Center (links to 5 sub-pages)
+  Column 3: Power (links to 4 sub-pages)
+  Column 4: Academy & Managed Services (links to 5 sub-pages)
+  Column 5: Contact & Info
+    About InfinEth → /about
+    Portfolio → /portfolio
+    Bole Sub-city, Woreda 04, House No. 100
+    Haile Gebreselassie Avenue, Sr. Gete M. Bldg, 3rd floor
+    Addis Ababa, Ethiopia
+    +251 11 635 4312
+    infineth@infineth.com
+
+ISO badge compact row in footer.
+© 2026 InfinEth Solutions. Tagline: "Infinite Possibilities in
+Engineering & ICT."
+
+---
+
+## DELIVERABLE FOR THIS PROMPT
+Share your section-by-section plan. Confirm which existing components
+you will reuse vs. rebuild. Wait for approval before writing code.
+```
+
+---
+
+## **PROMPT 3 OF 4 — All 19 Service Sub-Pages**
+
+```
+## YOUR ROLE
+Senior front-end developer. PLAN FIRST — list every page you will build,
+confirm the shared layout template, then wait for my approval before
+writing any code. Flag anything unclear.
+
+## CONTEXT
+Global nav, footer, and homepage from Prompt 2 are approved and live.
+Now build all 19 service sub-pages across the 4 divisions.
+
+---
+
+## SHARED PAGE LAYOUT TEMPLATE
+Every sub-page uses this exact layout structure:
+
+  [1] Division-color-coded hero banner
+      → Page title (H1)
+      → One-sentence scope description (H2 or subtitle)
+  [2] Main capability/scope section — paragraph format
+  [3] Reference Projects block — ONLY where verified data exists below
+  [4] ISO credential callout — ONLY where specified below
+  [5] CTA bar: "Discuss Your Project →" → /contact
+  [6] Related Services — 2–3 cross-links to related sub-pages
+
+STRICT RULE: Use ONLY the content provided below for each page.
+Do not write additional copy, do not use AI-generated descriptions,
+do not add services not listed here.
+
+---
+
+## DIVISION 1 — TELECOMMUNICATIONS
+
+### /telecommunications/mobile-rollout
+Title: Mobile Telecom Rollout (RAN + Power)
+Scope: Radio Access Network deployment integrated with telecom power
+infrastructure as a single turnkey scope.
+Capability detail: BTS/NodeB/eNodeB installation, antenna and feeder
+systems, telecom power systems (rectifiers, batteries, generators),
+site integration and commissioning.
+References: Nokia, Nokia-Siemens, Ericsson, ZTE, Safaricom rollout
+support, ESCO telecom power framework.
+Related: Fiber Optics · Tower & Civil Works · O&M
+
+### /telecommunications/fiber-optics
+Title: Fiber Optics
+Scope: Long-haul and metropolitan fiber optic network design,
+outside plant installation, splicing, termination, OTDR testing
+and acceptance commissioning.
+References:
+  - 66 stations of optical transmission equipment installed and
+    commissioned on three national routes: Addis Ababa–Mekele,
+    Addis Ababa–Gonder, Addis Ababa–Sululta (Huawei / AAICTDA)
+Cross-link callout box: "Train your team in fiber optics →
+  FOA-certified programs at InfinEth Academy" → /academy/fiber-optics-certification
+Related: Mobile Rollout · Tower & Civil Works · Academy Fiber Certification
+
+### /telecommunications/tower-civil-works
+Title: Tower & Civil Works
+Scope: Greenfield tower construction, rooftop installations, tower
+reinforcement, civil site preparation, foundation works,
+right-of-way management.
+References: 400KV transmission tower foundations and erection
+(KEC International).
+Related: Mobile Rollout · Fiber Optics · Power Transmission
+
+### /telecommunications/operations-maintenance
+Title: Operations & Maintenance (O&M)
+Scope: Preventive and corrective maintenance contracts, SLA-based
+network support, network performance monitoring, spare parts management.
+References: ESCO telecom power framework; ongoing support for Nokia
+and Ericsson project portfolios.
+Related: Mobile Rollout · Managed Services · Warehouse Management
+
+### /telecommunications/warehouse-management
+Title: Warehouse Management
+Scope: Equipment receiving and inspection, inventory tracking,
+kitting and staging for field deployment, asset management for
+telecom infrastructure programs.
+Related: Mobile Rollout · O&M
+
+---
+
+## DIVISION 2 — ICT & DATA CENTER
+
+### /ict-datacenter/data-center-design
+Title: Data Center Design & Build
+Scope: Data center site assessment, rack and cabling infrastructure,
+power and cooling systems, structured cabling, server room build-out,
+acceptance testing.
+References:
+  - 30m² data center build at Entoto TVET campus including LAN
+    deployment across 12 buildings, 500+ nodes (Huawei / AAICTDA)
+  - MoFED regional data centers
+ISO Callout: ISO 27001:2022 — Information Security Management
+Related: Enterprise Networking · Cybersecurity & Managed Services
+
+### /ict-datacenter/enterprise-networking
+Title: Enterprise Networking, Storage & Backup
+Scope: LAN/WAN design and deployment, structured cabling, network
+switches and routing, NAS/SAN storage, backup and disaster
+recovery systems.
+References:
+  - LAN deployment across 12 buildings, 500+ nodes — Entoto TVET
+  - OXFAM-America ICT support
+  - Clinton Foundation LAN work
+Related: Data Center Design · System Development · Cybersecurity
+
+### /ict-datacenter/system-development
+Title: System Development & Consultancy
+Scope: System requirements analysis, software and system development,
+ICT project management, technology advisory, digital transformation
+consulting.
+References: Consultancy for Ethiopian Sugar Corporation, CSA
+(Central Statistical Agency), and other government and NGO clients.
+Related: Enterprise Networking · Training & ICT Consultancy
+
+### /ict-datacenter/cybersecurity-managed
+Title: Cybersecurity & Managed Services
+Scope: Information security assessments, security policy development,
+managed security services, business continuity planning, network
+monitoring, incident response support.
+ISO Callouts:
+  ISO 27001:2022 — Information Security Management
+  ISO 22301:2019 — Business Continuity Management
+Related: Data Center Design · Enterprise Networking · Academy Managed Services
+
+### /ict-datacenter/training-consultancy
+Title: Training & ICT Consultancy
+Scope: ICT training programs and consultancy services for enterprise
+and institutional clients.
+Cross-link callout box: "View the full training and certification
+catalog at InfinEth Academy →" → /academy
+Related: System Development · Academy Overview
+
+---
+
+## DIVISION 3 — POWER
+
+### /power/transmission-distribution
+Title: Transmission, Distribution & Substation
+Scope: HV/MV transmission line construction, substation design and
+build, distribution network rollout, transformer installation and
+commissioning, line stringing and pole erection.
+References:
+  - 400KV transmission tower foundations and erection (KEC International)
+  - Three EEPCO rural electrification programs covering 67 towns total
+    (28 towns, 10 towns, 29 towns) — survey, poles, stringing,
+    transformer work and commissioning
+Related: Minigrid Systems · Building Electromechanical · Tower & Civil Works
+
+### /power/minigrid-systems
+Title: Minigrid Systems
+Scope: Minigrid feasibility and design, hybrid power systems, grid
+integration, community electrification, metering and monitoring.
+References: EEPCO rural electrification programs; GIZ and WFP
+project support.
+Related: Transmission & Distribution · Backup Power Systems
+
+### /power/backup-power
+Title: Backup Power Systems (DG, Solar & Hybrid)
+Scope: Diesel Generator (DG) installation and commissioning, solar PV
+design and installation, battery storage systems, hybrid controller
+integration, UPS systems, telecom power systems (rectifiers and batteries).
+Related: Minigrid Systems · Mobile Telecom Rollout · Building Electromechanical
+
+### /power/building-electromechanical
+Title: Building Electromechanical Works
+Scope: Industrial electrical installations, building wiring and
+fit-out, panel board and switchgear installation, earthing and
+lightning protection systems.
+VTS NOTE: Add a minor secondary callout at the bottom of this page only:
+  "Specialist vertical transport systems (elevators and escalators)
+  are available through our VTS subsidiary partner."
+  — No separate page, no nav link. One line only on this page.
+Related: Transmission & Distribution · Backup Power
+
+---
+
+## DIVISION 4 — ACADEMY & MANAGED SERVICES
+
+### /academy/overview
+Title: Academy Overview
+Content:
+"InfinEth Academy is Ethiopia's practitioner-led engineering and ICT
+training center, delivering internationally aligned certifications
+backed by 20+ years of field execution experience. Our training is
+delivered by engineers and technicians who have worked on live
+infrastructure projects across Ethiopia and East Africa.
+Primary focus: FOA-standard fiber optics certification programs.
+Secondary focus: Telecommunications and Industrial Automation training
+through our Center of Excellence."
+Related: Fiber Optics Certification · Telecom & Automation Training ·
+Institutional Partnerships
+
+### /academy/fiber-optics-certification
+Title: Fiber Optics Certification Programs (CFOT / CFOS)
+Content — two tracks:
+
+TRACK 1 — CFOT: Certified Fiber Optic Technician
+  Foundational certification. Covers fiber optic theory, installation
+  methods, connectors, splicing, and basic testing. Required entry
+  point for all field technicians and prerequisite for all CFOS tracks.
+
+TRACK 2 — CFOS: Certified Fiber Optic Specialist
+  Advanced specialist certifications. Available tracks:
+    CFOS/O — Outside Plant (OSP) Installation
+    CFOS/D — Fiber Optic Network Design & Project Management
+    CFOS/T — Testing & Commissioning
+    CFOS/W — Fiber for Wireless (cell tower backhaul, DAS, small cells)
+
+Certification standard note:
+  "Programs are aligned with the FOA (Fiber Optic Association)
+  international certification framework."
+  Link text: "Learn about FOA certifications" → https://www.thefoa.org
+
+CTA: "Enroll or Inquire About Programs →" → /contact
+Related: Academy Overview · Telecom Rollout · Institutional Partnerships
+
+### /academy/telecom-automation-training
+Title: Telecommunications & Industrial Automation Training
+Content — two centers:
+
+CENTER 1 — Telecommunications Training
+  Wireless communications, network fundamentals, telecom systems
+  operations. Relevant for telecom operators, network engineers,
+  and field technicians.
+
+CENTER 2 — Industrial Automation Training (Center of Excellence)
+  DCS (Distributed Control Systems) and PLC (Programmable Logic
+  Controllers). Relevant for manufacturing facilities, utility
+  companies, and industrial operators.
+
+CTA: "Inquire About Training Programs →" → /contact
+Related: Academy Overview · Fiber Optics Certification ·
+Institutional Partnerships
+
+### /academy/managed-services
+Title: Managed Services
+Scope: Ongoing operational support contracts — network operations
+and monitoring, IT infrastructure management, SLA-based support
+contracts, helpdesk and remote support, periodic maintenance programs.
+ISO Callout: ISO 22301:2019 — Business Continuity Management
+Related: Cybersecurity & Managed Services (ICT) · O&M (Telecom)
+
+### /academy/institutional-partnerships
+Title: Corporate & Institutional Training Partnerships
+Scope: Bulk training programs and long-term training partnerships
+for telecom operators, NGOs, government ministries, and TVET
+institutions. InfinEth Academy can design and deliver customized
+training programs for organizational workforce development.
+CTA: "Contact Us for Institutional Programs →" → /contact
+Related: Academy Overview · Fiber Optics Certification ·
+Telecom & Automation Training
+
+---
+
+## DELIVERABLE FOR THIS PROMPT
+List all 19 pages with their assigned layout sections before building.
+Confirm the shared template component structure. Wait for approval.
+```
+
+---
+
+## **PROMPT 4 OF 4 — Portfolio, About, Contact + Full QA & Deployment**
+
+```
+## YOUR ROLE
+Senior front-end developer. PLAN FIRST — share your build plan for each
+of the 3 remaining pages, then the QA plan, then wait for approval.
+Flag any decision before acting.
+
+## CONTEXT
+All 19 service sub-pages from Prompt 3 are approved and live.
+Build the final 3 pages, run full QA, then prepare for deployment.
+
+---
+
+## PAGE 1 — /portfolio (Portfolio & Projects)
+
+Layout: Filterable project card grid
+Filter tabs: All · Telecommunications · Power · ICT & Data Center
+
+Each card displays:
+  - Client name
+  - Scope (one sentence)
+  - Scale metric (where available)
+  - Category tag (for filter)
+
+Use ONLY these verified project records — no additions:
+
+TELECOMMUNICATIONS CATEGORY:
+1. Huawei / AAICTDA | Optical transmission installation &
+   commissioning | 66 stations | Routes: Addis Ababa–Mekele,
+   Addis Ababa–Gonder, Addis Ababa–Sululta
+2. Nokia / Nokia-Siemens | Telecom network project support
+   and commissioning | Ethiopia
+3. Ericsson | Project support and site works | Ethiopia
+4. ZTE | Site works and integration | Ethiopia
+5. Safaricom | Network rollout support | Ethiopia
+6. ESCO | Telecom power framework delivery | Ethiopia
+7. KEC International | 400KV transmission tower foundations
+   and erection | Ethiopia
+
+POWER CATEGORY:
+8.  EEPCO Program 1 | Rural electrification — survey, poles,
+    stringing, transformer work, commissioning | 28 towns
+9.  EEPCO Program 2 | Rural electrification | 10 towns
+10. EEPCO Program 3 | Rural electrification | 29 towns
+    [Combined total note: 67 towns across 3 programs]
+
+ICT & DATA CENTER CATEGORY:
+11. Huawei / AAICTDA — Entoto TVET | Data center build (30m²) +
+    LAN deployment across 12 buildings | 500+ nodes
+12. MoFED | Regional data centers | Ethiopia
+13. OXFAM-America | ICT support services | Ethiopia
+14. Clinton Foundation | LAN design and deployment | Ethiopia
+15. Ethiopian Sugar Corporation | ICT consultancy | Ethiopia
+16. CSA (Central Statistical Agency) | ICT consultancy | Ethiopia
+
+Page footer note: "Specific client references available on request."
+Page CTA: "Start a Project with Us →" → /contact
+
+---
+
+## PAGE 2 — /about (About InfinEth)
+
+Build in this exact section order. Use only the content below:
+
+SECTION 1 — Founding Story
+"InfinEth Solutions PLC was founded in October 2004 in Addis Ababa,
+Ethiopia. For over 20 years, we have delivered integrated engineering
+and ICT solutions to private companies, NGOs, and government
+institutions across Ethiopia and the East Africa region."
+
+SECTION 2 — What We Do
+One paragraph covering all four divisions:
+"Our capabilities span four integrated practice areas:
+Telecommunications (RAN rollout, fiber optics, tower and civil works,
+O&M and warehouse management), ICT & Data Center (data centers,
+enterprise networks, system development and cybersecurity), Power
+(transmission, distribution, minigrids and backup power systems), and
+Academy & Managed Services (FOA-certified training, industrial
+automation programs and managed IT services)."
+
+SECTION 3 — Why Clients Choose InfinEth
+Render as 4 statement blocks (not a bullet list — use cards or
+highlighted boxes):
+  1. "One partner across Engineering, Telecom and ICT — no siloed vendors."
+  2. "Strong field delivery: towers, power systems, cabling, integration
+     and commissioning."
+  3. "Safety, professionalism and customer satisfaction as explicit
+     operating principles."
+  4. "Turnkey solutions — timely, cost-effective, client-focused."
+
+SECTION 4 — Team Composition
+Two-column layout:
+
+  Left column — Team breakdown (exact figures only):
+    Diploma Technicians:  15
+    Riggers / Linemen:    10
+    Support Staff:         8
+    BSc Engineers:         7
+    ICT Consultants:       4
+    E/M Consultants:       3
+    Total: 47+ staff plus part-time collaborators
+
+  Right column — Academic leadership note:
+    "Senior leadership includes 4 PhD, 4 MSc and 5 BSc holders
+    across mechanical, electrical and computer engineering disciplines."
+
+SECTION 5 — ISO Certifications
+Same 5-badge row as homepage (reuse the component).
+
+SECTION 6 — Operating Principles
+Same icon row as homepage (reuse the component):
+Integrity · Professionalism · Safety First · Zero Accidents ·
+Customer Focus
+
+SECTION 7 — CTA
+"Partner with InfinEth →" → /contact
+
+---
+
+## PAGE 3 — /contact (Contact Us)
+
+TWO clearly separated inquiry sections on one page:
+
+SECTION A — Project & Partnership Inquiries
+Form fields:
+  Full Name (text)
+  Organization (text)
+  Country (text)
+  Phone (tel)
+  Email (email)
+  Project Type (select dropdown):
+    Telecommunications
+    ICT & Data Center
+    Power
+    Academy & Managed Services
+    Other
+  Message (textarea)
+  Submit button: "Send Inquiry"
+
+SECTION B — Training & Academy Enrollment
+Form fields:
+  Full Name (text)
+  Organization (text)
+  Email (email)
+  Phone (tel)
+  Program of Interest (select dropdown):
+    CFOT — Certified Fiber Optic Technician
+    CFOS/O — Outside Plant Installation
+    CFOS/D — Network Design & Project Management
+    CFOS/T — Testing & Commissioning
+    CFOS/W — Fiber for Wireless
+    Telecommunications Training
+    Industrial Automation (DCS / PLC)
+    Institutional / Corporate Partnership
+  Message (textarea)
+  Submit button: "Submit Enrollment Inquiry"
+
+CONTACT DETAILS CARD (static — no map embed):
+  Display as a styled info card:
+  InfinEth Solutions PLC
+  Bole Sub-city, Woreda 04, House No. 100
+  Haile Gebreselassie Avenue, Sr. Gete M. Bldg, 3rd floor
+  Addis Ababa, Ethiopia
+  Phone: +251 11 635 4312
+  Email: infineth@infineth.com
+  Web: infineth.com
+
+---
+
+## FULL QA CHECKLIST — Run before any deployment
+
+### Navigation QA
+  □ Top nav shows exactly 6 items in correct order:
+    Home · Telecommunications · ICT & Data Center · Power ·
+    Academy & Managed Services · Contact Us
+  □ All 4 dropdowns open and show correct sub-page labels and links
+  □ "About InfinEth" is NOT in the top nav
+  □ Mobile hamburger menu opens and all links work
+
+### Routing QA
+  □ All 7 top-level routes resolve without 404
+  □ All 19 sub-routes resolve without 404
+  □ /about loads from hero CTA and footer link
+  □ /portfolio loads from hero "View Our Capabilities" CTA and
+    homepage client section CTA
+
+### Content Integrity QA — Search entire codebase for these strings
+  and confirm ZERO instances remain:
+  □ "Smart AI"
+  □ "IoT"
+  □ "Predictive Ops"
+  □ "Vertical Mobility"
+  □ "Traffic Analytics"
+  □ "Pillar 01" / "Pillar 02" / "Pillar 03"
+  □ "Digital Convergence"
+  □ "Structural Infrastructure"
+  □ "Integrity Framework"
+  □ "0 Chapters"
+  □ "0.0%"
+  □ Any stat counter still showing "0"
+
+### Data Accuracy QA
+  □ Homepage stat counters show: 66 · 67 · 500+ · 20+ · 47+
+  □ All 5 ISO badges present on homepage, /about, and relevant
+    service pages
+  □ All contact details match exactly:
+    +251 11 635 4312 · infineth@infineth.com ·
+    Bole Sub-city, Woreda 04, House No. 100
+
+### Cross-Link QA
+  □ /telecommunications/fiber-optics links to
+    /academy/fiber-optics-certification
+  □ /ict-datacenter/training-consultancy links to /academy
+  □ All "Discuss Your Project" CTAs link to /contact
+  □ All "Enroll or Inquire" CTAs link to /contact
+  □ Homepage "View Full Portfolio" links to /portfolio
+  □ VTS mention appears ONLY on /power/building-electromechanical
+    and nowhere else
+
+### Forms QA
+  □ Both contact forms render all fields correctly
+  □ All dropdown options match the specified lists exactly
+  □ Both submit buttons present with correct labels
+
+### Responsive QA
+  □ Test at mobile (375px), tablet (768px), desktop (1280px):
+    Homepage · One service sub-page · /portfolio · /contact
+
+### Deployment QA — Shared Hosting (No Node) - (Serious NOTE! review our context and feedback BEFORE IMPLMENTING THIS DEPLOYMENT QA)
+  □ Every route has a physical index.html at its folder path: 
+    e.g. /telecommunications/fiber-optics/index.html
+    e.g. /academy/fiber-optics-certification/index.html
+  □ No page depends on client-side JS routing to resolve
+  □ Every URL works when accessed directly (no 404 on hard refresh)
+  □ No package.json, node_modules, or build step required to deploy
+  □ All CSS and JS are either inline, in /assets/ as static files,
+    or loaded via CDN links — no local Node server needed
+  □ Upload /dist or root folder directly to public_html on shared host
+  □ Test all 26 URLs by direct address before sign-off
+
+---
+
+## DELIVERABLE FOR THIS PROMPT
+Share your build plan for all 3 pages + the QA execution plan.
+Confirm Netlify deployment config. Wait for my approval

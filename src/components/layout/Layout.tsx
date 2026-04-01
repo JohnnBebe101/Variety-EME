@@ -9,11 +9,12 @@ import { useTranslation } from 'react-i18next';
 import { Brand } from '../Brand';
 import { X, ChevronRight, ArrowRight } from 'lucide-react';
 import { NAV_CONFIG } from '../../data/constants';
+import { getPathFromPageId } from '../../utils/routes';
 
 interface LayoutProps {
   children: React.ReactNode;
   currentPage: PageID;
-  navigateTo: (page: PageID, hash?: string) => void;
+  navigateTo: (page: PageID, hash?: string, routePath?: string) => void;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateTo }) => {
@@ -38,8 +39,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateT
     };
   }, []);
 
-  const handleNavigate = (page: PageID, hash?: string) => {
-    navigateTo(page, hash);
+  const handleNavigate = (page: PageID, hash?: string, routePath?: string) => {
+    navigateTo(page, hash, routePath);
     setIsMobileOpen(false);
     setActiveMenu(null);
   };
@@ -51,7 +52,6 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateT
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
         navigateTo={handleNavigate}
-        setIsContactOpen={setIsContactOpen}
         setIsMobileOpen={setIsMobileOpen}
       />
 
@@ -67,12 +67,23 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateT
                <nav className="flex-grow overflow-y-auto p-8 space-y-10">
                   {NAV_CONFIG.map(cat => (
                     <div key={cat.label} className="space-y-4">
-                      <div className="flex items-center gap-3"><cat.icon size={14} className="text-brand-accent/40" /><span className="text-xs font-semibold uppercase text-brand-accent/40 tracking-wide">{t(cat.label)}</span></div>
-                      <div className="grid gap-2 pl-4 border-l border-white/5">{cat.items.map(item => (<button key={item.label} onClick={() => handleNavigate(item.page as PageID)} className="text-lg font-bold text-left text-white/70 hover:text-brand-accent transition-all py-3 min-h-[44px] flex items-center justify-between group">{t(item.label)}<ChevronRight size={16} className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" /></button>))}</div>
+                      <div className="flex items-center gap-3 text-brand-accent/40">
+                        {cat.icon ? <cat.icon size={14} className="text-brand-accent/40" /> : null}
+                        <span className="text-xs font-semibold uppercase tracking-wide">{cat.label}</span>
+                      </div>
+                      <div className="grid gap-2 pl-4 border-l border-white/5">
+                        {cat.items.length > 0 ? (
+                          cat.items.map(item => (
+                            <button key={item.label} onClick={() => handleNavigate(item.page as PageID, undefined, item.path || getPathFromPageId(item.page as PageID))} className="text-lg font-bold text-left text-white/70 hover:text-brand-accent transition-all py-3 min-h-[44px] flex items-center justify-between group">{item.label}<ChevronRight size={16} className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" /></button>
+                          ))
+                        ) : cat.page ? (
+                          <button onClick={() => handleNavigate(cat.page as PageID, undefined, cat.path)} className="text-lg font-bold text-left text-white/70 hover:text-brand-accent transition-all py-3 min-h-[44px] flex items-center justify-between group">{cat.label}<ChevronRight size={16} className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" /></button>
+                        ) : null}
+                      </div>
                     </div>
                   ))}
                </nav>
-               <div className="p-8 border-t border-white/10 bg-brand-primary/30"><button onClick={() => { setIsMobileOpen(false); setIsContactOpen(true); }} className="w-full bg-brand-accent text-brand-primary py-5 min-h-[44px] rounded-2xl font-semibold uppercase text-sm tracking-wide shadow-xl active:scale-95 hover:bg-white transition-all flex items-center justify-center gap-3">{t('common.contact')} <ArrowRight size={16} /></button></div>
+               <div className="p-8 border-t border-white/10 bg-brand-primary/30"><button onClick={() => { handleNavigate('home', undefined, '/contact'); }} className="w-full bg-brand-accent text-brand-primary py-5 min-h-[44px] rounded-2xl font-semibold uppercase text-sm tracking-wide shadow-xl active:scale-95 hover:bg-white transition-all flex items-center justify-center gap-3">{t('common.contact')} <ArrowRight size={16} /></button></div>
             </motion.div>
           </>
         )}

@@ -16,8 +16,8 @@ export const SITE = {
   copyright: `© ${new Date().getFullYear()} InfinEth Solutions`,
   contact: {
     phone: "+251 11 635 4312",
-    address: "Bole, Addis Ababa, Ethiopia",
-    email: "info@infine-th.com"
+    address: "Bole Sub-city, Woreda 04, House No. 100\nHaile Gebreselassie Avenue, Sr. Gete M. Bldg, 3rd floor\nAddis Ababa, Ethiopia",
+    email: "infineth@infineth.com"
   }
 };
 
@@ -72,73 +72,103 @@ export const UI_CLASSES = {
 
 export const NAV_CONFIG = [
   {
-    label: 'nav.telecommunications',
+    label: 'Home',
+    page: 'home' as PageID,
+    path: '/',
+    overview: {
+      title: 'Home',
+      description: 'Return to the InfinEth homepage.',
+      cta: 'Home',
+      tag: 'Root'
+    },
+    items: []
+  },
+  {
+    label: 'Telecommunications',
+    page: 'telecommunications' as PageID,
+    path: '/telecommunications',
     icon: Radio,
     overview: {
-      title: "nav.telecom_solutions",
-      description: "nav.telecom_desc",
-      cta: "nav.view_works",
-      tag: "nav.connectivity"
+      title: 'Telecommunications',
+      description: 'Mobile rollout, fiber optics, towers, O&M, and warehouse management.',
+      cta: 'Explore',
+      tag: 'Telecommunications'
     },
     items: [
-      { label: 'nav.tower', page: 'telecom' as PageID, category: 'nav.infrastructure' },
-      { label: 'nav.civil_works', page: 'telecom' as PageID, category: 'nav.infrastructure' },
-      { label: 'nav.mobile_rollout', page: 'mobile-network' as PageID, category: 'nav.rollout' },
-      { label: 'nav.fiber_optics', page: 'telecom' as PageID, category: 'nav.transmission' },
-      { label: 'nav.sourcing', page: 'presence' as PageID, category: 'nav.supply' },
-      { label: 'nav.om', page: 'om' as PageID, category: 'nav.field_service' },
-      { label: 'nav.warehouse', page: 'om' as PageID, category: 'nav.logistics' }
+      { label: 'Mobile Telecom Rollout (RAN + Power)', page: 'telecommunications_mobile_rollout' as PageID, category: 'Telecommunications', path: '/telecommunications/mobile-rollout' },
+      { label: 'Fiber Optics', page: 'telecommunications_fiber_optics' as PageID, category: 'Telecommunications', path: '/telecommunications/fiber-optics' },
+      { label: 'Tower & Civil Works', page: 'telecommunications_tower_civil_works' as PageID, category: 'Telecommunications', path: '/telecommunications/tower-civil-works' },
+      { label: 'Operations & Maintenance (O&M)', page: 'telecommunications_operations_maintenance' as PageID, category: 'Telecommunications', path: '/telecommunications/operations-maintenance' },
+      { label: 'Warehouse Management', page: 'telecommunications_warehouse_management' as PageID, category: 'Telecommunications', path: '/telecommunications/warehouse-management' }
     ]
   },
   {
-    label: 'nav.ict_consultancy',
+    label: 'ICT & Data Center',
+    page: 'ict_datacenter' as PageID,
+    path: '/ict-datacenter',
     icon: Server,
     overview: {
-      title: "nav.digital_systems",
-      description: "nav.digital_desc",
-      cta: "nav.explore_tech",
-      tag: "nav.digital_core"
+      title: 'ICT & Data Center',
+      description: 'Data center design, enterprise networks, systems, cybersecurity, and consultancy.',
+      cta: 'Explore',
+      tag: 'ICT'
     },
     items: [
-      { label: 'nav.engineering_design', page: 'consultancy' as PageID, category: 'nav.consultancy' },
-      { label: 'nav.installation', page: 'ict' as PageID, category: 'nav.field' },
-      { label: 'nav.maintenance', page: 'om' as PageID, category: 'nav.om' },
-      { label: 'nav.supplies', page: 'ict' as PageID, category: 'nav.procurement' },
-      { label: 'nav.ai_iot', page: 'ai-iot' as PageID, category: 'nav.innovation' },
-      { label: 'nav.software', page: 'ict' as PageID, category: 'nav.solutions' },
-      { label: 'nav.mobility', page: 'mobility' as PageID, category: 'nav.mobility' }
+      { label: 'Data Center Design & Build', page: 'ict_datacenter_data_center_design' as PageID, category: 'ICT', path: '/ict-datacenter/data-center-design' },
+      { label: 'Enterprise Networking, Storage & Backup', page: 'ict_datacenter_enterprise_networking' as PageID, category: 'ICT', path: '/ict-datacenter/enterprise-networking' },
+      { label: 'System Development & Consultancy', page: 'ict_datacenter_system_development' as PageID, category: 'ICT', path: '/ict-datacenter/system-development' },
+      { label: 'Cybersecurity & Managed Services', page: 'ict_datacenter_cybersecurity_managed' as PageID, category: 'ICT', path: '/ict-datacenter/cybersecurity-managed' },
+      { label: 'Training & ICT Consultancy', page: 'ict_datacenter_training_consultancy' as PageID, category: 'ICT', path: '/ict-datacenter/training-consultancy' }
     ]
   },
   {
-    label: 'nav.power_automation',
+    label: 'Power',
+    page: 'power' as PageID,
+    path: '/power',
     icon: Zap,
     overview: {
-      title: "nav.industrial_power",
-      description: "nav.industrial_power_desc",
-      cta: "nav.power_grid",
-      tag: "nav.industrial"
+      title: 'Power',
+      description: 'Transmission, distribution, minigrids, backup power and building electromechanical works.',
+      cta: 'Explore',
+      tag: 'Power'
     },
     items: [
-      { label: 'nav.mv_hv', page: 'power' as PageID, category: 'nav.grid' },
-      { label: 'nav.backup', page: 'energy-mgmt' as PageID, category: 'nav.energy' },
-      { label: 'nav.factory', page: 'power' as PageID, category: 'nav.automation' }
+      { label: 'Transmission, Distribution & Substation', page: 'power_transmission_distribution' as PageID, category: 'Power', path: '/power/transmission-distribution' },
+      { label: 'Minigrid Systems', page: 'power_minigrid_systems' as PageID, category: 'Power', path: '/power/minigrid-systems' },
+      { label: 'Backup Power Systems (DG, Solar & Hybrid)', page: 'power_backup_power' as PageID, category: 'Power', path: '/power/backup-power' },
+      { label: 'Building Electromechanical Works', page: 'power_building_electromechanical' as PageID, category: 'Power', path: '/power/building-electromechanical' }
     ]
   },
   {
-    label: 'nav.training',
+    label: 'Academy & Managed Services',
+    page: 'academy' as PageID,
+    path: '/academy',
     icon: GraduationCap,
     overview: {
-      title: "nav.academia",
-      description: "nav.academia_desc",
-      cta: "nav.view_academy",
-      tag: "nav.education"
+      title: 'Academy & Managed Services',
+      description: 'Training, certification, managed services and corporate partnerships.',
+      cta: 'Explore',
+      tag: 'Academy'
     },
     items: [
-      { label: 'nav.ehs', page: 'ehs' as PageID, category: 'nav.safety' },
-      { label: 'nav.telecom_training', page: 'academy' as PageID, category: 'nav.technical' },
-      { label: 'nav.industrial_automation', page: 'power' as PageID, category: 'nav.automation' },
-      { label: 'nav.facility_dc', page: 'datacenters' as PageID, category: 'nav.infrastructure' }
+      { label: 'Academy Overview', page: 'academy_overview' as PageID, category: 'Academy', path: '/academy/overview' },
+      { label: 'Fiber Optics Certification (CFOT / CFOS)', page: 'academy_fiber_optics_certification' as PageID, category: 'Academy', path: '/academy/fiber-optics-certification' },
+      { label: 'Telecom & Industrial Automation Training', page: 'academy_telecom_automation_training' as PageID, category: 'Academy', path: '/academy/telecom-automation-training' },
+      { label: 'Managed Services', page: 'academy_managed_services' as PageID, category: 'Academy', path: '/academy/managed-services' },
+      { label: 'Corporate & Institutional Partnerships', page: 'academy_institutional_partnerships' as PageID, category: 'Academy', path: '/academy/institutional-partnerships' }
     ]
+  },
+  {
+    label: 'Contact Us',
+    page: 'contact' as PageID,
+    path: '/contact',
+    overview: {
+      title: 'Contact Us',
+      description: 'Reach out to InfinEth for project inquiries and partnerships.',
+      cta: 'Contact',
+      tag: 'Contact'
+    },
+    items: []
   }
 ];
 

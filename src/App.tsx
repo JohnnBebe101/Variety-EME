@@ -16,12 +16,12 @@ import {
   Cpu, 
   Server, 
   Layers, 
-  ChevronRight, 
   CheckCircle2, 
   Zap,
 } from 'lucide-react';
 
 import { PageID } from './types';
+import { getPathFromPageId, getRouteFromPath } from './utils/routes';
 import { SITE, HERO, PARTNERS, STATS, UI_CLASSES, NAV_CONFIG, ISO_DATA } from './data/constants';
 import { Layout } from './components/layout/Layout';
 import { LogoSymbol } from './components/LogoSymbol';
@@ -32,6 +32,7 @@ import { ServiceCard } from './components/ServiceCard';
 import { ContactModal } from './components/ContactModal';
 import { CountUp } from './components/CountUp';
 import { Section } from './components/Section';
+import { PageStub } from './components/PageStub';
 import { 
   CorporatePages, 
   InfrastructurePages, 
@@ -49,8 +50,20 @@ interface AppProps {
 const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
   const { t } = useTranslation(undefined, { i18n: i18nProp });
   const { t: heroT } = useTranslation('hero', { i18n: i18nProp });
-  const [currentPage, setCurrentPage] = useState<PageID>(initialPage);
-  const [isContactOpen, setIsContactOpen] = useState(false);
+  const initialRoute = (() => {
+    if (initialPage !== 'home') {
+      return { page: initialPage, openContact: false };
+    }
+
+    if (typeof window === 'undefined') {
+      return { page: 'home' as PageID, openContact: false };
+    }
+
+    return getRouteFromPath(window.location.pathname);
+  })();
+
+  const [currentPage, setCurrentPage] = useState<PageID>(initialRoute.page);
+  const [isContactOpen, setIsContactOpen] = useState(initialRoute.openContact ?? false);
   const [activeISO, setActiveISO] = useState("9001");
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -58,20 +71,40 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
 
   useEffect(() => {
     const h = () => setIsScrolled(window.scrollY > 30);
+    const handlePopState = () => {
+      const route = getRouteFromPath(window.location.pathname);
+      setCurrentPage(route.page);
+      setIsContactOpen(route.openContact ?? false);
+    };
+
     window.addEventListener('scroll', h);
-    return () => window.removeEventListener('scroll', h);
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('scroll', h);
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
-  const navigateTo = (page: PageID, hash?: string) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const navigateTo = (page: PageID, hash?: string, routePath?: string) => {
+    const path = routePath || getPathFromPageId(page);
+    const route = getRouteFromPath(path);
+
+    setCurrentPage(route.page);
+    setIsContactOpen(route.openContact ?? false);
     setIsMobileOpen(false);
     setActiveMenu(null);
-    if (hash && page === 'home') {
-      setTimeout(() => {
-        const el = document.querySelector(hash);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 150);
+
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, '', path);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (hash && route.page === 'home') {
+        setTimeout(() => {
+          const el = document.querySelector(hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      }
     }
   };
 
@@ -115,6 +148,18 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
           <CorporatePages.Portfolio onBack={() => navigateTo('home')} />
         </>
       );
+      case 'portfolio': return (
+        <>
+          <MetaTags title={t('nav.portfolio')} description="Our Project Portfolio" />
+          <CorporatePages.Portfolio onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'about': return (
+        <>
+          <MetaTags title={t('nav.identity')} description="InfinEth Solutions Corporate Identity" />
+          <CorporatePages.Identity onBack={() => navigateTo('home')} />
+        </>
+      );
       case 'presence': return (
         <>
           <MetaTags title={t('nav.presence')} description="Our Regional Presence" />
@@ -127,9 +172,69 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
           <InfrastructurePages.Telecom onBack={() => navigateTo('home')} />
         </>
       );
+      case 'telecommunications': return (
+        <>
+          <MetaTags title={t('common.services.telecom.title')} description={t('common.services.telecom.items', { returnObjects: true })[0]} />
+          <InfrastructurePages.Telecom onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'telecommunications_mobile_rollout': return (
+        <>
+          <MetaTags title="Mobile Rollout" description="Telecommunications mobile rollout services" />
+          <InfrastructurePages.Network onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'telecommunications_fiber_optics': return (
+        <>
+          <MetaTags title="Fiber Optics" description="Telecommunications fiber optics services" />
+          <InfrastructurePages.Telecom onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'telecommunications_tower_civil_works': return (
+        <>
+          <MetaTags title="Tower & Civil Works" description="Telecommunications tower and civil works" />
+          <PageStub title="Tower & Civil Works" />
+        </>
+      );
+      case 'telecommunications_operations_maintenance': return (
+        <>
+          <MetaTags title={t('nav.om')} description="Operations & Maintenance Services" />
+          <InfrastructurePages.OM onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'telecommunications_warehouse_management': return (
+        <>
+          <MetaTags title="Warehouse Management" description="Telecommunications warehouse management services" />
+          <PageStub title="Warehouse Management" />
+        </>
+      );
       case 'power': return (
         <>
           <MetaTags title={t('common.services.power.title')} description={t('common.services.power.items', { returnObjects: true })[0]} />
+          <InfrastructurePages.Power onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'power_transmission_distribution': return (
+        <>
+          <MetaTags title="Transmission & Distribution" description="Power transmission and distribution services" />
+          <InfrastructurePages.Power onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'power_minigrid_systems': return (
+        <>
+          <MetaTags title="Mini-grid Systems" description="Power mini-grid and renewable systems" />
+          <InfrastructurePages.Network onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'power_backup_power': return (
+        <>
+          <MetaTags title="Backup Power" description="Power backup systems and battery solutions" />
+          <InfrastructurePages.Network onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'power_building_electromechanical': return (
+        <>
+          <MetaTags title="Building Electromechanical" description="Building electromechanical power solutions" />
           <InfrastructurePages.Power onBack={() => navigateTo('home')} />
         </>
       );
@@ -155,6 +260,42 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
         <>
           <MetaTags title={t('common.services.ict.title')} description={t('common.services.ict.items', { returnObjects: true })[0]} />
           <InnovationPages.ICT onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'ict_datacenter': return (
+        <>
+          <MetaTags title={t('common.services.ict.title')} description={t('common.services.ict.items', { returnObjects: true })[0]} />
+          <InnovationPages.ICT onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'ict_datacenter_data_center_design': return (
+        <>
+          <MetaTags title="Data Center Design" description="Data center design solutions" />
+          <InnovationPages.DataCenters onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'ict_datacenter_enterprise_networking': return (
+        <>
+          <MetaTags title="Enterprise Networking" description="ICT enterprise networking services" />
+          <InnovationPages.ICT onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'ict_datacenter_system_development': return (
+        <>
+          <MetaTags title="System Development" description="ICT system development services" />
+          <ExcellencePages.Consultancy onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'ict_datacenter_cybersecurity_managed': return (
+        <>
+          <MetaTags title="Cybersecurity & Managed Services" description="ICT cybersecurity and managed services" />
+          <ExcellencePages.Consultancy onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'ict_datacenter_training_consultancy': return (
+        <>
+          <MetaTags title="Training & Consultancy" description="ICT training and consultancy services" />
+          <ExcellencePages.Academy onBack={() => navigateTo('home')} />
         </>
       );
       case 'coresite': return (
@@ -199,6 +340,36 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
           <ExcellencePages.Academy onBack={() => navigateTo('home')} />
         </>
       );
+      case 'academy_overview': return (
+        <>
+          <MetaTags title="Academy Overview" description="InfinEth Academy overview" />
+          <ExcellencePages.Academy onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'academy_fiber_optics_certification': return (
+        <>
+          <MetaTags title="Fiber Optics Certification" description="Academy fiber optics certification" />
+          <PageStub title="Fiber Optics Certification" />
+        </>
+      );
+      case 'academy_telecom_automation_training': return (
+        <>
+          <MetaTags title="Telecom Automation Training" description="Academy telecom automation training" />
+          <ExcellencePages.Academy onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'academy_managed_services': return (
+        <>
+          <MetaTags title="Managed Services" description="Academy managed services" />
+          <ExcellencePages.Consultancy onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'academy_institutional_partnerships': return (
+        <>
+          <MetaTags title="Institutional Partnerships" description="Academy institutional partnerships" />
+          <CorporatePages.Presence onBack={() => navigateTo('home')} />
+        </>
+      );
       case 'consultancy': return (
         <>
           <MetaTags title={t('nav.consultancy')} description="Consultancy Services" />
@@ -226,27 +397,23 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
              <div className="flex gap-20 items-center animate-marquee whitespace-nowrap opacity-[0.1] hover:opacity-[0.8] transition-opacity duration-700">{PARTNERS.concat(PARTNERS).map((n, i) => (<span key={i} className="text-sm md:text-base font-semibold text-brand-foreground tracking-tighter uppercase">{n.name}</span>))}</div>
           </Section>
           
-          <Section id="infrastructure" className="bg-brand-primary">
+          <Section id="capabilities" className="bg-brand-primary">
              <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-10">
-               <div className="max-w-2xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-6`}>{t('common.pillar1')}</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground`}>{t('common.structuralInfrastructure')}</h2></div>
-               <p className="text-body text-gray-400 max-w-sm leading-relaxed">{t('common.infrastructureDesc')}</p>
+               <div className="max-w-2xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-6`}>Core Capabilities</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground`}>Comprehensive engineering, ICT and academy services built for Ethiopia’s next wave of digital growth.</h2></div>
+               <p className="text-body text-gray-400 max-w-sm leading-relaxed">End-to-end solutions across Telecommunications, Power, ICT & Data Center, and Academy & Managed Services.</p>
              </div>
-             <div className="grid md:grid-cols-2 gap-10">
-               <ServiceCard title={t('common.services.telecom.title')} icon={Radio} color="bg-brand-accent" items={t('common.services.telecom.items', { returnObjects: true }) as string[]} onClick={() => navigateTo('telecom')} />
-               <ServiceCard title={t('common.services.power.title')} icon={Zap} color="bg-brand-surface" items={t('common.services.power.items', { returnObjects: true }) as string[]} onClick={() => navigateTo('power')} />
+             <div className="grid lg:grid-cols-2 gap-10">
+               {NAV_CONFIG.filter(cat => cat.items.length > 0).map(cat => (
+                 <ServiceCard
+                   key={cat.label}
+                   title={cat.label}
+                   icon={cat.icon ?? Radio}
+                   color="bg-brand-accent"
+                   items={cat.items.slice(0, 4).map(item => item.label)}
+                   onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
+                 />
+               ))}
              </div>
-          </Section>
-
-          <Section id="innovation" className="bg-brand-surface">
-            <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-10">
-              <div className="max-w-2xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-6`}>{t('common.pillar2')}</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground`}>{t('common.digitalConvergence')}</h2></div>
-              <p className="text-body text-gray-400 max-sm leading-relaxed">{t('common.digitalConvergenceDesc')}</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              <ServiceCard title={t('common.services.ict.title')} icon={Server} color="bg-brand-primary" items={t('common.services.ict.items', { returnObjects: true }) as string[]} onClick={() => navigateTo('ict')} />
-              <ServiceCard title={t('common.services.ai_iot.title')} icon={Cpu} color="bg-brand-accent" items={t('common.services.ai_iot.items', { returnObjects: true }) as string[]} onClick={() => navigateTo('ai-iot')} />
-              <ServiceCard title={t('common.services.mobility.title')} icon={Layers} color="bg-brand-muted" items={t('common.services.mobility.items', { returnObjects: true }) as string[]} onClick={() => navigateTo('mobility')} />
-            </div>
           </Section>
 
           <Section id="excellence" className="bg-brand-primary overflow-hidden">

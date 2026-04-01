@@ -7,7 +7,7 @@ import { SITE } from '../../data/constants';
 import { PageID } from '../../types';
 
 interface FooterProps {
-  navigateTo: (page: PageID, hash?: string) => void;
+  navigateTo: (page: PageID, hash?: string, routePath?: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
@@ -38,9 +38,9 @@ export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
           <div className="space-y-8">
             <h5 className="text-xs font-semibold uppercase tracking-widest text-gray-500">{t('common.links')}</h5>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('home', '#infrastructure')}>{t('common.infrastructure')}</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('home', '#innovation')}>{t('common.innovation')}</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('home', '#excellence')}>{t('common.academy')}</li>
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('home', '#capabilities')}>Capabilities</li>
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('home', '#excellence')}>Excellence</li>
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('contact', undefined, '/contact')}>Contact Us</li>
             </ul>
           </div>
         </div>
