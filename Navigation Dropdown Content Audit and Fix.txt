@@ -1,0 +1,195 @@
+## YOUR ROLE
+Senior front-end developer. AUDIT FIRST — inspect, compare,
+and report all findings against the master navigation matrix
+below. Generate a fix plan and wait for my approval.
+DO NOT change anything else in the project — only navigation
+label text and dropdown content is in scope for this prompt.
+No routes, no components, no styles, no content pages.
+
+---
+
+## CONTEXT
+Two top-level nav labels have been updated by the client:
+  OLD: "ICT & Data Center"        → NEW: "ICT"
+  OLD: "Academy & Managed Services" → NEW: "MSP"
+
+All routes remain unchanged:
+  /ict-datacenter and /academy stay exactly as they are.
+
+This prompt verifies ALL navigation text — top-level labels
+AND all dropdown items — match the master matrix below exactly.
+
+---
+
+## MASTER NAVIGATION MATRIX
+This is the single source of truth. Every label, every dropdown
+item, every route must match this exactly after the fix.
+
+### TOP NAVIGATION BAR (6 items in this exact order)
+  1. Home              → /
+  2. Telecommunications → /telecommunications
+  3. ICT               → /ict-datacenter
+  4. Power             → /power
+  5. MSP               → /academy
+  6. Contact Us        → /contact
+     (rendered as CTA button — NOT as plain text nav item)
+
+### TELECOMMUNICATIONS DROPDOWN (5 items)
+  → Mobile Telecom Rollout (RAN + Power)
+    /telecommunications/mobile-rollout
+  → Fiber Optics
+    /telecommunications/fiber-optics
+  → Tower & Civil Works
+    /telecommunications/tower-civil-works
+  → Operations & Maintenance (O&M)
+    /telecommunications/operations-maintenance
+  → Warehouse Management
+    /telecommunications/warehouse-management
+
+### ICT DROPDOWN (5 items)
+  → Data Center Design & Build
+    /ict-datacenter/data-center-design
+  → Enterprise Networking, Storage & Backup
+    /ict-datacenter/enterprise-networking
+  → System Development & Consultancy
+    /ict-datacenter/system-development
+  → Cybersecurity & Managed Services
+    /ict-datacenter/cybersecurity-managed
+  → Training & ICT Consultancy
+    /ict-datacenter/training-consultancy
+
+### POWER DROPDOWN (4 items)
+  → Transmission, Distribution & Substation
+    /power/transmission-distribution
+  → Minigrid Systems
+    /power/minigrid-systems
+  → Backup Power Systems (DG, Solar & Hybrid)
+    /power/backup-power
+  → Building Electromechanical Works
+    /power/building-electromechanical
+
+### MSP DROPDOWN (5 items)
+  → Academy Overview
+    /academy/overview
+  → Fiber Optics Certification (CFOT / CFOS)
+    /academy/fiber-optics-certification
+  → Telecom & Industrial Automation Training
+    /academy/telecom-automation-training
+  → Managed Services
+    /academy/managed-services
+  → Corporate & Institutional Partnerships
+    /academy/institutional-partnerships
+
+### MOBILE HAMBURGER MENU
+  Same 6 top-level items in same order.
+  Dropdowns expand inline (accordion style).
+  Contact Us appears as last item — styled distinctly
+  but as a list item, not a floating button.
+
+---
+
+## STEP 1 — AUDIT: INSPECT & COMPARE
+
+Locate the navigation data source in the codebase.
+This is likely one of:
+  - A navItems array or navConfig object in the
+    Navbar component
+  - A separate navigation config file
+    (e.g. navConfig.ts, navigationData.ts, menuItems.ts)
+  - Hardcoded JSX inside the Navbar component
+
+For EVERY nav item found, report in this format:
+
+  TOP LEVEL:
+  Position | Current Label | Expected Label | Route | Status
+  -------- | ------------- | -------------- | ----- | ------
+  1        | [found]       | Home           | /     | PASS/FAIL
+
+  DROPDOWN — TELECOMMUNICATIONS:
+  Position | Current Label | Expected Label | Route | Status
+
+  DROPDOWN — ICT:
+  Position | Current Label | Expected Label | Route | Status
+
+  DROPDOWN — POWER:
+  Position | Current Label | Expected Label | Route | Status
+
+  DROPDOWN — MSP:
+  Position | Current Label | Expected Label | Route | Status
+
+  MOBILE MENU:
+  Confirm same items appear in mobile menu — PASS/FAIL
+
+Flag every FAIL with:
+  - Exact file and line number
+  - Current value found
+  - Required value from master matrix
+
+---
+
+## STEP 2 — FIX PLAN
+
+Based on audit findings, list every change required:
+
+For each fix state:
+  File: [filename]
+  Line: [line number]
+  Change: "[current text]" → "[correct text]"
+  Scope: label only / route only / both
+
+Group fixes by:
+  A. Top-level label fixes
+  B. Dropdown label fixes
+  C. Route/link fixes
+  D. Mobile menu fixes (if separate from desktop)
+
+---
+
+## STEP 3 — STRICT SCOPE ENFORCEMENT
+
+Before implementing, confirm in writing:
+
+  ✓ Only navigation label text and link targets
+    are being changed
+  ✓ No component structure is being modified
+  ✓ No styles, colors, or animations are being changed
+  ✓ No page content components are being touched
+  ✓ No routes.ts entries are being renamed or removed
+  ✓ No image references are being changed
+  ✓ No other files outside the navigation config
+    and Navbar component are being modified
+
+If any fix requires touching a file outside the
+navigation config or Navbar component, FLAG IT
+and wait for explicit approval before proceeding.
+
+---
+
+## STEP 4 — POST-FIX VERIFICATION CHECKLIST
+
+After implementing (once approved), confirm:
+
+  □ Top nav shows exactly 6 items in correct order
+  □ "ICT" label appears — not "ICT & Data Center"
+  □ "MSP" label appears — not "Academy & Managed Services"
+  □ All 4 dropdowns open with correct item count:
+    Telecommunications: 5 items
+    ICT: 5 items
+    Power: 4 items
+    MSP: 5 items
+  □ Every dropdown item links to correct route
+  □ No dropdown item is missing or duplicated
+  □ Mobile hamburger menu reflects same structure
+  □ Contact Us CTA button links to /contact
+  □ No other visible change anywhere on the site
+
+---
+
+## DELIVERABLE BEFORE ANY CODE
+  1. Full audit table (Step 1) — every item, every status
+  2. Complete fix list (Step 2) — every change with
+     file, line, before, after
+  3. Scope confirmation statement (Step 3)
+
+WAIT FOR APPROVAL BEFORE MAKING ANY CHANGES.
+TOUCH NOTHING OUTSIDE NAVIGATION LABELS AND LINKS.

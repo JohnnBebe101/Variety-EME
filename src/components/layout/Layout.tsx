@@ -1,8 +1,8 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { ContactModal } from '../ContactModal';
+const ContactModal = lazy(() => import('../ContactModal').then(module => ({ default: module.ContactModal })));
 import { PageID } from '../../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -95,7 +95,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateT
 
       <Footer navigateTo={handleNavigate} />
       
-      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      <Suspense fallback={null}>
+        <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      </Suspense>
     </div>
   );
 };

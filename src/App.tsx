@@ -32,11 +32,11 @@ import { ServiceCard } from './components/ServiceCard';
 import { ContactModal } from './components/ContactModal';
 import { CountUp } from './components/CountUp';
 import { Section } from './components/Section';
-import { PageStub } from './components/PageStub';
 import { 
   CorporatePages, 
   InfrastructurePages, 
   InnovationPages, 
+  ServicePages,
   ExcellencePages 
 } from './components/PageSections';
 
@@ -180,194 +180,116 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       );
       case 'telecommunications_mobile_rollout': return (
         <>
-          <MetaTags title="Mobile Rollout" description="Telecommunications mobile rollout services" />
-          <InfrastructurePages.Network onBack={() => navigateTo('home')} />
+          <MetaTags title="Mobile Telecom Rollout (RAN + Power)" description="Radio Access Network deployment integrated with telecom power infrastructure as a single turnkey scope." />
+          <ServicePages.TelecommunicationsMobileRollout onBack={() => navigateTo('home')} />
         </>
       );
       case 'telecommunications_fiber_optics': return (
         <>
-          <MetaTags title="Fiber Optics" description="Telecommunications fiber optics services" />
-          <InfrastructurePages.Telecom onBack={() => navigateTo('home')} />
+          <MetaTags title="Fiber Optics" description="Long-haul and metropolitan fiber optic network design, installation, splicing, termination, testing and commissioning." />
+          <ServicePages.TelecommunicationsFiberOptics onBack={() => navigateTo('home')} />
         </>
       );
       case 'telecommunications_tower_civil_works': return (
         <>
-          <MetaTags title="Tower & Civil Works" description="Telecommunications tower and civil works" />
-          <PageStub title="Tower & Civil Works" />
+          <MetaTags title="Tower & Civil Works" description="Greenfield tower construction, rooftop installations, tower reinforcement and civil site preparation." />
+          <ServicePages.TelecommunicationsTowerCivilWorks onBack={() => navigateTo('home')} />
         </>
       );
       case 'telecommunications_operations_maintenance': return (
         <>
-          <MetaTags title={t('nav.om')} description="Operations & Maintenance Services" />
-          <InfrastructurePages.OM onBack={() => navigateTo('home')} />
+          <MetaTags title="Operations & Maintenance (O&M)" description="Preventive and corrective maintenance contracts with SLA-based network support." />
+          <ServicePages.TelecommunicationsOperationsMaintenance onBack={() => navigateTo('home')} />
         </>
       );
       case 'telecommunications_warehouse_management': return (
         <>
-          <MetaTags title="Warehouse Management" description="Telecommunications warehouse management services" />
-          <PageStub title="Warehouse Management" />
-        </>
-      );
-      case 'power': return (
-        <>
-          <MetaTags title={t('common.services.power.title')} description={t('common.services.power.items', { returnObjects: true })[0]} />
-          <InfrastructurePages.Power onBack={() => navigateTo('home')} />
+          <MetaTags title="Warehouse Management" description="Equipment receiving, inspection, inventory tracking and asset management for telecom programs." />
+          <ServicePages.TelecommunicationsWarehouseManagement onBack={() => navigateTo('home')} />
         </>
       );
       case 'power_transmission_distribution': return (
         <>
-          <MetaTags title="Transmission & Distribution" description="Power transmission and distribution services" />
-          <InfrastructurePages.Power onBack={() => navigateTo('home')} />
+          <MetaTags title="Transmission, Distribution & Substation" description="HV/MV transmission line construction, substations and distribution network rollout." />
+          <ServicePages.PowerTransmissionDistribution onBack={() => navigateTo('home')} />
         </>
       );
       case 'power_minigrid_systems': return (
         <>
-          <MetaTags title="Mini-grid Systems" description="Power mini-grid and renewable systems" />
-          <InfrastructurePages.Network onBack={() => navigateTo('home')} />
+          <MetaTags title="Minigrid Systems" description="Minigrid design, hybrid power systems, grid integration and community electrification." />
+          <ServicePages.PowerMinigridSystems onBack={() => navigateTo('home')} />
         </>
       );
       case 'power_backup_power': return (
         <>
-          <MetaTags title="Backup Power" description="Power backup systems and battery solutions" />
-          <InfrastructurePages.Network onBack={() => navigateTo('home')} />
+          <MetaTags title="Backup Power Systems (DG, Solar & Hybrid)" description="Diesel generator, solar PV, battery storage and UPS systems for backup power." />
+          <ServicePages.PowerBackupPower onBack={() => navigateTo('home')} />
         </>
       );
       case 'power_building_electromechanical': return (
         <>
-          <MetaTags title="Building Electromechanical" description="Building electromechanical power solutions" />
-          <InfrastructurePages.Power onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'om': return (
-        <>
-          <MetaTags title={t('nav.om')} description="Operations & Maintenance Services" />
-          <InfrastructurePages.OM onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'mobile-network': return (
-        <>
-          <MetaTags title={t('nav.network')} description="Mobile Network Infrastructure" />
-          <InfrastructurePages.Network onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'energy-mgmt': return (
-        <>
-          <MetaTags title={t('nav.energy')} description="Energy Management Solutions" />
-          <InfrastructurePages.Network onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'ict': return (
-        <>
-          <MetaTags title={t('common.services.ict.title')} description={t('common.services.ict.items', { returnObjects: true })[0]} />
-          <InnovationPages.ICT onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'ict_datacenter': return (
-        <>
-          <MetaTags title={t('common.services.ict.title')} description={t('common.services.ict.items', { returnObjects: true })[0]} />
-          <InnovationPages.ICT onBack={() => navigateTo('home')} />
+          <MetaTags title="Building Electromechanical Works" description="Industrial electrical installations, panel boards, earthing and lightning protection systems." />
+          <ServicePages.PowerBuildingElectromechanical onBack={() => navigateTo('home')} />
         </>
       );
       case 'ict_datacenter_data_center_design': return (
         <>
-          <MetaTags title="Data Center Design" description="Data center design solutions" />
-          <InnovationPages.DataCenters onBack={() => navigateTo('home')} />
+          <MetaTags title="Data Center Design & Build" description="Data center assessment, rack and cabling infrastructure, power and cooling systems." />
+          <ServicePages.IctDatacenterDataCenterDesign onBack={() => navigateTo('home')} />
         </>
       );
       case 'ict_datacenter_enterprise_networking': return (
         <>
-          <MetaTags title="Enterprise Networking" description="ICT enterprise networking services" />
-          <InnovationPages.ICT onBack={() => navigateTo('home')} />
+          <MetaTags title="Enterprise Networking, Storage & Backup" description="LAN/WAN design, structured cabling, storage and backup systems." />
+          <ServicePages.IctDatacenterEnterpriseNetworking onBack={() => navigateTo('home')} />
         </>
       );
       case 'ict_datacenter_system_development': return (
         <>
-          <MetaTags title="System Development" description="ICT system development services" />
-          <ExcellencePages.Consultancy onBack={() => navigateTo('home')} />
+          <MetaTags title="System Development & Consultancy" description="System requirements analysis, software development and ICT project management." />
+          <ServicePages.IctDatacenterSystemDevelopment onBack={() => navigateTo('home')} />
         </>
       );
       case 'ict_datacenter_cybersecurity_managed': return (
         <>
-          <MetaTags title="Cybersecurity & Managed Services" description="ICT cybersecurity and managed services" />
-          <ExcellencePages.Consultancy onBack={() => navigateTo('home')} />
+          <MetaTags title="Cybersecurity & Managed Services" description="Information security assessments, managed services and incident response support." />
+          <ServicePages.IctDatacenterCybersecurityManaged onBack={() => navigateTo('home')} />
         </>
       );
       case 'ict_datacenter_training_consultancy': return (
         <>
-          <MetaTags title="Training & Consultancy" description="ICT training and consultancy services" />
-          <ExcellencePages.Academy onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'coresite': return (
-        <>
-          <MetaTags title={t('nav.coresite')} description="Core Site Infrastructure" />
-          <InnovationPages.CoreSite onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'ai-iot': return (
-        <>
-          <MetaTags title={t('common.services.ai_iot.title')} description={t('common.services.ai_iot.items', { returnObjects: true })[0]} />
-          <InnovationPages.AIoT onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'mobility': return (
-        <>
-          <MetaTags title={t('common.services.mobility.title')} description={t('common.services.mobility.items', { returnObjects: true })[0]} />
-          <InnovationPages.Mobility onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'datacenters': return (
-        <>
-          <MetaTags title={t('nav.datacenters')} description="Data Center Solutions" />
-          <InnovationPages.DataCenters onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'awards': return (
-        <>
-          <MetaTags title={t('nav.awards')} description="Awards & Recognition" />
-          <ExcellencePages.Awards onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'iso': return (
-        <>
-          <MetaTags title={t('nav.iso')} description="ISO Certifications & Quality Standards" />
-          <ExcellencePages.ISO onBack={() => navigateTo('home')} />
-        </>
-      );
-      case 'academy': return (
-        <>
-          <MetaTags title={t('nav.academy')} description="InfinEth Academy" />
-          <ExcellencePages.Academy onBack={() => navigateTo('home')} />
+          <MetaTags title="Training & ICT Consultancy" description="ICT training programs and consultancy services for enterprise and institutional clients." />
+          <ServicePages.IctDatacenterTrainingConsultancy onBack={() => navigateTo('home')} />
         </>
       );
       case 'academy_overview': return (
         <>
-          <MetaTags title="Academy Overview" description="InfinEth Academy overview" />
-          <ExcellencePages.Academy onBack={() => navigateTo('home')} />
+          <MetaTags title="Academy Overview" description="InfinEth Academy is Ethiopia's practitioner-led engineering and ICT training center." />
+          <ServicePages.AcademyOverview onBack={() => navigateTo('home')} />
         </>
       );
       case 'academy_fiber_optics_certification': return (
         <>
-          <MetaTags title="Fiber Optics Certification" description="Academy fiber optics certification" />
-          <PageStub title="Fiber Optics Certification" />
+          <MetaTags title="Fiber Optics Certification Programs (CFOT / CFOS)" description="FOA-aligned fiber optics certification programs for technicians and specialists." />
+          <ServicePages.AcademyFiberOpticsCertification onBack={() => navigateTo('home')} />
         </>
       );
       case 'academy_telecom_automation_training': return (
         <>
-          <MetaTags title="Telecom Automation Training" description="Academy telecom automation training" />
-          <ExcellencePages.Academy onBack={() => navigateTo('home')} />
+          <MetaTags title="Telecommunications & Industrial Automation Training" description="Telecom and industrial automation training programs for operators and engineers." />
+          <ServicePages.AcademyTelecomAutomationTraining onBack={() => navigateTo('home')} />
         </>
       );
       case 'academy_managed_services': return (
         <>
-          <MetaTags title="Managed Services" description="Academy managed services" />
-          <ExcellencePages.Consultancy onBack={() => navigateTo('home')} />
+          <MetaTags title="Managed Services" description="Ongoing operational support, IT infrastructure management and SLA-based support contracts." />
+          <ServicePages.AcademyManagedServices onBack={() => navigateTo('home')} />
         </>
       );
       case 'academy_institutional_partnerships': return (
         <>
-          <MetaTags title="Institutional Partnerships" description="Academy institutional partnerships" />
-          <CorporatePages.Presence onBack={() => navigateTo('home')} />
+          <MetaTags title="Corporate & Institutional Training Partnerships" description="Customized bulk training programs for organizations and TVET institutions." />
+          <ServicePages.AcademyInstitutionalPartnerships onBack={() => navigateTo('home')} />
         </>
       );
       case 'consultancy': return (

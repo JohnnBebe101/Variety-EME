@@ -1,0 +1,161 @@
+ROLE
+You are a senior front‑end + deployment engineer.
+This project MUST be finalized for production on shared hosting
+(Apache / cPanel / no Node runtime).
+You MUST plan first, explain decisions, forecast risks, and wait for approval
+before implementing any changes.
+
+CONTEXT (DO NOT IGNORE)
+• Codebase: React 18 + Vite + Tailwind CSS + Framer Motion
+• Prompts 1–3 are fully implemented
+• A custom prerender pipeline (prerender.ts) already exists
+• Deployment target: shared hosting (Apache, public_html)
+• Netlify is DEMO ONLY, not production
+• Webmail (info@infineth.com etc.) is already configured on the same host
+• No Node.js runtime available at serve time
+• Highest priority: speed, SEO, reliability, ownership
+
+GOAL
+Deliver a fully static, high‑performance website with:
+• Physical HTML files for all routes
+• Fast first paint on low bandwidth
+• Zero SPA routing failures
+• Clean integration with existing webmail
+• Minimal JS payload
+• Clean asset paths ready for future image/content updates
+
+STEP 1 — ASSESS & CONFIRM (REPORT FIRST)
+Inspect and confirm:
+
+Current prerender pipeline:
+
+List all routes it generates under /dist
+Confirm all 26 routes exist as physical folders with index.html
+
+
+JS/CSS bundle sizes (main JS, CSS)
+Framer Motion usage:
+
+Identify where animation is critical vs decorative
+
+
+Asset handling:
+
+Current image paths (/assets, /images)
+Confirm Vite base path is /
+
+
+Forms:
+
+Confirm no existing backend submission logic
+
+
+Webmail:
+
+Confirm forms will NOT interfere with existing MX/DNS records
+
+
+
+Provide a short assessment report before proceeding.
+
+STEP 2 — HARDEN FOR SHARED HOSTING (MANDATORY)
+A. Apache Compatibility
+Create public/.htaccess with EXACT content:
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
+Confirm Vite copies this file into /dist.
+B. Static‑First Routing
+Ensure:
+• Every route works via direct URL (no JS required to load content)
+• No reliance on Netlify _redirects
+• All navigation links resolve to physical HTML files
+
+STEP 3 — PERFORMANCE OPTIMIZATION (STATIC‑FIRST)
+
+
+Preserve prerendering
+
+Do NOT remove prerender.ts
+Validate it generates all routes
+Fix any missing routes
+
+
+
+Reduce JS cost
+
+Lazy‑load Framer Motion where possible
+Convert simple animations to CSS (fade, slide, hover)
+Ensure no unused libraries are bundled
+
+
+
+Asset strategy
+
+All images served from /assets/images/
+Use descriptive filenames (ready for later replacement)
+No base64 or inline heavy images
+Ensure future image swaps require NO code changes
+
+
+
+SEO
+
+Preserve MetaTags output in prerendered HTML
+Confirm , meta description per page
+
+
+
+
+STEP 4 — FORM HANDLING (WEBMAIL‑SAFE)
+Implement PHP Mailer (Preferred)​:
+• Create /public/contact.php
+• Use PHPMailer or native mail()
+• Form submits via fetch() POST
+• Send to:
+info@infineth.com (or configured mailbox)
+• No SMTP config that alters existing webmail
+• Add:
+
+basic validation
+honeypot field
+success/failure JSON response
+
+⚠️ Do NOT modify DNS, MX records, or cPanel email settings.
+
+STEP 5 — FINAL FILE STRUCTURE (TARGET)
+public_html/
+├─ index.html
+├─ telecommunications/
+├─ ict-datacenter/
+├─ power/
+├─ academy/
+├─ portfolio/
+├─ about/
+├─ contact/
+├─ assets/
+│   ├─ css/
+│   ├─ js/
+│   └─ images/
+├─ .htaccess
+└─ contact.php
+
+STEP 6 — QA & VALIDATION (REQUIRED)
+✅ Direct URL test for all 26 pages
+✅ JS disabled → content still visible
+✅ Mobile test on slow network
+✅ Forms send email successfully
+✅ Webmail unaffected
+✅ No “Smart AI / IoT / Pillar” text remains
+✅ Lighthouse Performance ≥ 85
+
+DELIVERABLE
+Before coding, submit:
+
+Assessment summary
+Exact changes list
+Risk + mitigation table
+Confirmation checklist
+
+WAIT FOR APPROVAL BEFORE IMPLEMENTING.

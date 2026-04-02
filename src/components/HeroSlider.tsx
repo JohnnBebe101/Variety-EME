@@ -42,6 +42,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenContact }) => {
             // @ts-ignore
             fetchPriority="high"
             role="presentation"
+            decoding="async"
           />
         </motion.picture>
       </div>

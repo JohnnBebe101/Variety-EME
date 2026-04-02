@@ -27,32 +27,32 @@ export const HERO = {
   subheading: "heroSub",
   slides: [
     {
-      webp: "/assets/hero/hero-telecom.webp",
-      jpeg: "/assets/hero/hero-telecom.webp",
+      webp: "/assets/images/hero/hero-telecom.webp",
+      jpeg: "/assets/images/hero/hero-telecom.webp",
       alt: "Telecom infrastructure hero image"
     },
     {
-      webp: "/assets/hero/data-center.webp",
-      jpeg: "/assets/hero/data-center.webp",
+      webp: "/assets/images/hero/data-center.webp",
+      jpeg: "/assets/images/hero/data-center.webp",
       alt: "Data center hero image"
     },
     {
-      webp: "/assets/hero/power-solar.webp",
-      jpeg: "/assets/hero/power-solar.webp",
+      webp: "/assets/images/hero/power-solar.webp",
+      jpeg: "/assets/images/hero/power-solar.webp",
       alt: "Power and solar systems hero image"
     }
   ]
 };
 
 export const PARTNERS = [
-  { name: "NOKIA", logo: "/assets/partners/nokia.svg" },
-  { name: "SAFARICOM", logo: "/assets/partners/safaricom.svg" },
-  { name: "UNITED NATIONS (UN)", logo: "/assets/partners/un.svg" },
-  { name: "ETHIO TELECOM", logo: "/assets/partners/ethio-telecom.svg" },
-  { name: "HUAWEI", logo: "/assets/partners/huawei.svg" },
-  { name: "ERICSSON", logo: "/assets/partners/ericsson.svg" },
-  { name: "ZTE", logo: "/assets/partners/zte.svg" },
-  { name: "ABB", logo: "/assets/partners/abb.svg" }
+  { name: "NOKIA", logo: "/assets/images/partners/nokia.png" },
+  { name: "SAFARICOM", logo: "/assets/images/partners/safaricom.png" },
+  { name: "UNITED NATIONS (UN)", logo: "/assets/images/partners/un.png" },
+  { name: "ETHIO TELECOM", logo: "/assets/images/partners/ethio-telecom.png" },
+  { name: "HUAWEI", logo: "/assets/images/partners/huawei.png" },
+  { name: "ERICSSON", logo: "/assets/images/partners/ericsson.png" },
+  { name: "ZTE", logo: "/assets/images/partners/zte.png" },
+  { name: "ABB", logo: "/assets/images/partners/abb.png" }
 ];
 
 export const STATS = [
@@ -103,7 +103,7 @@ export const NAV_CONFIG = [
     ]
   },
   {
-    label: 'ICT & Data Center',
+    label: 'ICT',
     page: 'ict_datacenter' as PageID,
     path: '/ict-datacenter',
     icon: Server,
@@ -140,7 +140,7 @@ export const NAV_CONFIG = [
     ]
   },
   {
-    label: 'Academy & Managed Services',
+    label: 'MSP',
     page: 'academy' as PageID,
     path: '/academy',
     icon: GraduationCap,
@@ -158,18 +158,6 @@ export const NAV_CONFIG = [
       { label: 'Corporate & Institutional Partnerships', page: 'academy_institutional_partnerships' as PageID, category: 'Academy', path: '/academy/institutional-partnerships' }
     ]
   },
-  {
-    label: 'Contact Us',
-    page: 'contact' as PageID,
-    path: '/contact',
-    overview: {
-      title: 'Contact Us',
-      description: 'Reach out to InfinEth for project inquiries and partnerships.',
-      cta: 'Contact',
-      tag: 'Contact'
-    },
-    items: []
-  }
 ];
 
 export const ISO_DATA = [

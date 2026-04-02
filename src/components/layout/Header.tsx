@@ -34,10 +34,10 @@ export const Header: React.FC<HeaderProps> = ({
           <p>{t('common.securityExcellence')}</p>
         </div>
       </header>
-      <header className={`fixed top-[36px] left-0 w-full z-[100] transition-all duration-500 border-b ${isScrolled ? 'bg-brand-primary/95 border-white/10 shadow-2xl py-3 backdrop-blur-md' : 'bg-transparent border-transparent py-6'}`}>
+      <header className={`fixed top-[36px] left-0 w-full z-[100] h-16 transition-all duration-500 border-b ${isScrolled ? 'bg-brand-primary/95 border-white/10 shadow-2xl backdrop-blur-md' : 'bg-transparent border-transparent'}`}>
         <div className="container mx-auto px-6 flex items-center justify-between">
           <Brand forceInvert={true} onClick={() => navigateTo('home')} />
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1 flex-nowrap">
             {NAV_CONFIG.map((nav, idx) => {
               const isHovered = activeMenu === nav.label;
               const hasDropdown = nav.items.length > 0;
@@ -65,7 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={handleNavClick}
                     aria-expanded={hasDropdown ? isHovered : undefined}
                     aria-haspopup={hasDropdown ? 'true' : undefined}
-                    className={`flex items-center gap-1.5 cursor-pointer text-nav font-medium tracking-widest transition-all duration-300 uppercase drop-shadow-md outline-none ${isHovered ? 'text-brand-accent' : 'text-white/80 hover:text-white'}`}
+                    className={`flex items-center gap-1.5 cursor-pointer text-sm font-medium tracking-wide transition-all duration-300 uppercase whitespace-nowrap min-w-0 outline-none ${isHovered ? 'text-brand-accent' : 'text-white/80 hover:text-white'}`}
                   >
                     {nav.label}
                     {hasDropdown && <ChevronDown size={12} className={`transition-all duration-300 ease-out ${isHovered ? 'rotate-180 text-brand-accent scale-110' : 'opacity-40 group-hover:opacity-100'}`} />}
