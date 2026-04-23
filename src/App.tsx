@@ -42,6 +42,10 @@ import {
 } from './components/PageSections';
 
 import { MetaTags } from './components/MetaTags';
+import TelecomPage from './pages/TelecomPage';
+import ICTPage from './pages/ICTPage';
+import PowerPage from './pages/PowerPage';
+import MSPPage from './pages/MSPPage';
 
 interface AppProps {
   initialPage?: PageID;
@@ -176,7 +180,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'telecommunications': return (
         <>
           <MetaTags title={t('common.services.telecom.title')} description={t('common.services.telecom.items', { returnObjects: true })[0]} />
-          <InfrastructurePages.Telecom onBack={() => navigateTo('home')} />
+          <TelecomPage onNavigate={navigateTo} />
         </>
       );
       case 'telecommunications_mobile_rollout': return (
@@ -308,19 +312,19 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'ict_datacenter': return (
         <>
           <MetaTags title={t('common.services.ict.title')} description={t('common.services.ict.description')} />
-          <InnovationPages.ICT onBack={() => navigateTo('home')} />
+          <ICTPage onNavigate={navigateTo} />
         </>
       );
       case 'power': return (
         <>
           <MetaTags title={t('common.services.power.title')} description={t('common.services.power.description')} />
-          <InfrastructurePages.Power onBack={() => navigateTo('home')} />
+          <PowerPage onNavigate={navigateTo} />
         </>
       );
       case 'academy': return (
         <>
           <MetaTags title={t('nav.academy')} description="InfinEth Academy - Practitioner-led training" />
-          <ServicePages.AcademyOverview onBack={() => navigateTo('home')} />
+          <MSPPage onNavigate={navigateTo} />
         </>
       );
       default: return (
@@ -337,36 +341,36 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
           <Section className="bg-brand-primary overflow-hidden border-b border-white/5">
              <div className="mb-8 flex items-center gap-3"><LogoSymbol className="w-6 h-6 opacity-30" /><span className={UI_CLASSES.tag + " text-brand-muted/30"}>{t('common.strategicDeliveryNetwork')}</span></div>
              <div className="flex gap-20 items-center animate-marquee whitespace-nowrap opacity-[0.1] hover:opacity-[0.8] transition-opacity duration-700">{PARTNERS.concat(PARTNERS).map((n, i) => (<span key={i} className="text-sm md:text-base font-semibold text-brand-foreground tracking-tighter uppercase">{n.name}</span>))}</div>
-          </Section>
-          
-          <Section id="capabilities" className="bg-brand-primary">
-             <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-10">
-               <div className="max-w-2xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-6`}>Core Capabilities</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground`}>Comprehensive engineering, ICT and academy services built for Ethiopia’s next wave of digital growth.</h2></div>
-               <p className="text-body text-gray-400 max-w-sm leading-relaxed">End-to-end solutions across Telecommunications, Power, ICT & Data Center, and Academy & Managed Services.</p>
-             </div>
-             <div className="grid lg:grid-cols-2 gap-10">
-               {NAV_CONFIG.filter(cat => cat.items.length > 0).map(cat => (
-                 <ServiceCard
-                   key={cat.label}
-                   title={cat.label}
-                   icon={cat.icon ?? Radio}
-                   color="bg-brand-accent"
-                   items={cat.items.slice(0, 4).map(item => item.label)}
-                   onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
-                 />
-               ))}
-             </div>
-          </Section>
-
-          <Section id="excellence" className="bg-brand-primary overflow-hidden">
-            <div className="max-w-3xl mb-16"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-6`}>{t('common.pillar3')}</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground mb-8`}>{t('common.integrityFramework')}</h2></div>
-            <div className="bg-brand-surface rounded-[3rem] overflow-hidden grid lg:grid-cols-5 shadow-xl">
-              <div className="lg:col-span-2 min-h-[450px] flex flex-col items-center justify-center p-12 bg-gradient-to-br from-brand-surface to-brand-primary">
-                <AnimatePresence mode="wait"><motion.div key={activeISO} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-64 h-64 bg-white rounded-full p-10 shadow-xl flex flex-col items-center justify-center relative"><span className="text-xs font-bold uppercase tracking-widest text-brand-primary/40 mb-2">{t('common.certified')}</span><span className="text-sm font-semibold text-brand-primary tracking-tight">ISO {activeISO}</span></motion.div></AnimatePresence>
+</Section>
+           
+           <Section id="capabilities" className="bg-brand-primary">
+              <div className="flex flex-col lg:flex-row justify-between items-end mb-12 gap-6">
+                <div className="max-w-2xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-4`}>Core Capabilities</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground`}>Comprehensive engineering, ICT and academy services built for Ethiopia's next wave of digital growth.</h2></div>
+                <p className="text-body text-gray-400 max-w-sm leading-relaxed">End-to-end solutions across Telecommunications, Power, ICT & Data Center, and Academy & Managed Services.</p>
               </div>
-              <div className="lg:col-span-3 p-10 md:p-16 bg-white/5 divide-y divide-white/5">{ISO_DATA.map((iso) => (<div key={iso.id} className="py-8 cursor-pointer group" onClick={() => setActiveISO(iso.id)}><div className="flex items-center justify-between"><div className="flex items-center gap-8"><div className={`w-12 h-12 rounded-xl flex items-center justify-center ${activeISO === iso.id ? 'bg-brand-accent text-brand-primary' : 'bg-white/5 text-white/10'}`}><CheckCircle2 size={24} /></div><h3 className={`text-sm font-semibold tracking-tight ${activeISO === iso.id ? 'text-brand-foreground' : 'text-brand-foreground/20'}`}>{t(iso.title)}</h3></div><ChevronDown size={28} className={`transition-all ${activeISO === iso.id ? 'rotate-180 text-brand-accent' : 'text-white/5'}`} /></div>{activeISO === iso.id && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-sm text-gray-400 leading-relaxed mt-6 pl-20">{t(iso.description)}</motion.p>}</div>))}</div>
-            </div>
-          </Section>
+              <div className="grid lg:grid-cols-2 gap-6">
+                {NAV_CONFIG.filter(cat => cat.items.length > 0).map(cat => (
+                  <ServiceCard
+                    key={cat.label}
+                    title={cat.label}
+                    icon={cat.icon ?? Radio}
+                    color="bg-brand-accent"
+                    items={cat.items.slice(0, 4).map(item => item.label)}
+                    onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
+                  />
+                ))}
+              </div>
+           </Section>
+
+<Section id="excellence" className="bg-brand-primary overflow-hidden">
+             <div className="max-w-3xl mb-10"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-4`}>Our Certifications & Track Record</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground`}>{t('common.integrityFramework')}</h2></div>
+             <div className="bg-brand-surface rounded-2xl overflow-hidden grid lg:grid-cols-5 shadow-xl">
+               <div className="lg:col-span-2 flex flex-col items-center justify-center p-8 bg-gradient-to-br from-brand-surface to-brand-primary">
+                 <AnimatePresence mode="wait"><motion.div key={activeISO} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-40 h-40 bg-white rounded-full p-6 shadow-xl flex flex-col items-center justify-center"><span className="text-[8px] font-bold uppercase tracking-widest text-brand-primary/40 mb-1">Certified</span><span className="text-sm font-semibold text-brand-primary tracking-tight">ISO {activeISO}</span></motion.div></AnimatePresence>
+               </div>
+               <div className="lg:col-span-3 p-6 md:p-8 bg-white/5 divide-y divide-white/5">{ISO_DATA.map((iso) => (<div key={iso.id} className="py-4 cursor-pointer group" onClick={() => setActiveISO(iso.id)}><div className="flex items-center justify-between"><div className="flex items-center gap-4"><div className={`w-10 h-10 rounded-lg flex items-center justify-center ${activeISO === iso.id ? 'bg-brand-accent text-brand-primary' : 'bg-white/5 text-white/10'}`}><CheckCircle2 size={18} /></div><h3 className={`text-sm font-semibold tracking-tight ${activeISO === iso.id ? 'text-brand-foreground' : 'text-brand-foreground/30'}`}>{t(iso.title)}</h3></div><ChevronDown size={20} className={`transition-all ${activeISO === iso.id ? 'rotate-180 text-brand-accent' : 'text-white/5'}`} /></div>{activeISO === iso.id && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-xs text-gray-400 leading-relaxed mt-3 pl-14">{t(iso.description)}</motion.p>}</div>))}</div>
+             </div>
+           </Section>
 
           <Section className="bg-brand-primary text-brand-foreground relative z-10 text-center">
             <div className="grid md:grid-cols-4 gap-16">
@@ -379,15 +383,15 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
             </div>
           </Section>
           
-          <Section className="bg-brand-surface text-center py-32">
-            <h2 className={UI_CLASSES.displayLarge + " text-brand-foreground mb-16"}>{t('common.preciseEngineering')}</h2>
+<Section className="bg-brand-surface text-center py-16">
+            <h2 className={UI_CLASSES.displayLarge + " text-brand-foreground mb-8"}>{t('common.preciseEngineering')}</h2>
             <button 
               onClick={() => setIsContactOpen(true)} 
-              className="bg-brand-accent text-brand-primary px-16 py-8 rounded-2xl font-semibold tracking-wide text-sm shadow-2xl hover:bg-white hover:text-brand-primary active:scale-95 focus-visible:ring-2 focus-visible:ring-brand-accent transition-all duration-200 uppercase"
+              className="bg-brand-accent text-brand-primary px-10 py-4 rounded-xl font-semibold tracking-wide text-sm shadow-lg hover:bg-white hover:text-brand-primary active:scale-95 focus-visible:ring-2 focus-visible:ring-brand-accent transition-all duration-200 uppercase"
             >
               {t('common.partnershipCta')}
             </button>
-          </Section>
+           </Section>
         </>
       );
     }

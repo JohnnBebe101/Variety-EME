@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, Menu } from 'lucide-react';
 import { Brand } from '../Brand';
@@ -32,108 +31,54 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const { t } = useTranslation();
   const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setPhraseIndex((prev) => (prev + 1) % ANNOUNCEMENT_PHRASES.length);
+      setIsAnimating(true);
+      setTimeout(() => {
+        setPhraseIndex((prev) => (prev + 1) % ANNOUNCEMENT_PHRASES.length);
+        setIsAnimating(false);
+      }, 400);
     }, 4000);
     return () => clearInterval(timer);
   }, []);
 
-  const leftNavs = NAV_CONFIG.slice(0, 2);
-  const rightNavs = NAV_CONFIG.slice(2);
-
   return (
     <>
-      {/* Announcement Bar */}
+      {/* Announcement Bar with CSS Animation */}
       <header className="fixed top-0 left-0 w-full h-[36px] bg-brand-accent z-[120] flex items-center justify-center overflow-hidden border-b border-black/5">
         <div className="container mx-auto px-6 flex items-center justify-center gap-4 text-brand-primary font-semibold text-xs tracking-wide uppercase">
-          <LogoSymbol className="w-4 h-4" />
-          <div className="relative h-[20px] overflow-hidden flex items-center">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={phraseIndex}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="absolute whitespace-nowrap will-change-transform"
-              >
-                {ANNOUNCEMENT_PHRASES[phraseIndex]}
-              </motion.p>
-            </AnimatePresence>
+          <LogoSymbol className="w-4 h-4 flex-shrink-0" />
+          <div className="relative h-[20px] w-full max-w-[600px]">
+            <span 
+              className={`absolute inset-0 flex items-center justify-center transition-all duration-400 ease-in-out ${isAnimating ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'}`}
+              style={{ willChange: 'opacity, transform' }}
+            >
+              {ANNOUNCEMENT_PHRASES[phraseIndex]}
+            </span>
           </div>
         </div>
       </header>
 
-      {/* Main Navbar - Centered Logo with Flanking Nav */}
+      {/* Main Navbar - Logo Left, Nav Center */}
       <header className="fixed top-[36px] left-0 w-full z-[100] h-16 bg-brand-primary/95 border-b border-white/10 shadow-2xl backdrop-blur-md">
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
-          {/* Left Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1 flex-nowrap">
-            {leftNavs.map((nav) => {
-              const isHovered = activeMenu === nav.label;
-              const hasDropdown = nav.items.length > 0;
-              
-              return (
-                <div 
-                  key={nav.label} 
-                  className="relative px-4 py-2 group" 
-                  onMouseEnter={() => hasDropdown && setActiveMenu(nav.label)} 
-                  onMouseLeave={() => hasDropdown && setActiveMenu(null)}
-                >
-                  <button 
-                    onClick={() => nav.page && navigateTo(nav.page, undefined, nav.path)}
-                    className={`flex items-center gap-1.5 cursor-pointer text-sm font-medium tracking-wide transition-all duration-200 uppercase whitespace-nowrap min-w-0 outline-none hover:text-brand-accent ${isHovered ? 'text-brand-accent' : 'text-white/80'}`}
-                  >
-                    {nav.label}
-                    {hasDropdown && <ChevronDown size={12} className={`transition-all duration-200 ${isHovered ? 'rotate-180 text-brand-accent' : 'text-white/40'}`} />}
-                  </button>
-                  <AnimatePresence>
-                    {hasDropdown && isHovered && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 8 }} 
-                        animate={{ opacity: 1, y: 0 }} 
-                        exit={{ opacity: 0, y: 8 }} 
-                        transition={{ duration: 0.2 }} 
-                        className="absolute top-full mt-2 left-0 w-[420px] bg-white shadow-2xl rounded-[1rem] overflow-hidden grid grid-cols-12 border border-slate-100/50 z-[110]"
-                      >
-                        <div className="col-span-5 bg-brand-primary p-6 text-white">
-                          <span className="text-[8px] font-semibold uppercase tracking-widest text-brand-accent mb-2.5 block">{nav.overview.tag}</span>
-                          <h3 className="text-h3 font-semibold mb-2">{nav.overview.title}</h3>
-                          <p className="text-white/60 text-xs">{nav.overview.description}</p>
-                          <button onClick={() => nav.page && navigateTo(nav.page, undefined, nav.path)} className="text-xs font-semibold uppercase tracking-wide text-white hover:text-brand-accent mt-4">{nav.overview.cta} →</button>
-                        </div>
-                        <div className="col-span-7 bg-white p-4 grid grid-cols-1 gap-1">
-                          {nav.items.slice(0, 5).map((item) => (
-                            <button key={item.label} onClick={() => navigateTo(item.page as PageID, undefined, item.path)} className="text-left px-4 py-3 text-sm text-gray-700 hover:bg-brand-primary/5 hover:text-brand-accent rounded-lg transition-colors">
-                              {item.label}
-                            </button>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </nav>
-          
-          {/* Centered Logo */}
-          <div className="flex flex-col items-center gap-0.5 cursor-pointer" onClick={() => navigateTo('home')}>
+          {/* Left: Logo */}
+          <div className="flex items-center cursor-pointer" onClick={() => navigateTo('home')}>
             <Brand forceInvert={true} />
           </div>
           
-          {/* Right Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1 flex-nowrap">
-            {rightNavs.map((nav) => {
+          {/* Center: Nav Links */}
+          <nav className="hidden lg:flex items-center justify-center gap-1 flex-nowrap flex-1 px-8">
+            {NAV_CONFIG.map((nav) => {
               const isHovered = activeMenu === nav.label;
               const hasDropdown = nav.items.length > 0;
               
               return (
                 <div 
                   key={nav.label} 
-                  className="relative px-4 py-2 group" 
+                  className="relative px-3 py-2 group" 
                   onMouseEnter={() => hasDropdown && setActiveMenu(nav.label)} 
                   onMouseLeave={() => hasDropdown && setActiveMenu(null)}
                 >
@@ -144,31 +89,23 @@ export const Header: React.FC<HeaderProps> = ({
                     {nav.label}
                     {hasDropdown && <ChevronDown size={12} className={`transition-all duration-200 ${isHovered ? 'rotate-180 text-brand-accent' : 'text-white/40'}`} />}
                   </button>
-                  <AnimatePresence>
-                    {hasDropdown && isHovered && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 8 }} 
-                        animate={{ opacity: 1, y: 0 }} 
-                        exit={{ opacity: 0, y: 8 }} 
-                        transition={{ duration: 0.2 }} 
-                        className="absolute top-full mt-2 right-0 w-[420px] bg-white shadow-2xl rounded-[1rem] overflow-hidden grid grid-cols-12 border border-slate-100/50 z-[110]"
-                      >
-                        <div className="col-span-5 bg-brand-primary p-6 text-white">
-                          <span className="text-[8px] font-semibold uppercase tracking-widest text-brand-accent mb-2.5 block">{nav.overview.tag}</span>
-                          <h3 className="text-h3 font-semibold mb-2">{nav.overview.title}</h3>
-                          <p className="text-white/60 text-xs">{nav.overview.description}</p>
-                          <button onClick={() => nav.page && navigateTo(nav.page, undefined, nav.path)} className="text-xs font-semibold uppercase tracking-wide text-white hover:text-brand-accent mt-4">{nav.overview.cta} →</button>
-                        </div>
-                        <div className="col-span-7 bg-white p-4 grid grid-cols-1 gap-1">
-                          {nav.items.slice(0, 5).map((item) => (
-                            <button key={item.label} onClick={() => navigateTo(item.page as PageID, undefined, item.path)} className="text-left px-4 py-3 text-sm text-gray-700 hover:bg-brand-primary/5 hover:text-brand-accent rounded-lg transition-colors">
-                              {item.label}
-                            </button>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {hasDropdown && isHovered && (
+                    <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-[420px] bg-white shadow-2xl rounded-[1rem] overflow-hidden grid grid-cols-12 border border-slate-100/50 z-[110]">
+                      <div className="col-span-5 bg-brand-primary p-6 text-white">
+                        <span className="text-[8px] font-semibold uppercase tracking-widest text-brand-accent mb-2.5 block">{nav.overview.tag}</span>
+                        <h3 className="text-h3 font-semibold mb-2">{nav.overview.title}</h3>
+                        <p className="text-white/60 text-xs">{nav.overview.description}</p>
+                        <button onClick={() => nav.page && navigateTo(nav.page, undefined, nav.path)} className="text-xs font-semibold uppercase tracking-wide text-white hover:text-brand-accent mt-4">{nav.overview.cta} →</button>
+                      </div>
+                      <div className="col-span-7 bg-white p-4 grid grid-cols-1 gap-1">
+                        {nav.items.slice(0, 5).map((item) => (
+                          <button key={item.label} onClick={() => navigateTo(item.page as PageID, undefined, item.path)} className="text-left px-4 py-3 text-sm text-gray-700 hover:bg-brand-primary/5 hover:text-brand-accent rounded-lg transition-colors">
+                            {item.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -176,7 +113,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => navigateTo('contact', undefined, '/contact')} 
               className="ml-2 px-4 py-2 rounded-lg bg-brand-accent text-brand-primary text-sm font-semibold tracking-wide uppercase hover:bg-white hover:text-brand-primary transition-all duration-200"
             >
-              Contact Us
+              Contact
             </button>
           </nav>
           
