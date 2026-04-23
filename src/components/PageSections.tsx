@@ -12,6 +12,7 @@ import {
   Layers, 
   Zap, 
   BatteryCharging, 
+  CheckCircle2 as CheckCircle, 
   CheckCircle2, 
   Activity, 
   Settings, 
@@ -47,14 +48,116 @@ interface PageProps {
 export const CorporatePages = {
   Identity: ({ onBack }: PageProps) => {
     const { t } = useTranslation();
+    const isoCerts = t('corporate.identity.isos', { returnObjects: true }) as string[];
+    const safeIsos = Array.isArray(isoCerts) ? isoCerts : [];
+    const pillars = t('corporate.identity.pillars', { returnObjects: true }) as any;
+    const whyItems = t('corporate.identity.why', { returnObjects: true }) as string[];
+    const safeWhy = Array.isArray(whyItems) ? whyItems : [];
+    const delivery = t('corporate.identity.delivery', { returnObjects: true }) as string[];
+    const safeDelivery = Array.isArray(delivery) ? delivery : [];
+    const principles = t('corporate.identity.principles', { returnObjects: true }) as string[];
+    const safePrinciples = Array.isArray(principles) ? principles : [];
+    
     return (
       <SubPageLayout onBack={onBack} tag={t('corporate.identity.tag')} title={t('corporate.identity.title')} description={t('corporate.identity.description')}>
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-10">
-            <div className="flex gap-6 group"><div className="w-14 h-14 rounded-xl bg-brand-primary flex items-center justify-center text-white shrink-0 group-hover:rotate-6 transition-transform"><History size={28} /></div><div><h3 className={UI_CLASSES.cardTitle + " text-brand-foreground mb-3"}>{t('corporate.identity.legacy_title')}</h3><p className="text-brand-muted font-medium leading-relaxed text-sm">{t('corporate.identity.legacy_desc')}</p></div></div>
-            <div className="flex gap-6 group"><div className="w-14 h-14 rounded-xl bg-brand-accent flex items-center justify-center text-brand-primary shrink-0 group-hover:rotate-6 transition-transform"><Target size={28} /></div><div><h3 className={UI_CLASSES.cardTitle + " text-brand-foreground mb-3"}>{t('corporate.identity.mission_title')}</h3><p className="text-brand-muted font-medium leading-relaxed text-sm">{t('corporate.identity.mission_desc')}</p></div></div>
+        {/* Company Overview */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+          <div className="space-y-8">
+            <div>
+              <p className="text-brand-accent text-sm font-semibold uppercase tracking-widest mb-2">{t('corporate.identity.founded')}</p>
+              <h3 className={UI_CLASSES.cardTitle + " text-brand-foreground mb-3"}>{t('corporate.identity.legacy_title')}</h3>
+              <p className="text-brand-muted font-medium leading-relaxed text-sm">{t('corporate.identity.legacy_desc')}</p>
+            </div>
+            <div className="flex gap-8">
+              <div className="text-center">
+                <p className="text-3xl font-bold text-brand-accent">20+</p>
+                <p className="text-xs text-brand-muted uppercase">Years</p>
+              </div>
+              <div className="text-center">
+                <p className="text-3xl font-bold text-brand-accent">47+</p>
+                <p className="text-xs text-brand-muted uppercase">Staff</p>
+              </div>
+              <div className="text-center">
+                <p className="text-3xl font-bold text-brand-accent">5</p>
+                <p className="text-xs text-brand-muted uppercase">ISO Certs</p>
+              </div>
+            </div>
           </div>
-          <div className="rounded-[3rem] overflow-hidden shadow-xl h-[500px] bg-slate-200"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200" className="w-full h-full object-cover" alt="Identity" referrerPolicy="no-referrer" /></div>
+          <div className="rounded-[3rem] overflow-hidden shadow-xl h-[400px] bg-slate-200"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200" className="w-full h-full object-cover" alt="Identity" referrerPolicy="no-referrer" /></div>
+        </div>
+        
+        {/* Three Service Pillars */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.pillars_title')}</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-brand-surface p-8 rounded-2xl border border-white/5">
+              <Zap className="text-brand-accent mb-4" size={32} />
+              <h4 className="font-bold text-brand-foreground mb-2">{t('common.power')}</h4>
+              <p className="text-brand-muted text-sm">{pillars?.power}</p>
+            </div>
+            <div className="bg-brand-surface p-8 rounded-2xl border border-white/5">
+              <Radio className="text-brand-accent mb-4" size={32} />
+              <h4 className="font-bold text-brand-foreground mb-2">{t('common.telecom')}</h4>
+              <p className="text-brand-muted text-sm">{pillars?.telecom}</p>
+            </div>
+            <div className="bg-brand-surface p-8 rounded-2xl border border-white/5">
+              <Server className="text-brand-accent mb-4" size={32} />
+              <h4 className="font-bold text-brand-foreground mb-2">{t('common.ict')}</h4>
+              <p className="text-brand-muted text-sm">{pillars?.ict}</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Why Partner With InfinEth */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.why_title')}</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            {safeWhy.map((item, i) => (
+              <div key={i} className="flex gap-3 items-start">
+                <CheckCircle className="text-brand-accent mt-1 flex-shrink-0" size={18} />
+                <p className="text-brand-muted text-sm">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Delivery Model */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.delivery_title')}</h3>
+          <div className="flex flex-wrap gap-4">
+            {safeDelivery.map((step, i) => (
+              <div key={i} className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-brand-accent text-brand-primary flex items-center justify-center font-bold">{i+1}</div>
+                <p className="text-brand-foreground font-medium">{step}</p>
+                {i < safeDelivery.length - 1 && <ArrowRight className="text-brand-muted" size={20} />}
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Operating Principles */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.principles_title')}</h3>
+          <div className="flex flex-wrap gap-4">
+            {safePrinciples.map((principle, i) => (
+              <div key={i} className="px-6 py-3 bg-brand-surface rounded-full border border-white/5">
+                <p className="text-brand-foreground text-sm font-medium">{principle}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* ISO Certifications */}
+        <div className="mb-12">
+          <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.iso_title')}</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+            {safeIsos.map((iso, i) => (
+              <div key={i} className="bg-brand-surface p-4 rounded-xl border border-white/5 text-center">
+                <ShieldCheck className="text-brand-accent mx-auto mb-2" size={24} />
+                <p className="text-brand-foreground text-xs font-semibold">{iso}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </SubPageLayout>
     );

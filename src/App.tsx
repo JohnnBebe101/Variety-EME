@@ -32,6 +32,7 @@ import { ServiceCard } from './components/ServiceCard';
 import { ContactModal } from './components/ContactModal';
 import { CountUp } from './components/CountUp';
 import { Section } from './components/Section';
+import { SuccessStoriesSection } from './components/SuccessStoriesSection';
 import { 
   CorporatePages, 
   InfrastructurePages, 
@@ -304,6 +305,24 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
           <ExcellencePages.EHS onBack={() => navigateTo('home')} />
         </>
       );
+      case 'ict_datacenter': return (
+        <>
+          <MetaTags title={t('common.services.ict.title')} description={t('common.services.ict.description')} />
+          <InnovationPages.ICT onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'power': return (
+        <>
+          <MetaTags title={t('common.services.power.title')} description={t('common.services.power.description')} />
+          <InfrastructurePages.Power onBack={() => navigateTo('home')} />
+        </>
+      );
+      case 'academy': return (
+        <>
+          <MetaTags title={t('nav.academy')} description="InfinEth Academy - Practitioner-led training" />
+          <ServicePages.AcademyOverview onBack={() => navigateTo('home')} />
+        </>
+      );
       default: return (
         <>
           <MetaTags 
@@ -311,7 +330,8 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
             description={heroT('heroSub')}
             schema={organizationSchema}
           />
-          <HeroSlider onOpenContact={() => setIsContactOpen(true)} />
+          <HeroSlider onOpenContact={() => setIsContactOpen(true)} navigateTo={navigateTo} />
+          <SuccessStoriesSection />
           <ClientTrustBar />
           
           <Section className="bg-brand-primary overflow-hidden border-b border-white/5">
@@ -374,7 +394,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
   };
 
   const content = (
-    <Layout currentPage={currentPage} navigateTo={navigateTo}>
+    <Layout currentPage={currentPage} navigateTo={navigateTo} isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen}>
       {renderContent()}
     </Layout>
   );

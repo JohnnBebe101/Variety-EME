@@ -15,14 +15,28 @@ interface LayoutProps {
   children: React.ReactNode;
   currentPage: PageID;
   navigateTo: (page: PageID, hash?: string, routePath?: string) => void;
+  isContactOpen?: boolean;
+  setIsContactOpen?: (open: boolean) => void;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateTo }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateTo, isContactOpen: externalIsContactOpen, setIsContactOpen: externalSetIsContactOpen }) => {
   const { t } = useTranslation();
-  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(externalIsContactOpen ?? false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  // Sync external state if provided
+  useEffect(() => {
+    if (externalIsContactOpen !== undefined) {
+      setIsContactOpen(externalIsContactOpen);
+    }
+  }, [externalIsContactOpen]);
+
+  const handleCloseContact = () => {
+    setIsContactOpen(false);
+    externalSetIsContactOpen?.(false);
+  };
 
   useEffect(() => {
     const h = () => {
@@ -96,7 +110,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateT
       <Footer navigateTo={handleNavigate} />
       
       <Suspense fallback={null}>
-        <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+        <ContactModal isOpen={isContactOpen} onClose={handleCloseContact} />
       </Suspense>
     </div>
   );

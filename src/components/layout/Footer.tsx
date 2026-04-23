@@ -15,38 +15,73 @@ export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-brand-primary text-brand-foreground pt-32 pb-16">
+    <footer className="bg-brand-primary text-brand-foreground pt-20 pb-12">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-4 gap-16 mb-24">
-          <div className="col-span-2 space-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Column 1: Company Info */}
+          <div>
             <Brand onClick={() => navigateTo('home')} titleClass="text-lg font-bold tracking-tight" />
-            <p className="text-sm text-gray-400 max-w-lg leading-relaxed">{t('footer.tagline')}</p>
+            <p className="text-sm text-gray-400 mt-4 leading-relaxed">
+              Integrated power, telecom and ICT solutions for enterprise and public-sector clients.
+            </p>
+            <div className="flex gap-4 mt-6">
+              <a href="#" className="text-gray-400 hover:text-brand-accent">LinkedIn</a>
+              <a href="#" className="text-gray-400 hover:text-brand-accent">Twitter</a>
+              <a href="#" className="text-gray-400 hover:text-brand-accent">Facebook</a>
+            </div>
           </div>
-          <div className="space-y-8">
-            <h5 className="text-xs font-semibold uppercase tracking-widest text-gray-500">{t('common.hqAddis')}</h5>
-            <ul className="space-y-6 text-sm text-gray-400">
-              <li className="flex gap-4">
-                <MapPin className="text-brand-accent" size={20} />
-                <span>{t('footer.address')}</span>
+          
+          {/* Column 2: Quick Links */}
+          <div>
+            <h5 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-6">Quick Links</h5>
+            <ul className="space-y-3 text-sm text-gray-400">
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('home')}>Home</li>
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('identity', undefined, '/about')}>About Us</li>
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('contact', undefined, '/contact')}>Contact</li>
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('portfolio-detailed')}>Portfolio</li>
+            </ul>
+          </div>
+          
+          {/* Column 3: Services */}
+          <div>
+            <h5 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-6">Services</h5>
+            <ul className="space-y-3 text-sm text-gray-400">
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('telecommunications')}>Telecom</li>
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('ict_datacenter')}>ICT & Data Center</li>
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('power')}>Power</li>
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('academy_overview')}>Academy</li>
+            </ul>
+          </div>
+          
+          {/* Column 4: Contact */}
+          <div>
+            <h5 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-6">Contact</h5>
+            <ul className="space-y-4 text-sm text-gray-400">
+              <li className="flex gap-3">
+                <MapPin className="text-brand-accent flex-shrink-0" size={18} />
+                <span>{SITE.contact.address.split('\n')[0]}</span>
               </li>
-              <li className="flex gap-4">
-                <Phone className="text-brand-accent" size={20} />
+              <li className="flex gap-3">
+                <Phone className="text-brand-accent flex-shrink-0" size={18} />
                 <span>{SITE.contact.phone}</span>
               </li>
+              <li className="flex gap-3">
+                <span className="text-brand-accent flex-shrink-0 text-xs">@</span>
+                <span>{SITE.contact.email}</span>
+              </li>
             </ul>
-          </div>
-          <div className="space-y-8">
-            <h5 className="text-xs font-semibold uppercase tracking-widest text-gray-500">{t('common.links')}</h5>
-            <ul className="space-y-4 text-sm text-gray-400">
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('home', '#capabilities')}>Capabilities</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('home', '#excellence')}>Excellence</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('contact', undefined, '/contact')}>Contact Us</li>
-            </ul>
+            <button 
+              onClick={() => navigateTo('contact', undefined, '/contact')}
+              className="mt-6 text-brand-accent text-sm font-medium hover:underline"
+            >
+              Get in Touch →
+            </button>
           </div>
         </div>
-        <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between text-xs text-gray-500">
-          <div>© {currentYear} {SITE.name}</div>
-          <div className="flex gap-8">
+        
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between text-xs text-gray-500">
+          <div>© {currentYear} {SITE.name}. All rights reserved.</div>
+          <div className="flex gap-6 mt-4 md:mt-0">
             <span>{t('common.telecom')}</span>
             <span>{t('common.power')}</span>
             <span>{t('common.ict')}</span>

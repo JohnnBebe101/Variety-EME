@@ -4,12 +4,16 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { HERO, UI_CLASSES } from '../data/constants';
+import PortfolioSlider from './PortfolioSlider';
+
+import { PageID } from '../types';
 
 interface HeroSliderProps {
   onOpenContact: () => void;
+  navigateTo?: (page: PageID, hash?: string, routePath?: string) => void;
 }
 
-export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenContact }) => {
+export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenContact, navigateTo }) => {
   const { t } = useTranslation(['common', 'hero']);
   const [activeSlide, setActiveSlide] = useState(0);
   const slide = HERO.slides[activeSlide];
@@ -36,7 +40,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenContact }) => {
           <source srcSet={slide.webp} type="image/webp" />
           <img
             src={slide.jpeg}
-            className="w-full h-full object-cover brightness-[0.35]"
+            className="w-full h-full object-cover brightness-[0.70]"
             alt={slide.alt}
             loading="eager"
             // @ts-ignore
@@ -62,7 +66,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenContact }) => {
           <p className="text-body-lg font-normal text-white/80 max-w-2xl mb-12 leading-relaxed">{t(HERO.subheading)}</p>
           <div className="flex flex-wrap gap-5">
             <button
-              onClick={onOpenContact}
+              onClick={() => navigateTo ? navigateTo('about', undefined, '/about') : onOpenContact()}
               className="px-10 py-5 bg-brand-accent text-brand-primary rounded-xl font-semibold tracking-wide text-sm uppercase hover:bg-white hover:text-brand-primary active:scale-95 focus-visible:ring-2 focus-visible:ring-brand-accent transition-all duration-200 shadow-xl flex items-center gap-3 group"
             >
               {t('startPartnership')} <ArrowRight size={16} />
@@ -86,6 +90,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenContact }) => {
             ))}
           </div>
         </motion.div>
+        <PortfolioSlider />
       </div>
     </section>
   );

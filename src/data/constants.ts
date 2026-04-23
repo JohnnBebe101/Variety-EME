@@ -72,27 +72,15 @@ export const UI_CLASSES = {
 
 export const NAV_CONFIG = [
   {
-    label: 'Home',
-    page: 'home' as PageID,
-    path: '/',
-    overview: {
-      title: 'Home',
-      description: 'Return to the InfinEth homepage.',
-      cta: 'Home',
-      tag: 'Root'
-    },
-    items: []
-  },
-  {
-    label: 'Telecommunications',
+    label: 'Telecom',
     page: 'telecommunications' as PageID,
     path: '/telecommunications',
     icon: Radio,
     overview: {
-      title: 'Telecommunications',
+      title: 'Telecom',
       description: 'Mobile rollout, fiber optics, towers, O&M, and warehouse management.',
       cta: 'Explore',
-      tag: 'Telecommunications'
+      tag: 'Telecom'
     },
     items: [
       { label: 'Mobile Telecom Rollout (RAN + Power)', page: 'telecommunications_mobile_rollout' as PageID, category: 'Telecommunications', path: '/telecommunications/mobile-rollout' },
@@ -139,7 +127,7 @@ export const NAV_CONFIG = [
       { label: 'Building Electromechanical Works', page: 'power_building_electromechanical' as PageID, category: 'Power', path: '/power/building-electromechanical' }
     ]
   },
-  {
+{
     label: 'MSP',
     page: 'academy' as PageID,
     path: '/academy',
@@ -157,7 +145,7 @@ export const NAV_CONFIG = [
       { label: 'Managed Services', page: 'academy_managed_services' as PageID, category: 'Academy', path: '/academy/managed-services' },
       { label: 'Corporate & Institutional Partnerships', page: 'academy_institutional_partnerships' as PageID, category: 'Academy', path: '/academy/institutional-partnerships' }
     ]
-  },
+  }
 ];
 
 export const ISO_DATA = [
