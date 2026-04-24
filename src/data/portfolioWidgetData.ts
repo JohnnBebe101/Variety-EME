@@ -17,7 +17,7 @@ export const widgetProjects: WidgetProject[] = [
     category: "Telecom",
     description: "66 stations across 3 routes",
     client: "Huawei / AAICTDA",
-    image: "/assets/images/portfolio/optical-transmission.webp",
+    image: "/assets/images/portfolio/placeholder.png",
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ export const widgetProjects: WidgetProject[] = [
     category: "Telecom",
     description: "Nationwide deployment & commissioning",
     client: "Ethio Telecom / Nokia",
-    image: "/assets/images/portfolio/tower-rollout.webp",
+    image: "/assets/images/portfolio/placeholder.png",
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ export const widgetProjects: WidgetProject[] = [
     category: "Power",
     description: "High-voltage tower foundations & erection",
     client: "KEC International",
-    image: "/assets/images/portfolio/400kv-towers.webp",
+    image: "/assets/images/portfolio/placeholder.png",
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ export const widgetProjects: WidgetProject[] = [
     category: "ICT",
     description: "Regional data center design and build",
     client: "Ministry of Finance",
-    image: "/assets/images/portfolio/mofed-dc.webp",
+    image: "/assets/images/portfolio/placeholder.png",
   },
   {
     id: 5,
@@ -49,7 +49,7 @@ export const widgetProjects: WidgetProject[] = [
     category: "ICT",
     description: "500+ nodes, 30m² data center, 12 buildings",
     client: "Huawei / AAICTDA",
-    image: "/assets/images/portfolio/entoto-tvet.webp",
+    image: "/assets/images/portfolio/placeholder.png",
   },
   {
     id: 6,
@@ -57,6 +57,6 @@ export const widgetProjects: WidgetProject[] = [
     category: "Power",
     description: "67 towns across 3 EEPCO projects",
     client: "EEPCO",
-    image: "/assets/images/portfolio/rural-electrification.webp",
+    image: "/assets/images/portfolio/placeholder.png",
   },
 ];
