@@ -160,4 +160,4 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   );
 };
 
-export default HeroSection;
+export { HeroSection as default };
