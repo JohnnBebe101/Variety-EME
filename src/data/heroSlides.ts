@@ -32,8 +32,8 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 1,
     chapter: "Identity",
-    image: "/assets/images/hero/hero-overview.webp",
-    fallbackGradient: "from-slate-950 via-slate-900 to-brand-primary",
+    image: "/assets/images/hero/hero-home.webp",
+    fallbackGradient: "from-slate-900 via-slate-800 to-brand-primary",
     caption: "InfinEth Solutions PLC · Addis Ababa, Ethiopia",
     eyebrow: {
       icon: Sparkles,
@@ -60,8 +60,8 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 2,
     chapter: "Telecom Proof",
-    image: "/assets/images/hero/telecom.webp",
-    fallbackGradient: "from-blue-950 via-blue-900 to-slate-900",
+    image: "/assets/images/hero/hero-telecom.webp",
+    fallbackGradient: "from-blue-900 via-blue-800 to-slate-900",
     caption: "Optical Transmission · 66 Stations · Addis Ababa–Mekele Route",
     eyebrow: {
       icon: Signal,
@@ -86,8 +86,8 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 3,
     chapter: "Power & Reach",
-    image: "/assets/images/hero/power.webp",
-    fallbackGradient: "from-yellow-950 via-orange-950 to-gray-900",
+    image: "/assets/images/hero/power-solar.webp",
+    fallbackGradient: "from-yellow-900 via-orange-900 to-gray-900",
     caption: "Rural Electrification · 67 Towns · Three EEPCO Projects",
     eyebrow: {
       icon: Zap,
@@ -113,8 +113,8 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 4,
     chapter: "Why InfinEth",
-    image: "/assets/images/hero/ict.webp",
-    fallbackGradient: "from-cyan-950 via-teal-950 to-gray-950",
+    image: "/assets/images/hero/data-center.webp",
+    fallbackGradient: "from-cyan-900 via-teal-900 to-gray-900",
     caption: "Data Center · Enterprise ICT · Managed Services · Addis Ababa",
     eyebrow: {
       icon: Server,
