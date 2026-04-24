@@ -2,7 +2,7 @@
 // Authoritative source: InfinEth_Condensed_Profile.pdf
 // All copy is final and approved — do NOT paraphrase
 
-import { LucideIcon, Sparkles, Signal, Zap, Server } from 'lucide-react';
+import { LucideIcon, Sparkles, Signal, Zap, Server, GraduationCap, Briefcase } from 'lucide-react';
 
 export interface HeroSlide {
   id: number;
@@ -32,16 +32,16 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 1,
     chapter: "Identity",
-    image: "/assets/images/hero/hero-home.webp",
-    fallbackGradient: "from-slate-900 via-slate-800 to-brand-primary",
+    image: "/assets/images/hero/hero-overview.webp",
+    fallbackGradient: "from-slate-900 via-slate-800 to-slate-950",
     caption: "InfinEth Solutions PLC · Addis Ababa, Ethiopia",
     eyebrow: {
       icon: Sparkles,
       text: "Ethiopia · East Africa · Since 2004",
     },
     headline: {
-      line1: { text: "Precise Engineering.", color: "text-white" },
-      line2: { text: "Infinite Possibilities.", color: "text-brand-accent" },
+      line1: { text: "Precise Engineering", color: "text-white" },
+      line2: { text: "Infinite Possibilities", color: "text-brand-accent" },
     },
     subtitle:
       "Ethiopia's leading multidisciplinary engineering and ICT partner — " +
@@ -60,7 +60,7 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 2,
     chapter: "Telecom Proof",
-    image: "/assets/images/hero/hero-telecom.webp",
+    image: "/assets/images/hero/telecom.webp",
     fallbackGradient: "from-blue-900 via-blue-800 to-slate-900",
     caption: "Optical Transmission · 66 Stations · Addis Ababa–Mekele Route",
     eyebrow: {
@@ -68,9 +68,9 @@ export const heroSlides: HeroSlide[] = [
       text: "Telecommunications Engineering",
     },
     headline: {
-      line1: { text: "66 Stations.", color: "text-white" },
-      line2: { text: "3 Routes.", color: "text-white" },
-      line3: { text: "One Team.", color: "text-brand-accent" },
+      line1: { text: "66 Stations", color: "text-white" },
+      line2: { text: "3 Routes", color: "text-white" },
+      line3: { text: "One Team", color: "text-brand-accent" },
     },
     subtitle:
       "From optical transmission networks spanning Addis Ababa to Mekele, " +
@@ -86,7 +86,7 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 3,
     chapter: "Power & Reach",
-    image: "/assets/images/hero/power-solar.webp",
+    image: "/assets/images/hero/power.webp",
     fallbackGradient: "from-yellow-900 via-orange-900 to-gray-900",
     caption: "Rural Electrification · 67 Towns · Three EEPCO Projects",
     eyebrow: {
@@ -94,9 +94,9 @@ export const heroSlides: HeroSlide[] = [
       text: "Power & Electromechanical Engineering",
     },
     headline: {
-      line1: { text: "67 Towns.", color: "text-white" },
-      line2: { text: "Powered.", color: "text-brand-accent" },
-      line3: { text: "Turnkey.", color: "text-white" },
+      line1: { text: "67 Towns", color: "text-white" },
+      line2: { text: "Powered", color: "text-brand-accent" },
+      line3: { text: "Turnkey", color: "text-white" },
     },
     subtitle:
       "Three EEPCO rural electrification projects across Ethiopia — " +
@@ -113,7 +113,7 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 4,
     chapter: "Why InfinEth",
-    image: "/assets/images/hero/data-center.webp",
+    image: "/assets/images/hero/hero-ict.webp",
     fallbackGradient: "from-cyan-900 via-teal-900 to-gray-900",
     caption: "Data Center · Enterprise ICT · Managed Services · Addis Ababa",
     eyebrow: {
@@ -121,9 +121,9 @@ export const heroSlides: HeroSlide[] = [
       text: "ICT · Data Center · Managed Services",
     },
     headline: {
-      line1: { text: "One Partner.", color: "text-white" },
-      line2: { text: "Every Layer.", color: "text-brand-accent" },
-      line3: { text: "Zero Compromises.", color: "text-white" },
+      line1: { text: "One Partner", color: "text-white" },
+      line2: { text: "Every Layer", color: "text-brand-accent" },
+      line3: { text: "Zero Compromises", color: "text-white" },
     },
     subtitle:
       "Power, telecom and ICT under one roof — no siloed vendors, " +
@@ -135,6 +135,37 @@ export const heroSlides: HeroSlide[] = [
     cta: {
       primary: { label: "Start a Conversation", action: "link", target: "/contact" },
       secondary: { label: "View ICT Services", action: "link", target: "/ict-datacenter" },
+    },
+  },
+  {
+    id: 5,
+    chapter: "Growing the Next Generation",
+    image: "/assets/images/hero/msp.webp",
+    fallbackGradient: "from-emerald-900 via-green-900 to-slate-900",
+    caption: "Academy · CFOT/CFOS Certification · Managed Services",
+    eyebrow: {
+      icon: GraduationCap,
+      text: "Academy & Managed Services",
+    },
+    headline: {
+      line1: { text: "Certified", color: "text-white" },
+      line2: { text: "Skilled", color: "text-brand-accent" },
+      line3: { text: "Future-Ready", color: "text-white" },
+    },
+    subtitle:
+      "Fiber optics certification (CFOT/CFOS), telecom and industrial " +
+      "automation training — combined with managed ICT services that " +
+      "keep your infrastructure running at peak performance.",
+    proofChips: [
+      "CFOT / CFOS Certified",
+      "Telecom Training",
+      "Industrial Automation",
+      "Managed Services",
+    ],
+    proofChipsLabel: "Academy & MSP",
+    cta: {
+      primary: { label: "View MSP & Academy", action: "link", target: "/msp" },
+      secondary: { label: "Discuss Your Needs", action: "link", target: "/contact" },
     },
   },
 ];

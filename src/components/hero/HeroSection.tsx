@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, LucideIcon } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { heroSlides, HeroSlide } from '../../data/heroSlides';
 import { ANIM } from '../../data/animationConstants';
 import { useSlideTimer } from '../../hooks/useSlideTimer';
@@ -14,26 +14,9 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   const { currentSlide, progress, isPaused, pause, resume, goToSlide } = useSlideTimer(heroSlides.length);
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [bgZoom, setBgZoom] = useState(1);
   
   const activeSlide = heroSlides[currentSlide];
   
-  useEffect(() => {
-    const timer = setTimeout(() => setIsFirstLoad(false), ANIM.SLIDE_DURATION);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!isFirstLoad) {
-      setBgZoom(1);
-      const zoomInterval = setInterval(() => {
-        setBgZoom((z) => Math.min(z + 0.0005, ANIM.BG_ZOOM_SCALE));
-      }, 16);
-      return () => clearInterval(zoomInterval);
-    }
-  }, [currentSlide, isFirstLoad]);
-
   const handleScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const target = e.currentTarget.getAttribute('href');
@@ -57,10 +40,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
 
   return (
     <section 
-      className="relative h-[85vh] md:h-screen min-h-[700px] w-full overflow-hidden bg-brand-primary"
+      className="relative h-[85vh] md:h-screen min-h-[700px] w-full overflow-hidden bg-slate-950"
       onMouseEnter={pause}
       onMouseLeave={resume}
     >
+      {/* Background - simplified crossfade */}
       <div className="absolute inset-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -68,17 +52,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: ANIM.SLIDE_TRANSITION / 1000 }}
-            className={`absolute inset-0 bg-gradient-to-r ${activeSlide.fallbackGradient}`}
+            transition={{ duration: 0.7, ease: 'easeInOut' }}
+            className="absolute inset-0"
           >
-            <motion.img
+            {/* Gradient fallback */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.fallbackGradient}`} />
+            {/* Hero image */}
+            <img
               src={activeSlide.image}
               alt={activeSlide.caption}
-              className="w-full h-full object-cover"
-              style={{
-                transform: `scale(${bgZoom})`,
-                transformOrigin: 'center center',
-              }}
+              className="w-full h-full object-cover object-center"
               loading="eager"
               fetchPriority="high"
               decoding="async"
@@ -87,18 +70,18 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                 target.style.display = 'none';
               }}
             />
+            {/* Overlay gradient for text legibility */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/10" />
           </motion.div>
         </AnimatePresence>
       </div>
       
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/40 via-transparent to-brand-primary/90" />
-      
+      {/* Content */}
       <div className="relative z-10 container mx-auto px-0 h-full flex items-center">
         <AnimatePresence mode="wait">
           <HeroSlideContent
             key={activeSlide.id}
             slide={activeSlide}
-            isFirstLoad={isFirstLoad}
             isActive={true}
             onNavigate={onNavigate}
           />
@@ -107,55 +90,40 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         <PortfolioWidget isVisible={true} onNavigate={(page) => onNavigate?.(page as PageID, undefined, `/${page}`)} />
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 z-20 pb-8 px-8 md:px-12 lg:px-20">
-        <div className="flex items-end justify-between">
-          <div className="flex items-center gap-3">
-            {heroSlides.map((slide, index) => (
-              <button
-                key={slide.id}
-                onClick={() => goToSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
-                className={`rounded-full transition-all duration-300 ${
-                  index === currentSlide
-                    ? 'w-6 h-1.5 bg-brand-accent'
-                    : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'
-                }`}
-              />
-            ))}
-          </div>
-          
-          <div className="hidden md:flex items-center gap-1 text-white/40 text-xs">
-            <span className="font-medium text-white">{currentSlide + 1}</span>
-            <span>/</span>
-            <span>{heroSlides.length}</span>
-          </div>
-          
-          <a
-            href="#services"
-            onClick={handleScroll}
-            className="hidden md:flex items-center gap-2 text-white/60 hover:text-brand-accent transition-colors text-xs font-medium uppercase tracking-widest"
-          >
-            <span>Scroll</span>
-            <ChevronDown className="w-4 h-4 animate-bounce" />
-          </a>
+      {/* Bottom controls - single scroll cue */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-between px-8 lg:px-16 py-4 bg-gradient-to-t from-black/50 to-transparent">
+        {/* Slide dots */}
+        <div className="flex items-center gap-2">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              className={`rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? 'w-6 h-1.5 bg-brand-accent'
+                  : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'
+              }`}
+            />
+          ))}
         </div>
         
-        <div className="mt-4 h-0.5 bg-white/10 rounded-full overflow-hidden">
+        {/* Progress bar */}
+        <div className="flex-1 mx-6 h-px bg-white/15 relative overflow-hidden hidden sm:block">
           <motion.div
-            className="h-full bg-brand-accent"
+            className="absolute left-0 top-0 h-full bg-brand-accent"
             style={{ width: `${progress}%` }}
           />
         </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:hidden">
+        
+        {/* Scroll cue - ONE instance only */}
         <a
           href="#services"
           onClick={handleScroll}
-          className="flex items-center gap-2 text-white/60 hover:text-brand-accent transition-colors text-xs font-medium uppercase tracking-widest"
+          className="flex items-center gap-1.5 text-white/45 text-xs animate-bounce"
         >
-          <span>Scroll</span>
-          <ChevronDown className="w-4 h-4 animate-bounce" />
+          <span className="hidden sm:inline tracking-wide">Scroll</span>
+          <ChevronDown className="w-3 h-3" />
         </a>
       </div>
     </section>

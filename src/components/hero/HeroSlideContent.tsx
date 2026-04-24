@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, ArrowRight, LucideIcon } from 'lucide-react';
-import { ANIM } from '../../data/animationConstants';
 import { HeroSlide } from '../../data/heroSlides';
 import { PageID } from '../../types';
 
 interface HeroSlideContentProps {
   slide: HeroSlide;
-  isFirstLoad: boolean;
   isActive: boolean;
   onNavigate?: (page: PageID, hash?: string, routePath?: string) => void;
 }
 
-const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isFirstLoad, isActive, onNavigate }) => {
-  const [visible, setVisible] = useState(false);
+const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isActive, onNavigate }) => {
+  const [entered, setEntered] = useState(false);
 
   useEffect(() => {
     if (!isActive) {
-      setVisible(false);
+      setEntered(false);
       return;
     }
-    const delay = isFirstLoad ? ANIM.EYEBROW_DELAY : ANIM.CONTENT_IN_DELAY;
-    const t = setTimeout(() => setVisible(true), delay);
+    const t = setTimeout(() => setEntered(true), 150);
     return () => clearTimeout(t);
-  }, [isActive, isFirstLoad]);
+  }, [isActive]);
 
   const headlineLines = [slide.headline.line1, slide.headline.line2];
   if (slide.headline.line3) {
@@ -53,69 +50,53 @@ const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isFirstLoad,
       className={`
         relative z-10 flex flex-col justify-center
         h-full px-8 md:px-12 lg:px-20 xl:px-24
-        max-w-[58%] transition-all duration-300
-        ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}
+        max-w-[58%]
+        transition-opacity duration-300
+        ${entered ? 'opacity-100' : 'opacity-0'}
       `}
     >
+      {/* Eyebrow */}
       <div
         className={`
-          inline-flex items-center gap-2 w-fit mb-6
+          inline-flex items-center gap-2 w-fit mb-5
           bg-white/10 backdrop-blur-sm border border-white/20
           rounded-full px-4 py-1.5
-          transition-all duration-400
-          ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}
+          ${entered ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}
+          transition-all duration-300
         `}
-        style={{ transitionDelay: isFirstLoad ? `${ANIM.EYEBROW_DELAY}ms` : '0ms' }}
       >
-        <EyebrowIcon className="w-3.5 h-3.5 text-brand-accent" />
-        <span className="text-white/80 text-xs font-medium uppercase tracking-widest">
+        <EyebrowIcon className="w-3.5 h-3.5 text-brand-accent flex-shrink-0" />
+        <span className="text-white/80 text-xs font-semibold uppercase tracking-widest">
           {slide.eyebrow.text}
         </span>
       </div>
 
-      <h1 className="mb-5 leading-[1.1]">
+      {/* Headline - simplified, no word splitting */}
+      <h1 className={`mb-5 leading-[1.05] ${entered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'} transition-all duration-300`}>
         {headlineLines.map((line, li) => (
-          <span key={li} className="block">
-            {line.text.split(' ').map((word, wi) => (
-              <span
-                key={wi}
-                className={`
-                  inline-block mr-[0.25em]
-                  transition-all duration-300
-                  ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
-                  ${line.color}
-                  text-4xl md:text-5xl lg:text-6xl font-bold
-                `}
-                style={{
-                  transitionDelay: visible
-                    ? `${(isFirstLoad ? ANIM.HEADLINE_START : ANIM.CONTENT_IN_DELAY) + (li * 3 + wi) * ANIM.HEADLINE_WORD_STAGGER}ms`
-                    : '0ms',
-                }}
-              >
-                {word}
-              </span>
-            ))}
+          <span
+            key={li}
+            className={`block font-bold tracking-tight ${line.color} text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl`}
+          >
+            {line.text}
           </span>
         ))}
       </h1>
 
+      {/* Subtitle */}
       <p
         className={`
-          text-white/75 text-base lg:text-lg leading-relaxed
-          max-w-xl mb-6
-          transition-all duration-400
-          ${visible ? 'opacity-100' : 'opacity-0'}
+          text-white/75 text-sm sm:text-base lg:text-lg
+          leading-relaxed max-w-xl mb-6 font-normal
+          ${entered ? 'opacity-100' : 'opacity-0'}
+          transition-opacity duration-300
         `}
-        style={{
-          transitionDelay: isFirstLoad
-            ? `${ANIM.SUBTITLE_DELAY}ms`
-            : `${ANIM.CONTENT_IN_DELAY + 100}ms`,
-        }}
       >
         {slide.subtitle}
       </p>
 
-      <div className="mb-8">
+      {/* Proof chips */}
+      <div className={`mb-7 ${entered ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
         {slide.proofChipsLabel && (
           <p className="text-white/40 text-xs uppercase tracking-widest mb-2">
             {slide.proofChipsLabel}
@@ -125,17 +106,7 @@ const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isFirstLoad,
           {slide.proofChips.map((chip, ci) => (
             <span
               key={ci}
-              className={`
-                bg-white/10 border border-white/15 rounded-full
-                px-3 py-1 text-white/70 text-xs font-medium
-                transition-all duration-300
-                ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
-              `}
-              style={{
-                transitionDelay: isFirstLoad
-                  ? `${ANIM.CHIPS_DELAY + ci * ANIM.CHIPS_STAGGER}ms`
-                  : `${ANIM.CONTENT_IN_DELAY + 150 + ci * 40}ms`,
-              }}
+              className="bg-white/10 border border-white/15 rounded-full px-3 py-1 text-white/70 text-xs font-medium"
             >
               {chip}
             </span>
@@ -143,19 +114,11 @@ const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isFirstLoad,
         </div>
       </div>
 
-      <div
-        className={`
-          flex flex-wrap gap-4
-          transition-all duration-350
-          ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}
-        `}
-        style={{
-          transitionDelay: isFirstLoad ? `${ANIM.CTA_DELAY}ms` : `${ANIM.CONTENT_IN_DELAY + 200}ms`,
-        }}
-      >
+      {/* CTAs */}
+      <div className={`flex flex-wrap gap-3 ${entered ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
         <button
           onClick={handlePrimaryCta}
-          className="inline-flex items-center gap-2 bg-brand-accent text-white px-7 py-3.5 rounded-lg font-semibold text-sm hover:bg-brand-accent/90 active:scale-95 transition-all duration-200 cursor-pointer"
+          className="inline-flex items-center gap-2 bg-brand-accent text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-brand-accent/90 active:scale-[0.98] transition-all duration-200 cursor-pointer"
         >
           {slide.cta.primary.label}
           {slide.cta.primary.action === 'scroll' ? (
@@ -167,7 +130,7 @@ const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isFirstLoad,
 
         <button
           onClick={handleSecondaryCta}
-          className="inline-flex items-center gap-2 border border-white/30 text-white px-7 py-3.5 rounded-lg font-semibold text-sm hover:bg-white/10 active:scale-95 transition-all duration-200 cursor-pointer"
+          className="inline-flex items-center gap-2 border border-white/30 text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-white/10 active:scale-[0.98] transition-all duration-200 cursor-pointer"
         >
           {slide.cta.secondary.label}
         </button>
