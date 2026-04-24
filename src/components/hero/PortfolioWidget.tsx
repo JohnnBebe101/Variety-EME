@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { widgetProjects } from '../../data/portfolioWidgetData';
 import { ANIM } from '../../data/animationConstants';
 
 interface PortfolioWidgetProps {
   isVisible: boolean;
+  onNavigate?: (page: string) => void;
 }
 
-const PortfolioWidget: React.FC<PortfolioWidgetProps> = ({ isVisible }) => {
+const PortfolioWidget: React.FC<PortfolioWidgetProps> = ({ isVisible, onNavigate }) => {
   const [current, setCurrent] = useState(0);
   const [fading, setFading] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const total = widgetProjects.length;
 
   const startTimer = useCallback(() => {
@@ -108,12 +108,12 @@ const PortfolioWidget: React.FC<PortfolioWidgetProps> = ({ isVisible }) => {
               <ChevronRight className="w-3.5 h-3.5 text-white" />
             </button>
           </div>
-          <Link
-            to="/portfolio"
-            className="text-brand-accent text-xs font-medium hover:text-brand-accent/80 transition-colors duration-200 flex items-center gap-1"
+          <button
+            onClick={() => onNavigate?.('portfolio-detailed')}
+            className="text-brand-accent text-xs font-medium hover:text-brand-accent/80 transition-colors duration-200 flex items-center gap-1 cursor-pointer"
           >
             View All <ArrowRight className="w-3 h-3" />
-          </Link>
+          </button>
         </div>
 
         <div className="flex gap-1.5 justify-center pb-4">

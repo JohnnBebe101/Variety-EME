@@ -6,9 +6,10 @@ import { ANIM } from '../../data/animationConstants';
 import { useSlideTimer } from '../../hooks/useSlideTimer';
 import HeroSlideContent from './HeroSlideContent';
 import PortfolioWidget from './PortfolioWidget';
+import { PageID } from '../../types';
 
 interface HeroSectionProps {
-  onNavigate?: (page: string, hash?: string, routePath?: string) => void;
+  onNavigate?: (page: PageID, hash?: string, routePath?: string) => void;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
@@ -99,10 +100,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
             slide={activeSlide}
             isFirstLoad={isFirstLoad}
             isActive={true}
+            onNavigate={onNavigate}
           />
         </AnimatePresence>
         
-        <PortfolioWidget isVisible={true} />
+        <PortfolioWidget isVisible={true} onNavigate={(page) => onNavigate?.(page as PageID, undefined, `/${page}`)} />
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 z-20 pb-8 px-8 md:px-12 lg:px-20">

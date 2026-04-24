@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { ChevronDown, ArrowRight, LucideIcon } from 'lucide-react';
 import { ANIM } from '../../data/animationConstants';
 import { HeroSlide } from '../../data/heroSlides';
+import { PageID } from '../../types';
 
 interface HeroSlideContentProps {
   slide: HeroSlide;
   isFirstLoad: boolean;
   isActive: boolean;
+  onNavigate?: (page: PageID, hash?: string, routePath?: string) => void;
 }
 
-const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isFirstLoad, isActive }) => {
+const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isFirstLoad, isActive, onNavigate }) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -29,6 +30,23 @@ const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isFirstLoad,
   }
 
   const EyebrowIcon: LucideIcon = slide.eyebrow.icon;
+
+  const handlePrimaryCta = () => {
+    if (slide.cta.primary.action === 'scroll') {
+      const el = document.querySelector(slide.cta.primary.target);
+      el?.scrollIntoView({ behavior: 'smooth' });
+    } else if (onNavigate) {
+      const pageId = slide.cta.primary.target.replace('/', '') as PageID;
+      onNavigate(pageId, undefined, slide.cta.primary.target);
+    }
+  };
+
+  const handleSecondaryCta = () => {
+    if (onNavigate) {
+      const pageId = slide.cta.secondary.target.replace('/', '') as PageID;
+      onNavigate(pageId, undefined, slide.cta.secondary.target);
+    }
+  };
 
   return (
     <div
@@ -135,34 +153,24 @@ const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isFirstLoad,
           transitionDelay: isFirstLoad ? `${ANIM.CTA_DELAY}ms` : `${ANIM.CONTENT_IN_DELAY + 200}ms`,
         }}
       >
-        {slide.cta.primary.action === 'scroll' ? (
-          <a
-            href={slide.cta.primary.target}
-            onClick={(e) => {
-              e.preventDefault();
-              document.querySelector(slide.cta.primary.target)?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="inline-flex items-center gap-2 bg-brand-accent text-white px-7 py-3.5 rounded-lg font-semibold text-sm hover:bg-brand-accent/90 active:scale-95 transition-all duration-200"
-          >
-            {slide.cta.primary.label}
+        <button
+          onClick={handlePrimaryCta}
+          className="inline-flex items-center gap-2 bg-brand-accent text-white px-7 py-3.5 rounded-lg font-semibold text-sm hover:bg-brand-accent/90 active:scale-95 transition-all duration-200 cursor-pointer"
+        >
+          {slide.cta.primary.label}
+          {slide.cta.primary.action === 'scroll' ? (
             <ChevronDown className="w-4 h-4" />
-          </a>
-        ) : (
-          <Link
-            to={slide.cta.primary.target}
-            className="inline-flex items-center gap-2 bg-brand-accent text-white px-7 py-3.5 rounded-lg font-semibold text-sm hover:bg-brand-accent/90 active:scale-95 transition-all duration-200"
-          >
-            {slide.cta.primary.label}
+          ) : (
             <ArrowRight className="w-4 h-4" />
-          </Link>
-        )}
+          )}
+        </button>
 
-        <Link
-          to={slide.cta.secondary.target}
-          className="inline-flex items-center gap-2 border border-white/30 text-white px-7 py-3.5 rounded-lg font-semibold text-sm hover:bg-white/10 active:scale-95 transition-all duration-200"
+        <button
+          onClick={handleSecondaryCta}
+          className="inline-flex items-center gap-2 border border-white/30 text-white px-7 py-3.5 rounded-lg font-semibold text-sm hover:bg-white/10 active:scale-95 transition-all duration-200 cursor-pointer"
         >
           {slide.cta.secondary.label}
-        </Link>
+        </button>
       </div>
     </div>
   );
