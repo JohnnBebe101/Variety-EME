@@ -40,6 +40,16 @@ export const HERO = {
       webp: "/assets/images/hero/power-solar.webp",
       jpeg: "/assets/images/hero/power-solar.webp",
       alt: "Power and solar systems hero image"
+    },
+    {
+      webp: "/assets/images/hero/hero-overview.webp",
+      jpeg: "/assets/images/hero/hero-overview.webp",
+      alt: "Brand overview hero image"
+    },
+    {
+      webp: "/assets/images/hero/hero-academy.webp",
+      jpeg: "/assets/images/hero/hero-academy.webp",
+      alt: "Academy and training hero image"
     }
   ]
 };
