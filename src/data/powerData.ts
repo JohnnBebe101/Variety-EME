@@ -42,7 +42,7 @@ export const powerProjects = [
     stat: "Foundation and erection of high-voltage towers",
     client: "KEC International",
     category: "Transmission",
-    image: "/assets/images/portfolio/400kv-towers.webp",
+    image: "/assets/images/portfolio/400-kv-tower.webp",
   },
   {
     id: 2,
@@ -58,7 +58,7 @@ export const powerProjects = [
     stat: "Multi-site power systems for telecom infrastructure",
     client: "ESCO",
     category: "Backup Power",
-    image: "/assets/images/portfolio/telecom-power.webp",
+    image: "/assets/images/portfolio/safaricom-rollout.webp",
   },
 ];
 

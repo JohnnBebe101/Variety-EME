@@ -42,7 +42,7 @@ export const mspProjects = [
     stat: "Enterprise LAN deployment and support",
     client: "Clinton Foundation",
     category: "Managed Services",
-    image: "/assets/images/portfolio/clinton-lan.webp",
+    image: "/assets/images/portfolio/clinton-global-initiative.webp",
   },
   {
     id: 2,
@@ -50,7 +50,7 @@ export const mspProjects = [
     stat: "ICT systems consultancy and advisory",
     client: "Ethiopian Sugar Corporation",
     category: "ICT Consultancy",
-    image: "/assets/images/portfolio/sugar-corp.webp",
+    image: "/assets/images/portfolio/rural-electrification.webp",
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ export const mspProjects = [
     stat: "Ongoing ICT support and administration",
     client: "Central Statistical Agency (CSA)",
     category: "Managed Services",
-    image: "/assets/images/portfolio/csa.webp",
+    image: "/assets/images/portfolio/Academy-practical-class.webp",
   },
 ];
 
