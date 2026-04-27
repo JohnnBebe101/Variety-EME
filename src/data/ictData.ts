@@ -50,7 +50,7 @@ export const ictProjects = [
     stat: "500+ nodes, 30m² data center, 12 buildings",
     client: "Huawei / AAICTDA",
     category: "Enterprise Networking",
-    image: "/assets/images/portfolio/entoto-tvet.webp",
+    image: "/assets/images/portfolio/entoto-tvet-1.webp",
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ export const ictProjects = [
     stat: "Full ICT infrastructure support",
     client: "OXFAM-America",
     category: "Managed Services",
-    image: "/assets/images/portfolio/oxfam.webp",
+    image: "/assets/images/portfolio/ethio-telecom-tower-rollout.webp",
   },
 ];
 

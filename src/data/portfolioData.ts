@@ -4,7 +4,7 @@ export const portfolioProjects = [
     title: "Ethio Telecom Tower Rollout",
     category: "Telecom",
     description: "Nationwide tower deployment and commissioning",
-    image: "/assets/images/portfolio/tower-rollout.webp",
+    image: "/assets/images/portfolio/ethio-telecom-tower-rollout.webp",
     client: "Ethio Telecom / Nokia",
   },
   {
@@ -12,7 +12,7 @@ export const portfolioProjects = [
     title: "Optical Transmission Network",
     category: "Telecom",
     description: "66 stations across 3 routes",
-    image: "/assets/images/portfolio/optical-network.webp",
+    image: "/assets/images/portfolio/optical-tansmission-network.webp",
     client: "Huawei / AAICTDA",
   },
   {
@@ -28,7 +28,7 @@ export const portfolioProjects = [
     title: "MoFED Regional Data Centers",
     category: "ICT",
     description: "Regional data center design and build",
-    image: "/assets/images/portfolio/data-center.webp",
+    image: "/assets/images/portfolio/mofed-dc.webp",
     client: "Ministry of Finance",
   },
   {
@@ -36,7 +36,7 @@ export const portfolioProjects = [
     title: "Entoto TVET Campus ICT",
     category: "ICT",
     description: "500+ nodes, 30m² data center",
-    image: "/assets/images/portfolio/tvet-campus.webp",
+    image: "/assets/images/portfolio/entoto-tvet-1.webp",
     client: "Huawei / AAICTDA",
   },
   {
@@ -44,7 +44,7 @@ export const portfolioProjects = [
     title: "400KV Transmission Towers",
     category: "Power",
     description: "High-voltage transmission towers",
-    image: "/assets/images/portfolio/transmission-towers.webp",
+    image: "/assets/images/portfolio/400-kv-tower.webp",
     client: "KEC International",
   },
 ];

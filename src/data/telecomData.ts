@@ -42,7 +42,7 @@ export const telecomProjects = [
     stat: "66 stations across 3 routes",
     client: "Huawei / AAICTDA",
     category: "Fiber Optics",
-    image: "/assets/images/portfolio/optical-transmission.webp",
+    image: "/assets/images/portfolio/optical-tansmission-network.webp",
   },
   {
     id: 2,
@@ -50,7 +50,7 @@ export const telecomProjects = [
     stat: "Nationwide tower deployment & commissioning",
     client: "Ethio Telecom / Nokia",
     category: "Tower & Civil",
-    image: "/assets/images/portfolio/tower-rollout.webp",
+    image: "/assets/images/portfolio/ethio-telecom-tower-rollout.webp",
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ export const telecomProjects = [
     stat: "Multi-site rollout support",
     client: "Safaricom / ESCO",
     category: "RAN Rollout",
-    image: "/assets/images/portfolio/safaricom.webp",
+    image: "/assets/images/portfolio/safaricom-rollout.webp",
   },
 ];
 
