@@ -26,7 +26,7 @@ import { SITE, HERO, PARTNERS, STATS, UI_CLASSES, NAV_CONFIG, ISO_DATA } from '.
 import { Layout } from './components/layout/Layout';
 import { LogoSymbol } from './components/LogoSymbol';
 import { Brand } from './components/Brand';
-import { HeroSlider } from './components/HeroSlider';
+import HeroSection from './components/hero/HeroSection';
 import { ClientTrustBar } from './components/ClientTrustBar';
 import { ServiceCard } from './components/ServiceCard';
 import { ContactModal } from './components/ContactModal';
@@ -334,7 +334,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
             description={heroT('heroSub')}
             schema={organizationSchema}
           />
-          <HeroSlider onOpenContact={() => setIsContactOpen(true)} navigateTo={navigateTo} />
+          <HeroSection onNavigate={navigateTo} />
           <SuccessStoriesSection />
           <ClientTrustBar />
           
