@@ -43,6 +43,10 @@ import { LogoSymbol } from './LogoSymbol';
 
 interface PageProps {
   onBack: () => void;
+  heroImage?: string;
+  gradientFallback?: string;
+  currentPath?: string;
+  onNavigate?: (path: string) => void;
 }
 
 export const CorporatePages = {
@@ -442,8 +446,8 @@ const PageCtaBar = () => (
 );
 
 export const ServicePages = {
-  TelecommunicationsMobileRollout: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Telecommunications" title="Mobile Telecom Rollout (RAN + Power)" description="Radio Access Network deployment integrated with telecom power infrastructure as a single turnkey scope.">
+  TelecommunicationsMobileRollout: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Telecommunications" title="Mobile Telecom Rollout (RAN + Power)" description="Radio Access Network deployment integrated with telecom power infrastructure as a single turnkey scope." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           BTS/NodeB/eNodeB installation, antenna and feeder systems, telecom power systems (rectifiers, batteries, generators), site integration and commissioning.
@@ -465,8 +469,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  TelecommunicationsFiberOptics: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Telecommunications" title="Fiber Optics" description="Long-haul and metropolitan fiber optic network design, outside plant installation, splicing, termination, OTDR testing and acceptance commissioning.">
+  TelecommunicationsFiberOptics: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Telecommunications" title="Fiber Optics" description="Long-haul and metropolitan fiber optic network design, outside plant installation, splicing, termination, OTDR testing and acceptance commissioning." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           Long-haul and metropolitan fiber optic network design, outside plant installation, splicing, termination, OTDR testing and acceptance commissioning.
@@ -486,8 +490,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  TelecommunicationsTowerCivilWorks: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Telecommunications" title="Tower & Civil Works" description="Greenfield tower construction, rooftop installations, tower reinforcement, civil site preparation, foundation works, right-of-way management.">
+  TelecommunicationsTowerCivilWorks: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Telecommunications" title="Tower & Civil Works" description="Greenfield tower construction, rooftop installations, tower reinforcement, civil site preparation, foundation works, right-of-way management." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           Greenfield tower construction, rooftop installations, tower reinforcement, civil site preparation, foundation works, right-of-way management.
@@ -502,8 +506,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  TelecommunicationsOperationsMaintenance: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Telecommunications" title="Operations & Maintenance (O&M)" description="Preventive and corrective maintenance contracts, SLA-based network support, network performance monitoring, spare parts management.">
+  TelecommunicationsOperationsMaintenance: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Telecommunications" title="Operations & Maintenance (O&M)" description="Preventive and corrective maintenance contracts, SLA-based network support, network performance monitoring, spare parts management." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           Preventive and corrective maintenance contracts, SLA-based network support, network performance monitoring, spare parts management.
@@ -518,8 +522,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  TelecommunicationsWarehouseManagement: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Telecommunications" title="Warehouse Management" description="Equipment receiving and inspection, inventory tracking, kitting and staging for field deployment, asset management for telecom infrastructure programs.">
+  TelecommunicationsWarehouseManagement: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Telecommunications" title="Warehouse Management" description="Equipment receiving and inspection, inventory tracking, kitting and staging for field deployment, asset management for telecom infrastructure programs." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           Equipment receiving and inspection, inventory tracking, kitting and staging for field deployment, asset management for telecom infrastructure programs.
@@ -532,8 +536,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  IctDatacenterDataCenterDesign: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="ICT & Data Center" title="Data Center Design & Build" description="Data center site assessment, rack and cabling infrastructure, power and cooling systems, structured cabling, server room build-out, acceptance testing.">
+  IctDatacenterDataCenterDesign: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="ICT & Data Center" title="Data Center Design & Build" description="Data center site assessment, rack and cabling infrastructure, power and cooling systems, structured cabling, server room build-out, acceptance testing." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           Data center site assessment, rack and cabling infrastructure, power and cooling systems, structured cabling, server room build-out, acceptance testing.
@@ -553,8 +557,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  IctDatacenterEnterpriseNetworking: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="ICT & Data Center" title="Enterprise Networking, Storage & Backup" description="LAN/WAN design and deployment, structured cabling, network switches and routing, NAS/SAN storage, backup and disaster recovery systems.">
+  IctDatacenterEnterpriseNetworking: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="ICT & Data Center" title="Enterprise Networking, Storage & Backup" description="LAN/WAN design and deployment, structured cabling, network switches and routing, NAS/SAN storage, backup and disaster recovery systems." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           LAN/WAN design and deployment, structured cabling, network switches and routing, NAS/SAN storage, backup and disaster recovery systems.
@@ -573,8 +577,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  IctDatacenterSystemDevelopment: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="ICT & Data Center" title="System Development & Consultancy" description="System requirements analysis, software and system development, ICT project management, technology advisory, digital transformation consulting.">
+  IctDatacenterSystemDevelopment: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="ICT & Data Center" title="System Development & Consultancy" description="System requirements analysis, software and system development, ICT project management, technology advisory, digital transformation consulting." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           System requirements analysis, software and system development, ICT project management, technology advisory, digital transformation consulting.
@@ -590,8 +594,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  IctDatacenterCybersecurityManaged: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="ICT & Data Center" title="Cybersecurity & Managed Services" description="Information security assessments, security policy development, managed security services, business continuity planning, network monitoring, incident response support.">
+  IctDatacenterCybersecurityManaged: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="ICT & Data Center" title="Cybersecurity & Managed Services" description="Information security assessments, security policy development, managed security services, business continuity planning, network monitoring, incident response support." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           Information security assessments, security policy development, managed security services, business continuity planning, network monitoring, incident response support.
@@ -610,8 +614,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  IctDatacenterTrainingConsultancy: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="ICT & Data Center" title="Training & ICT Consultancy" description="ICT training programs and consultancy services for enterprise and institutional clients.">
+  IctDatacenterTrainingConsultancy: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="ICT & Data Center" title="Training & ICT Consultancy" description="ICT training programs and consultancy services for enterprise and institutional clients." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           ICT training programs and consultancy services for enterprise and institutional clients.
@@ -627,8 +631,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  PowerTransmissionDistribution: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Power" title="Transmission, Distribution & Substation" description="HV/MV transmission line construction, substation design and build, distribution network rollout, transformer installation and commissioning, line stringing and pole erection.">
+  PowerTransmissionDistribution: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Power" title="Transmission, Distribution & Substation" description="HV/MV transmission line construction, substation design and build, distribution network rollout, transformer installation and commissioning, line stringing and pole erection." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           HV/MV transmission line construction, substation design and build, distribution network rollout, transformer installation and commissioning, line stringing and pole erection.
@@ -646,8 +650,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  PowerMinigridSystems: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Power" title="Minigrid Systems" description="Minigrid feasibility and design, hybrid power systems, grid integration, community electrification, metering and monitoring.">
+  PowerMinigridSystems: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Power" title="Minigrid Systems" description="Minigrid feasibility and design, hybrid power systems, grid integration, community electrification, metering and monitoring." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           Minigrid feasibility and design, hybrid power systems, grid integration, community electrification, metering and monitoring.
@@ -664,8 +668,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  PowerBackupPower: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Power" title="Backup Power Systems (DG, Solar & Hybrid)" description="Diesel Generator (DG) installation and commissioning, solar PV design and installation, battery storage systems, hybrid controller integration, UPS systems, telecom power systems (rectifiers and batteries).">
+  PowerBackupPower: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Power" title="Backup Power Systems (DG, Solar & Hybrid)" description="Diesel Generator (DG) installation and commissioning, solar PV design and installation, battery storage systems, hybrid controller integration, UPS systems, telecom power systems (rectifiers and batteries)." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           Diesel Generator (DG) installation and commissioning, solar PV design and installation, battery storage systems, hybrid controller integration, UPS systems, telecom power systems (rectifiers and batteries).
@@ -679,8 +683,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  PowerBuildingElectromechanical: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Power" title="Building Electromechanical Works" description="Industrial electrical installations, building wiring and fit-out, panel board and switchgear installation, earthing and lightning protection systems.">
+  PowerBuildingElectromechanical: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Power" title="Building Electromechanical Works" description="Industrial electrical installations, building wiring and fit-out, panel board and switchgear installation, earthing and lightning protection systems." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           Industrial electrical installations, building wiring and fit-out, panel board and switchgear installation, earthing and lightning protection systems.
@@ -696,8 +700,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  AcademyOverview: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Academy Overview" description="InfinEth Academy is Ethiopia's practitioner-led engineering and ICT training center, delivering internationally aligned certifications backed by 20+ years of field execution experience.">
+  AcademyOverview: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Academy Overview" description="InfinEth Academy is Ethiopia's practitioner-led engineering and ICT training center, delivering internationally aligned certifications backed by 20+ years of field execution experience." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Overview">
           InfinEth Academy is Ethiopia's practitioner-led engineering and ICT training center, delivering internationally aligned certifications backed by 20+ years of field execution experience. Our training is delivered by engineers and technicians who have worked on live infrastructure projects across Ethiopia and East Africa. Primary focus: FOA-standard fiber optics certification programs. Secondary focus: Telecommunications and Industrial Automation training through our Center of Excellence.
@@ -711,8 +715,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  AcademyFiberOpticsCertification: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Fiber Optics Certification Programs (CFOT / CFOS)" description="FOA-aligned fiber optics certification programs for technicians and specialist tracks.">
+  AcademyFiberOpticsCertification: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Fiber Optics Certification Programs (CFOT / CFOS)" description="FOA-aligned fiber optics certification programs for technicians and specialist tracks." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="TRACK 1 — CFOT: Certified Fiber Optic Technician">
           Foundational certification. Covers fiber optic theory, installation methods, connectors, splicing, and basic testing. Required entry point for all field technicians and prerequisite for all CFOS tracks.
@@ -736,8 +740,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  AcademyTelecomAutomationTraining: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Telecommunications & Industrial Automation Training" description="Training programs for telecom operators, network engineers, industrial operators and technical staff.">
+  AcademyTelecomAutomationTraining: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Telecommunications & Industrial Automation Training" description="Training programs for telecom operators, network engineers, industrial operators and technical staff." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="CENTER 1 — Telecommunications Training">
           Wireless communications, network fundamentals, telecom systems operations. Relevant for telecom operators, network engineers, and field technicians.
@@ -758,8 +762,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  AcademyManagedServices: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Managed Services" description="Ongoing operational support contracts — network operations and monitoring, IT infrastructure management, SLA-based support contracts, helpdesk and remote support, periodic maintenance programs.">
+  AcademyManagedServices: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Managed Services" description="Ongoing operational support contracts — network operations and monitoring, IT infrastructure management, SLA-based support contracts, helpdesk and remote support, periodic maintenance programs." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           Ongoing operational support contracts — network operations and monitoring, IT infrastructure management, SLA-based support contracts, helpdesk and remote support, periodic maintenance programs.
@@ -775,8 +779,8 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  AcademyInstitutionalPartnerships: ({ onBack }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Corporate & Institutional Training Partnerships" description="Bulk training programs and long-term training partnerships for telecom operators, NGOs, government ministries, and TVET institutions.">
+  AcademyInstitutionalPartnerships: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Corporate & Institutional Training Partnerships" description="Bulk training programs and long-term training partnerships for telecom operators, NGOs, government ministries, and TVET institutions." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
           Bulk training programs and long-term training partnerships for telecom operators, NGOs, government ministries, and TVET institutions. InfinEth Academy can design and deliver customized training programs for organizational workforce development.
