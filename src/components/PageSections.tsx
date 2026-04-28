@@ -61,7 +61,7 @@ export const CorporatePages = {
     return (
       <SubPageLayout onBack={onBack} tag={t('corporate.identity.tag')} title={t('corporate.identity.title')} description={t('corporate.identity.description')}>
         {/* Company Overview */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-12">
           <div className="space-y-8">
             <div>
               <p className="text-brand-accent text-sm font-semibold uppercase tracking-widest mb-2">{t('corporate.identity.founded')}</p>
@@ -78,16 +78,16 @@ export const CorporatePages = {
                 <p className="text-xs text-brand-muted uppercase">Staff</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-brand-accent">5</p>
+                <p className="text-3xl font-bold text-brand-accent">3</p>
                 <p className="text-xs text-brand-muted uppercase">ISO Certs</p>
               </div>
             </div>
           </div>
-          <div className="rounded-[3rem] overflow-hidden shadow-xl h-[400px] bg-slate-200"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200" className="w-full h-full object-cover" alt="Identity" referrerPolicy="no-referrer" /></div>
+          <div className="rounded-[3rem] overflow-hidden shadow-xl h-[400px] bg-slate-200"><img src="/assets/images/hero/hero-overview.webp" className="w-full h-full object-cover" alt="InfinEth Office" /></div>
         </div>
         
         {/* Three Service Pillars */}
-        <div className="mb-20">
+        <div className="mb-12">
           <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.pillars_title')}</h3>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-brand-surface p-8 rounded-2xl border border-white/5">
@@ -109,7 +109,7 @@ export const CorporatePages = {
         </div>
         
         {/* Why Partner With InfinEth */}
-        <div className="mb-20">
+        <div className="mb-12">
           <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.why_title')}</h3>
           <div className="grid md:grid-cols-2 gap-4">
             {safeWhy.map((item, i) => (
@@ -122,7 +122,7 @@ export const CorporatePages = {
         </div>
         
         {/* Delivery Model */}
-        <div className="mb-20">
+        <div className="mb-12">
           <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.delivery_title')}</h3>
           <div className="flex flex-wrap gap-4">
             {safeDelivery.map((step, i) => (
@@ -136,7 +136,7 @@ export const CorporatePages = {
         </div>
         
         {/* Operating Principles */}
-        <div className="mb-20">
+        <div className="mb-12">
           <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.principles_title')}</h3>
           <div className="flex flex-wrap gap-4">
             {safePrinciples.map((principle, i) => (
@@ -150,7 +150,7 @@ export const CorporatePages = {
         {/* ISO Certifications */}
         <div className="mb-12">
           <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.iso_title')}</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {safeIsos.map((iso, i) => (
               <div key={i} className="bg-brand-surface p-4 rounded-xl border border-white/5 text-center">
                 <ShieldCheck className="text-brand-accent mx-auto mb-2" size={24} />

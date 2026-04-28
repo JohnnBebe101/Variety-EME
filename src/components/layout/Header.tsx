@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu } from 'lucide-react';
 import { Brand } from '../Brand';
 import { LogoSymbol } from '../LogoSymbol';
@@ -32,6 +33,62 @@ export const Header: React.FC<HeaderProps> = ({
   const { t } = useTranslation();
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const clearDropdownTimeout = useCallback(() => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
+  }, []);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent, navLabel: string) => {
+    const navIndex = NAV_CONFIG.findIndex(n => n.label === navLabel);
+    
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        if (navIndex < NAV_CONFIG.length - 1) {
+          const nextNav = NAV_CONFIG[navIndex + 1];
+          if (nextNav.items.length > 0) {
+            setActiveMenu(nextNav.label);
+          }
+        }
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        if (navIndex > 0) {
+          const prevNav = NAV_CONFIG[navIndex - 1];
+          if (prevNav.items.length > 0) {
+            setActiveMenu(prevNav.label);
+          }
+        }
+        break;
+      case 'Escape':
+        e.preventDefault();
+        clearDropdownTimeout();
+        setActiveMenu(null);
+        break;
+      case 'Enter':
+      case ' ':
+        if (!activeMenu) {
+          setActiveMenu(navLabel);
+        }
+        break;
+    }
+  }, [setActiveMenu, activeMenu, clearDropdownTimeout]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.nav-dropdown-container')) {
+        clearDropdownTimeout();
+        setActiveMenu(null);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [setActiveMenu, clearDropdownTimeout]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -78,34 +135,74 @@ export const Header: React.FC<HeaderProps> = ({
               return (
                 <div 
                   key={nav.label} 
-                  className="relative px-3 py-2 group" 
-                  onMouseEnter={() => hasDropdown && setActiveMenu(nav.label)} 
-                  onMouseLeave={() => hasDropdown && setActiveMenu(null)}
+                  className="relative px-3 py-2 group nav-dropdown-container"
+                  onMouseEnter={() => hasDropdown && setActiveMenu(nav.label)}
                 >
                   <button 
                     onClick={() => nav.page && navigateTo(nav.page, undefined, nav.path)}
-                    className={`flex items-center gap-1.5 cursor-pointer text-sm font-medium tracking-wide transition-all duration-200 uppercase whitespace-nowrap min-w-0 outline-none hover:text-brand-accent ${isHovered ? 'text-brand-accent' : 'text-white/80'}`}
+                    onMouseEnter={() => {
+                      clearDropdownTimeout();
+                      hasDropdown && setActiveMenu(nav.label);
+                    }}
+                    onMouseLeave={() => {
+                      if (hasDropdown) {
+                        clearDropdownTimeout();
+                        dropdownTimeoutRef.current = setTimeout(() => setActiveMenu(null), 200);
+                      }
+                    }}
+                    onKeyDown={(e) => hasDropdown && handleKeyDown(e, nav.label)}
+                    aria-expanded={isHovered && hasDropdown}
+                    aria-haspopup={hasDropdown ? 'menu' : undefined}
+                    aria-controls={hasDropdown ? `menu-${nav.label}` : undefined}
+                    role={hasDropdown ? 'button' : undefined}
+                    tabIndex={0}
+                    className={`flex items-center gap-1.5 cursor-pointer text-sm font-medium tracking-wide transition-all duration-200 uppercase whitespace-nowrap min-w-0 outline-none hover:text-brand-accent focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-primary ${isHovered ? 'text-brand-accent' : 'text-white/80'}`}
                   >
                     {nav.label}
                     {hasDropdown && <ChevronDown size={12} className={`transition-all duration-200 ${isHovered ? 'rotate-180 text-brand-accent' : 'text-white/40'}`} />}
                   </button>
-                  {hasDropdown && isHovered && (
-                    <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-[420px] bg-white shadow-2xl rounded-[1rem] overflow-hidden grid grid-cols-12 border border-slate-100/50 z-[110]">
-                      <div className="col-span-5 bg-brand-primary p-6 text-white">
-                        <span className="text-[8px] font-semibold uppercase tracking-widest text-brand-accent mb-2.5 block">{nav.overview.tag}</span>
-                        <h3 className="text-h3 font-semibold mb-2">{nav.overview.title}</h3>
-                        <p className="text-white/60 text-xs">{nav.overview.description}</p>
-                        <button onClick={() => nav.page && navigateTo(nav.page, undefined, nav.path)} className="text-xs font-semibold uppercase tracking-wide text-white hover:text-brand-accent mt-4">{nav.overview.cta} →</button>
-                      </div>
-                      <div className="col-span-7 bg-white p-4 grid grid-cols-1 gap-1">
-                        {nav.items.slice(0, 5).map((item) => (
-                          <button key={item.label} onClick={() => navigateTo(item.page as PageID, undefined, item.path)} className="text-left px-4 py-3 text-sm text-gray-700 hover:bg-brand-primary/5 hover:text-brand-accent rounded-lg transition-colors">
-                            {item.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  <AnimatePresence>
+                    {hasDropdown && isHovered && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                        role="menu"
+                        aria-label={`${nav.label} menu`}
+                        id={`menu-${nav.label}`}
+                        className="absolute top-full pt-2 left-1/2 -translate-x-1/2 w-[420px] bg-white shadow-2xl rounded-[1rem] overflow-hidden grid grid-cols-12 border border-slate-100/50 z-[130]"
+                        onMouseEnter={() => {
+                          clearDropdownTimeout();
+                          setActiveMenu(nav.label);
+                        }}
+                        onMouseLeave={() => {
+                          clearDropdownTimeout();
+                          dropdownTimeoutRef.current = setTimeout(() => setActiveMenu(null), 200);
+                        }}
+                      >
+                        <div className="col-span-5 bg-brand-primary p-6 text-white">
+                          <span className="text-[8px] font-semibold uppercase tracking-widest text-brand-accent mb-2.5 block">{nav.overview.tag}</span>
+                          <h3 className="text-h3 font-semibold mb-2">{nav.overview.title}</h3>
+                          <p className="text-white/60 text-xs">{nav.overview.description}</p>
+                          <button onClick={() => nav.page && navigateTo(nav.page, undefined, nav.path)} className="text-xs font-semibold uppercase tracking-wide text-white hover:text-brand-accent mt-4">{nav.overview.cta} →</button>
+                        </div>
+                        <div className="col-span-7 bg-white p-4 grid grid-cols-1 gap-1">
+                          {nav.items.slice(0, 5).map((item) => (
+                            <button 
+                              key={item.label} 
+                              onClick={() => navigateTo(item.page as PageID, undefined, item.path)} 
+                              role="menuitem"
+                              tabIndex={0}
+                              className="text-left px-4 py-3 text-sm text-gray-700 hover:bg-brand-primary/5 hover:text-brand-accent rounded-lg transition-colors focus:bg-brand-primary/5 focus:text-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent"
+                            >
+                              {item.label}
+                            </button>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })}
