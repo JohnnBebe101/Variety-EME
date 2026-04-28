@@ -66,7 +66,7 @@ export const telecomHero = {
   eyebrow: "Telecommunications",
   pageTitle: "Wireless, Fiber & Tower Engineering",
   pageSubtitle: "End-to-end telecom rollout — from tower civil works and RAN deployment to fiber optics and operations & maintenance across Ethiopia.",
-  gradientFallback: "from-slate-800 to-blue-900",
+  gradientFallback: "from-slate-900/10 to-blue-900/10",
   heroImage: "/assets/images/hero/telecom.webp",
   heroAlt: "Telecom tower and fiber infrastructure",
   icon: Radio,

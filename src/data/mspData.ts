@@ -66,7 +66,7 @@ export const mspHero = {
   eyebrow: "Academy & Managed Services",
   pageTitle: "Training, Certification & Managed ICT",
   pageSubtitle: "Professional training in fiber optics, telecom, and industrial automation — combined with ongoing managed services that keep your infrastructure running at peak performance.",
-  gradientFallback: "from-green-900 to-gray-900",
+  gradientFallback: "from-green-900/10 to-gray-900/10",
   heroImage: "/assets/images/hero/msp.webp",
   heroAlt: "Training academy and managed services operations",
   icon: GraduationCap,

@@ -66,7 +66,7 @@ export const powerHero = {
   eyebrow: "Power & Electromechanical",
   pageTitle: "Transmission, Distribution & Backup Power",
   pageSubtitle: "From high-voltage transmission and rural electrification to solar hybrid minigrids and building electromechanical works — turnkey power delivery across Ethiopia.",
-  gradientFallback: "from-yellow-900 to-gray-900",
+  gradientFallback: "from-yellow-900/10 to-gray-900/10",
   heroImage: "/assets/images/hero/power.webp",
   heroAlt: "Power transmission towers and solar systems",
   icon: Zap,
