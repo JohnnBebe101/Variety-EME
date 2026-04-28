@@ -186,7 +186,7 @@
     "identity": {
       "tag": "About Us",
       "title": "About InfinEth Solutions",
-      "description": "Infinite Possibilities in Engineering & ICT - Where smart power meets seamless intelligence.",
+      "description": "Where smart power meets seamless intelligence. Integrated power, telecom and ICT solutions for enterprise and public-sector clients.",
       "founded": "Founded October 2004",
       "team": "47+ staff plus part-time collaborators",
       "expertise": "4 PhD, 4 MSc, 5 BSc engineers",
@@ -215,7 +215,18 @@
       "principles_title": "Operating Principles",
       "principles": ["Integrity", "Professionalism", "Safety First", "Zero Accidents", "Customer Focus"],
       "iso_title": "Certified Excellence",
-      "isos": ["ISO 9001:2015 - Quality Management", "ISO 14001:2015 - Environmental Management", "ISO 45001:2018 - Occupational Health & Safety", "ISO 27001:2022 - Information Security", "ISO 22301:2019 - Business Continuity"]
+      "isos": ["ISO 9001:2015 - Quality Management", "ISO 14001:2015 - Environmental Management (WIP)", "ISO 45001:2018 - Occupational Health & Safety"],
+      "org_title": "Organizational Structure",
+      "org_desc": "A specialized framework for technical, financial and administrative excellence",
+      "ceo": "Chief Executive Officer",
+      "advisors_title": "Advisory",
+      "advisors": ["Business Development Advisor", "SHEQ Management"],
+      "departments_title": "Departments",
+      "departments": [
+        { "name": "ICT & Engineering", "branches": ["ICT (Infrastructure, Software, Support)", "Telecom (Wireless, Fixed, Tower)", "Power & EM (Systems, E/M, Design)"] },
+        { "name": "Finance & Procurement", "branches": ["General Account", "Procurement", "Cash Management"] },
+        { "name": "HR & Property Admin", "branches": ["HRM", "Man Power Training & Development", "Property Administration", "General Service"] }
+      ]
     },
     "leadership": {
       "tag": "Leadership Team",

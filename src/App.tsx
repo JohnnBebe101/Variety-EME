@@ -132,49 +132,49 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'identity': return (
         <>
           <MetaTags title={t('nav.identity')} description="InfinEth Solutions Corporate Identity" />
-          <CorporatePages.Identity onBack={() => navigateTo('home')} heroImage="/assets/images/hero/telecom.webp" />
+          <CorporatePages.Identity onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'leadership': return (
         <>
           <MetaTags title={t('nav.leadership')} description="Our Leadership Team" />
-          <CorporatePages.Leadership onBack={() => navigateTo('home')} heroImage="/assets/images/hero/telecom.webp" />
+          <CorporatePages.Leadership onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'board': return (
         <>
           <MetaTags title={t('nav.board')} description="Our Board of Directors" />
-          <CorporatePages.Board onBack={() => navigateTo('home')} heroImage="/assets/images/hero/telecom.webp" />
+          <CorporatePages.Board onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'portfolio-detailed': return (
         <>
           <MetaTags title={t('nav.portfolio')} description="Our Project Portfolio" />
-          <CorporatePages.Portfolio onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/telecom.webp" />
+          <CorporatePages.Portfolio onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'portfolio': return (
         <>
           <MetaTags title={t('nav.portfolio')} description="Our Project Portfolio" />
-          <CorporatePages.Portfolio onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/telecom.webp" />
+          <CorporatePages.Portfolio onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'about': return (
         <>
           <MetaTags title={t('nav.identity')} description="InfinEth Solutions Corporate Identity" />
-          <CorporatePages.Identity onBack={() => navigateTo('home')} heroImage="/assets/images/hero/telecom.webp" />
+          <CorporatePages.Identity onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'presence': return (
         <>
           <MetaTags title={t('nav.presence')} description="Our Regional Presence" />
-          <CorporatePages.Presence onBack={() => navigateTo('home')} heroImage="/assets/images/hero/telecom.webp" />
+          <CorporatePages.Presence onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'telecom': return (
         <>
           <MetaTags title={t('common.services.telecom.title')} description={t('common.services.telecom.items', { returnObjects: true })[0]} />
-          <InfrastructurePages.Telecom onBack={() => navigateTo('home')} heroImage="/assets/images/hero/telecom.webp" />
+          <InfrastructurePages.Telecom onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'telecommunications': return (
@@ -186,7 +186,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'telecommunications_mobile_rollout': return (
         <>
           <MetaTags title="Mobile Telecom Rollout (RAN + Power)" description="Radio Access Network deployment integrated with telecom power infrastructure as a single turnkey scope." />
-          <ServicePages.TelecommunicationsMobileRollout onBack={() => navigateTo('home')} heroImage="/assets/images/hero/telecom.webp" gradientFallback="from-black/5 to-transparent" currentPath="/telecommunications/mobile-rollout" onNavigate={(path) => navigateTo('home', undefined, path)} />
+          <ServicePages.TelecommunicationsMobileRollout onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" currentPath="/telecommunications/mobile-rollout" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
       case 'telecommunications_fiber_optics': return (
@@ -204,7 +204,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'telecommunications_operations_maintenance': return (
         <>
           <MetaTags title="Operations & Maintenance (O&M)" description="Preventive and corrective maintenance contracts with SLA-based network support." />
-          <ServicePages.TelecommunicationsOperationsMaintenance onBack={() => navigateTo('home')} heroImage="/assets/images/hero/telecom.webp" gradientFallback="from-black/5 to-transparent" currentPath="/telecommunications/operations-maintenance" onNavigate={(path) => navigateTo('home', undefined, path)} />
+          <ServicePages.TelecommunicationsOperationsMaintenance onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" currentPath="/telecommunications/operations-maintenance" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
       case 'telecommunications_warehouse_management': return (
@@ -294,19 +294,19 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'academy_institutional_partnerships': return (
         <>
           <MetaTags title="Corporate & Institutional Training Partnerships" description="Customized bulk training programs for organizations and TVET institutions." />
-          <ServicePages.AcademyInstitutionalPartnerships onBack={() => navigateTo('home')} heroImage="/assets/images/hero/telecom.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/institutional-partnerships" onNavigate={(path) => navigateTo('home', undefined, path)} />
+          <ServicePages.AcademyInstitutionalPartnerships onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/institutional-partnerships" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
       case 'consultancy': return (
         <>
           <MetaTags title={t('nav.consultancy')} description="Consultancy Services" />
-          <ExcellencePages.Consultancy onBack={() => navigateTo('home')} heroImage="/assets/images/hero/telecom.webp" gradientFallback="from-black/5 to-transparent" />
+          <ExcellencePages.Consultancy onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'ehs': return (
         <>
           <MetaTags title={t('nav.ehs')} description="Environmental Health & Safety" />
-          <ExcellencePages.EHS onBack={() => navigateTo('home')} heroImage="/assets/images/hero/telecom.webp" gradientFallback="from-black/5 to-transparent" />
+          <ExcellencePages.EHS onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'ict_datacenter': return (
