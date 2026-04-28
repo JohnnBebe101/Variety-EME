@@ -2,10 +2,15 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { portfolioProjects } from '../data/portfolioData';
 import useScrollAnimation from '../hooks/useScrollAnimation';
+import { PageID } from '../types';
+
+interface SuccessStoriesSectionProps {
+  onNavigate?: (page: PageID, hash?: string, routePath?: string) => void;
+}
 
 const PortfolioCard = ({ project }: { project: typeof portfolioProjects[0] }) => {
   return (
-    <div className="bg-brand-surface rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all min-w-[280px] flex-1 border border-white/5">
+    <div className="bg-brand-surface rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all min-w-[280px] flex-1 border border-white/5 cursor-pointer">
       <div className="aspect-video bg-brand-primary overflow-hidden">
         <img 
           src={project.image} 
@@ -25,17 +30,20 @@ const PortfolioCard = ({ project }: { project: typeof portfolioProjects[0] }) =>
         </p>
         <div className="flex justify-between items-center">
           <span className="text-xs text-brand-muted/60">{project.client}</span>
-          <span className="text-brand-accent text-sm font-medium flex items-center gap-1">
-            View <ArrowRight size={14} />
-          </span>
         </div>
       </div>
     </div>
   );
 };
 
-export const SuccessStoriesSection = () => {
+export const SuccessStoriesSection: React.FC<SuccessStoriesSectionProps> = ({ onNavigate }) => {
   const [ref, isVisible] = useScrollAnimation(0.1);
+
+  const handleViewAll = () => {
+    if (onNavigate) {
+      onNavigate('portfolio', undefined, '/portfolio');
+    }
+  };
 
   return (
     <section 
@@ -69,9 +77,9 @@ export const SuccessStoriesSection = () => {
         </div>
 
         <div className="text-center mt-10">
-          <span className="text-brand-accent font-semibold text-lg inline-flex items-center gap-2 cursor-pointer">
+          <button onClick={handleViewAll} className="text-brand-accent font-semibold text-lg inline-flex items-center gap-2 cursor-pointer hover:text-white transition-colors">
             View All Projects <ArrowRight size={18} />
-          </span>
+          </button>
         </div>
       </div>
     </section>

@@ -34,8 +34,11 @@ import {
   SearchCheck,
   Stethoscope,
   TreePine,
-  HardHat
+  HardHat,
+  Download,
+  ChevronRight
 } from 'lucide-react';
+import { portfolioProjects } from '../data/portfolioData';
 import { useTranslation } from 'react-i18next';
 import { SubPageLayout } from './SubPageLayout';
 import { UI_CLASSES } from '../data/constants';
@@ -255,19 +258,121 @@ Board: ({ onBack, heroImage, gradientFallback }: PageProps) => {
   },
 Portfolio: ({ onBack, heroImage, gradientFallback }: PageProps) => {
     const { t } = useTranslation();
-    const projects = t('corporate.portfolio.items', { returnObjects: true }) as any[];
+    const safeProjects = Array.isArray(portfolioProjects) ? portfolioProjects : [];
+    const categories = ['All', 'Telecom', 'Power', 'ICT'];
+    
+    const stats = [
+      { value: '66', label: 'Stations', desc: 'Optical transmission deployed' },
+      { value: '67', label: 'Towns', desc: 'Rural electrification coverage' },
+      { value: '500+', label: 'Nodes', desc: 'Campus network deployment' },
+    ];
     
     return (
       <SubPageLayout onBack={onBack} tag={t('corporate.portfolio.tag')} title={t('corporate.portfolio.title')} description={t('corporate.portfolio.description')} heroImage={heroImage} gradientFallback={gradientFallback}>
-        <div className="grid md:grid-cols-2 gap-8">
-          {safeItems.map((p, i) => (
-            <div key={i} className="group relative h-[380px] overflow-hidden rounded-[2.5rem] shadow-lg">
-              <img src={images[i]} alt={p.t} className="absolute inset-0 w-full h-full object-cover brightness-75 group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" loading="lazy" />
-              <div className="absolute inset-0 p-10 flex flex-col justify-end text-white z-10 pointer-events-none">
-                <h3 className={UI_CLASSES.cardTitle + " mb-2 group-hover:text-brand-accent transition-colors"}>{p.t}</h3><p className="text-white/60 text-xs font-medium">{p.d}</p>
+        {/* Portfolio Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {safeProjects.map((p, i) => (
+            <div key={p.id} className="group relative h-[320px] overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+              <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover brightness-75 group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" loading="lazy" />
+              <div className="absolute inset-0 p-6 flex flex-col justify-end text-white z-10">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-brand-accent mb-1">{p.category}</span>
+                <h3 className="text-lg font-bold mb-1 group-hover:text-brand-accent transition-colors">{p.title}</h3>
+                <p className="text-white/60 text-xs">{p.description}</p>
+                <p className="text-white/40 text-[10px] mt-2">{p.client}</p>
               </div>
             </div>
           ))}
+        </div>
+        
+        {/* Proof Points Stats */}
+        <div className="py-16">
+          <div className="grid grid-cols-3 gap-6">
+            {stats.map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="text-4xl md:text-5xl font-black text-brand-accent mb-2">{stat.value}</div>
+                <div className="text-sm font-semibold text-brand-foreground uppercase tracking-wide">{stat.label}</div>
+                <div className="text-xs text-brand-muted mt-1">{stat.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Reference Projects */}
+        <div className="py-14 bg-brand-surface rounded-3xl border border-white/5">
+          <div className="px-8">
+            <p className="text-xs font-semibold uppercase tracking-widest text-brand-accent mb-8">Featured References</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {safeProjects.slice(0, 3).map((p) => (
+                <div key={p.id} className="bg-brand-primary rounded-xl border border-white/5 p-5 hover:shadow-md transition-shadow">
+                  <div className="w-full h-28 rounded-lg bg-brand-surface mb-4 overflow-hidden">
+                    <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
+                  </div>
+                  <span className="text-xs font-medium text-brand-accent uppercase tracking-wide">{p.category}</span>
+                  <h4 className="font-semibold text-brand-foreground mt-1 mb-1 text-sm">{p.title}</h4>
+                  <p className="text-xs text-brand-muted">{p.description}</p>
+                  <p className="text-[10px] text-brand-muted/60 mt-2">{p.client}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        {/* Why InfinEth */}
+        <div className="py-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6">
+              <div className="w-12 h-12 rounded-lg bg-brand-accent/10 flex items-center justify-center mx-auto mb-4">
+                <ShieldCheck className="w-6 h-6 text-brand-accent" />
+              </div>
+              <h3 className="font-semibold text-brand-foreground mb-2">One Integrated Partner</h3>
+              <p className="text-sm text-brand-muted">Engineering, telecom and ICT under one roof.</p>
+            </div>
+            <div className="text-center p-6">
+              <div className="w-12 h-12 rounded-lg bg-brand-accent/10 flex items-center justify-center mx-auto mb-4">
+                <Zap className="w-6 h-6 text-brand-accent" />
+              </div>
+              <h3 className="font-semibold text-brand-foreground mb-2">Turnkey Execution</h3>
+              <p className="text-sm text-brand-muted">Survey to support. Cost-effective and timely.</p>
+            </div>
+            <div className="text-center p-6">
+              <div className="w-12 h-12 rounded-lg bg-brand-accent/10 flex items-center justify-center mx-auto mb-4">
+                <Users className="w-6 h-6 text-brand-accent" />
+              </div>
+              <h3 className="font-semibold text-brand-foreground mb-2">Safety-Led & Customer-First</h3>
+              <p className="text-sm text-brand-muted">Zero accidents. Professionalism at every stage.</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Download Company Profile */}
+        <div className="py-8 flex justify-center">
+          <a 
+            href="/assets/InfinEth_Condensed_Profile.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-brand-surface border border-white/10 px-8 py-4 rounded-xl hover:border-brand-accent hover:shadow-lg transition-all duration-300"
+          >
+            <Download size={20} className="text-brand-accent" />
+            <div className="text-left">
+              <p className="text-sm font-semibold text-brand-foreground">Download Company Profile</p>
+              <p className="text-[10px] text-brand-muted">InfinEth Condensed Profile (PDF)</p>
+            </div>
+            <ChevronRight size={16} className="text-brand-muted" />
+          </a>
+        </div>
+        
+        {/* CTA Banner */}
+        <div className="bg-brand-primary py-14 border-t border-white/5 rounded-2xl">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="text-2xl font-bold text-brand-foreground mb-2">
+                Ready to start your project?
+              </h3>
+              <p className="text-brand-muted text-sm">
+                Talk to our engineers. No obligation, just expertise.
+              </p>
+            </div>
+          </div>
         </div>
       </SubPageLayout>
     );

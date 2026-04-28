@@ -28,7 +28,7 @@ export const mspServices: { id: number; title: string; description: string; icon
   {
     id: 4,
     title: "Managed Services",
-    description: "Ongoing IT and infrastructure managed services — monitoring, maintenance, technical support, and operations consultancy.",
+    description: "Ongoing IT and infrastructure managed services: monitoring, maintenance, technical support, and operations consultancy.",
     icon: Wrench,
     page: "academy_managed_services",
     path: "/academy/managed-services",
@@ -65,7 +65,7 @@ export const mspProjects = [
 export const mspHero = {
   eyebrow: "Academy & Managed Services",
   pageTitle: "Training, Certification & Managed ICT",
-  pageSubtitle: "Professional training in fiber optics, telecom, and industrial automation — combined with ongoing managed services that keep your infrastructure running at peak performance.",
+  pageSubtitle: "Professional training in fiber optics, telecom, and industrial automation combined with ongoing managed services that keep your infrastructure running at peak performance.",
   gradientFallback: "from-green-900/10 to-gray-900/10",
   heroImage: "/assets/images/hero/msp.webp",
   heroAlt: "Training academy and managed services operations",

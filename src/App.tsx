@@ -64,7 +64,11 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       return { page: 'home' as PageID, openContact: false };
     }
 
-    return getRouteFromPath(window.location.pathname);
+    const route = getRouteFromPath(window.location.pathname);
+    if (route.openContact) {
+      return { page: 'home' as PageID, openContact: true };
+    }
+    return route;
   })();
 
   const [currentPage, setCurrentPage] = useState<PageID>(initialRoute.page);
@@ -78,8 +82,12 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
     const h = () => setIsScrolled(window.scrollY > 30);
     const handlePopState = () => {
       const route = getRouteFromPath(window.location.pathname);
-      setCurrentPage(route.page);
-      setIsContactOpen(route.openContact ?? false);
+      if (route.openContact) {
+        setIsContactOpen(true);
+      } else {
+        setCurrentPage(route.page);
+        setIsContactOpen(false);
+      }
     };
 
     window.addEventListener('scroll', h);
@@ -95,20 +103,29 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
     const path = routePath || getPathFromPageId(page);
     const route = getRouteFromPath(path);
 
-    setCurrentPage(route.page);
-    setIsContactOpen(route.openContact ?? false);
-    setIsMobileOpen(false);
-    setActiveMenu(null);
+    if (route.openContact) {
+      setIsContactOpen(true);
+      setIsMobileOpen(false);
+      setActiveMenu(null);
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', path);
+      }
+    } else {
+      setCurrentPage(route.page);
+      setIsContactOpen(false);
+      setIsMobileOpen(false);
+      setActiveMenu(null);
 
-    if (typeof window !== 'undefined') {
-      window.history.pushState({}, '', path);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', path);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      if (hash && route.page === 'home') {
-        setTimeout(() => {
-          const el = document.querySelector(hash);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 150);
+        if (hash && route.page === 'home') {
+          setTimeout(() => {
+            const el = document.querySelector(hash);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 150);
+        }
       }
     }
   };
@@ -335,7 +352,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
             schema={organizationSchema}
           />
           <HeroSection onNavigate={navigateTo} />
-          <SuccessStoriesSection />
+          <SuccessStoriesSection onNavigate={navigateTo} />
           <ClientTrustBar />
           
           <Section className="bg-brand-primary overflow-hidden border-b border-white/5">

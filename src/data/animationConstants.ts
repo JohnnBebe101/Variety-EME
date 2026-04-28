@@ -3,12 +3,12 @@
 
 export const ANIM = {
   // Slide engine
-  SLIDE_DURATION:        6000,   // ms per slide
-  SLIDE_TRANSITION:       600,   // cross-fade duration
-  BG_ZOOM_SCALE:         1.05,   // subtle zoom end value
+  SLIDE_DURATION:        3000,   // ms per slide (reduced from 6000)
+  SLIDE_TRANSITION:       500,   // cross-fade duration (faster)
+  BG_ZOOM_SCALE:         1.08,   // subtle zoom end value (enhanced)
 
   // Widget
-  WIDGET_INTERVAL:       4000,   // independent of slide timer
+  WIDGET_INTERVAL:       3000,   // independent of slide timer (reduced)
 
   // Entry animations (page load, Slide 1 only)
   EYEBROW_DELAY:          150,

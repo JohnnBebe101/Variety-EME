@@ -44,19 +44,19 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
       onMouseEnter={pause}
       onMouseLeave={resume}
     >
-      {/* Background - simplified crossfade */}
+      {/* Background - enhanced crossfade with zoom */}
       <div className="absolute inset-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSlide.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.7, ease: 'easeInOut' }}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.02 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
             className="absolute inset-0"
           >
             {/* Gradient fallback */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.fallbackGradient} opacity-60`} />
+            <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.fallbackGradient} opacity-50`} />
             {/* Hero image */}
             <img
               src={activeSlide.image}
@@ -66,8 +66,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               fetchPriority="high"
               decoding="async"
               />
-            {/* Overlay gradient for text legibility */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/5 to-black/10" />
+            {/* Overlay gradient for text legibility - reduced to 5-8% */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/8 via-black/4 to-black/8" />
           </motion.div>
         </AnimatePresence>
       </div>

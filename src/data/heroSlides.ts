@@ -44,8 +44,8 @@ export const heroSlides: HeroSlide[] = [
       line2: { text: "Infinite Possibilities", color: "text-brand-accent" },
     },
     subtitle:
-      "Ethiopia's leading multidisciplinary engineering and ICT partner — " +
-      "delivering integrated power, telecom and digital infrastructure " +
+      "Ethiopia's leading multidisciplinary engineering and ICT partner. " +
+      "Delivering integrated power, telecom and digital infrastructure " +
       "since October 2004.",
     proofChips: [
       "5× ISO Certified",
@@ -53,7 +53,7 @@ export const heroSlides: HeroSlide[] = [
       "Govt · NGO · Enterprise",
     ],
     cta: {
-      primary: { label: "Explore Our Services", action: "scroll", target: "#services" },
+      primary: { label: "Explore Our Services", action: "scroll", target: "#capabilities" },
       secondary: { label: "About InfinEth", action: "link", target: "/about" },
     },
   },
@@ -74,7 +74,7 @@ export const heroSlides: HeroSlide[] = [
     },
     subtitle:
       "From optical transmission networks spanning Addis Ababa to Mekele, " +
-      "Gonder and Sululta — to nationwide tower rollouts for Ethio Telecom " +
+      "Gonder and Sululta to nationwide tower rollouts for Ethio Telecom " +
       "and Nokia. Wireless, fiber, microwave and RAN delivered end-to-end.",
     proofChips: ["Ethio Telecom", "Nokia", "Ericsson", "ZTE", "Safaricom"],
     proofChipsLabel: "Telecom Clients",
@@ -99,8 +99,8 @@ export const heroSlides: HeroSlide[] = [
       line3: { text: "Turnkey", color: "text-white" },
     },
     subtitle:
-      "Three EEPCO rural electrification projects across Ethiopia — " +
-      "survey, poles, stringing, transformer work and commissioning. " +
+      "Three EEPCO rural electrification projects across Ethiopia. " +
+      "Survey, poles, stringing, transformer work and commissioning. " +
       "From 400KV transmission towers to solar hybrid minigrids, " +
       "we deliver power where it matters most.",
     proofChips: ["KEC International", "EEPCO", "ESCO"],
@@ -126,7 +126,7 @@ export const heroSlides: HeroSlide[] = [
       line3: { text: "Zero Compromises", color: "text-white" },
     },
     subtitle:
-      "Power, telecom and ICT under one roof — no siloed vendors, " +
+      "Power, telecom and ICT under one roof. No siloed vendors, " +
       "no coordination gaps. From MoFED regional data centers to " +
       "500-node campus networks, InfinEth delivers the full stack, " +
       "turnkey, safety-led and on time.",
@@ -154,7 +154,7 @@ export const heroSlides: HeroSlide[] = [
     },
     subtitle:
       "Fiber optics certification (CFOT/CFOS), telecom and industrial " +
-      "automation training — combined with managed ICT services that " +
+      "automation training combined with managed ICT services that " +
       "keep your infrastructure running at peak performance.",
     proofChips: [
       "CFOT / CFOS Certified",
@@ -164,7 +164,7 @@ export const heroSlides: HeroSlide[] = [
     ],
     proofChipsLabel: "Academy & MSP",
     cta: {
-      primary: { label: "View MSP & Academy", action: "link", target: "/msp" },
+      primary: { label: "View MSP & Academy", action: "link", target: "/academy" },
       secondary: { label: "Discuss Your Needs", action: "link", target: "/contact" },
     },
   },

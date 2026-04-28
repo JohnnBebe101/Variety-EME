@@ -1,13 +1,42 @@
-import React from 'react';
-import { ChevronRight, ShieldCheck, Zap, Users } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronRight, ShieldCheck, Zap, Users, Menu } from 'lucide-react';
 import { mspServices, mspProjects, mspHero } from '../data/mspData';
 import { PageID } from '../types';
+import { PageSidebar, SIDEBAR_CONFIG } from '../components/PageSidebar';
 
 const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: string) => void }> = ({ onNavigate }) => {
   const SectionIcon = mspHero.icon;
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
+  const handleNavClick = (path: string) => {
+    onNavigate('home' as PageID, undefined, path);
+  };
+  
+  const sidebarCategory = SIDEBAR_CONFIG.academy;
 
   return (
     <div className="min-h-screen bg-brand-primary">
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={() => setIsSidebarOpen(false)} />
+      )}
+      
+      {/* Mobile Sidebar */}
+      <aside className={`
+        fixed lg:hidden top-0 left-0 h-full w-72 bg-brand-surface border-r border-white/10 z-50
+        transform transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+        pt-20
+      `}>
+        <PageSidebar category={sidebarCategory} currentPath="/academy" onNavigate={handleNavClick} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      </aside>
+      
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:block fixed left-0 top-32 w-60">
+        <PageSidebar category={sidebarCategory} currentPath="/academy" onNavigate={handleNavClick} isOpen={false} onClose={() => {}} />
+      </aside>
+      
+      {/* Main Content with sidebar offset */}
+      <div className="lg:ml-60">
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
         <div className="absolute inset-0">
@@ -37,11 +66,16 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
       </section>
 
       {/* Breadcrumb */}
-      <nav className="bg-brand-surface border-b border-white/5 px-12 lg:px-24 py-3">
-        <div className="flex items-center gap-2 text-sm text-brand-muted">
-          <button onClick={() => onNavigate('home')} className="hover:text-brand-accent transition-colors">Home</button>
-          <ChevronRight className="w-3 h-3" />
-          <span className="text-brand-foreground font-medium">{mspHero.eyebrow}</span>
+      <nav className="bg-brand-surface border-b border-white/5 px-6 lg:px-24 py-3">
+        <div className="flex items-center gap-4">
+          <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden p-2 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 text-brand-muted">
+            <Menu size={20} />
+          </button>
+          <div className="flex items-center gap-2 text-sm text-brand-muted">
+            <button onClick={() => onNavigate('home')} className="hover:text-brand-accent transition-colors">Home</button>
+            <ChevronRight className="w-3 h-3" />
+            <span className="text-brand-foreground font-medium">{mspHero.eyebrow}</span>
+          </div>
         </div>
       </nav>
 
@@ -154,6 +188,7 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
           </button>
         </div>
       </section>
+      </div>
     </div>
   );
 };

@@ -65,7 +65,7 @@ export const ictProjects = [
 export const ictHero = {
   eyebrow: "ICT & Data Center",
   pageTitle: "Digital Infrastructure & Managed ICT",
-  pageSubtitle: "Data center design and build, enterprise networking, cybersecurity, and system development — delivered as a single integrated solution.",
+  pageSubtitle: "Data center design and build, enterprise networking, cybersecurity, and system development. Delivered as a single integrated solution.",
   gradientFallback: "from-gray-900/10 to-cyan-900/10",
   heroImage: "/assets/images/hero/hero-ict.webp",
   heroAlt: "Data center and enterprise networking infrastructure",

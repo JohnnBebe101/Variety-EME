@@ -109,7 +109,7 @@ const PortfolioWidget: React.FC<PortfolioWidgetProps> = ({ isVisible, onNavigate
             </button>
           </div>
           <button
-            onClick={() => onNavigate?.('portfolio-detailed')}
+            onClick={() => onNavigate?.('telecommunications')}
             className="text-brand-accent text-xs font-medium hover:text-brand-accent/80 transition-colors duration-200 flex items-center gap-1 cursor-pointer"
           >
             View All <ArrowRight className="w-3 h-3" />
