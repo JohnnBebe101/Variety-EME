@@ -27,8 +27,8 @@ export const HERO = {
   subheading: "heroSub",
   slides: [
     {
-      webp: "/assets/images/hero/hero-telecom.webp",
-      jpeg: "/assets/images/hero/hero-telecom.webp",
+      webp: "/assets/images/hero/telecom.webp",
+      jpeg: "/assets/images/hero/telecom.webp",
       alt: "Telecom infrastructure hero image"
     },
     {
@@ -37,8 +37,8 @@ export const HERO = {
       alt: "Data center hero image"
     },
     {
-      webp: "/assets/images/hero/power-solar.webp",
-      jpeg: "/assets/images/hero/power-solar.webp",
+      webp: "/assets/images/hero/power.webp",
+      jpeg: "/assets/images/hero/power.webp",
       alt: "Power and solar systems hero image"
     },
     {
@@ -160,8 +160,6 @@ export const NAV_CONFIG = [
 
 export const ISO_DATA = [
   { id: "9001", title: "iso.9001.title", description: "iso.9001.description" },
-  { id: "14001", title: "iso.14001.title", description: "iso.14001.description" },
   { id: "45001", title: "iso.45001.title", description: "iso.45001.description" },
-  { id: "27001", title: "iso.27001.title", description: "iso.27001.description" },
-  { id: "22301", title: "iso.22301.title", description: "iso.22301.description" }
+  { id: "27001", title: "iso.27001.title", description: "iso.27001.description" }
 ];

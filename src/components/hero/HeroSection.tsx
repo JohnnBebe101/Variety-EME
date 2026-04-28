@@ -56,7 +56,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
             className="absolute inset-0"
           >
             {/* Gradient fallback */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.fallbackGradient}`} />
+            <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.fallbackGradient} opacity-60`} />
             {/* Hero image */}
             <img
               src={activeSlide.image}
@@ -65,13 +65,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-              }}
-            />
+              />
             {/* Overlay gradient for text legibility */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/5 to-black/10" />
           </motion.div>
         </AnimatePresence>
       </div>

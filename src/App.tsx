@@ -343,34 +343,34 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
              <div className="flex gap-20 items-center animate-marquee whitespace-nowrap opacity-[0.1] hover:opacity-[0.8] transition-opacity duration-700">{PARTNERS.concat(PARTNERS).map((n, i) => (<span key={i} className="text-sm md:text-base font-semibold text-brand-foreground tracking-tighter uppercase">{n.name}</span>))}</div>
 </Section>
            
-           <Section id="capabilities" className="bg-brand-primary">
-              <div className="flex flex-col lg:flex-row justify-between items-end mb-12 gap-6">
-                <div className="max-w-2xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-4`}>Core Capabilities</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground`}>Comprehensive engineering, ICT and academy services built for Ethiopia's next wave of digital growth.</h2></div>
-                <p className="text-body text-gray-400 max-w-sm leading-relaxed">End-to-end solutions across Telecommunications, Power, ICT & Data Center, and Academy & Managed Services.</p>
-              </div>
-              <div className="grid lg:grid-cols-2 gap-6">
-                {NAV_CONFIG.filter(cat => cat.items.length > 0).map(cat => (
-                  <ServiceCard
-                    key={cat.label}
-                    title={cat.label}
-                    icon={cat.icon ?? Radio}
-                    color="bg-brand-accent"
-                    items={cat.items.slice(0, 4).map(item => item.label)}
-                    onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
-                  />
-                ))}
-              </div>
-           </Section>
-
-<Section id="excellence" className="bg-brand-primary overflow-hidden">
-             <div className="max-w-3xl mb-10"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-4`}>Our Certifications & Track Record</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground`}>{t('common.integrityFramework')}</h2></div>
-             <div className="bg-brand-surface rounded-2xl overflow-hidden grid lg:grid-cols-5 shadow-xl">
-               <div className="lg:col-span-2 flex flex-col items-center justify-center p-8 bg-gradient-to-br from-brand-surface to-brand-primary">
-                 <AnimatePresence mode="wait"><motion.div key={activeISO} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-40 h-40 bg-white rounded-full p-6 shadow-xl flex flex-col items-center justify-center"><span className="text-[8px] font-bold uppercase tracking-widest text-brand-primary/40 mb-1">Certified</span><span className="text-sm font-semibold text-brand-primary tracking-tight">ISO {activeISO}</span></motion.div></AnimatePresence>
+<Section id="capabilities" className="bg-brand-primary py-10">
+               <div className="flex flex-col lg:flex-row justify-between items-end mb-8 gap-4">
+                 <div className="max-w-xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2`}>Core Capabilities</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>Engineering, ICT & Academy solutions for Ethiopia's growth.</h2></div>
+                 <p className="text-sm text-gray-400 max-w-xs">Telecommunications, Power, ICT & Data Center, Academy & MSP.</p>
                </div>
-               <div className="lg:col-span-3 p-6 md:p-8 bg-white/5 divide-y divide-white/5">{ISO_DATA.map((iso) => (<div key={iso.id} className="py-4 cursor-pointer group" onClick={() => setActiveISO(iso.id)}><div className="flex items-center justify-between"><div className="flex items-center gap-4"><div className={`w-10 h-10 rounded-lg flex items-center justify-center ${activeISO === iso.id ? 'bg-brand-accent text-brand-primary' : 'bg-white/5 text-white/10'}`}><CheckCircle2 size={18} /></div><h3 className={`text-sm font-semibold tracking-tight ${activeISO === iso.id ? 'text-brand-foreground' : 'text-brand-foreground/30'}`}>{t(iso.title)}</h3></div><ChevronDown size={20} className={`transition-all ${activeISO === iso.id ? 'rotate-180 text-brand-accent' : 'text-white/5'}`} /></div>{activeISO === iso.id && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-xs text-gray-400 leading-relaxed mt-3 pl-14">{t(iso.description)}</motion.p>}</div>))}</div>
-             </div>
-           </Section>
+               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                 {NAV_CONFIG.filter(cat => cat.items.length > 0).map(cat => (
+                   <ServiceCard
+                     key={cat.label}
+                     title={cat.label}
+                     icon={cat.icon ?? Radio}
+                     color="bg-brand-accent"
+                     items={cat.items.slice(0, 2).map(item => item.label)}
+                     onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
+                   />
+                 ))}
+               </div>
+            </Section>
+
+<Section id="excellence" className="bg-brand-primary overflow-hidden py-8">
+              <div className="max-w-2xl mb-6"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2`}>Our Certifications</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>{t('common.integrityFramework')}</h2></div>
+              <div className="bg-brand-surface rounded-xl overflow-hidden grid lg:grid-cols-3 shadow-lg">
+                <div className="lg:col-span-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-brand-surface to-brand-primary">
+                  <AnimatePresence mode="wait"><motion.div key={activeISO} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-28 h-28 bg-white rounded-full p-4 shadow-lg flex flex-col items-center justify-center"><span className="text-[6px] font-bold uppercase tracking-widest text-brand-primary/40 mb-0.5">Certified</span><span className="text-xs font-semibold text-brand-primary tracking-tight">ISO {activeISO}</span></motion.div></AnimatePresence>
+                </div>
+                <div className="lg:col-span-2 p-3 md:p-4 bg-white/5 divide-y divide-white/5">{ISO_DATA.map((iso) => (<div key={iso.id} className="py-2 cursor-pointer group relative" onClick={() => setActiveISO(iso.id)}><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className={`w-8 h-8 rounded-md flex items-center justify-center ${activeISO === iso.id ? 'bg-brand-accent text-brand-primary' : 'bg-white/5 text-white/10'}`}><CheckCircle2 size={14} /></div><h3 className={`text-xs font-semibold tracking-tight ${activeISO === iso.id ? 'text-brand-foreground' : 'text-brand-foreground/30'}`}>{t(iso.title)}</h3>{(iso.id === '45001' || iso.id === '27001') && <span className="absolute right-8 px-1.5 py-0.5 bg-amber-500/20 border border-amber-500/40 rounded text-[9px] font-bold text-amber-400 uppercase tracking-wider">WIP</span>}</div><ChevronDown size={16} className={`transition-all ${activeISO === iso.id ? 'rotate-180 text-brand-accent' : 'text-white/5'}`} /></div>{activeISO === iso.id && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-xs text-gray-400 leading-relaxed mt-2 pl-11">{t(iso.description)}</motion.p>}</div>))}</div>
+              </div>
+            </Section>
 
           <Section className="bg-brand-primary text-brand-foreground relative z-10 text-center">
             <div className="grid md:grid-cols-4 gap-16">
@@ -383,14 +383,20 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
             </div>
           </Section>
           
-<Section className="bg-brand-surface text-center py-16">
-            <h2 className={UI_CLASSES.displayLarge + " text-brand-foreground mb-8"}>{t('common.preciseEngineering')}</h2>
-            <button 
-              onClick={() => setIsContactOpen(true)} 
-              className="bg-brand-accent text-brand-primary px-10 py-4 rounded-xl font-semibold tracking-wide text-sm shadow-lg hover:bg-white hover:text-brand-primary active:scale-95 focus-visible:ring-2 focus-visible:ring-brand-accent transition-all duration-200 uppercase"
-            >
-              {t('common.partnershipCta')}
-            </button>
+<Section className="bg-brand-surface text-center py-16 relative overflow-hidden">
+            <div className="absolute inset-0">
+              <img src="/assets/images/hero/hero-overview.webp" className="w-full h-full object-cover" alt="" />
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-surface/95 via-brand-surface/80 to-brand-surface/95" />
+            </div>
+            <div className="relative z-10">
+              <h2 className={UI_CLASSES.displayLarge + " text-brand-foreground mb-8"}>{t('common.preciseEngineering')}</h2>
+              <button 
+                onClick={() => navigateTo('about')} 
+                className="bg-brand-accent text-brand-primary px-10 py-4 rounded-xl font-semibold tracking-wide text-sm shadow-lg hover:bg-white hover:text-brand-primary active:scale-95 focus-visible:ring-2 focus-visible:ring-brand-accent transition-all duration-200 uppercase"
+              >
+                {t('common.partnershipCta')}
+              </button>
+            </div>
            </Section>
         </>
       );
