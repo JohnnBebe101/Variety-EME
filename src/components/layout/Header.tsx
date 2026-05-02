@@ -1,19 +1,25 @@
-
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ChevronDown, ArrowRight, Menu, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, Menu } from 'lucide-react';
 import { Brand } from '../Brand';
 import { LogoSymbol } from '../LogoSymbol';
 import { NAV_CONFIG } from '../../data/constants';
 import { PageID } from '../../types';
 
+const ANNOUNCEMENT_PHRASES = [
+  "ISO Certified · Quality, Safety & Security Assured",
+  "Turnkey Engineering · Assess · Design · Build · Commission · Support",
+  "One Partner. Power, Telecom & ICT — Condensed Into One Clear Offer.",
+  "Safety-Led · Customer-First · East Africa's Engineering Partner Since 2004",
+  "1,200+ Projects Delivered · 450+ Field Staff · 99.9% Uptime",
+];
+
 interface HeaderProps {
   isScrolled: boolean;
   activeMenu: string | null;
   setActiveMenu: (menu: string | null) => void;
-  navigateTo: (page: PageID, hash?: string) => void;
-  setIsContactOpen: (open: boolean) => void;
+  navigateTo: (page: PageID, hash?: string, routePath?: string) => void;
   setIsMobileOpen: (open: boolean) => void;
 }
 
@@ -22,84 +28,177 @@ export const Header: React.FC<HeaderProps> = ({
   activeMenu,
   setActiveMenu,
   navigateTo,
-  setIsContactOpen,
   setIsMobileOpen
 }) => {
   const { t } = useTranslation();
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const clearDropdownTimeout = useCallback(() => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
+  }, []);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent, navLabel: string) => {
+    const navIndex = NAV_CONFIG.findIndex(n => n.label === navLabel);
+    
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        if (navIndex < NAV_CONFIG.length - 1) {
+          const nextNav = NAV_CONFIG[navIndex + 1];
+          if (nextNav.items.length > 0) {
+            setActiveMenu(nextNav.label);
+          }
+        }
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        if (navIndex > 0) {
+          const prevNav = NAV_CONFIG[navIndex - 1];
+          if (prevNav.items.length > 0) {
+            setActiveMenu(prevNav.label);
+          }
+        }
+        break;
+      case 'Escape':
+        e.preventDefault();
+        clearDropdownTimeout();
+        setActiveMenu(null);
+        break;
+      case 'Enter':
+      case ' ':
+        if (!activeMenu) {
+          setActiveMenu(navLabel);
+        }
+        break;
+    }
+  }, [setActiveMenu, activeMenu, clearDropdownTimeout]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.nav-dropdown-container')) {
+        clearDropdownTimeout();
+        setActiveMenu(null);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [setActiveMenu, clearDropdownTimeout]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setPhraseIndex((prev) => (prev + 1) % ANNOUNCEMENT_PHRASES.length);
+        setIsAnimating(false);
+      }, 400);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <>
+      {/* Announcement Bar with CSS Animation */}
       <header className="fixed top-0 left-0 w-full h-[36px] bg-brand-accent z-[120] flex items-center justify-center overflow-hidden border-b border-black/5">
         <div className="container mx-auto px-6 flex items-center justify-center gap-4 text-brand-primary font-semibold text-xs tracking-wide uppercase">
-          <LogoSymbol className="w-4 h-4" />
-          <p>{t('common.securityExcellence')}</p>
+          <LogoSymbol className="w-4 h-4 flex-shrink-0" />
+          <div className="relative h-[20px] w-full max-w-[600px]">
+            <span 
+              className={`absolute inset-0 flex items-center justify-center transition-all duration-400 ease-in-out ${isAnimating ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'}`}
+              style={{ willChange: 'opacity, transform' }}
+            >
+              {ANNOUNCEMENT_PHRASES[phraseIndex]}
+            </span>
+          </div>
         </div>
       </header>
-      <header className={`fixed top-[36px] left-0 w-full z-[100] transition-all duration-500 border-b ${isScrolled ? 'bg-brand-primary/95 border-white/10 shadow-2xl py-3 backdrop-blur-md' : 'bg-transparent border-transparent py-6'}`}>
-        <div className="container mx-auto px-6 flex items-center justify-between">
-          <Brand forceInvert={true} onClick={() => navigateTo('home')} />
-          <nav className="hidden lg:flex items-center gap-1">
-            {NAV_CONFIG.map((nav, idx) => {
+
+      {/* Main Navbar - Logo Left, Nav Center */}
+      <header className="fixed top-[36px] left-0 w-full z-[100] h-16 bg-brand-primary/95 border-b border-white/10 shadow-2xl backdrop-blur-md">
+        <div className="container mx-auto px-6 h-full flex items-center justify-between">
+          {/* Left: Logo */}
+          <div className="flex items-center cursor-pointer" onClick={() => navigateTo('home')}>
+            <Brand forceInvert={true} />
+          </div>
+          
+          {/* Center: Nav Links */}
+          <nav className="hidden lg:flex items-center justify-center gap-1 flex-nowrap flex-1 px-8">
+            {NAV_CONFIG.map((nav) => {
               const isHovered = activeMenu === nav.label;
-              const dropdownPosition = idx === 0 ? 'left-0' : (idx === 1 ? 'left-1/2 -translate-x-1/2' : (idx === 2 ? 'left-1/2 -translate-x-1/2' : 'right-0'));
+              const hasDropdown = nav.items.length > 0;
               
               return (
                 <div 
                   key={nav.label} 
-                  className="relative px-3 py-2 group" 
-                  onMouseEnter={() => setActiveMenu(nav.label)} 
-                  onMouseLeave={() => setActiveMenu(null)}
-                  onFocusCapture={() => setActiveMenu(nav.label)}
-                  onBlurCapture={(e) => {
-                    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-                      setActiveMenu(null);
-                    }
-                  }}
+                  className="relative px-3 py-2 group nav-dropdown-container"
+                  onMouseEnter={() => hasDropdown && setActiveMenu(nav.label)}
                 >
                   <button 
-                    aria-expanded={isHovered}
-                    aria-haspopup="true"
-                    className={`flex items-center gap-1.5 cursor-pointer text-nav font-medium tracking-widest transition-all duration-300 uppercase drop-shadow-md outline-none focus-visible:text-brand-accent ${isHovered ? 'text-brand-accent' : 'text-white/80 hover:text-white'}`}
+                    onClick={() => nav.page && navigateTo(nav.page, undefined, nav.path)}
+                    onMouseEnter={() => {
+                      clearDropdownTimeout();
+                      hasDropdown && setActiveMenu(nav.label);
+                    }}
+                    onMouseLeave={() => {
+                      if (hasDropdown) {
+                        clearDropdownTimeout();
+                        dropdownTimeoutRef.current = setTimeout(() => setActiveMenu(null), 200);
+                      }
+                    }}
+                    onKeyDown={(e) => hasDropdown && handleKeyDown(e, nav.label)}
+                    aria-expanded={isHovered && hasDropdown}
+                    aria-haspopup={hasDropdown ? 'menu' : undefined}
+                    aria-controls={hasDropdown ? `menu-${nav.label}` : undefined}
+                    role={hasDropdown ? 'button' : undefined}
+                    tabIndex={0}
+                    className={`flex items-center gap-1.5 cursor-pointer text-sm font-medium tracking-wide transition-all duration-200 uppercase whitespace-nowrap min-w-0 outline-none hover:text-brand-accent focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-primary ${isHovered ? 'text-brand-accent' : 'text-white/80'}`}
                   >
-                    {t(nav.label)} 
-                    <ChevronDown size={12} className={`transition-all duration-300 ease-out ${isHovered ? 'rotate-180 text-brand-accent scale-110' : 'opacity-40 group-hover:opacity-100'}`} />
+                    {nav.label}
+                    {hasDropdown && <ChevronDown size={12} className={`transition-all duration-200 ${isHovered ? 'rotate-180 text-brand-accent' : 'text-white/40'}`} />}
                   </button>
                   <AnimatePresence>
-                    {isHovered && (
+                    {hasDropdown && isHovered && (
                       <motion.div 
-                        initial={{ opacity: 0, y: 8, scale: 0.98 }} 
-                        animate={{ opacity: 1, y: 0, scale: 1 }} 
-                        exit={{ opacity: 0, y: 8, scale: 0.98 }} 
-                        transition={{ duration: 0.2 }} 
-                        className={`absolute top-full mt-2 w-[420px] max-w-[calc(100vw-2rem)] bg-white shadow-2xl rounded-[1rem] overflow-hidden grid grid-cols-12 border border-slate-100/50 z-[110] ${dropdownPosition}`}
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                        role="menu"
+                        aria-label={`${nav.label} menu`}
+                        id={`menu-${nav.label}`}
+                        className="absolute top-full pt-2 left-1/2 -translate-x-1/2 w-[420px] bg-white shadow-2xl rounded-[1rem] overflow-hidden grid grid-cols-12 border border-slate-100/50 z-[130]"
+                        onMouseEnter={() => {
+                          clearDropdownTimeout();
+                          setActiveMenu(nav.label);
+                        }}
+                        onMouseLeave={() => {
+                          clearDropdownTimeout();
+                          dropdownTimeoutRef.current = setTimeout(() => setActiveMenu(null), 200);
+                        }}
                       >
-                        <div className="col-span-5 bg-brand-primary p-6 text-white relative overflow-hidden flex flex-col justify-between">
-                          <div className="relative z-10">
-                            <span className="text-[8px] font-semibold uppercase tracking-widest text-brand-accent mb-2.5 block">{t(nav.overview.tag)}</span>
-                            <h3 className="text-h3 font-semibold tracking-tight mb-2 leading-tight">{t(nav.overview.title)}</h3>
-                            <p className="text-white/30 text-xs font-medium leading-relaxed">{t(nav.overview.description)}</p>
-                          </div>
-                          <button onClick={() => navigateTo('home')} className="group flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wide text-white hover:text-brand-accent mt-5 outline-none focus-visible:text-brand-accent">
-                            <span className="border-b border-white/10 group-hover:border-brand-accent transition-colors pb-0.5">{t(nav.overview.cta)}</span>
-                            <ArrowRight size={10} className="group-hover:translate-x-1 transition-transform" />
-                          </button>
+                        <div className="col-span-5 bg-brand-primary p-6 text-white">
+                          <span className="text-[8px] font-semibold uppercase tracking-widest text-brand-accent mb-2.5 block">{nav.overview.tag}</span>
+                          <h3 className="text-h3 font-semibold mb-2">{nav.overview.title}</h3>
+                          <p className="text-white/60 text-xs">{nav.overview.description}</p>
+                          <button onClick={() => nav.page && navigateTo(nav.page, undefined, nav.path)} className="text-xs font-semibold uppercase tracking-wide text-white hover:text-brand-accent mt-4">{nav.overview.cta} →</button>
                         </div>
-                        <div className="col-span-7 p-3.5 bg-white">
-                          <div className="grid grid-cols-1 gap-0.5">
-                            {nav.items.map((item, i) => (
-                              <button 
-                                key={i} 
-                                onClick={() => navigateTo(item.page as PageID)} 
-                                className="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-600 hover:text-brand-accent group transition-all outline-none focus-visible:bg-slate-50 focus-visible:text-brand-accent"
-                              >
-                                <div className="flex flex-col text-left">
-                                  <span className="font-semibold text-sm tracking-tight leading-none mb-0.5">{t(item.label)}</span>
-                                  <span className="text-[8px] font-semibold text-slate-300 uppercase tracking-[0.25em]">{t(item.category)}</span>
-                                </div>
-                                <ChevronRight size={10} className="opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all text-brand-accent" />
-                              </button>
-                            ))}
-                          </div>
+                        <div className="col-span-7 bg-white p-4 grid grid-cols-1 gap-1">
+                          {nav.items.slice(0, 5).map((item) => (
+                            <button 
+                              key={item.label} 
+                              onClick={() => navigateTo(item.page as PageID, undefined, item.path)} 
+                              role="menuitem"
+                              tabIndex={0}
+                              className="text-left px-4 py-3 text-sm text-gray-700 hover:bg-brand-primary/5 hover:text-brand-accent rounded-lg transition-colors focus:bg-brand-primary/5 focus:text-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent"
+                            >
+                              {item.label}
+                            </button>
+                          ))}
                         </div>
                       </motion.div>
                     )}
@@ -108,17 +207,18 @@ export const Header: React.FC<HeaderProps> = ({
               );
             })}
             <button 
-              onClick={() => setIsContactOpen(true)} 
-              className="ml-4 px-6 py-3 min-h-[44px] rounded-lg bg-brand-accent text-brand-primary text-sm font-semibold tracking-wide uppercase hover:bg-white hover:text-brand-primary active:scale-95 focus-visible:ring-2 focus-visible:ring-brand-accent transition-all duration-200 shadow-lg border border-brand-accent/20"
+              onClick={() => navigateTo('contact', undefined, '/contact')} 
+              className="ml-2 px-4 py-2 rounded-lg bg-brand-accent text-brand-primary text-sm font-semibold tracking-wide uppercase hover:bg-white hover:text-brand-primary transition-all duration-200"
             >
-              {t('common.contact')}
+              Contact
             </button>
           </nav>
+          
+          {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsMobileOpen(true)} 
             className="lg:hidden p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-white/20 text-white hover:bg-white/30 transition-colors"
             aria-label="Open menu"
-            aria-expanded="false"
           >
             <Menu size={24} />
           </button>

@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://infine-th.com/sitemap.xml
+Sitemap: https://www.infineth.com/sitemap.xml

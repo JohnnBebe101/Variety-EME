@@ -3,7 +3,8 @@ import {
   Radio, 
   Server, 
   Zap, 
-  GraduationCap 
+  GraduationCap,
+  Wrench
 } from 'lucide-react';
 import { PageID } from '../types';
 
@@ -16,8 +17,8 @@ export const SITE = {
   copyright: `© ${new Date().getFullYear()} InfinEth Solutions`,
   contact: {
     phone: "+251 11 635 4312",
-    address: "Bole, Addis Ababa, Ethiopia",
-    email: "info@infine-th.com"
+    address: "Bole Sub-city, Woreda 04, House No. 100\nHaile Gebreselassie Avenue, Sr. Gete M. Bldg, 3rd floor\nAddis Ababa, Ethiopia",
+    email: "infineth@infineth.com"
   }
 };
 
@@ -27,36 +28,46 @@ export const HERO = {
   subheading: "heroSub",
   slides: [
     {
-      webp: "/assets/hero/hero-telecom.webp",
-      jpeg: "/assets/hero/hero-telecom.webp",
+      webp: "/assets/images/hero/telecom.webp",
+      jpeg: "/assets/images/hero/telecom.webp",
       alt: "Telecom infrastructure hero image"
     },
     {
-      webp: "/assets/hero/data-center.webp",
-      jpeg: "/assets/hero/data-center.webp",
+      webp: "/assets/images/hero/data-center.webp",
+      jpeg: "/assets/images/hero/data-center.webp",
       alt: "Data center hero image"
     },
     {
-      webp: "/assets/hero/power-solar.webp",
-      jpeg: "/assets/hero/power-solar.webp",
+      webp: "/assets/images/hero/power.webp",
+      jpeg: "/assets/images/hero/power.webp",
       alt: "Power and solar systems hero image"
+    },
+    {
+      webp: "/assets/images/hero/hero-overview.webp",
+      jpeg: "/assets/images/hero/hero-overview.webp",
+      alt: "Brand overview hero image"
+    },
+    {
+      webp: "/assets/images/hero/hero-academy.webp",
+      jpeg: "/assets/images/hero/hero-academy.webp",
+      alt: "Academy and training hero image"
     }
   ]
 };
 
 export const PARTNERS = [
-  { name: "NOKIA", logo: "/assets/partners/nokia.svg" },
-  { name: "SAFARICOM", logo: "/assets/partners/safaricom.svg" },
-  { name: "UNITED NATIONS (UN)", logo: "/assets/partners/un.svg" },
-  { name: "ETHIO TELECOM", logo: "/assets/partners/ethio-telecom.svg" },
-  { name: "HUAWEI", logo: "/assets/partners/huawei.svg" },
-  { name: "ERICSSON", logo: "/assets/partners/ericsson.svg" },
-  { name: "ZTE", logo: "/assets/partners/zte.svg" },
-  { name: "ABB", logo: "/assets/partners/abb.svg" }
+  { name: "NOKIA", logo: "/assets/images/partners/nokia.png" },
+  { name: "SAFARICOM", logo: "/assets/images/partners/safaricom.png" },
+  { name: "UNITED NATIONS (UN)", logo: "/assets/images/partners/un.png" },
+  { name: "ETHIO TELECOM", logo: "/assets/images/partners/ethio-telecom.png" },
+  { name: "HUAWEI", logo: "/assets/images/partners/huawei.png" },
+  { name: "ERICSSON", logo: "/assets/images/partners/ericsson.png" },
+  { name: "ZTE", logo: "/assets/images/partners/zte.png" },
+  { name: "ABB", logo: "/assets/images/partners/abb.png" }
 ];
 
 export const STATS = [
-  { value: 12, label: "stats.chapters", suffix: "" },
+  { value: 20, label: "stats.years", suffix: "+" },
   { value: 450, label: "stats.fieldStaff", suffix: "+" },
   { value: 1200, label: "stats.projects", suffix: "+" },
   { value: 99.9, label: "stats.uptime", suffix: "%" }
@@ -72,80 +83,111 @@ export const UI_CLASSES = {
 
 export const NAV_CONFIG = [
   {
-    label: 'nav.telecommunications',
+    label: 'Telecom',
+    page: 'telecommunications' as PageID,
+    path: '/telecommunications',
     icon: Radio,
     overview: {
-      title: "nav.telecom_solutions",
-      description: "nav.telecom_desc",
-      cta: "nav.view_works",
-      tag: "nav.connectivity"
+      title: 'Telecom',
+      description: 'Mobile rollout, fiber optics, towers, O&M, and warehouse management.',
+      cta: 'Explore',
+      tag: 'Telecom'
     },
     items: [
-      { label: 'nav.tower', page: 'telecom' as PageID, category: 'nav.infrastructure' },
-      { label: 'nav.civil_works', page: 'telecom' as PageID, category: 'nav.infrastructure' },
-      { label: 'nav.mobile_rollout', page: 'mobile-network' as PageID, category: 'nav.rollout' },
-      { label: 'nav.fiber_optics', page: 'telecom' as PageID, category: 'nav.transmission' },
-      { label: 'nav.sourcing', page: 'presence' as PageID, category: 'nav.supply' },
-      { label: 'nav.om', page: 'om' as PageID, category: 'nav.field_service' },
-      { label: 'nav.warehouse', page: 'om' as PageID, category: 'nav.logistics' }
+      { label: 'Mobile Telecom Rollout (RAN + Power)', page: 'telecommunications_mobile_rollout' as PageID, category: 'Telecommunications', path: '/telecommunications/mobile-rollout' },
+      { label: 'Fiber Optics', page: 'telecommunications_fiber_optics' as PageID, category: 'Telecommunications', path: '/telecommunications/fiber-optics' },
+      { label: 'Tower & Civil Works', page: 'telecommunications_tower_civil_works' as PageID, category: 'Telecommunications', path: '/telecommunications/tower-civil-works' },
+      { label: 'Operations & Maintenance (O&M)', page: 'telecommunications_operations_maintenance' as PageID, category: 'Telecommunications', path: '/telecommunications/operations-maintenance' },
+      { label: 'Warehouse Management', page: 'telecommunications_warehouse_management' as PageID, category: 'Telecommunications', path: '/telecommunications/warehouse-management' }
     ]
   },
   {
-    label: 'nav.ict_consultancy',
+    label: 'ICT',
+    page: 'ict_datacenter' as PageID,
+    path: '/ict-datacenter',
     icon: Server,
     overview: {
-      title: "nav.digital_systems",
-      description: "nav.digital_desc",
-      cta: "nav.explore_tech",
-      tag: "nav.digital_core"
+      title: 'ICT & Data Center',
+      description: 'Data center design, enterprise networks, systems, cybersecurity, and consultancy.',
+      cta: 'Explore',
+      tag: 'ICT'
     },
     items: [
-      { label: 'nav.engineering_design', page: 'consultancy' as PageID, category: 'nav.consultancy' },
-      { label: 'nav.installation', page: 'ict' as PageID, category: 'nav.field' },
-      { label: 'nav.maintenance', page: 'om' as PageID, category: 'nav.om' },
-      { label: 'nav.supplies', page: 'ict' as PageID, category: 'nav.procurement' },
-      { label: 'nav.ai_iot', page: 'ai-iot' as PageID, category: 'nav.innovation' },
-      { label: 'nav.software', page: 'ict' as PageID, category: 'nav.solutions' },
-      { label: 'nav.mobility', page: 'mobility' as PageID, category: 'nav.mobility' }
+      { label: 'Data Center Design & Build', page: 'ict_datacenter_data_center_design' as PageID, category: 'ICT', path: '/ict-datacenter/data-center-design' },
+      { label: 'Enterprise Networking, Storage & Backup', page: 'ict_datacenter_enterprise_networking' as PageID, category: 'ICT', path: '/ict-datacenter/enterprise-networking' },
+      { label: 'System Development & Consultancy', page: 'ict_datacenter_system_development' as PageID, category: 'ICT', path: '/ict-datacenter/system-development' },
+      { label: 'Cybersecurity & Managed Services', page: 'ict_datacenter_cybersecurity_managed' as PageID, category: 'ICT', path: '/ict-datacenter/cybersecurity-managed' },
+      { label: 'Training & ICT Consultancy', page: 'ict_datacenter_training_consultancy' as PageID, category: 'ICT', path: '/ict-datacenter/training-consultancy' }
     ]
   },
   {
-    label: 'nav.power_automation',
+    label: 'Power',
+    page: 'power' as PageID,
+    path: '/power',
     icon: Zap,
     overview: {
-      title: "nav.industrial_power",
-      description: "nav.industrial_power_desc",
-      cta: "nav.power_grid",
-      tag: "nav.industrial"
+      title: 'Power',
+      description: 'Transmission, distribution, minigrids, backup power and building electromechanical works.',
+      cta: 'Explore',
+      tag: 'Power'
     },
     items: [
-      { label: 'nav.mv_hv', page: 'power' as PageID, category: 'nav.grid' },
-      { label: 'nav.backup', page: 'energy-mgmt' as PageID, category: 'nav.energy' },
-      { label: 'nav.factory', page: 'power' as PageID, category: 'nav.automation' }
+      { label: 'Transmission, Distribution & Substation', page: 'power_transmission_distribution' as PageID, category: 'Power', path: '/power/transmission-distribution' },
+      { label: 'Minigrid Systems', page: 'power_minigrid_systems' as PageID, category: 'Power', path: '/power/minigrid-systems' },
+      { label: 'Backup Power Systems (DG, Solar & Hybrid)', page: 'power_backup_power' as PageID, category: 'Power', path: '/power/backup-power' },
+      { label: 'Building Electromechanical Works', page: 'power_building_electromechanical' as PageID, category: 'Power', path: '/power/building-electromechanical' }
     ]
   },
   {
-    label: 'nav.training',
+    label: 'Academy',
+    page: 'academy' as PageID,
+    path: '/academy',
     icon: GraduationCap,
     overview: {
-      title: "nav.academia",
-      description: "nav.academia_desc",
-      cta: "nav.view_academy",
-      tag: "nav.education"
+      title: 'Academy',
+      description: 'Training, certification, and professional development programs.',
+      cta: 'Explore',
+      tag: 'Academy'
     },
     items: [
-      { label: 'nav.ehs', page: 'ehs' as PageID, category: 'nav.safety' },
-      { label: 'nav.telecom_training', page: 'academy' as PageID, category: 'nav.technical' },
-      { label: 'nav.industrial_automation', page: 'power' as PageID, category: 'nav.automation' },
-      { label: 'nav.facility_dc', page: 'datacenters' as PageID, category: 'nav.infrastructure' }
+      { label: 'Academy Overview', page: 'academy_overview' as PageID, category: 'Academy', path: '/academy/overview' },
+      { label: 'Fiber Optics Certification (CFOT / CFOS)', page: 'academy_fiber_optics_certification' as PageID, category: 'Academy', path: '/academy/fiber-optics-certification' },
+      { label: 'Telecom & Industrial Automation Training', page: 'academy_telecom_automation_training' as PageID, category: 'Academy', path: '/academy/telecom-automation-training' },
+      { label: 'Institutional Partnerships', page: 'academy_institutional_partnerships' as PageID, category: 'Academy', path: '/academy/institutional-partnerships' }
+    ]
+  },
+  {
+    label: 'MSP',
+    page: 'msp' as PageID,
+    path: '/msp',
+    icon: Wrench,
+    overview: {
+      title: 'Managed Services',
+      description: 'Ongoing IT and infrastructure managed services.',
+      cta: 'Explore',
+      tag: 'MSP'
+    },
+    items: [
+      { label: 'Managed Services Overview', page: 'msp_overview' as PageID, category: 'MSP', path: '/msp/overview' },
+      { label: 'Network Operations Center (NOC)', page: 'msp_noc' as PageID, category: 'MSP', path: '/msp/noc-services' },
+      { label: 'Infrastructure Management', page: 'msp_infrastructure' as PageID, category: 'MSP', path: '/msp/infrastructure' },
+      { label: 'Managed Cybersecurity', page: 'msp_cybersecurity' as PageID, category: 'MSP', path: '/msp/cybersecurity' }
     ]
   }
 ];
 
-export const ISO_DATA = [
-  { id: "9001", title: "iso.9001.title", description: "iso.9001.description" },
-  { id: "14001", title: "iso.14001.title", description: "iso.14001.description" },
-  { id: "45001", title: "iso.45001.title", description: "iso.45001.description" },
-  { id: "27001", title: "iso.27001.title", description: "iso.27001.description" },
-  { id: "22301", title: "iso.22301.title", description: "iso.22301.description" }
+export interface ISOEntry {
+  id: string;
+  standard: string;
+  title: string;
+  description: string;
+  status: string;
+}
+
+export const ISO_DATA: ISOEntry[] = [
+  { id: "9001", standard: "ISO 9001:2015", title: "Quality Management Systems", description: "Meeting statutory and stakeholder requirements.", status: "certified" },
+  { id: "14001", standard: "ISO 14001:2015", title: "Environmental Management Systems", description: "Minimizing environmental impact across operations.", status: "certified" },
+  { id: "45001", standard: "ISO 45001:2018", title: "Occupational Health & Safety Management", description: "Zero-accident operating culture.", status: "certified" },
+  { id: "27001", standard: "ISO 27001:2022", title: "Information Security Management", description: "Protecting client and operational data.", status: "certified" },
+  { id: "22301", standard: "ISO 22301:2019", title: "Business Continuity Management", description: "Resilient delivery under adverse conditions.", status: "certified" }
 ];

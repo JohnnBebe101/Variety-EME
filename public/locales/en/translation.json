@@ -4,9 +4,9 @@
     "home": "Home",
     "backToOverview": "Back to Overview",
     "contact": "Contact",
-    "partnershipCta": "Start Strategic Partnership",
-    "isoCertified": "Security & Operational Excellence Certified",
-    "startPartnership": "Start Strategic Partnership",
+    "partnershipCta": "About Us",
+    "isoCertified": "ISO Certified Tech Solutions",
+    "startPartnership": "About Us",
     "capabilityView": "View Our Capabilities",
     "strategicAlliances": "Strategic Alliances",
     "globalPartner": "Global Partner Network",
@@ -81,7 +81,7 @@
     }
   },
   "stats": {
-    "chapters": "Chapters",
+    "years": "Years of Operation",
     "fieldStaff": "Field Staff",
     "projects": "Projects",
     "uptime": "Uptime"
@@ -184,13 +184,49 @@
   },
   "corporate": {
     "identity": {
-      "tag": "Corporate Identity",
-      "title": "Foundations of Reliability.",
-      "description": "Pioneering Ethiopia's infrastructure landscape since 1995.",
-      "legacy_title": "A Legacy of Resilience",
-      "legacy_desc": "Maintaining a zero-failure record on mission-critical national assets.",
+      "tag": "About Us",
+      "title": "About InfinEth Solutions",
+      "description": "Where smart power meets seamless intelligence. Integrated power, telecom and ICT solutions for enterprise and public-sector clients.",
+      "founded": "Founded October 2004",
+      "team": "47+ staff plus part-time collaborators",
+      "expertise": "4 PhD, 4 MSc, 5 BSc engineers",
+      "location": "Ethiopia, East Africa",
+      "legacy_title": "20+ Years of Engineering Excellence",
+      "legacy_desc": "Founded in October 2004, InfinEth Solutions is a multidisciplinary engineering and ICT provider with turnkey delivery capability serving private companies, NGOs, and government institutions.",
       "mission_title": "Strategic Mission",
-      "mission_desc": "Accelerating digital transformation through resilient infrastructure."
+      "mission_desc": "Accelerating digital transformation through resilient infrastructure.",
+      "vision_title": "Our Vision",
+      "vision_desc": "To be Ethiopia's leading integrated engineering and ICT solutions provider.",
+      "pillars_title": "Three Integrated Service Pillars",
+      "pillars": {
+        "power": "Power - Distribution, transmission, factory electro-mechanical, building electrical, elevators/escalators",
+        "telecom": "Telecom Engineering - Wireless, fixed, fiber, microwave networks, tower, civil, integration",
+        "ict": "Managed Services/ICT - System development, networking, storage, system administration, training"
+      },
+      "why_title": "Why Partner With InfinEth?",
+      "why": [
+        "One partner across engineering, telecom and ICT instead of siloed vendors",
+        "Strong field delivery in towers, power systems, cabling, integration and commissioning",
+        "Safety, professionalism and customer satisfaction focus",
+        "Turnkey solutions positioned as timely and cost-effective"
+      ],
+      "delivery_title": "Our Turnkey Delivery Model",
+      "delivery": ["Assess", "Design", "Build", "Commission", "Support"],
+      "principles_title": "Operating Principles",
+      "principles": ["Integrity", "Professionalism", "Safety First", "Zero Accidents", "Customer Focus"],
+      "iso_title": "Certified Excellence",
+      "isos": ["ISO 9001:2015 - Quality Management", "ISO 14001:2015 - Environmental Management (WIP)", "ISO 45001:2018 - Occupational Health & Safety"],
+      "org_title": "Organizational Structure",
+      "org_desc": "A specialized framework for technical, financial and administrative excellence",
+      "ceo": "Chief Executive Officer",
+      "advisors_title": "Advisory",
+      "advisors": ["Business Development Advisor", "SHEQ Management"],
+      "departments_title": "Departments",
+      "departments": [
+        { "name": "ICT & Engineering", "branches": ["ICT (Infrastructure, Software, Support)", "Telecom (Wireless, Fixed, Tower)", "Power & EM (Systems, E/M, Design)"] },
+        { "name": "Finance & Procurement", "branches": ["General Account", "Procurement", "Cash Management"] },
+        { "name": "HR & Property Admin", "branches": ["HRM", "Man Power Training & Development", "Property Administration", "General Service"] }
+      ]
     },
     "leadership": {
       "tag": "Leadership Team",

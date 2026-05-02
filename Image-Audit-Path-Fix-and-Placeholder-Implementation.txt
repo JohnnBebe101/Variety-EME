@@ -1,0 +1,244 @@
+## YOUR ROLE
+Senior front-end developer. DIAGNOSE FIRST — inspect, analyze,
+and report all findings. Generate a fix plan and wait for my
+approval before changing any file. Do not modify anything until
+confirmed.
+
+---
+
+## CONTEXT
+- Stack: React 18 + Vite + Tailwind CSS
+- Images are stored under: public/assets/images/
+  with subfolders: /hero/ · /services/ · /partners/ ·
+  /certifications/ · /about/ · /portfolio/
+- Hero images ARE rendering correctly on localhost
+- All other images (services, partners, certifications,
+  about, portfolio) are NOT visible on localhost
+- Logo and favicon files need to be integrated from:
+  public/assets/images/logo/
+  (files of different sizes exist in this folder)
+- Placeholder grey images are missing from service pages
+  and other non-hero sections
+
+This prompt must be fully resolved and approved BEFORE
+Step 6 (QA & Validation) begins.
+
+---
+
+## STEP 1 — DIAGNOSE: PATH RESOLUTION AUDIT
+
+Inspect the codebase and answer ALL of the following:
+
+### A. Vite Public Folder Behavior
+Confirm how Vite serves files from /public:
+- Files in /public are served at the ROOT path in Vite
+- This means public/assets/images/services/fiber-optics.jpg
+  must be referenced as: /assets/images/services/fiber-optics.jpg
+- NOT as: /public/assets/images/services/fiber-optics.jpg
+- NOT as: ./public/assets/images/services/fiber-optics.jpg
+Document whether any component is using incorrect path prefixes
+
+### B. Scan All Image References
+Search the entire /src directory for ALL image src= and
+url() references. For each one found, report:
+  - File and line number
+  - Current path string used
+  - Whether the file physically exists at that path
+    under /public
+  - Whether the path is correct for Vite's public
+    folder serving convention
+  - PASS or FAIL status
+
+### C. Hero Image Comparison
+Since hero images work correctly, identify:
+  - Exactly how hero image paths are currently written
+  - What is different between hero image references
+    and non-working image references
+  - Use the working hero pattern as the fix template
+
+### D. imageConfig.ts Audit (if exists)
+If /src/utils/imageConfig.ts exists:
+  - List all paths defined in it
+  - Verify each path resolves to a physical file
+    under /public
+  - Flag every path that is broken or missing
+
+### E. Logo & Favicon Audit
+Inspect /public/assets/images/logo/ and report:
+  - All files present (names and sizes)
+  - Where the logo is currently referenced in the
+    codebase (Navbar, Footer, any other component)
+  - Current path used for logo src
+  - Where favicon is currently set (index.html <link>)
+  - Current favicon path and whether it resolves
+
+---
+
+## STEP 2 — GENERATE FIX PLAN
+
+Based on your audit findings, generate a complete fix plan
+covering all items below. DO NOT implement yet.
+
+### A. Correct All Broken Image Paths
+For every FAIL found in Step 1B:
+  - State the current wrong path
+  - State the corrected path following Vite convention:
+    /assets/images/[subfolder]/[filename]
+  - List the exact file and line to change
+
+### B. imageConfig.ts — Create or Repair
+If imageConfig.ts does not exist, create it.
+If it exists but has broken paths, repair it.
+Final structure must cover ALL image categories:
+
+export const IMAGES = {
+  hero: {
+    home:     '/assets/images/hero/hero-home.jpg',
+    telecom:  '/assets/images/hero/hero-telecom.jpg',
+    ict:      '/assets/images/hero/hero-ict.jpg',
+    power:    '/assets/images/hero/hero-power.jpg',
+    academy:  '/assets/images/hero/hero-academy.jpg',
+  },
+  services: {
+    mobileRollout:             '/assets/images/services/mobile-rollout.jpg',
+    fiberOptics:               '/assets/images/services/fiber-optics.jpg',
+    towerCivil:                '/assets/images/services/tower-civil.jpg',
+    operationsMaintenance:     '/assets/images/services/operations-maintenance.jpg',
+    warehouse:                 '/assets/images/services/warehouse.jpg',
+    dataCenterDesign:          '/assets/images/services/data-center.jpg',
+    enterpriseNetworking:      '/assets/images/services/enterprise-networking.jpg',
+    systemDevelopment:         '/assets/images/services/system-development.jpg',
+    cybersecurity:             '/assets/images/services/cybersecurity.jpg',
+    trainingConsultancy:       '/assets/images/services/training-consultancy.jpg',
+    transmissionDistribution:  '/assets/images/services/transmission-distribution.jpg',
+    minigrid:                  '/assets/images/services/minigrid.jpg',
+    backupPower:               '/assets/images/services/backup-power.jpg',
+    buildingElectromechanical: '/assets/images/services/building-electromechanical.jpg',
+    academyOverview:           '/assets/images/services/academy-overview.jpg',
+    fiberCertification:        '/assets/images/services/fiber-certification.jpg',
+    telecomAutomation:         '/assets/images/services/telecom-automation.jpg',
+    managedServices:           '/assets/images/services/managed-services.jpg',
+    institutionalPartnerships: '/assets/images/services/institutional-partnerships.jpg',
+  },
+  partners: {
+    nokia:       '/assets/images/partners/nokia.png',
+    safaricom:   '/assets/images/partners/safaricom.png',
+    un:          '/assets/images/partners/un.png',
+    ethioTelecom:'/assets/images/partners/ethio-telecom.png',
+    huawei:      '/assets/images/partners/huawei.png',
+    ericsson:    '/assets/images/partners/ericsson.png',
+    zte:         '/assets/images/partners/zte.png',
+    abb:         '/assets/images/partners/abb.png',
+  },
+  certifications: {
+    iso9001:  '/assets/images/certifications/iso-9001.png',
+    iso14001: '/assets/images/certifications/iso-14001.png',
+    iso45001: '/assets/images/certifications/iso-45001.png',
+    iso27001: '/assets/images/certifications/iso-27001.png',
+    iso22301: '/assets/images/certifications/iso-22301.png',
+  },
+  about: {
+    team:   '/assets/images/about/team-photo.jpg',
+    office: '/assets/images/about/office-photo.jpg',
+  },
+  portfolio: {
+    placeholder: '/assets/images/portfolio/placeholder.jpg',
+  },
+  logo: {
+    primary:  '/assets/images/logo/logo-primary.png',
+    white:    '/assets/images/logo/logo-white.png',
+    dark:     '/assets/images/logo/logo-dark.png',
+    favicon:  '/assets/images/logo/favicon.ico',
+    favicon32:'/assets/images/logo/favicon-32x32.png',
+    favicon16:'/assets/images/logo/favicon-16x16.png',
+  },
+}
+
+Adjust filenames to match exactly what exists in
+/public/assets/images/logo/ — do not rename actual files,
+update the config to match them.
+
+### C. Logo Integration
+Update these locations to use IMAGES.logo paths:
+  1. Navbar component — logo src
+  2. Footer component — logo src
+  3. Any other component currently rendering the logo
+Use IMAGES.logo.white for dark backgrounds (navbar/footer)
+Use IMAGES.logo.primary or IMAGES.logo.dark for light
+backgrounds — confirm which variants exist in the folder
+
+### D. Favicon Integration
+Update /index.html <head> section:
+  Replace current favicon link with:
+  <link rel="icon" type="image/x-icon"
+    href="/assets/images/logo/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="/assets/images/logo/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="/assets/images/logo/favicon-16x16.png">
+Adjust filenames to match what physically exists in the
+logo folder — report exact filenames found first.
+
+### E. Placeholder Grey Images — Generate & Place
+For every image path in IMAGES that does not have a real
+photo file yet, create a placeholder:
+  - Generate a simple grey rectangle placeholder using
+    an inline SVG data URI or a 1x1 grey PNG
+  - OR create a reusable React component <ImagePlaceholder>
+    that renders a styled grey box with the image name
+    as a label — use this component wherever a real image
+    is not yet available
+  - This approach means when real photos are ready, only
+    the file in /public/assets/images/ needs replacing —
+    zero code changes required
+
+Recommended <ImagePlaceholder> component:
+  Props: width, height, label
+  Renders: grey background div with centered label text
+  Usage: drop-in replacement for <img> tags where file
+  is not yet available
+
+---
+
+## STEP 3 — FORECAST PROBLEMS & MITIGATIONS
+
+Before implementing, identify and document:
+
+| Risk | Likelihood | Mitigation |
+|------|------------|------------|
+| Vite path prefix mismatch (/public vs /) | High | Enforce /assets/images/ convention via imageConfig.ts |
+| Logo variant missing (white/dark) | Medium | Audit logo folder first, use available variant |
+| Favicon not updating in browser | Low | Hard refresh (Ctrl+Shift+R) after fix — cache issue |
+| Placeholder component missing from some pages | Medium | Audit all SubPageLayout usages for img tags |
+| prerender capturing broken img paths in HTML | Medium | Fix paths before running prerender — verify in /dist |
+
+---
+
+## STEP 4 — IMPLEMENTATION SEQUENCE
+After approval, implement in this exact order:
+
+  1. Audit logo folder → confirm exact filenames
+  2. Create/repair imageConfig.ts with all correct paths
+  3. Fix all broken image src references in components
+     to use imageConfig.ts constants
+  4. Update Navbar and Footer logo references
+  5. Update index.html favicon links
+  6. Create <ImagePlaceholder> component
+  7. Replace all missing image <img> tags with
+     <ImagePlaceholder> component
+  8. Run dev server → verify ALL images visible
+  9. Run production build + prerender
+  10. Verify /dist HTML files contain correct image paths
+
+---
+
+## DELIVERABLE BEFORE ANY CODE
+Submit:
+  1. Audit findings from Step 1 (path scan results)
+  2. Complete fix plan from Step 2
+  3. Risk table from Step 3
+  4. Confirmation of exact logo filenames found
+     in /public/assets/images/logo/
+
+WAIT FOR APPROVAL ON ALL SECTIONS.
+Step 6 QA begins only after this prompt passes fully.

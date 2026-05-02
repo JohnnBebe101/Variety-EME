@@ -16,30 +16,37 @@ import {
   Cpu, 
   Server, 
   Layers, 
-  ChevronRight, 
   CheckCircle2, 
   Zap,
 } from 'lucide-react';
 
 import { PageID } from './types';
+import { getPathFromPageId, getRouteFromPath } from './utils/routes';
 import { SITE, HERO, PARTNERS, STATS, UI_CLASSES, NAV_CONFIG, ISO_DATA } from './data/constants';
 import { Layout } from './components/layout/Layout';
 import { LogoSymbol } from './components/LogoSymbol';
 import { Brand } from './components/Brand';
-import { HeroSlider } from './components/HeroSlider';
+import HeroSection from './components/hero/HeroSection';
 import { ClientTrustBar } from './components/ClientTrustBar';
 import { ServiceCard } from './components/ServiceCard';
 import { ContactModal } from './components/ContactModal';
 import { CountUp } from './components/CountUp';
 import { Section } from './components/Section';
+import { SuccessStoriesSection } from './components/SuccessStoriesSection';
+import { CorporatePages } from './components/CorporatePages';
 import { 
-  CorporatePages, 
   InfrastructurePages, 
   InnovationPages, 
+  ServicePages,
   ExcellencePages 
 } from './components/PageSections';
 
 import { MetaTags } from './components/MetaTags';
+import TelecomPage from './pages/TelecomPage';
+import ICTPage from './pages/ICTPage';
+import PowerPage from './pages/PowerPage';
+import MSPPage from './pages/MSPPage';
+import AcademyPage from './pages/AcademyPage';
 
 interface AppProps {
   initialPage?: PageID;
@@ -49,8 +56,34 @@ interface AppProps {
 const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
   const { t } = useTranslation(undefined, { i18n: i18nProp });
   const { t: heroT } = useTranslation('hero', { i18n: i18nProp });
-  const [currentPage, setCurrentPage] = useState<PageID>(initialPage);
-  const [isContactOpen, setIsContactOpen] = useState(false);
+  const initialRoute = (() => {
+    if (initialPage !== 'home') {
+      return { page: initialPage, openContact: false };
+    }
+
+    if (typeof window === 'undefined') {
+      return { page: 'home' as PageID, openContact: false };
+    }
+
+    const route = getRouteFromPath(window.location.pathname);
+    if (route.openContact) {
+      return { page: 'home' as PageID, openContact: true };
+    }
+    return route;
+  })();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const subject = params.get('subject');
+    if (subject) {
+      setContactSubject(subject);
+      setIsContactOpen(true);
+    }
+  }, []);
+
+  const [currentPage, setCurrentPage] = useState<PageID>(initialRoute.page);
+  const [isContactOpen, setIsContactOpen] = useState(initialRoute.openContact ?? false);
+  const [contactSubject, setContactSubject] = useState<string>('');
   const [activeISO, setActiveISO] = useState("9001");
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -58,20 +91,53 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
 
   useEffect(() => {
     const h = () => setIsScrolled(window.scrollY > 30);
+    const handlePopState = () => {
+      const route = getRouteFromPath(window.location.pathname);
+      if (route.openContact) {
+        setIsContactOpen(true);
+      } else {
+        setCurrentPage(route.page);
+        setIsContactOpen(false);
+      }
+    };
+
     window.addEventListener('scroll', h);
-    return () => window.removeEventListener('scroll', h);
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('scroll', h);
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
-  const navigateTo = (page: PageID, hash?: string) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setIsMobileOpen(false);
-    setActiveMenu(null);
-    if (hash && page === 'home') {
-      setTimeout(() => {
-        const el = document.querySelector(hash);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 150);
+  const navigateTo = (page: PageID, hash?: string, routePath?: string) => {
+    const path = routePath || getPathFromPageId(page);
+    const route = getRouteFromPath(path);
+
+    if (route.openContact) {
+      setIsContactOpen(true);
+      setIsMobileOpen(false);
+      setActiveMenu(null);
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', path);
+      }
+    } else {
+      setCurrentPage(route.page);
+      setIsContactOpen(false);
+      setIsMobileOpen(false);
+      setActiveMenu(null);
+
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', path);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        if (hash && route.page === 'home') {
+          setTimeout(() => {
+            const el = document.querySelector(hash);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 150);
+        }
+      }
     }
   };
 
@@ -94,121 +160,217 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'identity': return (
         <>
           <MetaTags title={t('nav.identity')} description="InfinEth Solutions Corporate Identity" />
-          <CorporatePages.Identity onBack={() => navigateTo('home')} />
+          <CorporatePages.Identity onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'leadership': return (
         <>
           <MetaTags title={t('nav.leadership')} description="Our Leadership Team" />
-          <CorporatePages.Leadership onBack={() => navigateTo('home')} />
+          <CorporatePages.Leadership onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'board': return (
         <>
           <MetaTags title={t('nav.board')} description="Our Board of Directors" />
-          <CorporatePages.Board onBack={() => navigateTo('home')} />
+          <CorporatePages.Board onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'portfolio-detailed': return (
         <>
           <MetaTags title={t('nav.portfolio')} description="Our Project Portfolio" />
-          <CorporatePages.Portfolio onBack={() => navigateTo('home')} />
+          <CorporatePages.Portfolio onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
+        </>
+      );
+      case 'portfolio': return (
+        <>
+          <MetaTags title={t('nav.portfolio')} description="Our Project Portfolio" />
+          <CorporatePages.Portfolio onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
+        </>
+      );
+      case 'about': return (
+        <>
+          <MetaTags title={t('nav.identity')} description="InfinEth Solutions Corporate Identity" />
+          <CorporatePages.Identity onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'presence': return (
         <>
           <MetaTags title={t('nav.presence')} description="Our Regional Presence" />
-          <CorporatePages.Presence onBack={() => navigateTo('home')} />
+          <CorporatePages.Presence onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'telecom': return (
         <>
           <MetaTags title={t('common.services.telecom.title')} description={t('common.services.telecom.items', { returnObjects: true })[0]} />
-          <InfrastructurePages.Telecom onBack={() => navigateTo('home')} />
+          <InfrastructurePages.Telecom onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
-      case 'power': return (
+      case 'telecommunications': return (
         <>
-          <MetaTags title={t('common.services.power.title')} description={t('common.services.power.items', { returnObjects: true })[0]} />
-          <InfrastructurePages.Power onBack={() => navigateTo('home')} />
+          <MetaTags title={t('common.services.telecom.title')} description={t('common.services.telecom.items', { returnObjects: true })[0]} />
+          <TelecomPage onNavigate={navigateTo} />
         </>
       );
-      case 'om': return (
+      case 'telecommunications_mobile_rollout': return (
         <>
-          <MetaTags title={t('nav.om')} description="Operations & Maintenance Services" />
-          <InfrastructurePages.OM onBack={() => navigateTo('home')} />
+          <MetaTags title="Mobile Telecom Rollout (RAN + Power)" description="Radio Access Network deployment integrated with telecom power infrastructure as a single turnkey scope." />
+          <ServicePages.TelecommunicationsMobileRollout onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" currentPath="/telecommunications/mobile-rollout" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'mobile-network': return (
+      case 'telecommunications_fiber_optics': return (
         <>
-          <MetaTags title={t('nav.network')} description="Mobile Network Infrastructure" />
-          <InfrastructurePages.Network onBack={() => navigateTo('home')} />
+          <MetaTags title="Fiber Optics" description="Long-haul and metropolitan fiber optic network design, installation, splicing, termination, testing and commissioning." />
+          <ServicePages.TelecommunicationsFiberOptics onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/optical-tansmission-network.webp" gradientFallback="from-black/5 to-transparent" currentPath="/telecommunications/fiber-optics" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'energy-mgmt': return (
+      case 'telecommunications_tower_civil_works': return (
         <>
-          <MetaTags title={t('nav.energy')} description="Energy Management Solutions" />
-          <InfrastructurePages.Network onBack={() => navigateTo('home')} />
+          <MetaTags title="Tower & Civil Works" description="Greenfield tower construction, rooftop installations, tower reinforcement and civil site preparation." />
+          <ServicePages.TelecommunicationsTowerCivilWorks onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/ethio-telecom-tower-rollout.webp" gradientFallback="from-black/5 to-transparent" currentPath="/telecommunications/tower-civil-works" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'ict': return (
+      case 'telecommunications_operations_maintenance': return (
         <>
-          <MetaTags title={t('common.services.ict.title')} description={t('common.services.ict.items', { returnObjects: true })[0]} />
-          <InnovationPages.ICT onBack={() => navigateTo('home')} />
+          <MetaTags title="Operations & Maintenance (O&M)" description="Preventive and corrective maintenance contracts with SLA-based network support." />
+          <ServicePages.TelecommunicationsOperationsMaintenance onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" currentPath="/telecommunications/operations-maintenance" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'coresite': return (
+      case 'telecommunications_warehouse_management': return (
         <>
-          <MetaTags title={t('nav.coresite')} description="Core Site Infrastructure" />
-          <InnovationPages.CoreSite onBack={() => navigateTo('home')} />
+          <MetaTags title="Warehouse Management" description="Equipment receiving, inspection, inventory tracking and asset management for telecom programs." />
+          <ServicePages.TelecommunicationsWarehouseManagement onBack={() => navigateTo('home')} heroImage="/assets/images/services/warehouse.png" gradientFallback="from-black/5 to-transparent" currentPath="/telecommunications/warehouse-management" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'ai-iot': return (
+      case 'power_transmission_distribution': return (
         <>
-          <MetaTags title={t('common.services.ai_iot.title')} description={t('common.services.ai_iot.items', { returnObjects: true })[0]} />
-          <InnovationPages.AIoT onBack={() => navigateTo('home')} />
+          <MetaTags title="Transmission, Distribution & Substation" description="HV/MV transmission line construction, substations and distribution network rollout." />
+          <ServicePages.PowerTransmissionDistribution onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/400-kv-tower.webp" gradientFallback="from-black/5 to-transparent" currentPath="/power/transmission-distribution" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'mobility': return (
+      case 'power_minigrid_systems': return (
         <>
-          <MetaTags title={t('common.services.mobility.title')} description={t('common.services.mobility.items', { returnObjects: true })[0]} />
-          <InnovationPages.Mobility onBack={() => navigateTo('home')} />
+          <MetaTags title="Minigrid Systems" description="Minigrid design, hybrid power systems, grid integration and community electrification." />
+          <ServicePages.PowerMinigridSystems onBack={() => navigateTo('home')} heroImage="/assets/images/hero/power.webp" gradientFallback="from-black/5 to-transparent" currentPath="/power/minigrid-systems" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'datacenters': return (
+      case 'power_backup_power': return (
         <>
-          <MetaTags title={t('nav.datacenters')} description="Data Center Solutions" />
-          <InnovationPages.DataCenters onBack={() => navigateTo('home')} />
+          <MetaTags title="Backup Power Systems (DG, Solar & Hybrid)" description="Diesel generator, solar PV, battery storage and UPS systems for backup power." />
+          <ServicePages.PowerBackupPower onBack={() => navigateTo('home')} heroImage="/assets/images/hero/power.webp" gradientFallback="from-black/5 to-transparent" currentPath="/power/backup-power" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'awards': return (
+      case 'power_building_electromechanical': return (
         <>
-          <MetaTags title={t('nav.awards')} description="Awards & Recognition" />
-          <ExcellencePages.Awards onBack={() => navigateTo('home')} />
+          <MetaTags title="Building Electromechanical Works" description="Industrial electrical installations, panel boards, earthing and lightning protection systems." />
+          <ServicePages.PowerBuildingElectromechanical onBack={() => navigateTo('home')} heroImage="/assets/images/services/building-electromechanical.png" gradientFallback="from-black/5 to-transparent" currentPath="/power/building-electromechanical" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'iso': return (
+      case 'ict_datacenter_data_center_design': return (
         <>
-          <MetaTags title={t('nav.iso')} description="ISO Certifications & Quality Standards" />
-          <ExcellencePages.ISO onBack={() => navigateTo('home')} />
+          <MetaTags title="Data Center Design & Build" description="Data center assessment, rack and cabling infrastructure, power and cooling systems." />
+          <ServicePages.IctDatacenterDataCenterDesign onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/mofed-dc.webp" gradientFallback="from-black/5 to-transparent" currentPath="/ict-datacenter/data-center-design" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'academy': return (
+      case 'ict_datacenter_enterprise_networking': return (
         <>
-          <MetaTags title={t('nav.academy')} description="InfinEth Academy" />
-          <ExcellencePages.Academy onBack={() => navigateTo('home')} />
+          <MetaTags title="Enterprise Networking, Storage & Backup" description="LAN/WAN design, structured cabling, storage and backup systems." />
+          <ServicePages.IctDatacenterEnterpriseNetworking onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/entoto-tvet-1.webp" gradientFallback="from-black/5 to-transparent" currentPath="/ict-datacenter/enterprise-networking" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'consultancy': return (
+      case 'ict_datacenter_system_development': return (
+        <>
+          <MetaTags title="System Development & Consultancy" description="System requirements analysis, software development and ICT project management." />
+          <ServicePages.IctDatacenterSystemDevelopment onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-ict.webp" gradientFallback="from-black/5 to-transparent" currentPath="/ict-datacenter/system-development" onNavigate={(path) => navigateTo('home', undefined, path)} />
+        </>
+      );
+      case 'ict_datacenter_cybersecurity_managed': return (
+        <>
+          <MetaTags title="Cybersecurity & Managed Services" description="Information security assessments, managed services and incident response support." />
+          <ServicePages.IctDatacenterCybersecurityManaged onBack={() => navigateTo('home')} heroImage="/assets/images/services/cybersecurity.png" gradientFallback="from-black/5 to-transparent" currentPath="/ict-datacenter/cybersecurity-managed" onNavigate={(path) => navigateTo('home', undefined, path)} />
+        </>
+      );
+      case 'ict_datacenter_training_consultancy': return (
+        <>
+          <MetaTags title="Training & ICT Consultancy" description="ICT training programs and consultancy services for enterprise and institutional clients." />
+          <ServicePages.IctDatacenterTrainingConsultancy onBack={() => navigateTo('home')} heroImage="/assets/images/services/training-consultancy.png" gradientFallback="from-black/5 to-transparent" currentPath="/ict-datacenter/training-consultancy" onNavigate={(path) => navigateTo('home', undefined, path)} />
+        </>
+      );
+      case 'academy_overview': return (
+        <>
+          <MetaTags title="Academy Overview" description="InfinEth Academy is Ethiopia's practitioner-led engineering and ICT training center." />
+          <ServicePages.AcademyOverview onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-academy.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/overview" onNavigate={(path) => navigateTo('home', undefined, path)} />
+        </>
+      );
+      case 'academy_fiber_optics_certification': return (
+        <>
+          <MetaTags title="Fiber Optics Certification Programs (CFOT / CFOS)" description="FOA-aligned fiber optics certification programs for technicians and specialists." />
+          <ServicePages.AcademyFiberOpticsCertification onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/Academy-practical-class.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/fiber-optics-certification" onNavigate={(path) => navigateTo('home', undefined, path)} />
+        </>
+      );
+      case 'academy_telecom_automation_training': return (
+        <>
+          <MetaTags title="Telecommunications & Industrial Automation Training" description="Telecom and industrial automation training programs for operators and engineers." />
+          <ServicePages.AcademyTelecomAutomationTraining onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-academy.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/telecom-automation-training" onNavigate={(path) => navigateTo('home', undefined, path)} />
+        </>
+      );
+case 'consultancy': return (
         <>
           <MetaTags title={t('nav.consultancy')} description="Consultancy Services" />
-          <ExcellencePages.Consultancy onBack={() => navigateTo('home')} />
+          <ExcellencePages.Consultancy onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'ehs': return (
         <>
           <MetaTags title={t('nav.ehs')} description="Environmental Health & Safety" />
-          <ExcellencePages.EHS onBack={() => navigateTo('home')} />
+          <ExcellencePages.EHS onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
+        </>
+      );
+      case 'ict_datacenter': return (
+        <>
+          <MetaTags title={t('common.services.ict.title')} description={t('common.services.ict.description')} />
+          <ICTPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'power': return (
+        <>
+          <MetaTags title={t('common.services.power.title')} description={t('common.services.power.description')} />
+          <PowerPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'academy': return (
+        <>
+          <MetaTags title={t('nav.academy')} description="InfinEth Academy - Practitioner-led training" />
+          <AcademyPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp': return (
+        <>
+          <MetaTags title="Managed ICT Services" description="Ongoing IT and infrastructure managed services" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_overview': return (
+        <>
+          <MetaTags title="Managed Services Overview" description="Managed IT and infrastructure services" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_noc': return (
+        <>
+          <MetaTags title="Network Operations Center" description="24/7 NOC monitoring and management services" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_infrastructure': return (
+        <>
+          <MetaTags title="Infrastructure Management" description="Server, storage and network device management" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_cybersecurity': return (
+        <>
+          <MetaTags title="Managed Cybersecurity" description="Security monitoring and incident response" />
+          <MSPPage onNavigate={navigateTo} />
         </>
       );
       default: return (
@@ -218,49 +380,46 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
             description={heroT('heroSub')}
             schema={organizationSchema}
           />
-          <HeroSlider onOpenContact={() => setIsContactOpen(true)} />
+          <HeroSection onNavigate={navigateTo} />
+          <SuccessStoriesSection onNavigate={navigateTo} />
           <ClientTrustBar />
           
           <Section className="bg-brand-primary overflow-hidden border-b border-white/5">
              <div className="mb-8 flex items-center gap-3"><LogoSymbol className="w-6 h-6 opacity-30" /><span className={UI_CLASSES.tag + " text-brand-muted/30"}>{t('common.strategicDeliveryNetwork')}</span></div>
              <div className="flex gap-20 items-center animate-marquee whitespace-nowrap opacity-[0.1] hover:opacity-[0.8] transition-opacity duration-700">{PARTNERS.concat(PARTNERS).map((n, i) => (<span key={i} className="text-sm md:text-base font-semibold text-brand-foreground tracking-tighter uppercase">{n.name}</span>))}</div>
-          </Section>
-          
-          <Section id="infrastructure" className="bg-brand-primary">
-             <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-10">
-               <div className="max-w-2xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-6`}>{t('common.pillar1')}</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground`}>{t('common.structuralInfrastructure')}</h2></div>
-               <p className="text-body text-gray-400 max-w-sm leading-relaxed">{t('common.infrastructureDesc')}</p>
-             </div>
-             <div className="grid md:grid-cols-2 gap-10">
-               <ServiceCard title={t('common.services.telecom.title')} icon={Radio} color="bg-brand-accent" items={t('common.services.telecom.items', { returnObjects: true }) as string[]} onClick={() => navigateTo('telecom')} />
-               <ServiceCard title={t('common.services.power.title')} icon={Zap} color="bg-brand-surface" items={t('common.services.power.items', { returnObjects: true }) as string[]} onClick={() => navigateTo('power')} />
-             </div>
-          </Section>
+</Section>
+           
+<Section id="capabilities" className="bg-brand-primary py-10">
+               <div className="flex flex-col lg:flex-row justify-between items-end mb-8 gap-4">
+                 <div className="max-w-xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2`}>Core Capabilities</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>Engineering, ICT & Academy solutions for Ethiopia's growth.</h2></div>
+                 <p className="text-sm text-gray-400 max-w-xs">Telecommunications, Power, ICT & Data Center, Academy & MSP.</p>
+               </div>
+               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                 {NAV_CONFIG.filter(cat => cat.items.length > 0).map(cat => (
+                   <ServiceCard
+                     key={cat.label}
+                     title={cat.label}
+                     icon={cat.icon ?? Radio}
+                     color="bg-brand-accent"
+                     items={cat.items.slice(0, 2).map(item => item.label)}
+                     onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
+                   />
+                 ))}
+               </div>
+            </Section>
 
-          <Section id="innovation" className="bg-brand-surface">
-            <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-10">
-              <div className="max-w-2xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-6`}>{t('common.pillar2')}</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground`}>{t('common.digitalConvergence')}</h2></div>
-              <p className="text-body text-gray-400 max-sm leading-relaxed">{t('common.digitalConvergenceDesc')}</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              <ServiceCard title={t('common.services.ict.title')} icon={Server} color="bg-brand-primary" items={t('common.services.ict.items', { returnObjects: true }) as string[]} onClick={() => navigateTo('ict')} />
-              <ServiceCard title={t('common.services.ai_iot.title')} icon={Cpu} color="bg-brand-accent" items={t('common.services.ai_iot.items', { returnObjects: true }) as string[]} onClick={() => navigateTo('ai-iot')} />
-              <ServiceCard title={t('common.services.mobility.title')} icon={Layers} color="bg-brand-muted" items={t('common.services.mobility.items', { returnObjects: true }) as string[]} onClick={() => navigateTo('mobility')} />
-            </div>
-          </Section>
-
-          <Section id="excellence" className="bg-brand-primary overflow-hidden">
-            <div className="max-w-3xl mb-16"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-6`}>{t('common.pillar3')}</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground mb-8`}>{t('common.integrityFramework')}</h2></div>
-            <div className="bg-brand-surface rounded-[3rem] overflow-hidden grid lg:grid-cols-5 shadow-xl">
-              <div className="lg:col-span-2 min-h-[450px] flex flex-col items-center justify-center p-12 bg-gradient-to-br from-brand-surface to-brand-primary">
-                <AnimatePresence mode="wait"><motion.div key={activeISO} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-64 h-64 bg-white rounded-full p-10 shadow-xl flex flex-col items-center justify-center relative"><span className="text-xs font-bold uppercase tracking-widest text-brand-primary/40 mb-2">{t('common.certified')}</span><span className="text-sm font-semibold text-brand-primary tracking-tight">ISO {activeISO}</span></motion.div></AnimatePresence>
+<Section id="excellence" className="bg-brand-primary overflow-hidden py-8">
+              <div className="max-w-2xl mb-6"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2`}>Our Certifications</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>{t('common.integrityFramework')}</h2></div>
+              <div className="bg-brand-surface rounded-xl overflow-hidden grid lg:grid-cols-3 shadow-lg">
+                <div className="lg:col-span-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-brand-surface to-brand-primary">
+                  <AnimatePresence mode="wait"><motion.div key={activeISO} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-28 h-28 bg-white rounded-full p-4 shadow-lg flex flex-col items-center justify-center"><span className="text-[6px] font-bold uppercase tracking-widest text-brand-primary/40 mb-0.5">Certified</span><span className="text-xs font-semibold text-brand-primary tracking-tight">{ISO_DATA.find(i => i.id === activeISO)?.standard || `ISO ${activeISO}`}</span></motion.div></AnimatePresence>
+                </div>
+                <div className="lg:col-span-2 p-3 md:p-4 bg-white/5 divide-y divide-white/5">{ISO_DATA.map((iso) => (<div key={iso.id} className="py-2 cursor-pointer group relative" onClick={() => setActiveISO(iso.id)}><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className={`w-8 h-8 rounded-md flex items-center justify-center ${activeISO === iso.id ? 'bg-brand-accent text-brand-primary' : 'bg-white/5 text-white/10'}`}><CheckCircle2 size={14} /></div><h3 className={`text-xs font-semibold tracking-tight ${activeISO === iso.id ? 'text-brand-foreground' : 'text-brand-foreground/30'}`}>{iso.standard}</h3>{iso.status === "certified" && <span className="absolute right-8 px-1.5 py-0.5 bg-green-500/20 border border-green-500/40 rounded text-[9px] font-bold text-green-400 uppercase tracking-wider">Certified</span>}</div><ChevronDown size={16} className={`transition-all ${activeISO === iso.id ? 'rotate-180 text-brand-accent' : 'text-white/5'}`} /></div>{activeISO === iso.id && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-xs text-gray-400 leading-relaxed mt-2 pl-11">{iso.description}</motion.p>}</div>))}</div>
               </div>
-              <div className="lg:col-span-3 p-10 md:p-16 bg-white/5 divide-y divide-white/5">{ISO_DATA.map((iso) => (<div key={iso.id} className="py-8 cursor-pointer group" onClick={() => setActiveISO(iso.id)}><div className="flex items-center justify-between"><div className="flex items-center gap-8"><div className={`w-12 h-12 rounded-xl flex items-center justify-center ${activeISO === iso.id ? 'bg-brand-accent text-brand-primary' : 'bg-white/5 text-white/10'}`}><CheckCircle2 size={24} /></div><h3 className={`text-sm font-semibold tracking-tight ${activeISO === iso.id ? 'text-brand-foreground' : 'text-brand-foreground/20'}`}>{t(iso.title)}</h3></div><ChevronDown size={28} className={`transition-all ${activeISO === iso.id ? 'rotate-180 text-brand-accent' : 'text-white/5'}`} /></div>{activeISO === iso.id && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-sm text-gray-400 leading-relaxed mt-6 pl-20">{t(iso.description)}</motion.p>}</div>))}</div>
-            </div>
-          </Section>
+            </Section>
 
           <Section className="bg-brand-primary text-brand-foreground relative z-10 text-center">
-            <div className="grid md:grid-cols-4 gap-16">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">
               {STATS.map((st, i) => (
                 <div key={i}>
                   <div className="text-h2 font-bold tabular-nums mb-3 tracking-tight leading-none"><CountUp value={st.value} suffix={st.suffix || ""} /></div>
@@ -270,22 +429,29 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
             </div>
           </Section>
           
-          <Section className="bg-brand-surface text-center py-32">
-            <h2 className={UI_CLASSES.displayLarge + " text-brand-foreground mb-16"}>{t('common.preciseEngineering')}</h2>
-            <button 
-              onClick={() => setIsContactOpen(true)} 
-              className="bg-brand-accent text-brand-primary px-16 py-8 rounded-2xl font-semibold tracking-wide text-sm shadow-2xl hover:bg-white hover:text-brand-primary active:scale-95 focus-visible:ring-2 focus-visible:ring-brand-accent transition-all duration-200 uppercase"
-            >
-              {t('common.partnershipCta')}
-            </button>
-          </Section>
+<Section className="bg-brand-surface text-center py-16 relative overflow-hidden">
+            <div className="absolute inset-0">
+              <img src="/assets/images/hero/telecom.webp" className="w-full h-full object-cover" alt="" />
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-surface/95 via-brand-surface/80 to-brand-surface/95" />
+            </div>
+            <div className="relative z-10">
+              <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">Our Promise</p>
+              <h2 className="text-lg font-normal text-brand-foreground tracking-wide">{t('common.preciseEngineering')}</h2>
+              <button 
+                onClick={() => navigateTo('about')} 
+                className="bg-brand-accent text-brand-primary px-10 py-4 rounded-xl font-semibold tracking-wide text-sm shadow-lg hover:bg-white hover:text-brand-primary active:scale-95 focus-visible:ring-2 focus-visible:ring-brand-accent transition-all duration-200 uppercase"
+              >
+                {t('common.partnershipCta')}
+              </button>
+            </div>
+           </Section>
         </>
       );
     }
   };
 
   const content = (
-    <Layout currentPage={currentPage} navigateTo={navigateTo}>
+    <Layout currentPage={currentPage} navigateTo={navigateTo} isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} contactSubject={contactSubject}>
       {renderContent()}
     </Layout>
   );
