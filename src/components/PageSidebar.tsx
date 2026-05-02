@@ -120,13 +120,21 @@ export const SIDEBAR_CONFIG: Record<string, SidebarCategory> = {
     ]
   },
   academy: {
-    title: 'Academy & MSP',
+    title: 'Academy',
     links: [
       { label: 'Academy Overview', path: '/academy/overview' },
       { label: 'Fiber Optics Certification', path: '/academy/fiber-optics-certification' },
       { label: 'Telecom Automation Training', path: '/academy/telecom-automation-training' },
-      { label: 'Managed Services', path: '/academy/managed-services' },
-      { label: 'Corporate Partnerships', path: '/academy/institutional-partnerships' },
+      { label: 'Institutional Partnerships', path: '/academy/institutional-partnerships' },
+    ]
+  },
+  msp: {
+    title: 'Managed Services',
+    links: [
+      { label: 'Managed Services Overview', path: '/msp/overview' },
+      { label: 'Network Operations Center', path: '/msp/noc-services' },
+      { label: 'Infrastructure Management', path: '/msp/infrastructure' },
+      { label: 'Managed Cybersecurity', path: '/msp/cybersecurity' },
     ]
   }
 };
@@ -137,5 +145,6 @@ export const getCategoryFromPath = (path: string): string | null => {
   if (path.startsWith('/ict-datacenter')) return 'ict_datacenter';
   if (path.startsWith('/power')) return 'power';
   if (path.startsWith('/academy')) return 'academy';
+  if (path.startsWith('/msp')) return 'msp';
   return null;
 };

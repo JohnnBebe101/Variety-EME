@@ -1,37 +1,37 @@
-import { GraduationCap, Globe2, Cpu, Wrench, LucideIcon } from 'lucide-react';
+import { Wrench, Monitor, Server, ShieldCheck, LucideIcon } from 'lucide-react';
 
 export const mspServices: { id: number; title: string; description: string; icon: LucideIcon; path: string; page: string }[] = [
   {
     id: 1,
-    title: "Academy Overview",
-    description: "Structured professional development programs for engineers and technicians in telecom, power, and ICT disciplines.",
-    icon: GraduationCap,
-    page: "academy_overview",
-    path: "/academy/overview",
-  },
-  {
-    id: 2,
-    title: "Fiber Optics Certification (CFOT / CFOS)",
-    description: "Industry-recognized fiber optic technician and specialist certifications aligned with ETA International standards.",
-    icon: Globe2,
-    page: "academy_fiber_optics_certification",
-    path: "/academy/fiber-certification",
-  },
-  {
-    id: 3,
-    title: "Telecom & Industrial Automation Training",
-    description: "Hands-on training in telecom systems, network operations, and industrial automation for enterprise and government clients.",
-    icon: Cpu,
-    page: "academy_telecom_automation_training",
-    path: "/academy/automation-training",
-  },
-  {
-    id: 4,
     title: "Managed Services",
     description: "Ongoing IT and infrastructure managed services: monitoring, maintenance, technical support, and operations consultancy.",
     icon: Wrench,
-    page: "academy_managed_services",
-    path: "/academy/managed-services",
+    page: "msp_overview",
+    path: "/msp/overview",
+  },
+  {
+    id: 2,
+    title: "Network Operations Center (NOC)",
+    description: "24/7 proactive monitoring and management of your network infrastructure from our dedicated NOC.",
+    icon: Monitor,
+    page: "msp_noc",
+    path: "/msp/noc-services",
+  },
+  {
+    id: 3,
+    title: "Infrastructure Management",
+    description: "Comprehensive management of servers, storage, and network devices with SLA-backed support.",
+    icon: Server,
+    page: "msp_infrastructure",
+    path: "/msp/infrastructure",
+  },
+  {
+    id: 4,
+    title: "Managed Cybersecurity",
+    description: "Continuous security monitoring, threat detection, incident response, and compliance management.",
+    icon: ShieldCheck,
+    page: "msp_cybersecurity",
+    path: "/msp/cybersecurity",
   },
 ];
 
@@ -46,14 +46,6 @@ export const mspProjects = [
   },
   {
     id: 2,
-    title: "Ethiopian Sugar Corporation Consultancy",
-    stat: "ICT systems consultancy and advisory",
-    client: "Ethiopian Sugar Corporation",
-    category: "ICT Consultancy",
-    image: "/assets/images/portfolio/rural-electrification.webp",
-  },
-  {
-    id: 3,
     title: "CSA Systems Support",
     stat: "Ongoing ICT support and administration",
     client: "Central Statistical Agency (CSA)",
@@ -63,11 +55,11 @@ export const mspProjects = [
 ];
 
 export const mspHero = {
-  eyebrow: "Academy & Managed Services",
-  pageTitle: "Training, Certification & Managed ICT",
-  pageSubtitle: "Professional training in fiber optics, telecom, and industrial automation combined with ongoing managed services that keep your infrastructure running at peak performance.",
+  eyebrow: "Managed Services",
+  pageTitle: "Managed ICT Services",
+  pageSubtitle: "Ongoing IT and infrastructure managed services that keep your systems running at peak performance with proactive monitoring and expert support.",
   gradientFallback: "from-green-900/10 to-gray-900/10",
   heroImage: "/assets/images/hero/msp.webp",
-  heroAlt: "Training academy and managed services operations",
-  icon: GraduationCap,
+  heroAlt: "Managed services operations",
+  icon: Wrench,
 };

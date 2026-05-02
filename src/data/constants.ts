@@ -3,7 +3,8 @@ import {
   Radio, 
   Server, 
   Zap, 
-  GraduationCap 
+  GraduationCap,
+  Wrench
 } from 'lucide-react';
 import { PageID } from '../types';
 
@@ -137,14 +138,14 @@ export const NAV_CONFIG = [
       { label: 'Building Electromechanical Works', page: 'power_building_electromechanical' as PageID, category: 'Power', path: '/power/building-electromechanical' }
     ]
   },
-{
-    label: 'MSP',
+  {
+    label: 'Academy',
     page: 'academy' as PageID,
     path: '/academy',
     icon: GraduationCap,
     overview: {
-      title: 'Academy & Managed Services',
-      description: 'Training, certification, managed services and corporate partnerships.',
+      title: 'Academy',
+      description: 'Training, certification, and professional development programs.',
       cta: 'Explore',
       tag: 'Academy'
     },
@@ -152,8 +153,25 @@ export const NAV_CONFIG = [
       { label: 'Academy Overview', page: 'academy_overview' as PageID, category: 'Academy', path: '/academy/overview' },
       { label: 'Fiber Optics Certification (CFOT / CFOS)', page: 'academy_fiber_optics_certification' as PageID, category: 'Academy', path: '/academy/fiber-optics-certification' },
       { label: 'Telecom & Industrial Automation Training', page: 'academy_telecom_automation_training' as PageID, category: 'Academy', path: '/academy/telecom-automation-training' },
-      { label: 'Managed Services', page: 'academy_managed_services' as PageID, category: 'Academy', path: '/academy/managed-services' },
-      { label: 'Corporate & Institutional Partnerships', page: 'academy_institutional_partnerships' as PageID, category: 'Academy', path: '/academy/institutional-partnerships' }
+      { label: 'Institutional Partnerships', page: 'academy_institutional_partnerships' as PageID, category: 'Academy', path: '/academy/institutional-partnerships' }
+    ]
+  },
+  {
+    label: 'MSP',
+    page: 'msp' as PageID,
+    path: '/msp',
+    icon: Wrench,
+    overview: {
+      title: 'Managed Services',
+      description: 'Ongoing IT and infrastructure managed services.',
+      cta: 'Explore',
+      tag: 'MSP'
+    },
+    items: [
+      { label: 'Managed Services Overview', page: 'msp_overview' as PageID, category: 'MSP', path: '/msp/overview' },
+      { label: 'Network Operations Center (NOC)', page: 'msp_noc' as PageID, category: 'MSP', path: '/msp/noc-services' },
+      { label: 'Infrastructure Management', page: 'msp_infrastructure' as PageID, category: 'MSP', path: '/msp/infrastructure' },
+      { label: 'Managed Cybersecurity', page: 'msp_cybersecurity' as PageID, category: 'MSP', path: '/msp/cybersecurity' }
     ]
   }
 ];

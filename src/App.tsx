@@ -46,6 +46,7 @@ import TelecomPage from './pages/TelecomPage';
 import ICTPage from './pages/ICTPage';
 import PowerPage from './pages/PowerPage';
 import MSPPage from './pages/MSPPage';
+import AcademyPage from './pages/AcademyPage';
 
 interface AppProps {
   initialPage?: PageID;
@@ -302,19 +303,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
           <ServicePages.AcademyTelecomAutomationTraining onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-academy.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/telecom-automation-training" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
-      case 'academy_managed_services': return (
-        <>
-          <MetaTags title="Managed Services" description="Ongoing operational support, IT infrastructure management and SLA-based support contracts." />
-          <ServicePages.AcademyManagedServices onBack={() => navigateTo('home')} heroImage="/assets/images/portfolio/clinton-global-initiative.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/managed-services" onNavigate={(path) => navigateTo('home', undefined, path)} />
-        </>
-      );
-      case 'academy_institutional_partnerships': return (
-        <>
-          <MetaTags title="Corporate & Institutional Training Partnerships" description="Customized bulk training programs for organizations and TVET institutions." />
-          <ServicePages.AcademyInstitutionalPartnerships onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/institutional-partnerships" onNavigate={(path) => navigateTo('home', undefined, path)} />
-        </>
-      );
-      case 'consultancy': return (
+case 'consultancy': return (
         <>
           <MetaTags title={t('nav.consultancy')} description="Consultancy Services" />
           <ExcellencePages.Consultancy onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
@@ -341,6 +330,36 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'academy': return (
         <>
           <MetaTags title={t('nav.academy')} description="InfinEth Academy - Practitioner-led training" />
+          <AcademyPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp': return (
+        <>
+          <MetaTags title="Managed ICT Services" description="Ongoing IT and infrastructure managed services" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_overview': return (
+        <>
+          <MetaTags title="Managed Services Overview" description="Managed IT and infrastructure services" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_noc': return (
+        <>
+          <MetaTags title="Network Operations Center" description="24/7 NOC monitoring and management services" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_infrastructure': return (
+        <>
+          <MetaTags title="Infrastructure Management" description="Server, storage and network device management" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_cybersecurity': return (
+        <>
+          <MetaTags title="Managed Cybersecurity" description="Security monitoring and incident response" />
           <MSPPage onNavigate={navigateTo} />
         </>
       );
