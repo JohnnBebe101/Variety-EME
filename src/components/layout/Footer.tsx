@@ -80,6 +80,12 @@ export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
             >
               Get in Touch →
             </button>
+            <button 
+              onClick={() => navigateTo('contact', undefined, '/contact?subject=General+Project+Inquiry')}
+              className="mt-2 text-sm text-gray-400 hover:text-brand-accent transition-colors"
+            >
+              Ready to start your next project? <span className="underline">Request a Site Assessment →</span>
+            </button>
           </div>
         </div>
         

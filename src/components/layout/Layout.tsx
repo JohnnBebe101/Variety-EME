@@ -17,9 +17,10 @@ interface LayoutProps {
   navigateTo: (page: PageID, hash?: string, routePath?: string) => void;
   isContactOpen?: boolean;
   setIsContactOpen?: (open: boolean) => void;
+  contactSubject?: string;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateTo, isContactOpen: externalIsContactOpen, setIsContactOpen: externalSetIsContactOpen }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateTo, isContactOpen: externalIsContactOpen, setIsContactOpen: externalSetIsContactOpen, contactSubject = '' }) => {
   const { t } = useTranslation();
   const [isContactOpen, setIsContactOpen] = useState(externalIsContactOpen ?? false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -110,7 +111,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateT
       <Footer navigateTo={handleNavigate} />
       
       <Suspense fallback={null}>
-        <ContactModal isOpen={isContactOpen} onClose={handleCloseContact} />
+        <ContactModal isOpen={isContactOpen} onClose={handleCloseContact} subject={contactSubject} />
       </Suspense>
     </div>
   );

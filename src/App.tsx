@@ -72,8 +72,18 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
     return route;
   })();
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const subject = params.get('subject');
+    if (subject) {
+      setContactSubject(subject);
+      setIsContactOpen(true);
+    }
+  }, []);
+
   const [currentPage, setCurrentPage] = useState<PageID>(initialRoute.page);
   const [isContactOpen, setIsContactOpen] = useState(initialRoute.openContact ?? false);
+  const [contactSubject, setContactSubject] = useState<string>('');
   const [activeISO, setActiveISO] = useState("9001");
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -409,7 +419,7 @@ case 'consultancy': return (
             </Section>
 
           <Section className="bg-brand-primary text-brand-foreground relative z-10 text-center">
-            <div className="grid md:grid-cols-4 gap-16">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">
               {STATS.map((st, i) => (
                 <div key={i}>
                   <div className="text-h2 font-bold tabular-nums mb-3 tracking-tight leading-none"><CountUp value={st.value} suffix={st.suffix || ""} /></div>
@@ -441,7 +451,7 @@ case 'consultancy': return (
   };
 
   const content = (
-    <Layout currentPage={currentPage} navigateTo={navigateTo} isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen}>
+    <Layout currentPage={currentPage} navigateTo={navigateTo} isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} contactSubject={contactSubject}>
       {renderContent()}
     </Layout>
   );
