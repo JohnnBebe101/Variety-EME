@@ -3,7 +3,8 @@ import {
   Radio, 
   Server, 
   Zap, 
-  GraduationCap 
+  GraduationCap,
+  Wrench
 } from 'lucide-react';
 import { PageID } from '../types';
 
@@ -66,7 +67,7 @@ export const PARTNERS = [
 ];
 
 export const STATS = [
-  { value: 12, label: "stats.chapters", suffix: "" },
+  { value: 20, label: "stats.years", suffix: "+" },
   { value: 450, label: "stats.fieldStaff", suffix: "+" },
   { value: 1200, label: "stats.projects", suffix: "+" },
   { value: 99.9, label: "stats.uptime", suffix: "%" }
@@ -137,14 +138,14 @@ export const NAV_CONFIG = [
       { label: 'Building Electromechanical Works', page: 'power_building_electromechanical' as PageID, category: 'Power', path: '/power/building-electromechanical' }
     ]
   },
-{
-    label: 'MSP',
+  {
+    label: 'Academy',
     page: 'academy' as PageID,
     path: '/academy',
     icon: GraduationCap,
     overview: {
-      title: 'Academy & Managed Services',
-      description: 'Training, certification, managed services and corporate partnerships.',
+      title: 'Academy',
+      description: 'Training, certification, and professional development programs.',
       cta: 'Explore',
       tag: 'Academy'
     },
@@ -152,14 +153,41 @@ export const NAV_CONFIG = [
       { label: 'Academy Overview', page: 'academy_overview' as PageID, category: 'Academy', path: '/academy/overview' },
       { label: 'Fiber Optics Certification (CFOT / CFOS)', page: 'academy_fiber_optics_certification' as PageID, category: 'Academy', path: '/academy/fiber-optics-certification' },
       { label: 'Telecom & Industrial Automation Training', page: 'academy_telecom_automation_training' as PageID, category: 'Academy', path: '/academy/telecom-automation-training' },
-      { label: 'Managed Services', page: 'academy_managed_services' as PageID, category: 'Academy', path: '/academy/managed-services' },
-      { label: 'Corporate & Institutional Partnerships', page: 'academy_institutional_partnerships' as PageID, category: 'Academy', path: '/academy/institutional-partnerships' }
+      { label: 'Institutional Partnerships', page: 'academy_institutional_partnerships' as PageID, category: 'Academy', path: '/academy/institutional-partnerships' }
+    ]
+  },
+  {
+    label: 'MSP',
+    page: 'msp' as PageID,
+    path: '/msp',
+    icon: Wrench,
+    overview: {
+      title: 'Managed Services',
+      description: 'Ongoing IT and infrastructure managed services.',
+      cta: 'Explore',
+      tag: 'MSP'
+    },
+    items: [
+      { label: 'Managed Services Overview', page: 'msp_overview' as PageID, category: 'MSP', path: '/msp/overview' },
+      { label: 'Network Operations Center (NOC)', page: 'msp_noc' as PageID, category: 'MSP', path: '/msp/noc-services' },
+      { label: 'Infrastructure Management', page: 'msp_infrastructure' as PageID, category: 'MSP', path: '/msp/infrastructure' },
+      { label: 'Managed Cybersecurity', page: 'msp_cybersecurity' as PageID, category: 'MSP', path: '/msp/cybersecurity' }
     ]
   }
 ];
 
-export const ISO_DATA = [
-  { id: "9001", title: "iso.9001.title", description: "iso.9001.description" },
-  { id: "45001", title: "iso.45001.title", description: "iso.45001.description" },
-  { id: "27001", title: "iso.27001.title", description: "iso.27001.description" }
+export interface ISOEntry {
+  id: string;
+  standard: string;
+  title: string;
+  description: string;
+  status: string;
+}
+
+export const ISO_DATA: ISOEntry[] = [
+  { id: "9001", standard: "ISO 9001:2015", title: "Quality Management Systems", description: "Meeting statutory and stakeholder requirements.", status: "certified" },
+  { id: "14001", standard: "ISO 14001:2015", title: "Environmental Management Systems", description: "Minimizing environmental impact across operations.", status: "certified" },
+  { id: "45001", standard: "ISO 45001:2018", title: "Occupational Health & Safety Management", description: "Zero-accident operating culture.", status: "certified" },
+  { id: "27001", standard: "ISO 27001:2022", title: "Information Security Management", description: "Protecting client and operational data.", status: "certified" },
+  { id: "22301", standard: "ISO 22301:2019", title: "Business Continuity Management", description: "Resilient delivery under adverse conditions.", status: "certified" }
 ];

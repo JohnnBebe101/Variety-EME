@@ -45,6 +45,14 @@ const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isActive, on
     }
   };
 
+  const handleTertiaryCta = () => {
+    if (onNavigate && slide.cta.tertiary) {
+      const target = slide.cta.tertiary.target + (slide.cta.tertiary.subject ? `?subject=${encodeURIComponent(slide.cta.tertiary.subject)}` : '');
+      const pageId = target.replace('/', '').split('?')[0] as PageID;
+      onNavigate(pageId, undefined, target);
+    }
+  };
+
   return (
     <div
       className={`
@@ -134,6 +142,16 @@ const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isActive, on
         >
           {slide.cta.secondary.label}
         </button>
+
+        {slide.cta.tertiary && (
+          <button
+            onClick={handleTertiaryCta}
+            className="inline-flex items-center gap-2 bg-brand-accent text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-brand-accent/90 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+          >
+            {slide.cta.tertiary.label}
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        )}
       </div>
     </div>
   );

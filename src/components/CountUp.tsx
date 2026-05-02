@@ -10,7 +10,7 @@ interface CountUpProps {
 export const CountUp: React.FC<CountUpProps> = ({ value, suffix = "" }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
   
   useEffect(() => { 
     if (isInView) { 

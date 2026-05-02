@@ -57,7 +57,7 @@ const PowerPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: str
             <p className="text-white/75 text-lg leading-relaxed mb-8 max-w-xl">
               {powerHero.pageSubtitle}
             </p>
-            <button onClick={() => onNavigate('power', '#services')} className="inline-flex items-center gap-2 bg-brand-accent text-brand-primary px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-brand-primary transition-all duration-200 w-fit">
+            <button onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="inline-flex items-center gap-2 bg-brand-accent text-brand-primary px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-brand-primary transition-all duration-200 w-fit">
               Explore Services
               <ChevronRight className="w-4 h-4" />
             </button>

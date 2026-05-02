@@ -25,6 +25,7 @@ export interface HeroSlide {
   cta: {
     primary: { label: string; action: 'scroll' | 'link'; target: string };
     secondary: { label: string; action: 'link'; target: string };
+    tertiary?: { label: string; action: 'link'; target: string; subject?: string };
   };
 }
 
@@ -55,6 +56,7 @@ export const heroSlides: HeroSlide[] = [
     cta: {
       primary: { label: "Explore Our Services", action: "scroll", target: "#capabilities" },
       secondary: { label: "About InfinEth", action: "link", target: "/about" },
+      tertiary: { label: "Request a Site Assessment", action: "link", target: "/contact", subject: "Site Assessment Request" },
     },
   },
   {

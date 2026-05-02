@@ -8,15 +8,16 @@ import { SITE } from '../data/constants';
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
+  subject?: string;
 }
 
-export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
+export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, subject = '' }) => {
   const { t } = useTranslation('common');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [phone, setPhone] = useState('');
-  const [service, setService] = useState('');
+  const [service, setService] = useState(subject);
   const [message, setMessage] = useState('');
   const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState<'idle'|'sending'|'success'|'error'>('idle');
@@ -180,7 +181,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                   </div>
                   <div>
                     <p className="text-[10px] font-semibold uppercase text-brand-muted mb-0.5">Email</p>
-                    <p className="text-xs">info@infineth.com</p>
+                    <p className="text-xs">infineth@infineth.com</p>
                   </div>
                 </div>
               </div>

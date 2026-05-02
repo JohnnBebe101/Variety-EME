@@ -12,7 +12,7 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
     onNavigate('home' as PageID, undefined, path);
   };
   
-  const sidebarCategory = SIDEBAR_CONFIG.academy;
+  const sidebarCategory = SIDEBAR_CONFIG.msp;
 
   return (
     <div className="min-h-screen bg-brand-primary">
@@ -27,12 +27,12 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
         transform transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
         pt-20
       `}>
-        <PageSidebar category={sidebarCategory} currentPath="/academy" onNavigate={handleNavClick} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        <PageSidebar category={sidebarCategory} currentPath="/msp" onNavigate={handleNavClick} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       </aside>
       
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block fixed left-0 top-32 w-60">
-        <PageSidebar category={sidebarCategory} currentPath="/academy" onNavigate={handleNavClick} isOpen={false} onClose={() => {}} />
+        <PageSidebar category={sidebarCategory} currentPath="/msp" onNavigate={handleNavClick} isOpen={false} onClose={() => {}} />
       </aside>
       
       {/* Main Content with sidebar offset */}
@@ -57,7 +57,7 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
             <p className="text-white/75 text-lg leading-relaxed mb-8 max-w-xl">
               {mspHero.pageSubtitle}
             </p>
-            <button onClick={() => onNavigate('academy', '#services')} className="inline-flex items-center gap-2 bg-brand-accent text-brand-primary px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-brand-primary transition-all duration-200 w-fit">
+            <button onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="inline-flex items-center gap-2 bg-brand-accent text-brand-primary px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-brand-primary transition-all duration-200 w-fit">
               Explore Services
               <ChevronRight className="w-4 h-4" />
             </button>
