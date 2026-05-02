@@ -37,7 +37,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   exit;
 }
 
-$to = 'info@infineth.com';
+$to = 'infineth@infineth.com';
 $subject = 'InfinEth Contact Form: ' . $fullName;
 $message = "Name: $fullName\nEmail: $email\n\nMessage:\n$projectDetails\n";
 $headers = "From: $fullName <$email>\r\n";

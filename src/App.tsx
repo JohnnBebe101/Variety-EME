@@ -33,8 +33,8 @@ import { ContactModal } from './components/ContactModal';
 import { CountUp } from './components/CountUp';
 import { Section } from './components/Section';
 import { SuccessStoriesSection } from './components/SuccessStoriesSection';
+import { CorporatePages } from './components/CorporatePages';
 import { 
-  CorporatePages, 
   InfrastructurePages, 
   InnovationPages, 
   ServicePages,
@@ -402,9 +402,9 @@ case 'consultancy': return (
               <div className="max-w-2xl mb-6"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2`}>Our Certifications</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>{t('common.integrityFramework')}</h2></div>
               <div className="bg-brand-surface rounded-xl overflow-hidden grid lg:grid-cols-3 shadow-lg">
                 <div className="lg:col-span-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-brand-surface to-brand-primary">
-                  <AnimatePresence mode="wait"><motion.div key={activeISO} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-28 h-28 bg-white rounded-full p-4 shadow-lg flex flex-col items-center justify-center"><span className="text-[6px] font-bold uppercase tracking-widest text-brand-primary/40 mb-0.5">Certified</span><span className="text-xs font-semibold text-brand-primary tracking-tight">ISO {activeISO}</span></motion.div></AnimatePresence>
+                  <AnimatePresence mode="wait"><motion.div key={activeISO} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-28 h-28 bg-white rounded-full p-4 shadow-lg flex flex-col items-center justify-center"><span className="text-[6px] font-bold uppercase tracking-widest text-brand-primary/40 mb-0.5">Certified</span><span className="text-xs font-semibold text-brand-primary tracking-tight">{ISO_DATA.find(i => i.id === activeISO)?.standard || `ISO ${activeISO}`}</span></motion.div></AnimatePresence>
                 </div>
-                <div className="lg:col-span-2 p-3 md:p-4 bg-white/5 divide-y divide-white/5">{ISO_DATA.map((iso) => (<div key={iso.id} className="py-2 cursor-pointer group relative" onClick={() => setActiveISO(iso.id)}><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className={`w-8 h-8 rounded-md flex items-center justify-center ${activeISO === iso.id ? 'bg-brand-accent text-brand-primary' : 'bg-white/5 text-white/10'}`}><CheckCircle2 size={14} /></div><h3 className={`text-xs font-semibold tracking-tight ${activeISO === iso.id ? 'text-brand-foreground' : 'text-brand-foreground/30'}`}>{t(iso.title)}</h3>{(iso.id === '45001' || iso.id === '27001') && <span className="absolute right-8 px-1.5 py-0.5 bg-amber-500/20 border border-amber-500/40 rounded text-[9px] font-bold text-amber-400 uppercase tracking-wider">WIP</span>}</div><ChevronDown size={16} className={`transition-all ${activeISO === iso.id ? 'rotate-180 text-brand-accent' : 'text-white/5'}`} /></div>{activeISO === iso.id && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-xs text-gray-400 leading-relaxed mt-2 pl-11">{t(iso.description)}</motion.p>}</div>))}</div>
+                <div className="lg:col-span-2 p-3 md:p-4 bg-white/5 divide-y divide-white/5">{ISO_DATA.map((iso) => (<div key={iso.id} className="py-2 cursor-pointer group relative" onClick={() => setActiveISO(iso.id)}><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className={`w-8 h-8 rounded-md flex items-center justify-center ${activeISO === iso.id ? 'bg-brand-accent text-brand-primary' : 'bg-white/5 text-white/10'}`}><CheckCircle2 size={14} /></div><h3 className={`text-xs font-semibold tracking-tight ${activeISO === iso.id ? 'text-brand-foreground' : 'text-brand-foreground/30'}`}>{iso.standard}</h3>{iso.status === "certified" && <span className="absolute right-8 px-1.5 py-0.5 bg-green-500/20 border border-green-500/40 rounded text-[9px] font-bold text-green-400 uppercase tracking-wider">Certified</span>}</div><ChevronDown size={16} className={`transition-all ${activeISO === iso.id ? 'rotate-180 text-brand-accent' : 'text-white/5'}`} /></div>{activeISO === iso.id && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-xs text-gray-400 leading-relaxed mt-2 pl-11">{iso.description}</motion.p>}</div>))}</div>
               </div>
             </Section>
 
@@ -425,7 +425,8 @@ case 'consultancy': return (
               <div className="absolute inset-0 bg-gradient-to-r from-brand-surface/95 via-brand-surface/80 to-brand-surface/95" />
             </div>
             <div className="relative z-10">
-              <h2 className={UI_CLASSES.displayLarge + " text-brand-foreground mb-8"}>{t('common.preciseEngineering')}</h2>
+              <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">Our Promise</p>
+              <h2 className="text-lg font-normal text-brand-foreground tracking-wide">{t('common.preciseEngineering')}</h2>
               <button 
                 onClick={() => navigateTo('about')} 
                 className="bg-brand-accent text-brand-primary px-10 py-4 rounded-xl font-semibold tracking-wide text-sm shadow-lg hover:bg-white hover:text-brand-primary active:scale-95 focus-visible:ring-2 focus-visible:ring-brand-accent transition-all duration-200 uppercase"

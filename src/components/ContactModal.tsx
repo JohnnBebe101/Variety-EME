@@ -180,7 +180,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                   </div>
                   <div>
                     <p className="text-[10px] font-semibold uppercase text-brand-muted mb-0.5">Email</p>
-                    <p className="text-xs">info@infineth.com</p>
+                    <p className="text-xs">infineth@infineth.com</p>
                   </div>
                 </div>
               </div>
