@@ -120,9 +120,9 @@ export const SIDEBAR_CONFIG: Record<string, SidebarCategory> = {
     ]
   },
   academy: {
-    title: 'Academy',
+    title: 'Training',
     links: [
-      { label: 'Academy Overview', path: '/academy/overview' },
+      { label: 'Training Overview', path: '/academy/overview' },
       { label: 'Fiber Optics Certification', path: '/academy/fiber-optics-certification' },
       { label: 'Telecom Automation Training', path: '/academy/telecom-automation-training' },
       { label: 'Institutional Partnerships', path: '/academy/institutional-partnerships' },

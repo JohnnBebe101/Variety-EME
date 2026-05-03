@@ -297,7 +297,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       );
       case 'academy_overview': return (
         <>
-          <MetaTags title="Academy Overview" description="InfinEth Academy is Ethiopia's practitioner-led engineering and ICT training center." />
+          <MetaTags title="Training Overview" description="InfinEth Training is Ethiopia's practitioner-led engineering and ICT training center." />
           <ServicePages.AcademyOverview onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-academy.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/overview" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
@@ -339,7 +339,7 @@ case 'consultancy': return (
       );
       case 'academy': return (
         <>
-          <MetaTags title={t('nav.academy')} description="InfinEth Academy - Practitioner-led training" />
+          <MetaTags title={t('nav.academy')} description="InfinEth Training - Practitioner-led training" />
           <AcademyPage onNavigate={navigateTo} />
         </>
       );

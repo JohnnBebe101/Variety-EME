@@ -63,7 +63,7 @@ export const academyProjects = [
 ];
 
 export const academyHero = {
-  eyebrow: "Academy",
+  eyebrow: "Training",
   pageTitle: "Training & Professional Development",
   pageSubtitle: "Industry-certified training programs in fiber optics, telecom, and industrial automation that build the expertise your team needs.",
   gradientFallback: "from-blue-900/10 to-gray-900/10",

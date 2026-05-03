@@ -28,7 +28,7 @@
     "links": "Quick Links",
     "infrastructure": "Infrastructure",
     "innovation": "Innovation",
-    "academy": "Academy",
+    "academy": "Training",
     "copyright": "© 2026 InfinEth Solutions. All Rights Reserved.",
     "heroTitle": "Precise Engineering. Infinite Possibilities.",
     "heroSub": "Ethiopia's leading ICT & Engineering solutions partner",
@@ -107,9 +107,9 @@
     "industrial_power_desc": "High-voltage systems and intelligent factory plant engineering.",
     "power_grid": "Power Grid",
     "industrial": "Industrial",
-    "academia": "Academia",
+    "academia": "Training",
     "academia_desc": "Center of Excellence for professional technicians and safety standards.",
-    "view_academy": "View Academy",
+    "view_academy": "View Training",
     "education": "Education",
     "tower": "Tower +",
     "civil_works": "Civil Works",
@@ -155,7 +155,7 @@
     "presence": "Global Presence",
     "awards": "Awards",
     "iso": "ISO Certification",
-    "academy": "Academy",
+    "academy": "Training",
     "coresite": "CoreSite",
     "datacenters": "Data Centers",
     "network": "Network Rollout"
@@ -371,7 +371,7 @@
       "pillar_desc": "Validating leadership through rigorous audits and world-class technical certification."
     },
     "academy": {
-      "tag": "Academy",
+      "tag": "Training",
       "title": "Mastery Hub.",
       "description": "Investing in African engineering talent.",
       "pillar_title": "Standard Pillar",
