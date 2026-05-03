@@ -385,28 +385,42 @@ case 'consultancy': return (
           <ClientTrustBar />
           
           <Section className="bg-brand-primary overflow-hidden border-b border-white/5">
-             <div className="mb-8 flex items-center gap-3"><LogoSymbol className="w-6 h-6 opacity-30" /><span className={UI_CLASSES.tag + " text-brand-muted/30"}>{t('common.strategicDeliveryNetwork')}</span></div>
+             <div className="mb-8 flex items-center gap-3"><LogoSymbol className="w-6 h-6 opacity-30" /><span className={UI_CLASSES.tag + " text-brand-muted/70"}>{t('common.strategicDeliveryNetwork')}</span></div>
              <div className="flex gap-20 items-center animate-marquee whitespace-nowrap opacity-[0.1] hover:opacity-[0.8] transition-opacity duration-700">{PARTNERS.concat(PARTNERS).map((n, i) => (<span key={i} className="text-sm md:text-base font-semibold text-brand-foreground tracking-tighter uppercase">{n.name}</span>))}</div>
 </Section>
            
 <Section id="capabilities" className="bg-brand-primary py-10">
-               <div className="flex flex-col lg:flex-row justify-between items-end mb-8 gap-4">
-                 <div className="max-w-xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2`}>Core Capabilities</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>Engineering, ICT & Academy solutions for Ethiopia's growth.</h2></div>
-                 <p className="text-sm text-gray-400 max-w-xs">Telecommunications, Power, ICT & Data Center, Academy & MSP.</p>
-               </div>
-               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                 {NAV_CONFIG.filter(cat => cat.items.length > 0).map(cat => (
-                   <ServiceCard
-                     key={cat.label}
-                     title={cat.label}
-                     icon={cat.icon ?? Radio}
-                     color="bg-brand-accent"
-                     items={cat.items.slice(0, 2).map(item => item.label)}
-                     onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
-                   />
-                 ))}
-               </div>
-            </Section>
+                <div className="flex flex-col lg:flex-row justify-between items-end mb-8 gap-4">
+                  <div className="max-w-xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2`}>Core Capabilities</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>Engineering, ICT & Academy solutions for Ethiopia's growth.</h2></div>
+                  <p className="text-sm text-gray-400 max-w-xs">Telecommunications, Power, ICT & Data Center, Academy & MSP.</p>
+                </div>
+                <div className="flex flex-col gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {NAV_CONFIG.filter(cat => cat.items.length > 0).slice(0, 3).map(cat => (
+                      <ServiceCard
+                        key={cat.label}
+                        title={cat.label}
+                        icon={cat.icon ?? Radio}
+                        color="bg-brand-accent"
+                        items={cat.items.slice(0, 2).map(item => item.label)}
+                        onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
+                      />
+                    ))}
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:w-2/3 lg:mx-auto">
+                    {NAV_CONFIG.filter(cat => cat.items.length > 0).slice(3, 5).map(cat => (
+                      <ServiceCard
+                        key={cat.label}
+                        title={cat.label}
+                        icon={cat.icon ?? Radio}
+                        color="bg-brand-accent"
+                        items={cat.items.slice(0, 2).map(item => item.label)}
+                        onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
+                      />
+                    ))}
+                  </div>
+                </div>
+             </Section>
 
 <Section id="excellence" className="bg-brand-primary overflow-hidden py-8">
               <div className="max-w-2xl mb-6"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2`}>Our Certifications</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>{t('common.integrityFramework')}</h2></div>
