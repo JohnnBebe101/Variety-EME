@@ -103,23 +103,19 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <>
-      {/* Announcement Bar with CSS Animation */}
-      <header className="fixed top-0 left-0 w-full h-[36px] bg-brand-accent z-[120] flex items-center justify-center overflow-hidden border-b border-black/5">
-        <div className="container mx-auto px-6 flex items-center justify-center gap-4 text-brand-primary font-semibold text-xs tracking-wide uppercase">
-          <LogoSymbol className="w-4 h-4 flex-shrink-0" />
-          <div className="relative h-[20px] w-full max-w-[600px]">
-            <span 
-              className={`absolute inset-0 flex items-center justify-center transition-all duration-400 ease-in-out ${isAnimating ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'}`}
-              style={{ willChange: 'opacity, transform' }}
-            >
-              {ANNOUNCEMENT_PHRASES[phraseIndex]}
+      {/* Announcement Bar - Marquee Animation */}
+      <header className="fixed top-0 left-0 w-full h-[28px] bg-brand-accent z-[120] flex items-center overflow-hidden border-b border-black/5">
+        <div className="container mx-auto px-4 flex items-center justify-center overflow-hidden">
+          <div className="relative h-[20px] w-full max-w-[700px] overflow-hidden">
+            <span className="inline-block animate-marquee whitespace-nowrap text-brand-primary font-semibold text-xs tracking-wide uppercase">
+              {ANNOUNCEMENT_PHRASES[0]}&nbsp;•&nbsp;{ANNOUNCEMENT_PHRASES[0]}
             </span>
           </div>
         </div>
       </header>
 
       {/* Main Navbar - Logo Left, Nav Center */}
-      <header className="fixed top-[36px] left-0 w-full z-[100] h-16 bg-brand-primary/95 border-b border-white/10 shadow-2xl backdrop-blur-md">
+      <header className="fixed top-[28px] left-0 w-full z-[100] h-14 bg-brand-primary/95 border-b border-white/10 shadow-2xl backdrop-blur-md">
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           {/* Left: Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => navigateTo('home')}>
@@ -135,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({
               return (
                 <div 
                   key={nav.label} 
-                  className="relative px-3 py-2 group nav-dropdown-container"
+                  className="relative px-2 py-1.5 group nav-dropdown-container"
                   onMouseEnter={() => hasDropdown && setActiveMenu(nav.label)}
                 >
                   <button 

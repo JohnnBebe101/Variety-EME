@@ -13,6 +13,15 @@ export default {
         body: ['1rem', { lineHeight: '1.65' }],
         sm: ['0.875rem', { lineHeight: '1.6' }],
         nav: ['0.8125rem', { lineHeight: '1', letterSpacing: '0.12em', fontWeight: '500' }],
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        }
+      },
+      animation: {
+        marquee: 'marquee 30s linear infinite',
       }
     }
   }
