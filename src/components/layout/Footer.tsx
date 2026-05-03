@@ -1,7 +1,6 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MapPin, Phone } from 'lucide-react';
+import { MapPin, Phone, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { Brand } from '../Brand';
 import { SITE } from '../../data/constants';
 import { PageID } from '../../types';
@@ -12,89 +11,96 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
   const { t } = useTranslation();
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear());
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
 
   return (
-    <footer className="bg-brand-primary text-brand-foreground pt-16 pb-8 px-4 md:px-8 lg:px-12">
+    <footer className="bg-brand-primary text-brand-foreground pt-16 pb-8 px-4 md:px-8 lg:px-12 bg-[radial-gradient(ellipse_80%_40%_at_50%_0%,rgba(var(--color-brand-accent)/0.04),transparent)]">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 mb-8 items-start divide-y md:divide-y-0 lg:divide-x divide-white/10">
-          {/* Column 1: Company Info */}
-          <div className="lg:px-4 py-6 lg:py-0">
+        
+        {/* ZONE A — Brand row */}
+        <div className="flex items-center justify-between pb-8 border-b border-white/10">
+          <div className="flex items-center gap-4">
             <Brand onClick={() => navigateTo('home')} titleClass="text-lg font-bold tracking-tight" />
-            <p className="text-sm text-gray-400 mt-3 leading-relaxed">
+            <p className="text-brand-foreground/50 text-sm max-w-xs hidden lg:block">
               Integrated power, telecom and ICT solutions for enterprise and public-sector clients.
             </p>
-            <div className="flex gap-4 mt-4">
-              <a href="https://et.linkedin.com/company/infineth" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-accent transition-colors">LinkedIn</a>
-              <a href="https://share.google/No2zCd3Ofs8Sd0UXZ" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-accent transition-colors">Twitter</a>
-              <a href="https://www.facebook.com/Infineth-solutions-plc" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-accent transition-colors">Facebook</a>
-            </div>
           </div>
-          
-          {/* Column 2: Quick Links */}
-          <div className="lg:px-4 py-6 lg:py-0">
-            <h5 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Quick Links</h5>
-            <ul className="space-y-2.5 text-sm text-gray-400">
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('home')}>Home</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('identity', undefined, '/about')}>About Us</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('contact', undefined, '/contact')}>Contact</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('portfolio-detailed')}>Portfolio</li>
+          <div className="flex gap-4">
+            <a href="https://et.linkedin.com/company/infineth" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-accent transition-colors"><Linkedin size={18} /></a>
+            <a href="https://share.google/No2zCd3Ofs8Sd0UXZ" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-accent transition-colors"><Twitter size={18} /></a>
+            <a href="https://www.facebook.com/Infineth-solutions-plc" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-accent transition-colors"><Facebook size={18} /></a>
+          </div>
+        </div>
+
+        {/* ZONE B — Navigation columns */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 py-10">
+          {/* Column 1: Quick Links */}
+          <div>
+            <h5 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent mb-4">Quick Links</h5>
+            <ul className="space-y-2.5">
+              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('home')}>Home</li>
+              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('identity', undefined, '/about')}>About Us</li>
+              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('contact', undefined, '/contact')}>Contact</li>
+              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('portfolio-detailed')}>Portfolio</li>
             </ul>
           </div>
           
-          {/* Column 3: Services */}
-          <div className="lg:px-4 py-6 lg:py-0">
-            <h5 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Services</h5>
-            <ul className="space-y-2.5 text-sm text-gray-400">
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('telecommunications')}>Telecom</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('ict_datacenter')}>ICT & Data Center</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('power')}>Power</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('academy_overview')}>Training</li>
+          {/* Column 2: Services */}
+          <div>
+            <h5 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent mb-4">Services</h5>
+            <ul className="space-y-2.5">
+              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('telecommunications')}>Telecom</li>
+              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('ict_datacenter')}>ICT & Data Center</li>
+              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('power')}>Power</li>
+              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('academy_overview')}>Training</li>
             </ul>
           </div>
           
-          {/* Column 4: Contact */}
-          <div className="lg:px-4 py-6 lg:py-0">
-            <h5 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Contact</h5>
-            <ul className="space-y-3 text-sm text-gray-400">
+          {/* Column 3: Contact */}
+          <div>
+            <h5 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent mb-4">Contact</h5>
+            <ul className="space-y-3 text-sm text-brand-foreground/50">
               <li className="flex gap-3">
                 <MapPin className="text-brand-accent flex-shrink-0" size={16} />
                 <span>{SITE.contact.address.split('\n')[0]}</span>
               </li>
               <li className="flex gap-3">
                 <Phone className="text-brand-accent flex-shrink-0" size={16} />
-                <a href={`tel:${SITE.contact.phone.replace(/\s/g, '')}`} className="hover:text-brand-accent transition-colors">
-                  {SITE.contact.phone}
-                </a>
+                <a href={`tel:${SITE.contact.phone.replace(/\s/g, '')}`} className="hover:text-brand-accent transition-colors">{SITE.contact.phone}</a>
               </li>
               <li className="flex gap-3">
                 <span className="text-brand-accent flex-shrink-0 text-xs">@</span>
-                <a href={`mailto:${SITE.contact.email}`} className="hover:text-brand-accent transition-colors">
-                  {SITE.contact.email}
-                </a>
+                <a href={`mailto:${SITE.contact.email}`} className="hover:text-brand-accent transition-colors">{SITE.contact.email}</a>
               </li>
             </ul>
-            <button 
-              onClick={() => navigateTo('contact', undefined, '/contact')}
-              className="mt-4 text-brand-accent text-sm font-medium hover:underline"
-            >
+          </div>
+          
+          {/* Column 4: CTA */}
+          <div>
+            <h5 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent mb-4">Start a Project</h5>
+            <p className="text-sm text-brand-foreground/50 mb-3">
+              Ready to deliver your next infrastructure project?
+            </p>
+            <a href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accent hover:text-white transition-colors mt-2">
               Get in Touch →
-            </button>
-            <button 
-              onClick={() => navigateTo('contact', undefined, '/contact')}
-              className="mt-2 text-sm text-gray-400 hover:text-brand-accent transition-colors"
-            >
-              Ready to start your next project? <span className="underline">Request a Site Assessment →</span>
-            </button>
+            </a>
+            <a href="/contact" className="inline-flex items-center gap-2 text-sm text-brand-foreground/50 hover:text-white transition-colors mt-2 block">
+              Request Site Assessment →
+            </a>
           </div>
         </div>
         
-        <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between text-xs text-gray-500">
-          <div>© {currentYear} {SITE.name}. All rights reserved.</div>
-          <div className="flex gap-4 mt-3 md:mt-0">
-            <button onClick={() => navigateTo('identity', undefined, '/about')} className="hover:text-white cursor-pointer">Privacy Policy</button>
+        {/* ZONE C — Legal bar */}
+        <div className="flex flex-col sm:flex-row justify-between items-center pt-6 border-t border-white/5 gap-2">
+          <p className="text-xs text-brand-foreground/30">© {currentYear} InfinEth Solutions PLC. All rights reserved.</p>
+          <div className="flex gap-4">
+            <button onClick={() => navigateTo('identity', undefined, '/about')} className="text-xs text-brand-foreground/30 hover:text-white transition-colors">Privacy Policy</button>
             <span className="text-white/20">|</span>
-            <button onClick={() => navigateTo('identity', undefined, '/about')} className="hover:text-white cursor-pointer">Terms of Service</button>
+            <button onClick={() => navigateTo('identity', undefined, '/about')} className="text-xs text-brand-foreground/30 hover:text-white transition-colors">Terms of Service</button>
           </div>
         </div>
       </div>
