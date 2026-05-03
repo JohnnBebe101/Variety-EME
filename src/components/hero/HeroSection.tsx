@@ -1,12 +1,11 @@
-import React, { useEffect, useCallback, useState, useMemo } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { heroSlides, HeroSlide } from '../../data/heroSlides';
 import { ANIM } from '../../data/animationConstants';
 import { useSlideTimer } from '../../hooks/useSlideTimer';
-import { widgetProjects, WidgetProject } from '../../data/portfolioWidgetData';
 import HeroSlideContent from './HeroSlideContent';
-import PortfolioWidget from './PortfolioWidget';
+import ProjectProofWidget from './PortfolioWidget';
 import { PageID } from '../../types';
 
 function generateSrcSet(basePath: string): string {
@@ -28,17 +27,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   const { currentSlide, progress, isPaused, pause, resume, goToSlide } = useSlideTimer(heroSlides.length);
   
   const activeSlide = heroSlides[currentSlide];
-  
-  const filteredProjects = useMemo(() => {
-    const categoryMap: Record<string, string> = {
-      'telecom': 'Telecom',
-      'power': 'Power',
-      'ict': 'ICT',
-      'academy': 'ICT'
-    };
-    const widgetCategory = categoryMap[activeSlide.category] || 'Telecom';
-    return widgetProjects.filter(p => p.category === widgetCategory);
-  }, [activeSlide.category]);
   
   const handleScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -96,7 +84,7 @@ return (
           />
         </AnimatePresence>
         
-        <PortfolioWidget isVisible={true} projects={filteredProjects} onNavigate={(page) => onNavigate?.(page as PageID, undefined, `/${page}`)} />
+        <ProjectProofWidget />
       </div>
 
       {/* Bottom controls - single scroll cue */}
