@@ -10,12 +10,12 @@ interface SuccessStoriesSectionProps {
 
 const PortfolioCard = ({ project }: { project: typeof portfolioProjects[0] }) => {
   return (
-    <div className="bg-brand-surface rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all min-w-[280px] flex-1 border border-white/5 cursor-pointer">
-      <div className="aspect-video bg-brand-primary overflow-hidden">
+    <div className="group bg-brand-surface rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all min-w-[280px] flex-1 border border-white/5 cursor-pointer">
+      <div className="aspect-[4/3] bg-brand-primary overflow-hidden">
         <img 
           src={project.image} 
           alt={project.title}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300 opacity-80"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
       </div>
       <div className="p-5">
