@@ -49,45 +49,31 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentSlide, goToSlide]);
 
-  return (
+return (
     <section 
       className="relative h-[85vh] md:h-screen min-h-[700px] w-full overflow-hidden bg-slate-950"
       onMouseEnter={pause}
       onMouseLeave={resume}
     >
-      {/* Background - enhanced crossfade with zoom */}
+      {/* Static LCP background - no motion wrapper for immediate render */}
       <div className="absolute inset-0">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeSlide.id}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.02 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className="absolute inset-0"
-          >
-            {/* Gradient fallback */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.fallbackGradient} opacity-50`} />
-{/* Hero image with responsive srcSet */}
-            <img
-              src={activeSlide.image}
-              srcSet={generateSrcSet(activeSlide.image)}
-              sizes="100vw"
-              alt={activeSlide.caption}
-              className="w-full h-full object-cover object-center"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              width="1920"
-              height="1080"
-            />
-            {/* Overlay gradient for text legibility - reduced to 5-8% */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/8 via-black/4 to-black/8" />
-          </motion.div>
-        </AnimatePresence>
+        <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.fallbackGradient} opacity-50`} />
+        <img
+          src={activeSlide.image}
+          srcSet={generateSrcSet(activeSlide.image)}
+          sizes="100vw"
+          alt={activeSlide.caption}
+          className="w-full h-full object-cover object-center"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          width="1920"
+          height="1080"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/8 via-black/4 to-black/8" />
       </div>
       
-      {/* Content */}
+      {/* Animated content only */}
       <div className="relative z-10 container mx-auto px-0 h-full flex items-center">
         <AnimatePresence mode="wait">
           <HeroSlideContent
