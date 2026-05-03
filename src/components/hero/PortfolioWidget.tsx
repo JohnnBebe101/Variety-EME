@@ -5,14 +5,16 @@ import { ANIM } from '../../data/animationConstants';
 
 interface PortfolioWidgetProps {
   isVisible: boolean;
+  projects?: WidgetProject[];
   onNavigate?: (page: string) => void;
 }
 
-const PortfolioWidget: React.FC<PortfolioWidgetProps> = ({ isVisible, onNavigate }) => {
+const PortfolioWidget: React.FC<PortfolioWidgetProps> = ({ isVisible, projects, onNavigate }) => {
   const [current, setCurrent] = useState(0);
   const [fading, setFading] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const total = widgetProjects.length;
+  const displayProjects = projects || widgetProjects;
+  const total = displayProjects.length;
 
   const startTimer = useCallback(() => {
     timerRef.current = setInterval(() => {
@@ -117,7 +119,7 @@ const PortfolioWidget: React.FC<PortfolioWidgetProps> = ({ isVisible, onNavigate
         </div>
 
         <div className="flex gap-1.5 justify-center pb-4">
-          {widgetProjects.map((_, i) => (
+          {displayProjects.map((_, i) => (
               <button
                 key={i}
                 onClick={() => {

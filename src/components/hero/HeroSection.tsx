@@ -1,9 +1,10 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { heroSlides, HeroSlide } from '../../data/heroSlides';
 import { ANIM } from '../../data/animationConstants';
 import { useSlideTimer } from '../../hooks/useSlideTimer';
+import { widgetProjects, WidgetProject } from '../../data/portfolioWidgetData';
 import HeroSlideContent from './HeroSlideContent';
 import PortfolioWidget from './PortfolioWidget';
 import { PageID } from '../../types';
@@ -27,6 +28,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   const { currentSlide, progress, isPaused, pause, resume, goToSlide } = useSlideTimer(heroSlides.length);
   
   const activeSlide = heroSlides[currentSlide];
+  
+  const filteredProjects = useMemo(() => {
+    const categoryMap: Record<string, string> = {
+      'telecom': 'Telecom',
+      'power': 'Power',
+      'ict': 'ICT',
+      'academy': 'ICT'
+    };
+    const widgetCategory = categoryMap[activeSlide.category] || 'Telecom';
+    return widgetProjects.filter(p => p.category === widgetCategory);
+  }, [activeSlide.category]);
   
   const handleScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -70,7 +82,7 @@ return (
           width="1920"
           height="1080"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/8 via-black/4 to-black/8" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-brand-primary/80" />
       </div>
       
       {/* Animated content only */}
@@ -84,7 +96,7 @@ return (
           />
         </AnimatePresence>
         
-        <PortfolioWidget isVisible={true} onNavigate={(page) => onNavigate?.(page as PageID, undefined, `/${page}`)} />
+        <PortfolioWidget isVisible={true} projects={filteredProjects} onNavigate={(page) => onNavigate?.(page as PageID, undefined, `/${page}`)} />
       </div>
 
       {/* Bottom controls - single scroll cue */}
