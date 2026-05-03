@@ -139,24 +139,6 @@ export const NAV_CONFIG = [
     ]
   },
   {
-    label: 'Academy',
-    page: 'academy' as PageID,
-    path: '/academy',
-    icon: GraduationCap,
-    overview: {
-      title: 'Academy',
-      description: 'Training, certification, and professional development programs.',
-      cta: 'Explore',
-      tag: 'Academy'
-    },
-    items: [
-      { label: 'Academy Overview', page: 'academy_overview' as PageID, category: 'Academy', path: '/academy/overview' },
-      { label: 'Fiber Optics Certification (CFOT / CFOS)', page: 'academy_fiber_optics_certification' as PageID, category: 'Academy', path: '/academy/fiber-optics-certification' },
-      { label: 'Telecom & Industrial Automation Training', page: 'academy_telecom_automation_training' as PageID, category: 'Academy', path: '/academy/telecom-automation-training' },
-      { label: 'Institutional Partnerships', page: 'academy_institutional_partnerships' as PageID, category: 'Academy', path: '/academy/institutional-partnerships' }
-    ]
-  },
-  {
     label: 'MSP',
     page: 'msp' as PageID,
     path: '/msp',
@@ -172,6 +154,24 @@ export const NAV_CONFIG = [
       { label: 'Network Operations Center (NOC)', page: 'msp_noc' as PageID, category: 'MSP', path: '/msp/noc-services' },
       { label: 'Infrastructure Management', page: 'msp_infrastructure' as PageID, category: 'MSP', path: '/msp/infrastructure' },
       { label: 'Managed Cybersecurity', page: 'msp_cybersecurity' as PageID, category: 'MSP', path: '/msp/cybersecurity' }
+    ]
+  },
+  {
+    label: 'Training',
+    page: 'academy' as PageID,
+    path: '/academy',
+    icon: GraduationCap,
+    overview: {
+      title: 'Training',
+      description: 'Training, certification, and professional development programs.',
+      cta: 'Explore',
+      tag: 'Training'
+    },
+    items: [
+      { label: 'Training Overview', page: 'academy_overview' as PageID, category: 'Training', path: '/academy/overview' },
+      { label: 'Fiber Optics Certification (CFOT / CFOS)', page: 'academy_fiber_optics_certification' as PageID, category: 'Training', path: '/academy/fiber-optics-certification' },
+      { label: 'Telecom & Industrial Automation Training', page: 'academy_telecom_automation_training' as PageID, category: 'Training', path: '/academy/telecom-automation-training' },
+      { label: 'Institutional Partnerships', page: 'academy_institutional_partnerships' as PageID, category: 'Training', path: '/academy/institutional-partnerships' }
     ]
   }
 ];
