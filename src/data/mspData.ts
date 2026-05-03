@@ -55,11 +55,13 @@ export const mspProjects = [
 ];
 
 export const mspHero = {
-  eyebrow: "Managed Services",
+  eyebrows: "Managed Services",
   pageTitle: "Managed ICT Services",
   pageSubtitle: "Ongoing IT and infrastructure managed services that keep your systems running at peak performance with proactive monitoring and expert support.",
   gradientFallback: "from-green-900/10 to-gray-900/10",
-  heroImage: "/assets/images/hero/msp.webp",
+  heroImage: "msp.webp",
+  heroImageMobile: "msp-640.webp",
+  heroImageTablet: "msp-1024.webp",
   heroAlt: "Managed services operations",
   icon: Wrench,
 };

@@ -15,6 +15,8 @@ interface SubPageLayoutProps {
   description: string;
   color?: string;
   heroImage?: string;
+  heroImageMobile?: string;
+  heroImageTablet?: string;
   gradientFallback?: string;
   currentPath?: string;
   onNavigate?: (path: string) => void;
@@ -28,6 +30,8 @@ export const SubPageLayout: React.FC<SubPageLayoutProps> = ({
   description, 
   color = "text-brand-accent", 
   heroImage, 
+  heroImageMobile,
+  heroImageTablet,
   gradientFallback = "from-black/5 to-transparent", 
   currentPath = '',
   onNavigate,
@@ -60,9 +64,18 @@ export const SubPageLayout: React.FC<SubPageLayoutProps> = ({
       {heroImage && !imageError && (
         <div className="relative h-[35vh] min-h-[280px] overflow-hidden">
           <img 
-            src={heroImage} 
+            src={`/assets/images/hero/${heroImage}`}
+            srcSet={`
+              ${heroImageMobile ? `/assets/images/hero/${heroImageMobile} 640w, ` : ''}
+              ${heroImageTablet ? `/assets/images/hero/${heroImageTablet} 1024w, ` : ''}
+              /assets/images/hero/${heroImage} 1920w
+            `.trim()}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
             alt={title} 
             className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             onError={() => setImageError(true)}
           />
           <div className={`absolute inset-0 bg-gradient-to-r ${gradientFallback}`} />
