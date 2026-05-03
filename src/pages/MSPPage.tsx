@@ -49,7 +49,7 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
               <SectionIcon className="w-7 h-7 text-brand-accent" />
             </div>
             <p className="text-brand-accent text-xs font-semibold uppercase tracking-widest mb-3">
-              {mspHero.eyebrow}
+              {mspHero.eyebrows}
             </p>
             <h1 className="text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
               {mspHero.pageTitle}
@@ -74,7 +74,7 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
           <div className="flex items-center gap-2 text-sm text-brand-muted">
             <button onClick={() => onNavigate('home')} className="hover:text-brand-accent transition-colors">Home</button>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-brand-foreground font-medium">{mspHero.eyebrow}</span>
+            <span className="text-brand-foreground font-medium">{mspHero.eyebrows}</span>
           </div>
         </div>
       </nav>
@@ -83,7 +83,7 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
       <section className="py-16 px-12 lg:px-24 max-w-7xl mx-auto">
         <div className="max-w-3xl">
           <p className="text-brand-accent text-xs font-semibold uppercase tracking-widest mb-3">
-            {mspHero.eyebrow}
+            {mspHero.eyebrows}
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-brand-foreground mb-5">
             Professional Training & Managed Services

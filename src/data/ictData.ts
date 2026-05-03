@@ -67,9 +67,9 @@ export const ictHero = {
   pageTitle: "Digital Infrastructure & Managed ICT",
   pageSubtitle: "Data center design and build, enterprise networking, cybersecurity, and system development. Delivered as a single integrated solution.",
   gradientFallback: "from-gray-900/10 to-cyan-900/10",
-  heroImage: "hero-ict.webp",
-  heroImageMobile: "data-center-640.webp",
-  heroImageTablet: "data-center-1024.webp",
+  heroImage: "/assets/images/hero/hero-ict.webp",
+  heroImageMobile: "/assets/images/hero/data-center-640.webp",
+  heroImageTablet: "/assets/images/hero/data-center-1024.webp",
   heroAlt: "Data center and enterprise networking infrastructure",
   icon: Server,
 };

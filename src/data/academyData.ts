@@ -67,9 +67,9 @@ export const academyHero = {
   pageTitle: "Training & Professional Development",
   pageSubtitle: "Industry-certified training programs in fiber optics, telecom, and industrial automation that build the expertise your team needs.",
   gradientFallback: "from-blue-900/10 to-gray-900/10",
-  heroImage: "hero-academy.webp",
-  heroImageMobile: "hero-academy-640.webp",
-  heroImageTablet: "hero-academy-1024.webp",
+  heroImage: "/assets/images/hero/hero-academy.webp",
+  heroImageMobile: "/assets/images/hero/hero-academy-640.webp",
+  heroImageTablet: "/assets/images/hero/hero-academy-1024.webp",
   heroAlt: "Professional training and certification programs",
   icon: GraduationCap,
 };
