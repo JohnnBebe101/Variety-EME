@@ -8,6 +8,28 @@ import { UI_CLASSES } from '../data/constants';
 import { PageSidebar, SIDEBAR_CONFIG, getCategoryFromPath } from './PageSidebar';
 import { QuickStats } from './QuickStats';
 
+/**
+ * Resolves a heroImage prop to a valid absolute public path.
+ *
+ * Accepts three input shapes:
+ *   1. Bare filename:          "hero-overview.webp"
+ *      → /assets/images/hero/hero-overview.webp
+ *
+ *   2. Already absolute path:  "/assets/images/hero/hero-overview.webp"
+ *      → /assets/images/hero/hero-overview.webp  (unchanged)
+ *
+ *   3. Cross-folder absolute:  "/assets/images/portfolio/mofed-dc.webp"
+ *      → /assets/images/portfolio/mofed-dc.webp  (unchanged)
+ *
+ * Rule: if the value starts with "/", it is already a resolved public path.
+ * Only prefix if it is a bare filename (no leading slash).
+ */
+function resolveHeroImagePath(heroImage: string): string {
+  if (!heroImage) return '';
+  if (heroImage.startsWith('/')) return heroImage;
+  return `/assets/images/hero/${heroImage}`;
+}
+
 interface SubPageLayoutProps {
   children?: React.ReactNode;
   tag: string;
@@ -64,11 +86,11 @@ export const SubPageLayout: React.FC<SubPageLayoutProps> = ({
       {heroImage && !imageError && (
         <div className="relative h-[35vh] min-h-[280px] overflow-hidden">
           <img 
-            src={`/assets/images/hero/${heroImage}`}
+            src={resolveHeroImagePath(heroImage)}
             srcSet={`
-              ${heroImageMobile ? `/assets/images/hero/${heroImageMobile} 640w, ` : ''}
-              ${heroImageTablet ? `/assets/images/hero/${heroImageTablet} 1024w, ` : ''}
-              /assets/images/hero/${heroImage} 1920w
+              ${heroImageMobile ? `${resolveHeroImagePath(heroImageMobile)} 640w, ` : ''}
+              ${heroImageTablet ? `${resolveHeroImagePath(heroImageTablet)} 1024w, ` : ''}
+              ${resolveHeroImagePath(heroImage)} 1920w
             `.trim()}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
             alt={title} 
