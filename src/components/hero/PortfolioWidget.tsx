@@ -148,6 +148,15 @@ export default function ProjectProofWidget() {
         />
       </div>
 
+      {/* Certification strip */}
+      <div className="px-4 py-1.5 border-t border-white/5
+                      flex items-center justify-center">
+        <span className="text-[8px] tracking-[0.12em] uppercase
+                         text-brand-foreground/25 select-none">
+          ISO 9001 · ISO 45001 · ISO 27001 · EcoVadis
+        </span>
+      </div>
+
       {/* Dot indicators */}
       <div className="flex justify-center gap-1 py-2">
         {projectShowcase.map((_, i) => (
