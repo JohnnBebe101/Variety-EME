@@ -61,7 +61,10 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateT
   };
 
   return (
-    <div className="min-h-screen bg-brand-primary selection:bg-brand-accent selection:text-brand-primary">
+    <div 
+      className="min-h-screen bg-brand-primary selection:bg-brand-accent selection:text-brand-primary"
+      suppressHydrationWarning={true}
+    >
       <Header 
         isScrolled={isScrolled}
         activeMenu={activeMenu}

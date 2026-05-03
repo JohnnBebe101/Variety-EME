@@ -95,12 +95,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               key={index}
               onClick={() => goToSlide(index)}
               aria-label={`Go to slide ${index + 1}`}
-              className={`rounded-full transition-all duration-300 ${
-                index === currentSlide
-                  ? 'w-6 h-1.5 bg-brand-accent'
-                  : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'
-              }`}
-            />
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-primary"
+            >
+              <span 
+                className={`block rounded-full transition-all duration-300 pointer-events-none ${
+                  index === currentSlide
+                    ? 'w-6 h-1.5 bg-brand-accent'
+                    : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'
+                }`}
+                aria-hidden="true"
+              />
+            </button>
           ))}
         </div>
         
@@ -116,6 +121,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         <a
           href="#services"
           onClick={handleScroll}
+          aria-label="Scroll down to services section"
           className="flex items-center gap-1.5 text-white/45 text-xs animate-bounce"
         >
           <span className="hidden sm:inline tracking-wide">Scroll</span>
