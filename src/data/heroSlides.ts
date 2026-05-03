@@ -62,7 +62,7 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 2,
     chapter: "Telecom Proof",
-    image: "/assets/images/hero/telecom.webp",
+    image: "/assets/images/hero/hero-telecom.webp",
     fallbackGradient: "from-blue-900 via-blue-800 to-slate-900",
     caption: "Optical Transmission · 66 Stations · Addis Ababa–Mekele Route",
     eyebrow: {
@@ -88,7 +88,7 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 3,
     chapter: "Power & Reach",
-    image: "/assets/images/hero/power.webp",
+    image: "/assets/images/hero/power-solar.webp",
     fallbackGradient: "from-yellow-900 via-orange-900 to-gray-900",
     caption: "Rural Electrification · 67 Towns · Three EEPCO Projects",
     eyebrow: {

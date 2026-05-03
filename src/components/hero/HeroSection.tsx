@@ -8,6 +8,17 @@ import HeroSlideContent from './HeroSlideContent';
 import PortfolioWidget from './PortfolioWidget';
 import { PageID } from '../../types';
 
+function generateSrcSet(basePath: string): string {
+  if (!basePath) return '';
+  const base = basePath.replace('.webp', '');
+  const variants = [
+    `${base}-640.webp 640w`,
+    `${base}-1024.webp 1024w`,
+    `${base}.webp 1920w`
+  ].join(', ');
+  return variants;
+}
+
 interface HeroSectionProps {
   onNavigate?: (page: PageID, hash?: string, routePath?: string) => void;
 }
@@ -57,15 +68,19 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           >
             {/* Gradient fallback */}
             <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.fallbackGradient} opacity-50`} />
-            {/* Hero image */}
+{/* Hero image with responsive srcSet */}
             <img
               src={activeSlide.image}
+              srcSet={generateSrcSet(activeSlide.image)}
+              sizes="100vw"
               alt={activeSlide.caption}
               className="w-full h-full object-cover object-center"
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              />
+              width="1920"
+              height="1080"
+            />
             {/* Overlay gradient for text legibility - reduced to 5-8% */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/8 via-black/4 to-black/8" />
           </motion.div>
