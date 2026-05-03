@@ -8,6 +8,7 @@ export interface HeroSlide {
   id: number;
   chapter: string;
   image: string;
+  category: 'telecom' | 'power' | 'ict' | 'academy';
   fallbackGradient: string;
   caption: string;
   eyebrow: {
@@ -33,6 +34,7 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 1,
     chapter: "Identity",
+    category: 'telecom',
     image: "/assets/images/hero/hero-overview.webp",
     fallbackGradient: "from-slate-900 via-slate-800 to-slate-950",
     caption: "InfinEth Solutions PLC · Addis Ababa, Ethiopia",
@@ -62,6 +64,7 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 2,
     chapter: "Telecom Proof",
+    category: 'telecom',
     image: "/assets/images/hero/hero-telecom.webp",
     fallbackGradient: "from-blue-900 via-blue-800 to-slate-900",
     caption: "Optical Transmission · 66 Stations · Addis Ababa–Mekele Route",
@@ -88,6 +91,7 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 3,
     chapter: "Power & Reach",
+    category: 'power',
     image: "/assets/images/hero/power-solar.webp",
     fallbackGradient: "from-yellow-900 via-orange-900 to-gray-900",
     caption: "Rural Electrification · 67 Towns · Three EEPCO Projects",
@@ -115,6 +119,7 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 4,
     chapter: "Why InfinEth",
+    category: 'ict',
     image: "/assets/images/hero/hero-ict.webp",
     fallbackGradient: "from-cyan-900 via-teal-900 to-gray-900",
     caption: "Data Center · Enterprise ICT · Managed Services · Addis Ababa",
@@ -142,6 +147,7 @@ export const heroSlides: HeroSlide[] = [
   {
     id: 5,
     chapter: "Growing the Next Generation",
+    category: 'academy',
     image: "/assets/images/hero/msp.webp",
     fallbackGradient: "from-emerald-900 via-green-900 to-slate-900",
     caption: "Academy · CFOT/CFOS Certification · Managed Services",

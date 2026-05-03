@@ -17,7 +17,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ title, items, icon: Ic
     <motion.div 
       whileHover={{ y: -2 }} 
       onClick={onClick} 
-      className="group rounded-lg border border-white/10 bg-brand-surface p-4 hover:border-brand-accent/40 hover:shadow-[0_4px_16px_rgba(0,194,255,0.08)] transition-all duration-300 cursor-pointer flex flex-col h-full"
+      className="group rounded-lg border border-white/10 bg-brand-surface p-4 hover:border-brand-accent/40 hover:shadow-lg transition-all duration-300 cursor-pointer flex flex-col h-full border-l-2 border-brand-accent hover:-translate-y-0.5"
     >
       <div className={`${color} w-10 h-10 rounded-lg flex items-center justify-center text-white mb-3 group-hover:rotate-6 transition-transform shadow-md`}><Icon size={20} /></div>
       <h3 className="text-sm font-semibold tracking-tight text-brand-foreground mb-2">{title}</h3>

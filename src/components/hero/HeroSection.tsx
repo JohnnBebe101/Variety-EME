@@ -5,7 +5,7 @@ import { heroSlides, HeroSlide } from '../../data/heroSlides';
 import { ANIM } from '../../data/animationConstants';
 import { useSlideTimer } from '../../hooks/useSlideTimer';
 import HeroSlideContent from './HeroSlideContent';
-import PortfolioWidget from './PortfolioWidget';
+import ProjectProofWidget from './PortfolioWidget';
 import { PageID } from '../../types';
 
 function generateSrcSet(basePath: string): string {
@@ -70,7 +70,7 @@ return (
           width="1920"
           height="1080"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/8 via-black/4 to-black/8" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-brand-primary/80" />
       </div>
       
       {/* Animated content only */}
@@ -84,7 +84,7 @@ return (
           />
         </AnimatePresence>
         
-        <PortfolioWidget isVisible={true} onNavigate={(page) => onNavigate?.(page as PageID, undefined, `/${page}`)} />
+        <ProjectProofWidget />
       </div>
 
       {/* Bottom controls - single scroll cue */}

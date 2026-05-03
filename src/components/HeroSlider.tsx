@@ -83,10 +83,14 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenContact, navigateT
                 key={index}
                 onClick={() => setActiveSlide(index)}
                 aria-label={`Show hero slide ${index + 1}`}
-                className={`w-3 h-3 rounded-full transition ${
+                className={`w-11 h-11 flex items-center justify-center rounded-full transition ${
                   index === activeSlide ? 'bg-white' : 'bg-white/40 hover:bg-white/70'
                 }`}
-              />
+              >
+                <span className={`w-3 h-3 rounded-full block ${
+                  index === activeSlide ? 'bg-brand-primary' : 'bg-white'
+                }`} />
+              </button>
             ))}
           </div>
         </motion.div>

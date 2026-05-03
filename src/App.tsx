@@ -385,38 +385,58 @@ case 'consultancy': return (
           <ClientTrustBar />
           
           <Section className="bg-brand-primary overflow-hidden border-b border-white/5">
-             <div className="mb-8 flex items-center gap-3"><LogoSymbol className="w-6 h-6 opacity-30" /><span className={UI_CLASSES.tag + " text-brand-muted/30"}>{t('common.strategicDeliveryNetwork')}</span></div>
+             <div className="mb-8 flex items-center gap-3"><LogoSymbol className="w-6 h-6 opacity-30" /><span className={UI_CLASSES.tag + " text-brand-muted/70 border-l-2 border-brand-accent pl-3"}>{t('common.strategicDeliveryNetwork')}</span></div>
              <div className="flex gap-20 items-center animate-marquee whitespace-nowrap opacity-[0.1] hover:opacity-[0.8] transition-opacity duration-700">{PARTNERS.concat(PARTNERS).map((n, i) => (<span key={i} className="text-sm md:text-base font-semibold text-brand-foreground tracking-tighter uppercase">{n.name}</span>))}</div>
 </Section>
-           
+            
+            <div className="w-16 h-px bg-brand-accent/30 mx-auto" />
+            
 <Section id="capabilities" className="bg-brand-primary py-10">
-               <div className="flex flex-col lg:flex-row justify-between items-end mb-8 gap-4">
-                 <div className="max-w-xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2`}>Core Capabilities</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>Engineering, ICT & Academy solutions for Ethiopia's growth.</h2></div>
-                 <p className="text-sm text-gray-400 max-w-xs">Telecommunications, Power, ICT & Data Center, Academy & MSP.</p>
-               </div>
-               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                 {NAV_CONFIG.filter(cat => cat.items.length > 0).map(cat => (
-                   <ServiceCard
-                     key={cat.label}
-                     title={cat.label}
-                     icon={cat.icon ?? Radio}
-                     color="bg-brand-accent"
-                     items={cat.items.slice(0, 2).map(item => item.label)}
-                     onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
-                   />
-                 ))}
-               </div>
-            </Section>
+                <div className="flex flex-col lg:flex-row justify-between items-end mb-8 gap-4">
+                  <div className="max-w-xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2 border-l-2 border-brand-accent pl-3`}>Core Capabilities</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>Engineering, ICT & Academy solutions for Ethiopia's growth.</h2></div>
+                  <p className="text-sm text-gray-400 max-w-xs">Telecommunications, Power, ICT & Data Center, Academy & MSP.</p>
+                </div>
+                <div className="flex flex-col gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {NAV_CONFIG.filter(cat => cat.items.length > 0).slice(0, 3).map(cat => (
+                      <ServiceCard
+                        key={cat.label}
+                        title={cat.label}
+                        icon={cat.icon ?? Radio}
+                        color="bg-brand-accent"
+                        items={cat.items.slice(0, 2).map(item => item.label)}
+                        onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
+                      />
+                    ))}
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:w-2/3 lg:mx-auto">
+                    {NAV_CONFIG.filter(cat => cat.items.length > 0).slice(3, 5).map(cat => (
+                      <ServiceCard
+                        key={cat.label}
+                        title={cat.label}
+                        icon={cat.icon ?? Radio}
+                        color="bg-brand-accent"
+                        items={cat.items.slice(0, 2).map(item => item.label)}
+                        onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
+                      />
+                    ))}
+                  </div>
+</div>
+             </Section>
+
+            <div className="w-16 h-px bg-brand-accent/30 mx-auto" />
 
 <Section id="excellence" className="bg-brand-primary overflow-hidden py-8">
-              <div className="max-w-2xl mb-6"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2`}>Our Certifications</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>{t('common.integrityFramework')}</h2></div>
+              <div className="max-w-2xl mb-6"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2 border-l-2 border-brand-accent pl-3`}>Our Certifications</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>{t('common.integrityFramework')}</h2></div>
               <div className="bg-brand-surface rounded-xl overflow-hidden grid lg:grid-cols-3 shadow-lg">
                 <div className="lg:col-span-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-brand-surface to-brand-primary">
                   <AnimatePresence mode="wait"><motion.div key={activeISO} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-28 h-28 bg-white rounded-full p-4 shadow-lg flex flex-col items-center justify-center"><span className="text-[6px] font-bold uppercase tracking-widest text-brand-primary/40 mb-0.5">Certified</span><span className="text-xs font-semibold text-brand-primary tracking-tight">{ISO_DATA.find(i => i.id === activeISO)?.standard || `ISO ${activeISO}`}</span></motion.div></AnimatePresence>
                 </div>
-                <div className="lg:col-span-2 p-3 md:p-4 bg-white/5 divide-y divide-white/5">{ISO_DATA.map((iso) => (<div key={iso.id} className="py-2 cursor-pointer group relative" onClick={() => setActiveISO(iso.id)}><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className={`w-8 h-8 rounded-md flex items-center justify-center ${activeISO === iso.id ? 'bg-brand-accent text-brand-primary' : 'bg-white/5 text-white/10'}`}><CheckCircle2 size={14} /></div><h3 className={`text-xs font-semibold tracking-tight ${activeISO === iso.id ? 'text-brand-foreground' : 'text-brand-foreground/30'}`}>{iso.standard}</h3>{iso.status === "certified" && <span className="absolute right-8 px-1.5 py-0.5 bg-green-500/20 border border-green-500/40 rounded text-[9px] font-bold text-green-400 uppercase tracking-wider">Certified</span>}</div><ChevronDown size={16} className={`transition-all ${activeISO === iso.id ? 'rotate-180 text-brand-accent' : 'text-white/5'}`} /></div>{activeISO === iso.id && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-xs text-gray-400 leading-relaxed mt-2 pl-11">{iso.description}</motion.p>}</div>))}</div>
+                <div className="lg:col-span-2 p-3 md:p-4 bg-white/5 divide-y divide-white/5">{ISO_DATA.map((iso) => (<div key={iso.id} className="py-2 cursor-pointer group relative" onClick={() => setActiveISO(iso.id)}><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className={`w-8 h-8 rounded-md flex items-center justify-center ${activeISO === iso.id ? (iso.id === 'ecovadis' ? 'bg-violet-500 text-white' : 'bg-brand-accent text-brand-primary') : 'bg-white/5 text-white/10'}`}><CheckCircle2 size={14} /></div><h3 className={`text-xs font-semibold tracking-tight ${activeISO === iso.id ? 'text-brand-foreground' : 'text-brand-foreground/30'}`}>{iso.standard}</h3>{(iso.status === 'certified' || iso.status === 'rated') && <span className={`absolute right-8 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${iso.status === 'certified' ? 'bg-green-500/20 border border-green-500/40 text-green-400' : 'bg-violet-500/20 border border-violet-500/40 text-violet-400'}`}>{iso.status === 'rated' ? 'Rated' : 'Certified'}</span>}</div><ChevronDown size={16} className={`transition-all ${activeISO === iso.id ? 'rotate-180 text-brand-accent' : 'text-white/5'}`} /></div>{activeISO === iso.id && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-xs text-gray-400 leading-relaxed mt-2 pl-11">{iso.description}</motion.p>}</div>))}</div>
               </div>
             </Section>
+
+            <div className="w-16 h-px bg-brand-accent/30 mx-auto" />
 
           <Section className="bg-brand-primary text-brand-foreground relative z-10 text-center">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">

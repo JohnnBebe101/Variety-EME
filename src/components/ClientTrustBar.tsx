@@ -11,7 +11,7 @@ export const ClientTrustBar: React.FC = () => {
       <div className="container mx-auto px-6 flex items-center gap-10">
         <div className="hidden md:flex items-center gap-3 shrink-0 border-r border-white/10 pr-10">
           <ShieldCheck size={16} className="text-brand-cyan" />
-          <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-white/40 leading-tight">{t('strategicAlliances')}</span>
+          <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-white/70 leading-tight">{t('strategicAlliances')}</span>
         </div>
         <div className="flex-grow overflow-hidden relative">
           <div className="flex gap-16 items-center animate-marquee whitespace-nowrap py-1.5 opacity-60 group-hover:opacity-100 transition-opacity duration-700">
@@ -28,7 +28,7 @@ export const ClientTrustBar: React.FC = () => {
         <div className="hidden lg:flex shrink-0 items-center gap-5">
           <div className="flex items-center gap-2">
             <Award size={14} className="text-brand-cyan" />
-            <span className="text-[9px] font-semibold uppercase tracking-wide text-white/30">{t('globalPartner')}</span>
+            <span className="text-[9px] font-semibold uppercase tracking-wide text-white/70">{t('globalPartner')}</span>
           </div>
         </div>
       </div>
