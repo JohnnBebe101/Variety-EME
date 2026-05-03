@@ -49,7 +49,7 @@ export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
               <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('telecommunications')}>Telecom</li>
               <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('ict_datacenter')}>ICT & Data Center</li>
               <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('power')}>Power</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('academy_overview')}>Academy</li>
+              <li className="hover:text-white cursor-pointer" onClick={() => navigateTo('academy_overview')}>Training</li>
             </ul>
           </div>
           
