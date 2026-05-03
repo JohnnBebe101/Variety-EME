@@ -8,6 +8,10 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.*)/$ /$1 [R=301,L]
   
+  # HTTP to HTTPS redirect
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+  
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
@@ -15,6 +19,16 @@
 
 # Legacy SEO redirect
 Redirect 301 /academy/managed-services /msp/overview
+
+# MIME types
+AddType image/webp .webp
+AddType font/woff2 .woff2
+
+# Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
 
 # Security headers
 <IfModule mod_headers.c>
@@ -24,10 +38,13 @@ Redirect 301 /academy/managed-services /msp/overview
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>
 
-# Cache static assets
+# Cache static assets with long-lived cache for hashed filenames
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/json "access plus 1 month"
 </IfModule>

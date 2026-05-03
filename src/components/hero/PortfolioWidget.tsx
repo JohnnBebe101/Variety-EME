@@ -118,21 +118,26 @@ const PortfolioWidget: React.FC<PortfolioWidgetProps> = ({ isVisible, onNavigate
 
         <div className="flex gap-1.5 justify-center pb-4">
           {widgetProjects.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                if (timerRef.current) clearInterval(timerRef.current);
-                setCurrent(i);
-                startTimer();
-              }}
-              aria-label={`Go to project ${i + 1}`}
-              className={`rounded-full transition-all duration-300 ${
-                i === current
-                  ? 'w-4 h-1.5 bg-brand-accent'
-                  : 'w-1.5 h-1.5 bg-white/25 hover:bg-white/50'
-              }`}
-            />
-          ))}
+              <button
+                key={i}
+                onClick={() => {
+                  if (timerRef.current) clearInterval(timerRef.current);
+                  setCurrent(i);
+                  startTimer();
+                }}
+                aria-label={`Go to project ${i + 1}`}
+                className="inline-flex items-center justify-center w-11 h-11 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-primary"
+              >
+                <span 
+                  className={`block rounded-full transition-all duration-300 pointer-events-none ${
+                    i === current
+                      ? 'w-4 h-1.5 bg-brand-accent'
+                      : 'w-1.5 h-1.5 bg-white/25 hover:bg-white/50'
+                  }`}
+                  aria-hidden="true"
+                />
+              </button>
+            ))}
         </div>
       </div>
     </div>
