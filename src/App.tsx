@@ -238,7 +238,13 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'telecommunications_warehouse_management': return (
         <>
           <MetaTags title="Warehouse Management" description="Equipment receiving, inspection, inventory tracking and asset management for telecom programs." />
-          <ServicePages.TelecommunicationsWarehouseManagement onBack={() => navigateTo('home')} heroImage="/assets/images/services/warehouse.png" gradientFallback="from-black/5 to-transparent" currentPath="/telecommunications/warehouse-management" onNavigate={(path) => navigateTo('home', undefined, path)} />
+          <ServicePages.TelecommunicationsWarehouseManagement 
+            onBack={() => navigateTo('home')} 
+            heroImage="/assets/images/hero/hero-telecom.webp"
+            gradientFallback="from-black/5 to-transparent" 
+            currentPath="/telecommunications/warehouse-management" 
+            onNavigate={(path) => navigateTo('home', undefined, path)} 
+          />
         </>
       );
       case 'power_transmission_distribution': return (
@@ -262,7 +268,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'power_building_electromechanical': return (
         <>
           <MetaTags title="Building Electromechanical Works" description="Industrial electrical installations, panel boards, earthing and lightning protection systems." />
-          <ServicePages.PowerBuildingElectromechanical onBack={() => navigateTo('home')} heroImage="/assets/images/services/building-electromechanical.png" gradientFallback="from-black/5 to-transparent" currentPath="/power/building-electromechanical" onNavigate={(path) => navigateTo('home', undefined, path)} />
+          <ServicePages.PowerBuildingElectromechanical onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-power.webp" gradientFallback="from-black/5 to-transparent" currentPath="/power/building-electromechanical" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
       case 'ict_datacenter_data_center_design': return (
@@ -286,13 +292,13 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'ict_datacenter_cybersecurity_managed': return (
         <>
           <MetaTags title="Cybersecurity & Managed Services" description="Information security assessments, managed services and incident response support." />
-          <ServicePages.IctDatacenterCybersecurityManaged onBack={() => navigateTo('home')} heroImage="/assets/images/services/cybersecurity.png" gradientFallback="from-black/5 to-transparent" currentPath="/ict-datacenter/cybersecurity-managed" onNavigate={(path) => navigateTo('home', undefined, path)} />
+          <ServicePages.IctDatacenterCybersecurityManaged onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-ict.webp" gradientFallback="from-black/5 to-transparent" currentPath="/ict-datacenter/cybersecurity-managed" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
       case 'ict_datacenter_training_consultancy': return (
         <>
           <MetaTags title="Training & ICT Consultancy" description="ICT training programs and consultancy services for enterprise and institutional clients." />
-          <ServicePages.IctDatacenterTrainingConsultancy onBack={() => navigateTo('home')} heroImage="/assets/images/services/training-consultancy.png" gradientFallback="from-black/5 to-transparent" currentPath="/ict-datacenter/training-consultancy" onNavigate={(path) => navigateTo('home', undefined, path)} />
+          <ServicePages.IctDatacenterTrainingConsultancy onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-ict.webp" gradientFallback="from-black/5 to-transparent" currentPath="/ict-datacenter/training-consultancy" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
       case 'academy_overview': return (
@@ -312,8 +318,14 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
           <MetaTags title="Telecommunications & Industrial Automation Training" description="Telecom and industrial automation training programs for operators and engineers." />
           <ServicePages.AcademyTelecomAutomationTraining onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-academy.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/telecom-automation-training" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
+);
+      case 'academy_institutional_partnerships': return (
+        <>
+          <MetaTags title="Institutional Partnerships" description="Corporate and institutional training partnerships" />
+          <ServicePages.AcademyInstitutionalPartnerships onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-academy.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/institutional-partnerships" onNavigate={(path) => navigateTo('home', undefined, path)} />
+        </>
       );
-case 'consultancy': return (
+      case 'consultancy': return (
         <>
           <MetaTags title={t('nav.consultancy')} description="Consultancy Services" />
           <ExcellencePages.Consultancy onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />

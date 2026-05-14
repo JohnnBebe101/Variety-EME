@@ -61,7 +61,7 @@ return (
         <img
           src={activeSlide.image}
           srcSet={generateSrcSet(activeSlide.image)}
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
           alt={activeSlide.caption}
           className="w-full h-full object-cover object-center"
           loading="eager"
