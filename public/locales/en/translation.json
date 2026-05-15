@@ -12,7 +12,7 @@
     "globalPartner": "Global Partner Network",
     "startNextProject": "Start a Project",
     "inquiryForm": "Inquiry Form",
-    "preciseEngineering": "Precise Engineering. Infinite Possibilities.",
+    "preciseEngineering": "Reliable Solutions. Lasting Impact.",
     "securityExcellence": "Security & Operational Excellence Certified",
     "strategicDeliveryNetwork": "Strategic Delivery Network",
     "pillar1": "Pillar 01",
@@ -183,27 +183,42 @@
     }
   },
   "corporate": {
-    "identity": {
-      "tag": "About Us",
-      "title": "About InfinEth Solutions",
-      "description": "Where smart power meets seamless intelligence. Integrated power, telecom and ICT solutions for enterprise and public-sector clients.",
-      "founded": "Founded October 2004",
+"identity": {
+      "tag": "Corporate Identity",
+      "title": "Built for Ethiopia's Growth.",
+      "description": "Two decades of integrated engineering and ICT solutions — from telecom infrastructure to industrial power systems.",
+      "founded": "Our Heritage",
       "team": "47+ staff plus part-time collaborators",
       "expertise": "4 PhD, 4 MSc, 5 BSc engineers",
       "location": "Ethiopia, East Africa",
-      "legacy_title": "20+ Years of Engineering Excellence",
-      "legacy_desc": "Founded in October 2004, InfinEth Solutions is a multidisciplinary engineering and ICT provider with turnkey delivery capability serving private companies, NGOs, and government institutions.",
-      "mission_title": "Strategic Mission",
-      "mission_desc": "Accelerating digital transformation through resilient infrastructure.",
+      "legacy_title": "Two Decades of Ethiopian Infrastructure",
+      "legacy_desc": "Since October 2004, we've grown from a telecom-focused startup to Ethiopia's only integrated engineering-ICT company. Our journey mirrors Ethiopia's infrastructure evolution — from early mobile network rollouts to today's data center and renewable energy projects.",
+      "mission_title": "Our Mission",
+      "mission_desc": "Accelerating Ethiopia's digital transformation through resilient infrastructure and skilled workforce development.",
       "vision_title": "Our Vision",
       "vision_desc": "To be Ethiopia's leading integrated engineering and ICT solutions provider.",
-      "pillars_title": "Three Integrated Service Pillars",
+      "pillars_title": "Four Integrated Capabilities",
       "pillars": {
-        "power": "Power - Distribution, transmission, factory electro-mechanical, building electrical, elevators/escalators",
-        "telecom": "Telecom Engineering - Wireless, fixed, fiber, microwave networks, tower, civil, integration",
-        "ict": "Managed Services/ICT - System development, networking, storage, system administration, training"
+        "power": "Power Infrastructure — HV/LV transmission, distribution networks, industrial electro-mechanical, building electrical systems",
+        "telecom": "Telecom Engineering — Mobile network rollout (RAN), fiber backbone, tower sites, microwave links, civil works",
+        "ict": "ICT & Systems — Enterprise networking, data centers, system integration, software development, managed services",
+        "academy": "Professional Academy — CFOT/CFOS fiber certification, industrial automation training, workforce development"
       },
-      "why_title": "Why Partner With InfinEth?",
+      "track_title": "What We've Built in Ethiopia",
+      "track_items": [
+        { "metric": "2,500+", "desc": "km fiber backbone deployed" },
+        { "metric": "150+", "desc": "telecom tower sites completed" },
+        { "metric": "40+", "desc": "enterprise networks configured" },
+        { "metric": "500+", "desc": "professionals trained & certified" }
+      ],
+      "presence_title": "Operational Footprint",
+      "presence": [
+        { "location": "Addis Ababa", "role": "HQ - Design, NOC, Executive", "detail": "Bole Road, Main Operations" },
+        { "location": "Bahir Dar", "role": "Northern Region Hub", "detail": "Industrial zone, Amhara coverage" },
+        { "location": "Dire Dawa", "role": "Eastern Logistics Hub", "detail": "Port corridor, Somali region support" },
+        { "location": "Mekelle", "role": "Northern Support Center", "detail": "Tigray region service & maintenance" }
+      ],
+"why_title": "Why Partner With InfinEth?",
       "why": [
         "One partner across engineering, telecom and ICT instead of siloed vendors",
         "Strong field delivery in towers, power systems, cabling, integration and commissioning",

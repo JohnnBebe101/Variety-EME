@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MapPin, Phone, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { MapPin, Phone, Linkedin, Facebook } from 'lucide-react';
 import { Brand } from '../Brand';
 import { SITE } from '../../data/constants';
 import { PageID } from '../../types';
@@ -31,7 +31,11 @@ export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
           </div>
           <div className="flex gap-4">
             <a href="https://et.linkedin.com/company/infineth" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-accent transition-colors"><Linkedin size={18} /></a>
-            <a href="https://share.google/No2zCd3Ofs8Sd0UXZ" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-accent transition-colors"><Twitter size={18} /></a>
+            <a href="https://share.google/No2zCd3Ofs8Sd0UXZ" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-accent transition-colors" aria-label="Google Business Profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/>
+              </svg>
+            </a>
             <a href="https://www.facebook.com/Infineth-solutions-plc" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-accent transition-colors"><Facebook size={18} /></a>
           </div>
         </div>
@@ -98,9 +102,9 @@ export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
         <div className="flex flex-col sm:flex-row justify-between items-center pt-6 border-t border-white/5 gap-2">
           <p className="text-xs text-brand-foreground/30">© {currentYear} InfinEth Solutions PLC. All rights reserved.</p>
           <div className="flex gap-4">
-            <button onClick={() => navigateTo('identity', undefined, '/about')} className="text-xs text-brand-foreground/30 hover:text-white transition-colors">Privacy Policy</button>
+            <button onClick={() => navigateTo('privacy_policy', undefined, '/privacy-policy')} className="text-xs text-brand-foreground/30 hover:text-white transition-colors">Privacy Policy</button>
             <span className="text-white/20">|</span>
-            <button onClick={() => navigateTo('identity', undefined, '/about')} className="text-xs text-brand-foreground/30 hover:text-white transition-colors">Terms of Service</button>
+            <button onClick={() => navigateTo('terms_of_service', undefined, '/terms-of-service')} className="text-xs text-brand-foreground/30 hover:text-white transition-colors">Terms of Service</button>
           </div>
         </div>
       </div>

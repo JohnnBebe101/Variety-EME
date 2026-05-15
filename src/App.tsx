@@ -47,6 +47,7 @@ import ICTPage from './pages/ICTPage';
 import PowerPage from './pages/PowerPage';
 import MSPPage from './pages/MSPPage';
 import AcademyPage from './pages/AcademyPage';
+import { LegalPage } from './components/LegalPage';
 
 interface AppProps {
   initialPage?: PageID;
@@ -337,6 +338,18 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
           <ExcellencePages.EHS onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
+      case 'privacy_policy': return (
+        <>
+          <MetaTags title="Privacy Policy" description="InfinEth Solutions Privacy Policy" />
+          <LegalPage type="privacy" onNavigate={navigateTo} />
+        </>
+      );
+      case 'terms_of_service': return (
+        <>
+          <MetaTags title="Terms of Service" description="InfinEth Solutions Terms of Service" />
+          <LegalPage type="terms" onNavigate={navigateTo} />
+        </>
+      );
       case 'ict_datacenter': return (
         <>
           <MetaTags title={t('common.services.ict.title')} description={t('common.services.ict.description')} />
@@ -382,6 +395,36 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'msp_cybersecurity': return (
         <>
           <MetaTags title="Managed Cybersecurity" description="Security monitoring and incident response" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_ict_connectivity': return (
+        <>
+          <MetaTags title="ICT & Connectivity" description="Enterprise networking, structured cabling, and managed support services" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_security_access': return (
+        <>
+          <MetaTags title="Security & Access Control" description="Smart CCTV surveillance and biometric access control systems" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_fire_safety': return (
+        <>
+          <MetaTags title="Fire Safety & Protection" description="Fire detection, suppression systems, and compliance monitoring" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_hvac': return (
+        <>
+          <MetaTags title="HVAC & Environmental Control" description="Climate management and Building Management System integration" />
+          <MSPPage onNavigate={navigateTo} />
+        </>
+      );
+      case 'msp_power_energy': return (
+        <>
+          <MetaTags title="Power & Energy Solutions" description="UPS backup power and energy management solutions" />
           <MSPPage onNavigate={navigateTo} />
         </>
       );
@@ -466,9 +509,9 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
               <img src="/assets/images/hero/telecom.webp" className="w-full h-full object-cover" alt="" />
               <div className="absolute inset-0 bg-gradient-to-r from-brand-surface/95 via-brand-surface/80 to-brand-surface/95" />
             </div>
-            <div className="relative z-10">
-              <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">Our Promise</p>
-              <h2 className="text-lg font-normal text-brand-foreground tracking-wide">{t('common.preciseEngineering')}</h2>
+            <div className="relative z-10 flex flex-col items-center">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-4">Our Promise</p>
+              <h2 className="text-xs font-light text-white/50 italic tracking-wider max-w-xl mb-6">{t('common.preciseEngineering')}</h2>
               <button 
                 onClick={() => navigateTo('about')} 
                 className="bg-brand-accent text-brand-primary px-10 py-4 rounded-xl font-semibold tracking-wide text-sm shadow-lg hover:bg-white hover:text-brand-primary active:scale-95 focus-visible:ring-2 focus-visible:ring-brand-accent transition-all duration-200 uppercase"
