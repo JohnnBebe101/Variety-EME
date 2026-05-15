@@ -56,11 +56,11 @@ export const HERO = {
 };
 
 export const PARTNERS = [
-  { name: "NOKIA", logo: "/assets/images/partners/nokia.png" },
-  { name: "SAFARICOM", logo: "/assets/images/partners/safaricom.png" },
-  { name: "UNITED NATIONS (UN)", logo: "/assets/images/partners/un.png" },
-  { name: "ETHIO TELECOM", logo: "/assets/images/partners/ethio-telecom.png" },
-  { name: "HUAWEI", logo: "/assets/images/partners/huawei.png" },
+  { name: "NOKIA", logo: "/assets/images/partners/NOKIA.webp" },
+  { name: "SAFARICOM", logo: "/assets/images/partners/Safaricom.webp" },
+  { name: "UNITED NATIONS (UN)", logo: "/assets/images/partners/un.webp" },
+  { name: "ETHIO TELECOM", logo: "/assets/images/partners/ethio-telecom.webp" },
+  { name: "HUAWEI", logo: "/assets/images/partners/Huawei.webp" },
   { name: "ERICSSON", logo: "/assets/images/partners/ericsson.png" },
   { name: "ZTE", logo: "/assets/images/partners/zte.png" },
   { name: "ABB", logo: "/assets/images/partners/abb.png" }

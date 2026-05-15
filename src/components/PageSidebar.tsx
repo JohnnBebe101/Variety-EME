@@ -131,10 +131,12 @@ export const SIDEBAR_CONFIG: Record<string, SidebarCategory> = {
   msp: {
     title: 'Managed Services',
     links: [
-      { label: 'Managed Services Overview', path: '/msp/overview' },
-      { label: 'Network Operations Center', path: '/msp/noc-services' },
-      { label: 'Infrastructure Management', path: '/msp/infrastructure' },
-      { label: 'Managed Cybersecurity', path: '/msp/cybersecurity' },
+      { label: 'Overview', path: '/msp' },
+      { label: 'ICT & Connectivity', path: '/msp/ict-connectivity' },
+      { label: 'Security & Access Control', path: '/msp/security-access' },
+      { label: 'Fire Safety & Protection', path: '/msp/fire-safety' },
+      { label: 'HVAC & Environmental', path: '/msp/hvac' },
+      { label: 'Power & Energy', path: '/msp/power-energy' },
     ]
   }
 };

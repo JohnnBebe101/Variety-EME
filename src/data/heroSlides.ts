@@ -92,7 +92,7 @@ export const heroSlides: HeroSlide[] = [
     id: 3,
     chapter: "Power & Reach",
     category: 'power',
-    image: "/assets/images/hero/power-solar.webp",
+    image: "/assets/images/hero/hero-power.webp",
     fallbackGradient: "from-yellow-900 via-orange-900 to-gray-900",
     caption: "Rural Electrification · 67 Towns · Three EEPCO Projects",
     eyebrow: {
@@ -148,7 +148,7 @@ export const heroSlides: HeroSlide[] = [
     id: 5,
     chapter: "Growing the Next Generation",
     category: 'academy',
-    image: "/assets/images/hero/msp.webp",
+    image: "/assets/images/hero/hero-msp.webp",
     fallbackGradient: "from-emerald-900 via-green-900 to-slate-900",
     caption: "Academy · CFOT/CFOS Certification · Managed Services",
     eyebrow: {
@@ -174,6 +174,37 @@ export const heroSlides: HeroSlide[] = [
     cta: {
       primary: { label: "View MSP & Academy", action: "link", target: "/academy" },
       secondary: { label: "Discuss Your Needs", action: "link", target: "/contact" },
+    },
+  },
+  {
+    id: 6,
+    chapter: "Professional Training",
+    category: 'academy',
+    image: "/assets/images/hero/hero-academy.webp",
+    fallbackGradient: "from-indigo-900 via-purple-900 to-slate-900",
+    caption: "Academy · CFOT/CFOS Certification · Industrial Training",
+    eyebrow: {
+      icon: GraduationCap,
+      text: "Training & Professional Development",
+    },
+    headline: {
+      line1: { text: "Certified", color: "text-white" },
+      line2: { text: "Excellence", color: "text-brand-accent" },
+      line3: { text: "Industry-Ready", color: "text-white" },
+    },
+    subtitle:
+      "Industry-recognized fiber optics certification (CFOT/CFOS) aligned with " +
+      "ETA International standards. Combined with telecom and industrial automation " +
+      "training that builds expertise your team needs.",
+    proofChips: [
+      "CFOT / CFOS Certified",
+      "ETA International",
+      "Industry Partners",
+    ],
+    proofChipsLabel: "Academy Programs",
+    cta: {
+      primary: { label: "Explore Academy", action: "link", target: "/academy" },
+      secondary: { label: "Contact Training Team", action: "link", target: "/contact" },
     },
   },
 ];

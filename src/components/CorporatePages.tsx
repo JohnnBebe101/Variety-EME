@@ -7,7 +7,11 @@ import {
   Users,
   Download,
   ChevronRight,
-  Award
+  Award,
+  Zap,
+  Radio,
+  Server,
+  GraduationCap
 } from 'lucide-react';
 import { portfolioProjects } from '../data/portfolioData';
 import { useTranslation } from 'react-i18next';
@@ -65,24 +69,49 @@ export const CorporatePages = {
         
         <div className="mb-12">
           <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.pillars_title')}</h3>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-4 gap-6">
             <div className="bg-brand-surface p-8 rounded-2xl border border-white/5">
-              <ShieldCheck className="text-brand-accent mb-4" size={32} />
-              <h4 className="font-bold text-brand-foreground mb-2">Power</h4>
+              <Zap className="text-brand-accent mb-4" size={32} />
+              <h4 className="font-bold text-brand-foreground mb-2">{t('common.power')}</h4>
               <p className="text-brand-muted text-sm">{pillars?.power}</p>
             </div>
             <div className="bg-brand-surface p-8 rounded-2xl border border-white/5">
-              <MapPin className="text-brand-accent mb-4" size={32} />
-              <h4 className="font-bold text-brand-foreground mb-2">Telecom</h4>
+              <Radio className="text-brand-accent mb-4" size={32} />
+              <h4 className="font-bold text-brand-foreground mb-2">{t('common.telecom')}</h4>
               <p className="text-brand-muted text-sm">{pillars?.telecom}</p>
             </div>
             <div className="bg-brand-surface p-8 rounded-2xl border border-white/5">
-              <Users className="text-brand-accent mb-4" size={32} />
-              <h4 className="font-bold text-brand-foreground mb-2">ICT</h4>
+              <Server className="text-brand-accent mb-4" size={32} />
+              <h4 className="font-bold text-brand-foreground mb-2">{t('common.ict')}</h4>
               <p className="text-brand-muted text-sm">{pillars?.ict}</p>
+            </div>
+            <div className="bg-brand-surface p-8 rounded-2xl border border-white/5">
+              <GraduationCap className="text-brand-accent mb-4" size={32} />
+              <h4 className="font-bold text-brand-foreground mb-2">{t('common.academy')}</h4>
+              <p className="text-brand-muted text-sm">{pillars?.academy}</p>
             </div>
           </div>
         </div>
+
+        {(() => {
+          const trackItems = t('corporate.identity.track_items', { returnObjects: true }) as any[];
+          if (Array.isArray(trackItems) && trackItems.length > 0 && trackItems[0]?.metric) {
+            return (
+              <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.track_title')}</h3>
+                <div className="grid md:grid-cols-4 gap-6">
+                  {trackItems.map((item, i) => (
+                    <div key={i} className="bg-brand-surface p-6 rounded-2xl border border-white/5 text-center">
+                      <p className="text-3xl font-bold text-brand-accent mb-2">{item.metric}</p>
+                      <p className="text-brand-muted text-sm">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+          return null;
+        })()}
         
         <div className="mb-12">
           <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.why_title')}</h3>
@@ -131,6 +160,30 @@ export const CorporatePages = {
             ))}
           </div>
         </div>
+
+        {(() => {
+          const presence = t('corporate.identity.presence', { returnObjects: true }) as any[];
+          if (Array.isArray(presence) && presence.length > 0 && presence[0]?.location) {
+            return (
+              <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.presence_title')}</h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {presence.map((loc, i) => (
+                    <div key={i} className="bg-brand-surface p-6 rounded-2xl border border-white/5">
+                      <div className="flex items-center gap-2 mb-3">
+                        <MapPin className="text-brand-accent" size={18} />
+                        <h4 className="font-bold text-brand-foreground">{loc.location}</h4>
+                      </div>
+                      <p className="text-brand-accent text-xs font-medium mb-2">{loc.role}</p>
+                      <p className="text-brand-muted text-xs">{loc.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+          return null;
+        })()}
         
         <div className="mb-12">
           {t('corporate.identity.org_title') && (
