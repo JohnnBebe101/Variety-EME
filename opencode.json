@@ -8,8 +8,8 @@
     "read": true
   },
   "compaction": {
-    "auto": true,
-    "prune": true,
+    "auto": false,
+    "prune": false,
     "reserved": 15000
   }
 }
