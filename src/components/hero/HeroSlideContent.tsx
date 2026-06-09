@@ -21,6 +21,80 @@ const HeroSlideContent: React.FC<HeroSlideContentProps> = ({ slide, isActive, on
     return () => clearTimeout(t);
   }, [isActive]);
 
+  // Check if this is the first slide with new layout fields
+  const isReconstructedSlide = slide.id === 1 && slide.mainHeading !== undefined;
+
+  if (isReconstructedSlide) {
+    return (
+      <div
+        className={`
+          relative z-10 flex flex-col items-center justify-center
+          h-full px-8 md:px-12 lg:px-20 xl:px-24
+          max-w-[58%]
+          transition-opacity duration-300
+          ${entered ? 'opacity-100' : 'opacity-0'}
+          text-center
+        `}
+      >
+        {/* Main Heading - largest text, center-aligned */}
+        <div className={`${entered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'} transition-all duration-300`}>
+          <h1 className="text-5xl font-bold text-white tracking-tight leading-none mb-4">
+            {slide.mainHeading.line1.text}
+          </h1>
+        </div>
+
+        {/* Subheading - supporting text block */}
+        {slide.subheading && (
+          <p className={`${entered ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300 mb-6 text-white/75 text-sm sm:text-base lg:text-xl leading-relaxed max-w-2xl`}>
+            {slide.subheading}
+          </p>
+        )}
+
+        {/* Primary CTA Group - Five rounded rectangles for major services */}
+        {slide.primaryButtons && (
+          <div className={`${entered ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300 flex flex-wrap gap-3 justify-center mb-6`}>
+            {slide.primaryButtons.map((btn, idx) => (
+              <a
+                key={idx}
+                href={btn.target}
+                onClick={btn.action === 'link' ? undefined : undefined}
+                className="
+                  flex items-center justify-center px-6 py-3
+                  text-sm font-medium rounded-lg border border-white/5
+                  text-white hover:bg-white/10 transition-colors duration-200
+                  min-w-[120px] text-center
+                "
+              >
+                {btn.label}
+              </a>
+            ))}
+          </div>
+        )}
+
+        {/* Secondary Info Buttons - Smaller buttons for ISO and Experience */}
+        {slide.secondaryButtons && (
+          <div className={`${entered ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300 flex flex-wrap gap-2 justify-center`}>
+            {slide.secondaryButtons.map((btn, idx) => (
+              <a
+                key={idx}
+                href={btn.target}
+                className="
+                  px-4 py-2 text-xs font-semibold rounded-lg
+                  border border-white/4 text-white/60
+                  hover:text-white hover:border-white/10
+                  transition-colors duration-200
+                "
+              >
+                {btn.label}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Original logic for all other slides
   const headlineLines = [slide.headline.line1, slide.headline.line2];
   if (slide.headline.line3) {
     headlineLines.push(slide.headline.line3);

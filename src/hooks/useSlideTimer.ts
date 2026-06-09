@@ -49,7 +49,6 @@ export const useSlideTimer = (totalSlides: number) => {
   }, [startProgress]);
 
   useEffect(() => {
-    startProgress(0);
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
       if (progressRef.current) clearInterval(progressRef.current);

@@ -79,20 +79,20 @@ const AcademyPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: s
         </div>
       </nav>
 
-      {/* Section Intro */}
-      <section className="py-16 px-12 lg:px-24 max-w-7xl mx-auto">
-        <div className="max-w-3xl">
-          <p className="text-brand-accent text-xs font-semibold uppercase tracking-widest mb-3">
-            {academyHero.eyebrow}
-          </p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-brand-foreground mb-5">
-            Professional Training & Development
-          </h2>
-          <p className="text-brand-muted text-lg leading-relaxed">
-            InfinEth Academy delivers practitioner-led training programs in fiber optics, telecom, and industrial automation that build the expertise your team needs.
-          </p>
-        </div>
-      </section>
+       {/* Section Intro */}
+       <section className="py-16 px-12 lg:px-24 max-w-7xl mx-auto">
+         <div className="max-w-3xl">
+           <p className="text-brand-accent text-xs font-semibold uppercase tracking-widest mb-3">
+             {academyHero.eyebrow}
+           </p>
+           <h2 className="text-3xl lg:text-4xl font-bold text-brand-foreground mb-5">
+             Professional Training & Development
+           </h2>
+           <p className="text-brand-muted text-lg leading-relaxed">
+             InfinEth Academy delivers practitioner-led training programs in fiber optics and industrial automation that build the expertise your team needs.
+           </p>
+         </div>
+       </section>
 
       {/* Service Cards Grid */}
       <section id="services" className="pb-16 px-12 lg:px-24 max-w-7xl mx-auto">
@@ -123,27 +123,7 @@ const AcademyPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: s
         </div>
       </section>
 
-      {/* Reference Projects */}
-      <section className="py-14 bg-brand-surface border-y border-white/5">
-        <div className="px-12 lg:px-24 max-w-7xl mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-widest text-brand-accent mb-8">
-            Reference Projects
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {academyProjects.map((p) => (
-              <div key={p.id} className="bg-brand-primary rounded-xl border border-white/5 p-6 hover:shadow-md transition-shadow duration-200">
-                <div className="w-full h-36 rounded-lg bg-brand-surface mb-4 overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
-                </div>
-                <span className="text-xs font-medium text-brand-accent uppercase tracking-wide">{p.category}</span>
-                <h4 className="font-semibold text-brand-foreground mt-1 mb-1">{p.title}</h4>
-                <p className="text-sm text-brand-muted">{p.stat}</p>
-                <p className="text-xs text-brand-muted/60 mt-2">{p.client}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Why InfinEth Strip */}
       <section className="py-16 px-12 lg:px-24 max-w-7xl mx-auto">

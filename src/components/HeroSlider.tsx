@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { HERO, UI_CLASSES } from '../data/constants';
@@ -21,7 +21,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenContact, navigateT
   useEffect(() => {
     const interval = window.setInterval(() => {
       setActiveSlide((current) => (current + 1) % HERO.slides.length);
-    }, 5000);
+    }, 12000);
 
     return () => window.clearInterval(interval);
   }, []);
@@ -29,26 +29,28 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenContact, navigateT
   return (
     <section className="relative h-[85vh] md:h-screen min-h-[700px] w-full overflow-hidden bg-brand-primary">
       <div className="absolute inset-0">
-        <motion.picture
-          key={slide.webp}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-          className="absolute inset-0"
-        >
-          <source srcSet={slide.webp} type="image/webp" />
-          <img
-            src={slide.jpeg}
-            className="w-full h-full object-cover brightness-[0.70]"
-            alt={slide.alt}
-            loading="eager"
-            // @ts-ignore
-            fetchPriority="high"
-            role="presentation"
-            decoding="async"
-          />
-        </motion.picture>
+        <AnimatePresence mode="wait">
+          <motion.picture
+            key={slide.webp}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.97 }}
+            transition={{ opacity: { duration: 0.8 }, scale: { type: 'spring', stiffness: 80, damping: 20 } }}
+            className="absolute inset-0"
+          >
+            <source srcSet={slide.webp} type="image/webp" />
+            <img
+              src={slide.jpeg}
+              className="w-full h-full object-cover brightness-[0.70]"
+              alt={slide.alt}
+              loading="eager"
+              // @ts-ignore
+              fetchPriority="high"
+              role="presentation"
+              decoding="async"
+            />
+          </motion.picture>
+        </AnimatePresence>
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/30 via-transparent to-brand-primary/80" />
       <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-center">
@@ -77,6 +79,32 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenContact, navigateT
               {t('capabilityView')}
             </button>
           </div>
+
+          {/* Manual Slider Controls */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+            <button
+              onClick={() => {
+                setActiveSlide((prev) => {
+                  const newIndex = (prev - 1 + HERO.slides.length) % HERO.slides.length;
+                  return newIndex;
+                });
+              }}
+              className="p-3 bg-white/20 hover:bg-white/30 rounded-full transition-all duration-200"
+              aria-label="Previous slide"
+            >
+              <ArrowRight size={20} className="-rotate-180 text-white/80 hover:text-white" />
+            </button>
+            <button
+              onClick={() => {
+                setActiveSlide((prev) => (prev + 1) % HERO.slides.length);
+              }}
+              className="p-3 bg-white/20 hover:bg-white/30 rounded-full transition-all duration-200"
+              aria-label="Next slide"
+            >
+              <ArrowRight size={20} className="text-white/80 hover:text-white" />
+            </button>
+          </div>
+
           <div className="mt-10 flex gap-3">
             {HERO.slides.map((_, index) => (
               <button
