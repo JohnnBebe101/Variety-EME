@@ -24,19 +24,13 @@ const STATS_BY_CATEGORY: Record<string, QuickStat[]> = {
     { icon: CheckCircle, value: '99.9%', label: 'Uptime SLA' },
     { icon: Users, value: '50+', label: 'ICT Experts' },
   ],
-  power: [
-    { icon: Zap, value: '400KV', label: 'Transmission' },
-    { icon: Building2, value: '67+', label: 'Towns Connected' },
-    { icon: CheckCircle, value: '1.2GW', label: 'Power Managed' },
-    { icon: Users, value: '180+', label: 'Engineers' },
-  ],
-  academy: [
-    { icon: GraduationCap, value: '500+', label: 'Graduates' },
-    { icon: CheckCircle, value: 'FOA', label: 'Certified' },
-    { icon: Users, value: '25+', label: 'Corporate Partners' },
-    { icon: Building2, value: 'TVET', label: 'Accredited' },
-  ],
-};
+   power: [
+     { icon: Zap, value: '400KV', label: 'Transmission' },
+     { icon: Building2, value: '67+', label: 'Towns Connected' },
+     { icon: CheckCircle, value: '1.2GW', label: 'Power Managed' },
+     { icon: Users, value: '180+', label: 'Engineers' },
+   ],
+ };
 
 export const QuickStats: React.FC<QuickStatsProps> = ({ category }) => {
   const stats = STATS_BY_CATEGORY[category] || [];
