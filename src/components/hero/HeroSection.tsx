@@ -55,23 +55,30 @@ return (
       onMouseEnter={pause}
       onMouseLeave={resume}
     >
-      {/* Static LCP background - no motion wrapper for immediate render */}
-      <div className="absolute inset-0">
-        <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.fallbackGradient} opacity-50`} />
-        <img
-          src={activeSlide.image}
-          srcSet={generateSrcSet(activeSlide.image)}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
-          alt={activeSlide.caption}
-          className="w-full h-full object-cover object-center"
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-          width="1920"
-          height="1080"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-brand-primary/80" />
-      </div>
+       {/* Static LCP background - no motion wrapper for immediate render */}
+       <div className="absolute inset-0">
+         <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.fallbackGradient} opacity-50`} />
+         <motion.div
+           className="absolute inset-0"
+           initial={{ scale: 1 }}
+           animate={{ scale: ANIM.IMAGE_ZOOM_SCALE[1] }}
+           transition={{ duration: ANIM.IMAGE_ZOOM_DURATION / 1000, ease: "easeOut" }}
+         >
+           <img
+             src={activeSlide.image}
+             srcSet={generateSrcSet(activeSlide.image)}
+             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
+             alt={activeSlide.caption}
+             className="w-full h-full object-cover object-center"
+             loading="eager"
+             fetchPriority="high"
+             decoding="async"
+             width="1920"
+             height="1080"
+           />
+         </motion.div>
+         <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/25 to-brand-primary/80" />
+       </div>
       
       {/* Animated content only */}
       <div className="relative z-10 container mx-auto px-0 h-full flex items-center">
@@ -85,6 +92,22 @@ return (
         </AnimatePresence>
         
         <ProjectProofWidget />
+        
+        {/* Navigation Arrows */}
+        <button
+          onClick={() => goToSlide((currentSlide - 1 + heroSlides.length) % heroSlides.length)}
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white/50 hover:text-white flex items-center justify-center w-10 h-10 rounded-full transition-colors duration-200 z-20"
+          aria-label="Previous slide"
+        >
+          <ChevronDown size={18} className="rotate-90" />
+        </button>
+        <button
+          onClick={() => goToSlide((currentSlide + 1) % heroSlides.length)}
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white/50 hover:text-white flex items-center justify-center w-10 h-10 rounded-full transition-colors duration-200 z-20"
+          aria-label="Next slide"
+        >
+          <ChevronDown size={18} className="-rotate-90" />
+        </button>
       </div>
 
       {/* Bottom controls - single scroll cue */}

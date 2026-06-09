@@ -28,6 +28,11 @@ export const ANIM = {
   COUNTUP_DELAY:          1500,
   COUNTUP_DURATION:       1500,
 
+  // Image animation (Ken Burns effect)
+  IMAGE_ZOOM_SCALE: [1, 1.03],   // start, end scale (3% zoom)
+  IMAGE_ZOOM_DURATION: 6000,     // ms per image animation cycle
+  IMAGE_DRIFT: 0.01,             // 1% drift on axis (optional, subtle)
+
   // Slide transition (not load — simultaneous, no stagger)
   CONTENT_OUT:             250,  // fade out old content
   CONTENT_IN:              350,  // fade in new content

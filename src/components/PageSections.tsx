@@ -853,15 +853,15 @@ export const ServicePages = {
   AcademyOverview: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
     <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Academy Overview" description="InfinEth Academy is Ethiopia's practitioner-led engineering and ICT training center, delivering internationally aligned certifications backed by 20+ years of field execution experience." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
-        <SectionBlock title="Overview">
-          InfinEth Academy is Ethiopia's practitioner-led engineering and ICT training center, delivering internationally aligned certifications backed by 20+ years of field execution experience. Our training is delivered by engineers and technicians who have worked on live infrastructure projects across Ethiopia and East Africa. Primary focus: FOA-standard fiber optics certification programs. Secondary focus: Telecommunications and Industrial Automation training through our Center of Excellence.
-        </SectionBlock>
+         <SectionBlock title="Overview">
+           InfinEth Academy is Ethiopia's practitioner-led engineering and ICT training center, delivering internationally aligned certifications backed by 20+ years of field execution experience. Our training is delivered by engineers and technicians who have worked on live infrastructure projects across Ethiopia and East Africa. Primary focus: FOA-standard fiber optics certification programs. Secondary focus: Industrial Automation training through our Center of Excellence.
+         </SectionBlock>
         <PageCtaBar />
-        <RelatedServices links={[
-          { label: 'Fiber Optics Certification Programs (CFOT / CFOS)', path: '/academy/fiber-optics-certification' },
-          { label: 'Telecommunications & Industrial Automation Training', path: '/academy/telecom-automation-training' },
-          { label: 'Corporate & Institutional Training Partnerships', path: '/academy/institutional-partnerships' }
-        ]} />
+         <RelatedServices links={[
+           { label: 'Fiber Optics Certification Programs (CFOT / CFOS)', path: '/academy/fiber-optics-certification' },
+           { label: 'Industrial Automation Training', path: '/academy/telecom-automation-training' },
+           { label: 'Corporate & Institutional Training Partnerships', path: '/academy/institutional-partnerships' }
+         ]} />
       </div>
     </SubPageLayout>
   ),
@@ -890,15 +890,15 @@ export const ServicePages = {
       </div>
     </SubPageLayout>
   ),
-  AcademyTelecomAutomationTraining: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Telecommunications & Industrial Automation Training" description="Training programs for telecom operators, network engineers, industrial operators and technical staff." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
-      <div className="space-y-10">
-        <SectionBlock title="CENTER 1 — Telecommunications Training">
-          Wireless communications, network fundamentals, telecom systems operations. Relevant for telecom operators, network engineers, and field technicians.
-        </SectionBlock>
-        <SectionBlock title="CENTER 2 — Industrial Automation Training (Center of Excellence)">
-          DCS (Distributed Control Systems) and PLC (Programmable Logic Controllers). Relevant for manufacturing facilities, utility companies, and industrial operators.
-        </SectionBlock>
+   AcademyTelecomAutomationTraining: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
+     <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Industrial Automation Training" description="Training programs for industrial operators and technical staff." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
+       <div className="space-y-10">
+         <SectionBlock title="CENTER 1 — Telecommunications Training">
+           Wireless communications, network fundamentals, telecom systems operations. Relevant for telecom operators, network engineers, and field technicians.
+         </SectionBlock>
+         <SectionBlock title="CENTER 2 — Industrial Automation Training (Center of Excellence)">
+           DCS (Distributed Control Systems), SCADA (Supervisory Control and Data Acquisition) and PLC (Programmable Logic Controllers). Relevant for manufacturing facilities, utility companies, and industrial operators.
+         </SectionBlock>
         <div className="flex justify-center">
           <a href="/contact" className="inline-flex items-center justify-center rounded-full bg-brand-accent px-8 py-3 text-[0.85rem] font-semibold uppercase tracking-[0.2em] text-brand-primary hover:bg-white hover:text-brand-primary transition-colors">
             Inquire About Training Programs →
@@ -940,11 +940,11 @@ export const ServicePages = {
             Contact Us for Institutional Programs →
           </a>
         </div>
-        <RelatedServices links={[
-          { label: 'Academy Overview', path: '/academy/overview' },
-          { label: 'Fiber Optics Certification Programs (CFOT / CFOS)', path: '/academy/fiber-optics-certification' },
-          { label: 'Telecommunications & Industrial Automation Training', path: '/academy/telecom-automation-training' }
-        ]} />
+         <RelatedServices links={[
+           { label: 'Academy Overview', path: '/academy/overview' },
+           { label: 'Fiber Optics Certification Programs (CFOT / CFOS)', path: '/academy/fiber-optics-certification' },
+           { label: 'Industrial Automation Training', path: '/academy/telecom-automation-training' }
+         ]} />
       </div>
     </SubPageLayout>
   )

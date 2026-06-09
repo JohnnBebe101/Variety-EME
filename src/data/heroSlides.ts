@@ -28,39 +28,68 @@ export interface HeroSlide {
     secondary: { label: string; action: 'link'; target: string };
     tertiary?: { label: string; action: 'link'; target: string; subject?: string };
   };
+  // New fields for reconstructed first slide
+  mainHeading?: {
+    line1: { text: string; color: string };
+    line2?: { text: string; color: string };
+    line3?: { text: string; color: string };
+  };
+  subheading?: string;
+  primaryButtons?: Array<{ label: string; action: 'link' | 'scroll'; target: string }>;
+  secondaryButtons?: Array<{ label: string; action: 'link' | 'scroll'; target: string }>;
 }
 
 export const heroSlides: HeroSlide[] = [
   {
-    id: 1,
-    chapter: "Identity",
-    category: 'telecom',
-    image: "/assets/images/hero/hero-overview.webp",
-    fallbackGradient: "from-slate-900 via-slate-800 to-slate-950",
-    caption: "InfinEth Solutions PLC · Addis Ababa, Ethiopia",
-    eyebrow: {
-      icon: Sparkles,
-      text: "Ethiopia · East Africa · Since 2004",
-    },
-    headline: {
-      line1: { text: "Precise Engineering", color: "text-white" },
-      line2: { text: "Infinite Possibilities", color: "text-brand-accent" },
-    },
-    subtitle:
-      "Ethiopia's leading multidisciplinary engineering and ICT partner. " +
-      "Delivering integrated power, telecom and digital infrastructure " +
-      "since October 2004.",
-    proofChips: [
-      "5× ISO Certified",
-      "20+ Years Experience",
-      "Govt · NGO · Enterprise",
-    ],
-    cta: {
-      primary: { label: "Explore Our Services", action: "scroll", target: "#capabilities" },
-      secondary: { label: "About InfinEth", action: "link", target: "/about" },
-      tertiary: { label: "Request a Site Assessment", action: "link", target: "/contact", subject: "Site Assessment Request" },
-    },
+  id: 1,
+  chapter: "Identity",
+  category: 'telecom',
+  image: "/assets/images/hero/hero-overview.webp",
+  fallbackGradient: "from-slate-900 via-slate-800 to-slate-950",
+  caption: "InfinEth Solutions PLC · Addis Ababa, Ethiopia",
+  eyebrow: {
+    icon: Sparkles,
+    text: "Ethiopia · East Africa · Since 2004",
   },
+  // Keeping existing fields for backward compatibility
+  headline: {
+    line1: { text: "Precise Engineering", color: "text-white" },
+    line2: { text: "Infinite Possibilities", color: "text-brand-accent" },
+  },
+  subtitle:
+    "Ethiopia's leading multidisciplinary engineering and ICT partner. " +
+    "Delivering integrated power, telecom and digital infrastructure " +
+    "since October 2004.",
+  proofChips: [
+    "5× ISO Certified",
+    "20+ Years Experience",
+    "Govt · NGO · Enterprise",
+  ],
+  cta: {
+    primary: { label: "Explore Our Services", action: "scroll", target: "#capabilities" },
+    secondary: { label: "About InfinEth", action: "link", target: "/about" },
+    tertiary: { label: "Request a Site Assessment", action: "link", target: "/contact", subject: "Site Assessment Request" },
+  },
+  // New fields for reconstructed first slide
+  mainHeading: {
+    line1: { text: "Precision‑Driven Engineering", color: "text-white" },
+  },
+  subheading:
+    "Ethiopia's leading multidisciplinary engineering and ICT partner. " +
+    "Delivering integrated power, telecom and digital infrastructure " +
+    "since October 2004.",
+  primaryButtons: [
+    { label: "Telecommunications", action: "link", target: "/telecommunications" },
+    { label: "ICT", action: "link", target: "/ict-datacenter" },
+    { label: "Power", action: "link", target: "/power" },
+    { label: "MSP", action: "link", target: "/msp" },
+    { label: "Training", action: "link", target: "/academy" },
+  ],
+  secondaryButtons: [
+    { label: "ISO Certified", action: "link", target: "/iso" },
+    { label: "20+ Years Experience", action: "link", target: "/about" },
+  ],
+},
   {
     id: 2,
     chapter: "Telecom Proof",
