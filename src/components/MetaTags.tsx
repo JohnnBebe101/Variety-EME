@@ -11,10 +11,10 @@ interface MetaTagsProps {
 
 export const MetaTags: React.FC<MetaTagsProps> = ({ title, description, url, image, schema }) => {
   console.log(`Rendering MetaTags for title: ${title}`);
-  const siteName = "InfinEth Solutions";
+  const siteName = "Variety ElectroMechanical Engineering";
   const fullTitle = `${title} | ${siteName}`;
-  const defaultUrl = "https://infine-th.com"; // Replace with real domain
-  const defaultImage = "https://infine-th.com/og-image.jpg"; // Replace with real image
+  const defaultUrl = "https://varietyeme.com";
+  const defaultImage = "https://varietyeme.com/og-image.jpg";
 
   return (
     <Helmet>

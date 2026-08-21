@@ -3,19 +3,19 @@
 @import "./fonts.css";
 
 @theme {
-  --color-brand-primary: #0A1628;
-  --color-brand-accent: #00C2FF;
-  --color-brand-surface: #111D35;
-  --color-brand-muted: #8FA3BF;
-  --color-brand-foreground: #E8EFF8;
+  --color-brand-primary: #1B4D3E;
+  --color-brand-accent: #FF6B00;
+  --color-brand-surface: #0D2D24;
+  --color-brand-muted: #94A9A0;
+  --color-brand-foreground: #F0F5F2;
   
   --font-sans: "Inter", "system-ui", "sans-serif";
   --font-display: "Syne", "Inter", "sans-serif";
 }
 
 :root {
-  --brand-primary: #0A1628;
-  --brand-accent: #00C2FF;
+  --brand-primary: #1B4D3E;
+  --brand-accent: #FF6B00;
 }
 
 @media (prefers-reduced-motion: no-preference) {

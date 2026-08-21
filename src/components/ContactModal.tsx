@@ -171,7 +171,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, sub
                   </div>
                   <div>
                     <p className="text-[10px] font-semibold uppercase text-brand-muted mb-0.5">Phone</p>
-                    <p className="text-xs">+251 11 635 4312</p>
+                    <p className="text-xs">+251 11 000 0000</p>
                   </div>
                 </div>
                 
@@ -181,7 +181,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, sub
                   </div>
                   <div>
                     <p className="text-[10px] font-semibold uppercase text-brand-muted mb-0.5">Email</p>
-                    <p className="text-xs">infineth@infineth.com</p>
+                    <p className="text-xs">info@varietyeme.com</p>
                   </div>
                 </div>
               </div>

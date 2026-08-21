@@ -89,7 +89,7 @@ const AcademyPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: s
              Professional Training & Development
            </h2>
            <p className="text-brand-muted text-lg leading-relaxed">
-             InfinEth Academy delivers practitioner-led training programs in fiber optics and industrial automation that build the expertise your team needs.
+             Variety EME Academy delivers practitioner-led training programs in fiber optics and industrial automation that build the expertise your team needs.
            </p>
          </div>
        </section>
@@ -125,7 +125,7 @@ const AcademyPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: s
 
 
 
-      {/* Why InfinEth Strip */}
+      {/* Why Variety EME Strip */}
       <section className="py-16 px-12 lg:px-24 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">
@@ -157,7 +157,7 @@ const AcademyPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: s
         <div className="max-w-7xl mx-auto px-12 lg:px-24 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-2xl font-bold text-brand-foreground mb-2">
-              Ready to train with InfinEth Academy?
+              Ready to train with Variety EME Academy?
             </h3>
             <p className="text-brand-muted text-sm">
               Talk to our training specialists — no obligation, just expertise.

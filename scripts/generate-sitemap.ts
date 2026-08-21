@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 
-const DOMAIN = 'https://infine-th.com';
+const DOMAIN = 'https://varietyeme.com';
 
 const routes = [
   { path: '/', priority: '1.0' },

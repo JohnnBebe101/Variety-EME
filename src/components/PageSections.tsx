@@ -90,7 +90,7 @@ export const CorporatePages = {
               </div>
             </div>
           </div>
-          <div className="rounded-[3rem] overflow-hidden shadow-xl h-[400px] bg-slate-200"><img src="/assets/images/hero/hero-overview.webp" className="w-full h-full object-cover" alt="InfinEth Office" /></div>
+          <div className="rounded-[3rem] overflow-hidden shadow-xl h-[400px] bg-slate-200"><img src="/assets/images/hero/hero-overview.webp" className="w-full h-full object-cover" alt="Variety EME Office" /></div>
         </div>
         
         {/* Three Service Pillars */}
@@ -115,7 +115,7 @@ export const CorporatePages = {
           </div>
         </div>
         
-        {/* Why Partner With InfinEth */}
+        {/* Why Partner With Variety EME */}
         <div className="mb-12">
           <h3 className="text-2xl font-semibold text-brand-foreground mb-8">{t('corporate.identity.why_title')}</h3>
           <div className="grid md:grid-cols-2 gap-4">
@@ -317,7 +317,7 @@ Portfolio: ({ onBack, heroImage, gradientFallback }: PageProps) => {
           </div>
         </div>
         
-        {/* Why InfinEth */}
+        {/* Why Variety EME */}
         <div className="py-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6">
@@ -347,7 +347,7 @@ Portfolio: ({ onBack, heroImage, gradientFallback }: PageProps) => {
         {/* Download Company Profile */}
         <div className="py-8 flex justify-center">
           <a 
-            href="/assets/InfinEth_Condensed_Profile.pdf" 
+            href="/assets/Variety-EME-Company-Profile.pdf" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-brand-surface border border-white/10 px-8 py-4 rounded-xl hover:border-brand-accent hover:shadow-lg transition-all duration-300"
@@ -355,7 +355,7 @@ Portfolio: ({ onBack, heroImage, gradientFallback }: PageProps) => {
             <Download size={20} className="text-brand-accent" />
             <div className="text-left">
               <p className="text-sm font-semibold text-brand-foreground">Download Company Profile</p>
-              <p className="text-[10px] text-brand-muted">InfinEth Condensed Profile (PDF)</p>
+              <p className="text-[10px] text-brand-muted">Variety EME Company Profile (PDF)</p>
             </div>
             <ChevronRight size={16} className="text-brand-muted" />
           </a>
@@ -629,7 +629,7 @@ export const ServicePages = {
           '66 stations of optical transmission equipment installed and commissioned on three national routes: Addis Ababa–Mekele, Addis Ababa–Gonder, Addis Ababa–Sululta (Huawei / AAICTDA)'
         ]} />
         <CalloutBox>
-          <a href="/academy/fiber-optics-certification" className="underline hover:text-brand-accent">Train your team in fiber optics → FOA-certified programs at InfinEth Academy</a>
+          <a href="/academy/fiber-optics-certification" className="underline hover:text-brand-accent">Train your team in fiber optics → FOA-certified programs at Variety EME Academy</a>
         </CalloutBox>
         <PageCtaBar />
         <RelatedServices links={[
@@ -771,7 +771,7 @@ export const ServicePages = {
           ICT training programs and consultancy services for enterprise and institutional clients.
         </SectionBlock>
         <CalloutBox>
-          <a href="/academy" className="underline hover:text-brand-accent">View the full training and certification catalog at InfinEth Academy →</a>
+          <a href="/academy" className="underline hover:text-brand-accent">View the full training and certification catalog at Variety EME Academy →</a>
         </CalloutBox>
         <PageCtaBar />
         <RelatedServices links={[
@@ -851,10 +851,10 @@ export const ServicePages = {
     </SubPageLayout>
   ),
   AcademyOverview: ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
-    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Academy Overview" description="InfinEth Academy is Ethiopia's practitioner-led engineering and ICT training center, delivering internationally aligned certifications backed by 20+ years of field execution experience." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
+    <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Academy Overview" description="Variety EME Academy is Ethiopia's practitioner-led engineering and ICT training center, delivering internationally aligned certifications backed by 20+ years of field execution experience." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
          <SectionBlock title="Overview">
-           InfinEth Academy is Ethiopia's practitioner-led engineering and ICT training center, delivering internationally aligned certifications backed by 20+ years of field execution experience. Our training is delivered by engineers and technicians who have worked on live infrastructure projects across Ethiopia and East Africa. Primary focus: FOA-standard fiber optics certification programs. Secondary focus: Industrial Automation training through our Center of Excellence.
+           Variety EME Academy is Ethiopia's practitioner-led engineering and ICT training center, delivering internationally aligned certifications backed by 20+ years of field execution experience. Our training is delivered by engineers and technicians who have worked on live infrastructure projects across Ethiopia and East Africa. Primary focus: FOA-standard fiber optics certification programs. Secondary focus: Industrial Automation training through our Center of Excellence.
          </SectionBlock>
         <PageCtaBar />
          <RelatedServices links={[
@@ -933,7 +933,7 @@ export const ServicePages = {
     <SubPageLayout onBack={onBack} tag="Academy & Managed Services" title="Corporate & Institutional Training Partnerships" description="Bulk training programs and long-term training partnerships for telecom operators, NGOs, government ministries, and TVET institutions." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
       <div className="space-y-10">
         <SectionBlock title="Capability Detail">
-          Bulk training programs and long-term training partnerships for telecom operators, NGOs, government ministries, and TVET institutions. InfinEth Academy can design and deliver customized training programs for organizational workforce development.
+          Bulk training programs and long-term training partnerships for telecom operators, NGOs, government ministries, and TVET institutions. Variety EME Academy can design and deliver customized training programs for organizational workforce development.
         </SectionBlock>
         <div className="flex justify-center">
           <a href="/contact" className="inline-flex items-center justify-center rounded-full bg-brand-accent px-8 py-3 text-[0.85rem] font-semibold uppercase tracking-[0.2em] text-brand-primary hover:bg-white hover:text-brand-primary transition-colors">

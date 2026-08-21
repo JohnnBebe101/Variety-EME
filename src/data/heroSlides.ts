@@ -1,5 +1,5 @@
 // src/data/heroSlides.ts
-// Authoritative source: InfinEth_Condensed_Profile.pdf
+// Authoritative source: Variety-EME-Company-Profile.pdf
 // All copy is final and approved — do NOT paraphrase
 
 import { LucideIcon, Sparkles, Signal, Zap, Server, GraduationCap, Briefcase } from 'lucide-react';
@@ -46,7 +46,7 @@ export const heroSlides: HeroSlide[] = [
   category: 'telecom',
   image: "/assets/images/hero/hero-overview.webp",
   fallbackGradient: "from-slate-900 via-slate-800 to-slate-950",
-  caption: "InfinEth Solutions PLC · Addis Ababa, Ethiopia",
+  caption: "Variety ElectroMechanical Engineering · Addis Ababa, Ethiopia",
   eyebrow: {
     icon: Sparkles,
     text: "Ethiopia · East Africa · Since 2004",
@@ -67,7 +67,7 @@ export const heroSlides: HeroSlide[] = [
   ],
   cta: {
     primary: { label: "Explore Our Services", action: "scroll", target: "#capabilities" },
-    secondary: { label: "About InfinEth", action: "link", target: "/about" },
+    secondary: { label: "About Variety EME", action: "link", target: "/about" },
     tertiary: { label: "Request a Site Assessment", action: "link", target: "/contact", subject: "Site Assessment Request" },
   },
   // New fields for reconstructed first slide
@@ -147,7 +147,7 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     id: 4,
-    chapter: "Why InfinEth",
+    chapter: "Why Variety EME",
     category: 'ict',
     image: "/assets/images/hero/hero-ict.webp",
     fallbackGradient: "from-cyan-900 via-teal-900 to-gray-900",
@@ -164,7 +164,7 @@ export const heroSlides: HeroSlide[] = [
     subtitle:
       "Power, telecom and ICT under one roof. No siloed vendors, " +
       "no coordination gaps. From MoFED regional data centers to " +
-      "500-node campus networks, InfinEth delivers the full stack, " +
+      "500-node campus networks, Variety EME delivers the full stack, " +
       "turnkey, safety-led and on time.",
     proofChips: ["MoFED", "Huawei", "OXFAM", "Clinton Foundation", "UN"],
     proofChipsLabel: "ICT & MSP Clients",

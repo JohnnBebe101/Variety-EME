@@ -89,7 +89,7 @@ const PowerPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: str
             End-to-End Power Solutions
           </h2>
           <p className="text-brand-muted text-lg leading-relaxed">
-            From high-voltage transmission infrastructure to rural electrification and backup power systems — InfinEth powers Ethiopian communities and enterprises.
+            From high-voltage transmission infrastructure to rural electrification and backup power systems — Variety EME powers Ethiopian communities and enterprises.
           </p>
         </div>
       </section>
@@ -145,7 +145,7 @@ const PowerPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: str
         </div>
       </section>
 
-      {/* Why InfinEth Strip */}
+      {/* Why Variety EME Strip */}
       <section className="py-16 px-12 lg:px-24 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">

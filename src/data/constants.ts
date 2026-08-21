@@ -9,16 +9,16 @@ import {
 import { PageID } from '../types';
 
 export const SITE = {
-  name: "InfinEth Solutions",
-  tagline: "Infinite Possibilities in Engineering & ICT",
-  url: "https://infine-th.com",
-  logoText: "InfinEth",
-  logoSub: "Infinite Possibilities",
-  copyright: `© ${new Date().getFullYear()} InfinEth Solutions`,
+  name: "Variety ElectroMechanical Engineering",
+  tagline: "Bridging market gaps in the electromechanical sector with innovative and intelligent solutions",
+  url: "https://varietyeme.com",
+  logoText: "Variety EME",
+  logoSub: "Innovative Electromechanical Solutions",
+  copyright: `© ${new Date().getFullYear()} Variety ElectroMechanical Engineering`,
   contact: {
-    phone: "+251 11 635 4312",
-    address: "Bole Sub-city, Woreda 04, House No. 100\nHaile Gebreselassie Avenue, Sr. Gete M. Bldg, 3rd floor\nAddis Ababa, Ethiopia",
-    email: "infineth@infineth.com"
+    phone: "+251 11 000 0000",
+    address: "Bole Sub-city, Addis Ababa, Ethiopia",
+    email: "info@varietyeme.com"
   }
 };
 

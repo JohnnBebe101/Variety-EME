@@ -93,7 +93,7 @@ const TelecomPage: React.FC<ServicePageProps> = ({ onNavigate }) => {
             Comprehensive Telecom Engineering Solutions
           </h2>
           <p className="text-brand-muted text-lg leading-relaxed">
-            From nationwide tower rollout and fiber optic network deployment to operations and maintenance — InfinEth delivers end-to-end telecommunications infrastructure across Ethiopia and East Africa.
+            From nationwide tower rollout and fiber optic network deployment to operations and maintenance — Variety EME delivers end-to-end telecommunications infrastructure across Ethiopia and East Africa.
           </p>
         </div>
       </section>
@@ -149,7 +149,7 @@ const TelecomPage: React.FC<ServicePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Why InfinEth Strip */}
+      {/* Why Variety EME Strip */}
       <section className="py-16 px-12 lg:px-24 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">

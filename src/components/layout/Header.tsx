@@ -10,9 +10,9 @@ import { PageID } from '../../types';
 const ANNOUNCEMENT_PHRASES = [
   "ISO Certified · Quality, Safety & Security Assured",
   "Turnkey Engineering · Assess · Design · Build · Commission · Support",
-  "One Partner. Power, Telecom & ICT — Condensed Into One Clear Offer.",
-  "Safety-Led · Customer-First · East Africa's Engineering Partner Since 2004",
-  "1,200+ Projects Delivered · 450+ Field Staff · 99.9% Uptime",
+  "One Partner. Electromechanical, Power & HVAC — Condensed Into One Clear Offer.",
+  "Safety-Led · Customer-First · East Africa's Electromechanical Engineering Partner",
+  "Innovative & Intelligent Solutions · Bridging Market Gaps in the EME Sector",
 ];
 
 interface HeaderProps {

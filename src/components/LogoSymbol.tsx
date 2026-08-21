@@ -9,8 +9,8 @@ interface LogoSymbolProps {
 }
 
 export const LogoSymbol: React.FC<LogoSymbolProps> = ({ className = "", forceInvert = false, isFullColor = false }) => {
-  const primaryColor = isFullColor ? "#00C2FF" : (forceInvert ? "#FFFFFF" : "#0A1628");
-  const secondaryColor = isFullColor ? "#0A1628" : (forceInvert ? "#FFFFFF" : "#00C2FF");
+  const primaryColor = isFullColor ? "var(--color-brand-accent)" : (forceInvert ? "#FFFFFF" : "var(--color-brand-primary)");
+  const secondaryColor = isFullColor ? "var(--color-brand-primary)" : (forceInvert ? "#FFFFFF" : "var(--color-brand-accent)");
   
   return (
     <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">

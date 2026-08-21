@@ -29,8 +29,8 @@
     "infrastructure": "Infrastructure",
     "innovation": "Innovation",
     "academy": "Training",
-    "copyright": "© 2026 InfinEth Solutions. All Rights Reserved.",
-    "heroTitle": "Precise Engineering. Infinite Possibilities.",
+    "copyright": "© 2026 Variety ElectroMechanical Engineering. All Rights Reserved.",
+    "heroTitle": "Engineering Electromechanical Excellence.",
     "heroSub": "Ethiopia's leading ICT & Engineering solutions partner",
     "telecom": "Telecom",
     "power": "Power",
@@ -72,7 +72,7 @@
       "subtitle": "Ethiopia's leader in Telecom Infrastructure & ICT Systems Design."
     },
     "slide2": {
-      "title": "Infinite Power, Resilient Grids.",
+      "title": "Reliable Power, Resilient Grids.",
       "subtitle": "Industrial Electrification and Renewable Energy Solutions."
     },
     "slide3": {
@@ -87,7 +87,7 @@
     "uptime": "Uptime"
   },
   "footer": {
-    "tagline": "Infinite Possibilities in Engineering & ICT.",
+    "tagline": "Bridging market gaps in the electromechanical sector with innovative and intelligent solutions.",
     "address": "Bole, Addis Ababa, Ethiopia"
   },
   "nav": {
@@ -218,7 +218,7 @@
         { "location": "Dire Dawa", "role": "Eastern Logistics Hub", "detail": "Port corridor, Somali region support" },
         { "location": "Mekelle", "role": "Northern Support Center", "detail": "Tigray region service & maintenance" }
       ],
-"why_title": "Why Partner With InfinEth?",
+"why_title": "Why Partner With Variety EME?",
       "why": [
         "One partner across engineering, telecom and ICT instead of siloed vendors",
         "Strong field delivery in towers, power systems, cabling, integration and commissioning",

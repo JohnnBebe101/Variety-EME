@@ -66,7 +66,7 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
                 Comprehensive Facility Management
               </h2>
               <p className="text-brand-muted text-lg leading-relaxed mb-8">
-                From ICT infrastructure to fire safety, HVAC, and power solutions — InfinEth delivers integrated managed services that keep your facilities running safely, efficiently, and compliant.
+                From ICT infrastructure to fire safety, HVAC, and power solutions — Variety EME delivers integrated managed services that keep your facilities running safely, efficiently, and compliant.
               </p>
               <p className="text-brand-muted text-lg leading-relaxed">
                 Our managed services portfolio covers the entire spectrum of facility operations, ensuring you have a single trusted partner for all your infrastructure needs.
@@ -296,7 +296,7 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
               </section>
             )}
 
-            {/* Why InfinEth Strip */}
+            {/* Why Variety EME Strip */}
             <section className="py-12 border-t border-white/10">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">

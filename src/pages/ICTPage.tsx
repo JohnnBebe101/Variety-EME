@@ -93,7 +93,7 @@ const ICTPage: React.FC<ServicePageProps> = ({ onNavigate }) => {
             Enterprise ICT Solutions
           </h2>
           <p className="text-brand-muted text-lg leading-relaxed">
-            From data center design to cybersecurity and system development — InfinEth delivers integrated ICT infrastructure that powers Ethiopian enterprises.
+            From data center design to cybersecurity and system development — Variety EME delivers integrated ICT infrastructure that powers Ethiopian enterprises.
           </p>
         </div>
       </section>
@@ -149,7 +149,7 @@ const ICTPage: React.FC<ServicePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Why InfinEth Strip */}
+      {/* Why Variety EME Strip */}
       <section className="py-16 px-12 lg:px-24 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">

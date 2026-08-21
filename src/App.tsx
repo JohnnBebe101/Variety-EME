@@ -147,8 +147,8 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": SITE.name,
-      "url": "https://infine-th.com",
-      "logo": "https://infine-th.com/logo.png",
+      "url": "https://varietyeme.com",
+      "logo": "https://varietyeme.com/logo.png",
       "description": heroT('heroSub'),
       "address": {
         "@type": "PostalAddress",
@@ -160,7 +160,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
     switch(currentPage) {
       case 'identity': return (
         <>
-          <MetaTags title={t('nav.identity')} description="InfinEth Solutions Corporate Identity" />
+          <MetaTags title={t('nav.identity')} description="Variety EME Corporate Identity" />
           <CorporatePages.Identity onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
@@ -190,7 +190,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       );
       case 'about': return (
         <>
-          <MetaTags title={t('nav.identity')} description="InfinEth Solutions Corporate Identity" />
+          <MetaTags title={t('nav.identity')} description="Variety EME Corporate Identity" />
           <CorporatePages.Identity onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
@@ -304,7 +304,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       );
       case 'academy_overview': return (
         <>
-          <MetaTags title="Training Overview" description="InfinEth Training is Ethiopia's practitioner-led engineering and ICT training center." />
+          <MetaTags title="Training Overview" description="Variety EME Training is Ethiopia's practitioner-led engineering and ICT training center." />
           <ServicePages.AcademyOverview onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-academy.webp" gradientFallback="from-black/5 to-transparent" currentPath="/academy/overview" onNavigate={(path) => navigateTo('home', undefined, path)} />
         </>
       );
@@ -340,13 +340,13 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       );
       case 'privacy_policy': return (
         <>
-          <MetaTags title="Privacy Policy" description="InfinEth Solutions Privacy Policy" />
+          <MetaTags title="Privacy Policy" description="Variety EME Privacy Policy" />
           <LegalPage type="privacy" onNavigate={navigateTo} />
         </>
       );
       case 'terms_of_service': return (
         <>
-          <MetaTags title="Terms of Service" description="InfinEth Solutions Terms of Service" />
+          <MetaTags title="Terms of Service" description="Variety EME Terms of Service" />
           <LegalPage type="terms" onNavigate={navigateTo} />
         </>
       );
@@ -364,7 +364,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       );
       case 'academy': return (
         <>
-          <MetaTags title={t('nav.academy')} description="InfinEth Training - Practitioner-led training" />
+          <MetaTags title={t('nav.academy')} description="Variety EME Training - Practitioner-led training" />
           <AcademyPage onNavigate={navigateTo} />
         </>
       );

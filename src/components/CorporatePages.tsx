@@ -64,7 +64,7 @@ export const CorporatePages = {
               </div>
             </div>
           </div>
-          <div className="rounded-[3rem] overflow-hidden shadow-xl h-[400px] bg-slate-200"><img src="/assets/images/hero/hero-overview.webp" className="w-full h-full object-cover" alt="InfinEth Office" /></div>
+          <div className="rounded-[3rem] overflow-hidden shadow-xl h-[400px] bg-slate-200"><img src="/assets/images/hero/hero-overview.webp" className="w-full h-full object-cover" alt="Variety EME Office" /></div>
         </div>
         
         <div className="mb-12">
@@ -357,7 +357,7 @@ export const CorporatePages = {
         
         <div className="py-8 flex justify-center">
           <a 
-            href="/assets/InfinEth_Condensed_Profile.pdf" 
+            href="/assets/Variety-EME-Company-Profile.pdf" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-brand-surface border border-white/10 px-8 py-4 rounded-xl hover:border-brand-accent hover:shadow-lg transition-all duration-300"
@@ -365,7 +365,7 @@ export const CorporatePages = {
             <Download size={20} className="text-brand-accent" />
             <div className="text-left">
               <p className="text-sm font-semibold text-brand-foreground">Download Company Profile</p>
-              <p className="text-[10px] text-brand-muted">InfinEth Condensed Profile (PDF)</p>
+              <p className="text-[10px] text-brand-muted">Variety EME Company Profile (PDF)</p>
             </div>
             <ChevronRight size={16} className="text-brand-muted" />
           </a>

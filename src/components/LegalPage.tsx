@@ -27,7 +27,7 @@ const privacyContent: LegalContent = {
     {
       title: '1. Introduction',
       content: [
-        'InfinEth Solutions Plc ("we," "our," or "us") operates as an Ethiopian-based engineering and ICT solutions provider. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, engage our services, or interact with our business operations in Ethiopia and the wider East African region.',
+        'Variety ElectroMechanical Engineering ("we," "our," or "us") operates as an Ethiopian-based engineering and ICT solutions provider. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, engage our services, or interact with our business operations in Ethiopia and the wider East African region.',
         'We are committed to protecting the privacy and confidentiality of our clients, partners, employees, and website visitors. By accessing our services, you agree to the terms of this Privacy Policy.'
       ]
     },
@@ -76,7 +76,7 @@ const privacyContent: LegalContent = {
     {
       title: '7. Contact Information',
       content: [
-        'InfinEth Solutions Plc\nBole Road, Addis Ababa, Ethiopia\nEmail: infineth@infineth.com\nPhone: +251 11 635 4312',
+        'Variety ElectroMechanical Engineering\nBole Sub-city, Addis Ababa, Ethiopia\nEmail: info@varietyeme.com\nPhone: +251 11 000 0000',
         'Our office is open Sunday through Thursday, 8:00 AM to 6:00 PM East Africa Time.',
         'For data protection inquiries, please specify "Privacy" in your subject line.'
       ]
@@ -100,14 +100,14 @@ const termsContent: LegalContent = {
       title: '1. Acceptance of Terms',
       content: [
         'By accessing our website, engaging our services, or submitting a project inquiry, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our website or services.',
-        'InfinEth Solutions Plc provides engineering, telecommunications, power infrastructure, ICT solutions, and professional training services primarily within Ethiopia and the broader East African region. These terms apply to all clients, partners, and website visitors.'
+        'Variety ElectroMechanical Engineering provides engineering, telecommunications, power infrastructure, ICT solutions, and professional training services primarily within Ethiopia and the broader East African region. These terms apply to all clients, partners, and website visitors.'
       ]
     },
     {
       title: '2. Service Description',
       content: [
-        'InfinEth delivers integrated engineering solutions across four main divisions: Telecommunications (network rollout, fiber optics, tower infrastructure), Power & Energy (transmission, distribution, backup systems), ICT & Data Centers (infrastructure design, enterprise networking, system integration), and Academy (professional certification training, workforce development).',
-        'Specific service scope, timelines, deliverables, and pricing are detailed in individual project proposals and service agreements signed between InfinEth and the client before work commences.'
+        'Variety EME delivers integrated engineering solutions across four main divisions: Telecommunications (network rollout, fiber optics, tower infrastructure), Power & Energy (transmission, distribution, backup systems), ICT & Data Centers (infrastructure design, enterprise networking, system integration), and Academy (professional certification training, workforce development).',
+        'Specific service scope, timelines, deliverables, and pricing are detailed in individual project proposals and service agreements signed between Variety EME and the client before work commences.'
       ]
     },
     {
@@ -115,14 +115,14 @@ const termsContent: LegalContent = {
       content: [
         'When using our website, you agree to provide accurate information, refrain from attempting to breach security or access unauthorized systems, and not use the site for any unlawful purpose.',
         'Clients engaging our services agree to provide necessary site access, technical information, and timely responses to enable project execution. Delays caused by client-side requirements may affect project timelines and costs.',
-        'Any technical data, designs, or documentation provided by InfinEth remains our intellectual property unless explicitly transferred through written agreement.'
+        'Any technical data, designs, or documentation provided by Variety EME remains our intellectual property unless explicitly transferred through written agreement.'
       ]
     },
     {
       title: '4. Intellectual Property',
       content: [
-        'All content on this website, including text, graphics, logos, images, and software, is the property of InfinEth Solutions Plc and is protected by Ethiopian and international copyright laws.',
-        'Project designs, technical drawings, network architectures, and methodology documents created by InfinEth remain our intellectual property unless a separate written transfer agreement specifies otherwise.',
+        'All content on this website, including text, graphics, logos, images, and software, is the property of Variety ElectroMechanical Engineering and is protected by Ethiopian and international copyright laws.',
+        'Project designs, technical drawings, network architectures, and methodology documents created by Variety EME remain our intellectual property unless a separate written transfer agreement specifies otherwise.',
         'You may not reproduce, distribute, modify, or display our proprietary materials without prior written consent.'
       ]
     },
@@ -137,7 +137,7 @@ const termsContent: LegalContent = {
     {
       title: '6. Limitation of Liability',
       content: [
-        'InfinEth services are delivered with professional expertise and within industry standards applicable in Ethiopia. While we strive for excellence, our liability is limited to the scope and value of the specific services contracted.',
+        'Variety EME services are delivered with professional expertise and within industry standards applicable in Ethiopia. While we strive for excellence, our liability is limited to the scope and value of the specific services contracted.',
         'We are not liable for consequential, incidental, or indirect damages, including lost profits or business interruption, except where explicitly provided in signed service agreements.',
         'Liability for specific projects is capped at the total fees paid for that particular engagement, unless gross negligence is proven.'
       ]
@@ -146,7 +146,7 @@ const termsContent: LegalContent = {
       title: '7. Termination',
       content: [
         'Either party may terminate service agreements with written notice. Termination terms, including payment for work completed and any applicable termination fees, are governed by the specific contract signed for each project.',
-        'InfinEth reserves the right to terminate services if client-provided information is materially inaccurate, site access is denied, or payment terms are persistently violated.',
+        'Variety EME reserves the right to terminate services if client-provided information is materially inaccurate, site access is denied, or payment terms are persistently violated.',
         'Upon termination, all intellectual property rights previously transferred (if any) remain with the respective party, and outstanding payments become immediately due.'
       ]
     },
@@ -161,8 +161,8 @@ const termsContent: LegalContent = {
     {
       title: '9. Contact Information',
       content: [
-        'InfinETH Solutions Plc\nBole Road, Addis Ababa, Ethiopia\nEmail: infineth@infineth.com\nPhone: +251 11 635 4312',
-        'For contractual inquiries, please contact our Operations Department. For technical support related to academy services, contact training@infineth.com.',
+        'Variety ElectroMechanical Engineering\nBole Sub-city, Addis Ababa, Ethiopia\nEmail: info@varietyeme.com\nPhone: +251 11 000 0000',
+        'For contractual inquiries, please contact our Operations Department. For technical support related to academy services, contact training@varietyeme.com.',
         'Our office hours are Sunday through Thursday, 8:00 AM to 6:00 PM East Africa Time.'
       ]
     }
