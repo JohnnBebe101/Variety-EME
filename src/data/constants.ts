@@ -4,7 +4,11 @@ import {
   Server, 
   Zap, 
   GraduationCap,
-  Wrench
+  Wrench,
+  Shield,
+  Cpu,
+  Headphones,
+  Truck
 } from 'lucide-react';
 import { PageID } from '../types';
 
@@ -189,4 +193,164 @@ export const ISO_DATA: ISOEntry[] = [
   { id: "45001", standard: "ISO 45001:2018", title: "Occupational Health & Safety Management", description: "Zero-accident operating culture.", status: "certified" },
   { id: "27001", standard: "ISO 27001:2022", title: "Information Security Management", description: "Protecting client and operational data.", status: "certified" },
   { id: "ecovadis", standard: "EcoVadis", title: "Sustainable Supply Chain", description: "The Global Standard for Resilient, Sustainable Supply Chains.", status: "rated" }
+];
+
+export interface HomeServiceCard {
+  title: string;
+  description: string;
+  image: string;
+  path: string;
+  page: PageID;
+  icon: React.ComponentType<{ size?: number }>;
+}
+
+export const HOME_SERVICE_CARDS: HomeServiceCard[] = [
+  {
+    title: 'Telecommunications',
+    description: 'Mobile rollout, fiber optics, tower construction, O&M, and warehouse management for national carriers.',
+    image: '/assets/images/hero/telecom.webp',
+    path: '/telecommunications',
+    page: 'telecommunications',
+    icon: Radio
+  },
+  {
+    title: 'Power & Energy',
+    description: 'Transmission, distribution, minigrids, backup power systems, and building electromechanical works.',
+    image: '/assets/images/hero/power.webp',
+    path: '/power',
+    page: 'power',
+    icon: Zap
+  },
+  {
+    title: 'ICT & Data Center',
+    description: 'Data center design, enterprise networks, cybersecurity, system development, and managed services.',
+    image: '/assets/images/hero/data-center.webp',
+    path: '/ict-datacenter',
+    page: 'ict_datacenter',
+    icon: Server
+  }
+];
+
+export interface TestimonialData {
+  quote: string;
+  author: string;
+  designation: string;
+  avatar: string;
+}
+
+export const TESTIMONIAL_DATA: TestimonialData = {
+  quote: "Variety EME delivered our national fiber backbone project ahead of schedule and within budget. Their technical expertise and commitment to quality are unmatched in the region.",
+  author: "Dr. Abraham Belay",
+  designation: "Former Minister of Innovation & Technology, Ethiopia",
+  avatar: "/assets/images/testimonial/abraham-belay.webp"
+};
+
+export interface WhatWeOfferItem {
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ size?: number }>;
+  path: string;
+}
+
+export const WHAT_WE_OFFER_ITEMS: WhatWeOfferItem[] = [
+  {
+    title: 'Advanced Technology',
+    description: 'Cutting-edge engineering solutions leveraging the latest innovations in telecommunications, power systems, and ICT infrastructure.',
+    icon: Cpu,
+    path: '/ict-datacenter'
+  },
+  {
+    title: 'Expert Engineers',
+    description: 'Our team of certified professionals brings decades of experience across complex electromechanical projects in East Africa.',
+    icon: Shield,
+    path: '/telecommunications'
+  },
+  {
+    title: 'Customer Support',
+    description: '24/7 dedicated support with local presence, ensuring rapid response and continuous operation of critical infrastructure.',
+    icon: Headphones,
+    path: '/msp'
+  },
+  {
+    title: 'Delivery On Time',
+    description: 'Proven track record of on-time project delivery through disciplined project management and efficient execution methodologies.',
+    icon: Truck,
+    path: '/power'
+  }
+];
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export const FAQ_DATA: FAQItem[] = [
+  {
+    question: 'What sectors does Variety EME specialize in?',
+    answer: 'We specialize in Telecommunications, Power & Energy, ICT & Data Center infrastructure, and Managed Services. Our integrated approach allows us to deliver end-to-end solutions across these sectors, from concept and design through construction, commissioning, and ongoing operations & maintenance.'
+  },
+  {
+    question: 'Does Variety EME operate outside Ethiopia?',
+    answer: 'While our headquarters and primary operations are in Addis Ababa, Ethiopia, we have executed projects across East Africa and maintain partnerships with global technology providers (Nokia, Huawei, Ericsson, ABB, etc.) that enable us to deliver international-standard solutions throughout the region.'
+  },
+  {
+    question: 'What certifications does Variety EME hold?',
+    answer: 'We are certified to ISO 9001:2015 (Quality Management), ISO 45001:2018 (Occupational Health & Safety), and ISO 27001:2022 (Information Security). We also hold an EcoVadis sustainability rating, demonstrating our commitment to responsible and sustainable business practices.'
+  },
+  {
+    question: 'How does Variety EME ensure project quality and safety?',
+    answer: 'Quality and safety are embedded in our ISO-certified management systems. We follow a rigorous Assess-Design-Build-Commission-Support methodology with independent quality audits at each phase. Our HSE programs include daily toolbox talks, incident reporting, and zero-accident targets on all sites.'
+  },
+  {
+    question: 'Can Variety EME handle turnkey EPC projects?',
+    answer: 'Yes. We provide full Engineering, Procurement, and Construction (EPC) services for telecommunications towers, fiber optic networks, power transmission/distribution, substations, data centers, and building electromechanical systems. Our in-house capabilities cover design, procurement, construction, testing, and commissioning.'
+  },
+  {
+    question: 'What training programs does Variety EME Academy offer?',
+    answer: 'Our Academy offers FOA-aligned Fiber Optics Certification (CFOT/CFOS), Telecommunications & Industrial Automation training, and customized institutional partnership programs. Courses combine theoretical instruction with hands-on practice in our dedicated training facilities.'
+  }
+];
+
+export interface NewsItem {
+  id: number;
+  title: string;
+  excerpt: string;
+  image: string;
+  category: string;
+  date: string;
+  readTime: string;
+  path: string;
+}
+
+export const NEWS_DATA: NewsItem[] = [
+  {
+    id: 1,
+    title: 'Variety EME Completes 400kV Transmission Line for Ethiopian Electric Power',
+    excerpt: 'Successfully delivered the 285km Welaita-Sodo 400kV double-circuit transmission line project, strengthening Ethiopia\'s national grid connectivity and enabling renewable energy integration.',
+    image: '/assets/images/news/transmission-line.webp',
+    category: 'Power & Energy',
+    date: '2026-07-15',
+    readTime: '5 min read',
+    path: '/news/400kv-transmission-line-complete'
+  },
+  {
+    id: 2,
+    title: 'Nokia and Variety EME Partner on 5G Rural Connectivity Initiative',
+    excerpt: 'Strategic collaboration to deploy 5G fixed wireless access across 200+ rural sites in Ethiopia, bridging the digital divide for underserved communities.',
+    image: '/assets/images/news/nokia-partnership.webp',
+    category: 'Telecommunications',
+    date: '2026-07-03',
+    readTime: '4 min read',
+    path: '/news/nokia-5g-rural-connectivity'
+  },
+  {
+    id: 3,
+    title: 'New Data Center Certification Program Launched at Variety EME Academy',
+    excerpt: 'Industry-first certified data center operations curriculum developed with Uptime Institute, addressing critical skills gap in East Africa\'s growing digital infrastructure sector.',
+    image: '/assets/images/news/academy-certification.webp',
+    category: 'Training',
+    date: '2026-06-22',
+    readTime: '6 min read',
+    path: '/news/academy-data-center-certification'
+  }
 ];

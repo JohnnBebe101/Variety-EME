@@ -6,6 +6,7 @@ import { ANIM } from '../../data/animationConstants';
 import { useSlideTimer } from '../../hooks/useSlideTimer';
 import HeroSlideContent from './HeroSlideContent';
 import ProjectProofWidget from './PortfolioWidget';
+import { HeroStaticLayout } from './HeroStaticLayout';
 import { PageID } from '../../types';
 
 function generateSrcSet(basePath: string): string {
@@ -21,9 +22,10 @@ function generateSrcSet(basePath: string): string {
 
 interface HeroSectionProps {
   onNavigate?: (page: PageID, hash?: string, routePath?: string) => void;
+  mode?: 'slider' | 'static';
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, mode = 'slider' }) => {
   const { currentSlide, progress, isPaused, pause, resume, goToSlide } = useSlideTimer(heroSlides.length);
   
   const activeSlide = heroSlides[currentSlide];
@@ -49,7 +51,37 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentSlide, goToSlide]);
 
-return (
+  // Static mode - render HeroStaticLayout
+  if (mode === 'static') {
+    return (
+      <section 
+        className="relative h-[85vh] md:h-screen min-h-[700px] w-full overflow-hidden bg-slate-950"
+      >
+        {/* Static LCP background - no motion wrapper for immediate render */}
+        <div className="absolute inset-0">
+          <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.fallbackGradient} opacity-50`} />
+          <img
+            src={activeSlide.image}
+            srcSet={generateSrcSet(activeSlide.image)}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
+            alt={activeSlide.caption}
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            width="1920"
+            height="1080"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/25 to-brand-primary/80" />
+        </div>
+       
+        <HeroStaticLayout activeSlide={activeSlide} onNavigate={onNavigate} />
+      </section>
+    );
+  }
+
+  // Slider mode (original behavior)
+  return (
     <section 
       className="relative h-[85vh] md:h-screen min-h-[700px] w-full overflow-hidden bg-slate-950"
       onMouseEnter={pause}

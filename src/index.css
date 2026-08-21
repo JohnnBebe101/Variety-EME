@@ -11,6 +11,7 @@
   
   --font-sans: "Inter", "system-ui", "sans-serif";
   --font-display: "Syne", "Inter", "sans-serif";
+  --font-rubik: "Rubik", "Inter", "system-ui", "sans-serif";
 }
 
 :root {
@@ -32,6 +33,10 @@ body {
   font-display: swap;
   background-color: var(--color-brand-primary);
   color: var(--color-brand-foreground);
+}
+
+.font-rubik {
+  font-family: var(--font-rubik);
 }
 
 @keyframes marquee {

@@ -32,7 +32,15 @@ import { ServiceCard } from './components/ServiceCard';
 import { ContactModal } from './components/ContactModal';
 import { CountUp } from './components/CountUp';
 import { Section } from './components/Section';
-import { SuccessStoriesSection } from './components/SuccessStoriesSection';
+import { OurServices } from './components/home/OurServices';
+import { TestimonialStrip } from './components/home/TestimonialStrip';
+import { WhatWeOffer } from './components/home/WhatWeOffer';
+import { RecentProjects } from './components/home/RecentProjects';
+import { CTABanner } from './components/home/CTABanner';
+import { FAQSection } from './components/home/FAQSection';
+import { PartnersSection } from './components/home/PartnersSection';
+import { ContactQuoteForm } from './components/home/ContactQuoteForm';
+import { RecentNews } from './components/home/RecentNews';
 import { CorporatePages } from './components/CorporatePages';
 import { 
   InfrastructurePages, 
@@ -435,8 +443,9 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
             description={heroT('heroSub')}
             schema={organizationSchema}
           />
-          <HeroSection onNavigate={navigateTo} />
-          <SuccessStoriesSection onNavigate={navigateTo} />
+          <HeroSection onNavigate={navigateTo} mode="static" />
+          <OurServices onNavigate={navigateTo} />
+<TestimonialStrip />
           <ClientTrustBar />
           
           <Section className="bg-brand-primary overflow-hidden border-b border-white/5">
@@ -446,40 +455,9 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
             
             <div className="w-16 h-px bg-brand-accent/30 mx-auto" />
             
-<Section id="capabilities" className="bg-brand-primary py-10">
-                <div className="flex flex-col lg:flex-row justify-between items-end mb-8 gap-4">
-                  <div className="max-w-xl"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2 border-l-2 border-brand-accent pl-3`}>Core Capabilities</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>Engineering, ICT & Academy solutions for Ethiopia's growth.</h2></div>
-                  <p className="text-sm text-gray-400 max-w-xs">Telecommunications, Power, ICT & Data Center, Academy & MSP.</p>
-                </div>
-                <div className="flex flex-col gap-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {NAV_CONFIG.filter(cat => cat.items.length > 0).slice(0, 3).map(cat => (
-                      <ServiceCard
-                        key={cat.label}
-                        title={cat.label}
-                        icon={cat.icon ?? Radio}
-                        color="bg-brand-accent"
-                        items={cat.items.slice(0, 2).map(item => item.label)}
-                        onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
-                      />
-                    ))}
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:w-2/3 lg:mx-auto">
-                    {NAV_CONFIG.filter(cat => cat.items.length > 0).slice(3, 5).map(cat => (
-                      <ServiceCard
-                        key={cat.label}
-                        title={cat.label}
-                        icon={cat.icon ?? Radio}
-                        color="bg-brand-accent"
-                        items={cat.items.slice(0, 2).map(item => item.label)}
-                        onClick={() => navigateTo(cat.page as PageID, undefined, cat.path)}
-                      />
-                    ))}
-                  </div>
-</div>
-             </Section>
+<WhatWeOffer onNavigate={navigateTo} />
 
-            <div className="w-16 h-px bg-brand-accent/30 mx-auto" />
+          <RecentProjects onNavigate={navigateTo} />
 
 <Section id="excellence" className="bg-brand-primary overflow-hidden py-8">
               <div className="max-w-2xl mb-6"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2 border-l-2 border-brand-accent pl-3`}>Our Certifications</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>{t('common.integrityFramework')}</h2></div>
@@ -502,24 +480,17 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
                 </div>
               ))}
             </div>
-          </Section>
-          
-<Section className="bg-brand-surface text-center py-16 relative overflow-hidden">
-            <div className="absolute inset-0">
-              <img src="/assets/images/hero/telecom.webp" className="w-full h-full object-cover" alt="" />
-              <div className="absolute inset-0 bg-gradient-to-r from-brand-surface/95 via-brand-surface/80 to-brand-surface/95" />
-            </div>
-            <div className="relative z-10 flex flex-col items-center">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-4">Our Promise</p>
-              <h2 className="text-xs font-light text-white/50 italic tracking-wider max-w-xl mb-6">{t('common.preciseEngineering')}</h2>
-              <button 
-                onClick={() => navigateTo('about')} 
-                className="bg-brand-accent text-brand-primary px-10 py-4 rounded-xl font-semibold tracking-wide text-sm shadow-lg hover:bg-white hover:text-brand-primary active:scale-95 focus-visible:ring-2 focus-visible:ring-brand-accent transition-all duration-200 uppercase"
-              >
-                {t('common.partnershipCta')}
-              </button>
-            </div>
-           </Section>
+</Section>
+           
+<CTABanner onNavigate={navigateTo} />
+
+          <FAQSection />
+
+          <PartnersSection />
+
+          <ContactQuoteForm onNavigate={navigateTo} />
+
+          <RecentNews onNavigate={navigateTo} />
         </>
       );
     }

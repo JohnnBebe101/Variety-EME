@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Menu } from 'lucide-react';
+import { ChevronDown, Menu, Phone, Mail, MapPin, Linkedin, Facebook, Twitter, Award, ShoppingCart } from 'lucide-react';
 import { Brand } from '../Brand';
 import { LogoSymbol } from '../LogoSymbol';
 import { NAV_CONFIG } from '../../data/constants';
 import { PageID } from '../../types';
+import { SITE } from '../../data/constants';
 
 const ANNOUNCEMENT_PHRASES = [
   "ISO Certified · Quality, Safety & Security Assured",
@@ -30,7 +31,7 @@ export const Header: React.FC<HeaderProps> = ({
   navigateTo,
   setIsMobileOpen
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -103,8 +104,54 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <>
+      {/* Top Info Bar - Contact Info, Social, Badge */}
+      <header className="fixed top-0 left-0 w-full h-[32px] bg-[#0f0f1a] z-[120] flex items-center border-b border-white/5">
+        <div className="container mx-auto px-4 flex items-center justify-between overflow-hidden">
+          {/* Left: Contact Info */}
+          <div className="flex items-center gap-6 text-[11px] text-white/60 font-medium">
+            <div className="flex items-center gap-1.5">
+              <Phone size={10} className="text-brand-accent" />
+              <a href={`tel:${SITE.contact.phone.replace(/\s/g, '')}`} className="hover:text-brand-accent transition-colors">
+                {SITE.contact.phone}
+              </a>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Mail size={10} className="text-brand-accent" />
+              <a href={`mailto:${SITE.contact.email}`} className="hover:text-brand-accent transition-colors">
+                {SITE.contact.email}
+              </a>
+            </div>
+            <div className="flex items-center gap-1.5 hidden md:flex">
+              <MapPin size={10} className="text-brand-accent" />
+              <span>{SITE.contact.address.split(',')[0]}</span>
+            </div>
+          </div>
+
+          {/* Right: Social Icons + Badge */}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              <a href="https://www.linkedin.com/company/variety-eme" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+                <Linkedin size={12} />
+              </a>
+              <a href="https://www.facebook.com/varietyeme" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+                <Facebook size={12} />
+              </a>
+              <a href="https://twitter.com/varietyeme" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+                <Twitter size={12} />
+              </a>
+            </div>
+            <div className="flex items-center gap-1.5 bg-brand-accent/10 border border-brand-accent/20 rounded-full px-3 py-1 ml-2">
+              <Award size={10} className="text-brand-accent" />
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-brand-accent">
+                Global Certified Winner
+              </span>
+            </div>
+          </div>
+        </div>
+      </header>
+
       {/* Announcement Bar - Marquee Animation */}
-      <header className="fixed top-0 left-0 w-full h-[28px] bg-brand-accent z-[120] flex items-center overflow-hidden border-b border-black/5">
+      <header className="fixed top-[32px] left-0 w-full h-[28px] bg-brand-accent z-[115] flex items-center overflow-hidden border-b border-black/5">
         <div className="container mx-auto px-4 flex items-center justify-center overflow-hidden">
           <div className="relative h-[20px] w-full max-w-[700px] overflow-hidden">
             <span className="inline-block animate-marquee whitespace-nowrap text-brand-primary font-semibold text-xs tracking-wide uppercase">
@@ -115,7 +162,7 @@ export const Header: React.FC<HeaderProps> = ({
       </header>
 
       {/* Main Navbar - Logo Left, Nav Center */}
-      <header className="fixed top-[28px] left-0 w-full z-[100] h-14 bg-brand-primary/95 border-b border-white/10 shadow-2xl backdrop-blur-md">
+      <header className="fixed top-[60px] left-0 w-full z-[100] h-14 bg-brand-primary/95 border-b border-white/10 shadow-2xl backdrop-blur-md">
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           {/* Left: Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => navigateTo('home')}>
@@ -204,9 +251,15 @@ export const Header: React.FC<HeaderProps> = ({
             })}
             <button 
               onClick={() => navigateTo('contact', undefined, '/contact')} 
-              className="ml-2 px-4 py-2 rounded-lg bg-brand-accent text-brand-primary text-sm font-semibold tracking-wide uppercase hover:bg-white hover:text-brand-primary transition-all duration-200"
+              className="ml-2 px-4 py-2 rounded-lg bg-transparent border border-brand-accent text-brand-accent text-sm font-semibold tracking-wide uppercase hover:bg-brand-accent hover:text-brand-primary transition-all duration-200"
             >
-              Contact
+              Request Quote
+            </button>
+            <button 
+              className="ml-2 p-2 text-white/60 hover:text-brand-accent transition-colors"
+              aria-label="Shopping cart"
+            >
+              <ShoppingCart size={20} />
             </button>
           </nav>
           
