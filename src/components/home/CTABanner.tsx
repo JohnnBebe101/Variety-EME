@@ -19,48 +19,51 @@ export const CTABanner: React.FC<CTABannerProps> = ({ onNavigate }) => {
   };
 
   return (
-    <Section variant="light" className="py-20 relative overflow-hidden">
+    <Section variant="light" className="py-12 relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
           {/* Left: Text */}
           <div className="text-center lg:text-left max-w-2xl">
-            <span className="text-brand-accent text-sm font-semibold uppercase tracking-widest block mb-4">
-              {t('common.getInTouch') || 'GET IN TOUCH'}
+            <span className="text-brand-accent text-sm font-semibold uppercase tracking-widest block mb-2">
+              {t('common.getInTouch') || 'ABOUT US'}
             </span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
               {t('common.ctaBannerTitle') || 'Get full range of premium Industrial services for your business'}
             </h2>
+            <p className="text-gray-500 text-base leading-relaxed mb-5 max-w-xl">
+              {t('common.ctaBannerDesc') || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
+            </p>
+            <div className="flex flex-wrap items-center gap-3 justify-center lg:justify-start">
+              <button
+                onClick={() => handleNavigate('/about')}
+                className="bg-brand-accent text-white px-6 py-2.5 rounded-md font-semibold text-sm hover:bg-brand-primary hover:text-white transition-all duration-200 whitespace-nowrap"
+              >
+                {t('common.readNow') || 'Read now'}
+              </button>
+              <button
+                onClick={() => handleNavigate('/about')}
+                className="border-2 border-gray-300 text-gray-900 px-6 py-2.5 rounded-md font-semibold text-sm hover:border-brand-accent hover:text-brand-accent transition-all duration-200 whitespace-nowrap"
+              >
+                {t('common.companyHistory') || 'Company History'}
+              </button>
+            </div>
           </div>
 
-          {/* Right: Buttons + Social */}
-          <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-end gap-6 w-full lg:w-auto">
-            <button
-              onClick={() => handleNavigate('/about')}
-              className="bg-brand-accent text-white px-8 py-4 rounded-lg font-semibold tracking-wide text-base shadow-lg hover:bg-brand-primary hover:text-white transition-all duration-200 uppercase whitespace-nowrap"
-            >
-              {t('common.readNow') || 'Read now'}
-            </button>
-            <button
-              onClick={() => handleNavigate('/about')}
-              className="border-2 border-gray-300 text-gray-900 px-8 py-4 rounded-lg font-semibold tracking-wide text-base hover:border-brand-accent hover:text-brand-accent transition-all duration-200 uppercase whitespace-nowrap"
-            >
-              {t('common.companyHistory') || 'Company History'}
-            </button>
-            <div className="flex items-center gap-4 pt-4 lg:pt-0 border-t lg:border-t-0 lg:border-l lg:pl-6 lg:ml-4">
-              <span className="text-gray-500 text-sm hidden sm:block">
-                {t('common.followUs') || 'Follow us:'}
-              </span>
-              <div className="flex items-center gap-3">
-                <a href="https://www.linkedin.com/company/variety-eme" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
-                  <Linkedin size={20} />
-                </a>
-                <a href="https://www.facebook.com/varietyeme" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
-                  <Facebook size={20} />
-                </a>
-                <a href="https://twitter.com/varietyeme" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
-                  <Twitter size={20} />
-                </a>
-              </div>
+          {/* Right: Social */}
+          <div className="flex flex-col items-center lg:items-end gap-3">
+            <span className="text-gray-500 text-xs uppercase tracking-wide">
+              {t('common.followUs') || 'Get connected with us'}
+            </span>
+            <div className="flex items-center gap-3">
+              <a href="https://www.linkedin.com/company/variety-eme" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
+                <Linkedin size={18} />
+              </a>
+              <a href="https://www.facebook.com/varietyeme" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
+                <Facebook size={18} />
+              </a>
+              <a href="https://twitter.com/varietyeme" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
+                <Twitter size={18} />
+              </a>
             </div>
           </div>
         </div>

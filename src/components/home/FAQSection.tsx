@@ -14,38 +14,38 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <Section variant="light" className="py-20">
+    <Section variant="light" className="py-12">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <span className="text-brand-accent text-sm font-semibold uppercase tracking-widest block mb-4">
-            {t('common.frequentlyAsked') || 'FREQUENTLY ASKED QUESTIONS'}
+        <div className="text-center mb-8">
+          <span className="text-brand-accent text-sm font-semibold uppercase tracking-widest block mb-2">
+            {t('common.frequentlyAsked') || 'F.A.Q'}
           </span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 max-w-2xl mx-auto">
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 max-w-2xl mx-auto">
             {t('common.faqTitle') || 'All these years, our different services have delivered long lasting innovation'}
           </h2>
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <div className="space-y-4">
+          <div className="space-y-3">
             {FAQ_DATA.map((faq, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
               >
                 <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+                    className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
                     aria-expanded={openIndex === index}
                   >
-                    <span className="font-semibold text-lg text-gray-900 pr-10">
+                    <span className="font-semibold text-base text-gray-900 pr-8">
                       {faq.question}
                     </span>
                     <ChevronDown
-                      size={24}
+                      size={18}
                       className={`text-brand-accent flex-shrink-0 transition-transform duration-300 ${
                         openIndex === index ? 'rotate-180' : ''
                       }`}
@@ -58,8 +58,8 @@ export const FAQSection: React.FC = () => {
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6 border-t border-gray-100">
-                      <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                    <div className="px-5 pb-5 border-t border-gray-100">
+                      <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
                     </div>
                   </motion.div>
                 </div>
