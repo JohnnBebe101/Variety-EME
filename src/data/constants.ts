@@ -8,7 +8,8 @@ import {
   Shield,
   Cpu,
   Headphones,
-  Truck
+  Truck,
+  Globe
 } from 'lucide-react';
 import { PageID } from '../types';
 
@@ -228,6 +229,30 @@ export const HOME_SERVICE_CARDS: HomeServiceCard[] = [
     path: '/ict-datacenter',
     page: 'ict_datacenter',
     icon: Server
+  },
+  {
+    title: 'Managed Services',
+    description: 'NOC operations, infrastructure management, cybersecurity, HVAC, fire safety, and access control.',
+    image: '/assets/images/hero/msp.webp',
+    path: '/msp',
+    page: 'msp',
+    icon: Wrench
+  },
+  {
+    title: 'Academy & Training',
+    description: 'Fiber optics certification (CFOT/CFOS), industrial automation training, and professional development.',
+    image: '/assets/images/hero/hero-academy.webp',
+    path: '/academy',
+    page: 'academy',
+    icon: GraduationCap
+  },
+  {
+    title: 'Fiber Optics',
+    description: 'Fiber optic cable installation, fusion splicing, OTDR testing, and end-to-end network deployment.',
+    image: '/assets/images/hero/hero-telecom.webp',
+    path: '/telecommunications/fiber-optics',
+    page: 'telecommunications',
+    icon: Globe
   }
 ];
 

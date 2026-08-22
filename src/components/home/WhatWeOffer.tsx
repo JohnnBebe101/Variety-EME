@@ -20,42 +20,50 @@ export const WhatWeOffer: React.FC<WhatWeOfferProps> = ({ onNavigate }) => {
   };
 
   return (
-    <Section variant="light" className="py-20">
+    <Section variant="light" className="py-12">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <span className="text-brand-accent text-sm font-semibold uppercase tracking-widest block mb-4">
-            {t('common.whatWeOffer') || 'WHAT WE OFFER'}
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 max-w-2xl mx-auto">
-            {t('common.whatWeOfferTitle') || 'Delivering Excellence Through Innovation & Expertise'}
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {WHAT_WE_OFFER_ITEMS.map((item, index) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-start">
+          {/* Left: Heading + Description + CTA */}
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              {t('common.whatWeOffer') || 'WHAT WE OFFER'}
+            </h2>
+            <p className="text-gray-500 text-base leading-relaxed mb-6 max-w-sm">
+              {t('common.whatWeOfferDescription') || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'}
+            </p>
+            <button
+              onClick={() => handleNavigate('/about')}
+              className="bg-brand-accent text-white px-6 py-2.5 rounded-md font-semibold text-sm hover:bg-brand-accent/90 transition-colors"
             >
-              <div className="bg-white border border-gray-100 rounded-xl p-6 hover:border-brand-accent/50 hover:shadow-xl transition-all duration-300 h-full">
-                <div className="w-14 h-14 bg-brand-primary/5 rounded-xl flex items-center justify-center mb-5 group-hover:bg-brand-primary group-hover:text-brand-accent transition-all duration-300">
-                  <item.icon size={28} className="text-brand-primary group-hover:text-brand-accent transition-colors" />
+              {t('common.readMore') || 'Read More'}
+            </button>
+          </div>
+
+          {/* Right: 2x2 Feature Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {WHAT_WE_OFFER_ITEMS.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+              >
+                <div className="w-11 h-11 bg-brand-primary/5 rounded-lg flex items-center justify-center mb-3">
+                  <item.icon size={20} className="text-brand-primary" />
                 </div>
-                <h3 className="font-semibold text-xl text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">{item.description}</p>
+                <h3 className="text-base font-semibold text-gray-900 mb-1">{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed mb-2">{item.description}</p>
                 <button
                   onClick={() => handleNavigate(item.path)}
-                  className="inline-flex items-center gap-2 text-brand-accent font-semibold hover:text-brand-primary transition-colors"
+                  className="inline-flex items-center gap-1.5 text-brand-accent font-semibold text-sm hover:text-brand-primary transition-colors"
                 >
                   Details
-                  <ArrowRight size={16} />
+                  <ArrowRight size={14} />
                 </button>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </Section>

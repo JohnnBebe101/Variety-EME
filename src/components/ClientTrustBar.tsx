@@ -7,7 +7,7 @@ import { PARTNERS } from '../data/constants';
 export const ClientTrustBar: React.FC = () => {
   const { t } = useTranslation('common');
   return (
-    <div className="sticky bottom-0 left-0 w-full bg-slate-900/95 backdrop-blur-xl border-t border-white/5 z-[90] py-2 shadow-2xl overflow-hidden group">
+    <div className="relative w-full bg-slate-900/95 backdrop-blur-xl border-t border-white/10 z-10 py-1.5 shadow-md overflow-hidden group">
       <div className="container mx-auto px-6 flex items-center gap-8">
         <div className="hidden md:flex items-center gap-3 shrink-0 border-r border-white/10 pr-8">
           <ShieldCheck size={14} className="text-brand-cyan" />

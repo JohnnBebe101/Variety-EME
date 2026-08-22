@@ -5,7 +5,6 @@ import { heroSlides, HeroSlide } from '../../data/heroSlides';
 import { ANIM } from '../../data/animationConstants';
 import { useSlideTimer } from '../../hooks/useSlideTimer';
 import HeroSlideContent from './HeroSlideContent';
-import ProjectProofWidget from './PortfolioWidget';
 import { HeroStaticLayout } from './HeroStaticLayout';
 import { PageID } from '../../types';
 
@@ -72,7 +71,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, mode = 'slider' }
             width="1920"
             height="1080"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/25 to-brand-primary/80" />
+<div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/15 to-white" />
         </div>
        
         <HeroStaticLayout activeSlide={activeSlide} onNavigate={onNavigate} />
@@ -122,8 +121,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, mode = 'slider' }
             onNavigate={onNavigate}
           />
         </AnimatePresence>
-        
-        <ProjectProofWidget />
         
         {/* Navigation Arrows */}
         <button

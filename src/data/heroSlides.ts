@@ -51,10 +51,9 @@ export const heroSlides: HeroSlide[] = [
     icon: Sparkles,
     text: "Ethiopia · East Africa · Since 2004",
   },
-  // Keeping existing fields for backward compatibility
   headline: {
-    line1: { text: "Precise Engineering", color: "text-white" },
-    line2: { text: "Infinite Possibilities", color: "text-brand-accent" },
+    line1: { text: "We provide the best Industrial Services worldwide", color: "text-white" },
+    line2: { text: "", color: "" },
   },
   subtitle:
     "Ethiopia's leading multidisciplinary engineering and ICT partner. " +
@@ -66,13 +65,12 @@ export const heroSlides: HeroSlide[] = [
     "Govt · NGO · Enterprise",
   ],
   cta: {
-    primary: { label: "Explore Our Services", action: "scroll", target: "#capabilities" },
-    secondary: { label: "About Variety EME", action: "link", target: "/about" },
-    tertiary: { label: "Request a Site Assessment", action: "link", target: "/contact", subject: "Site Assessment Request" },
+    primary: { label: "About us", action: "link", target: "/about" },
+    secondary: { label: "Explore", action: "scroll", target: "#capabilities" },
+    tertiary: { label: "Portfolio", action: "link", target: "/portfolio" },
   },
-  // New fields for reconstructed first slide
   mainHeading: {
-    line1: { text: "Precision‑Driven Engineering", color: "text-white" },
+    line1: { text: "We provide the best Industrial Services worldwide", color: "text-white" },
   },
   subheading:
     "Ethiopia's leading multidisciplinary engineering and ICT partner. " +
