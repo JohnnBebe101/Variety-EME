@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu, Phone, Mail, MapPin, Linkedin, Facebook, Twitter, Award, ShoppingCart } from 'lucide-react';
 import { Brand } from '../Brand';
@@ -31,7 +30,6 @@ export const Header: React.FC<HeaderProps> = ({
   navigateTo,
   setIsMobileOpen
 }) => {
-  const { t } = useTranslation('common');
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { MapPin, Phone, Linkedin, Facebook } from 'lucide-react';
 import { Brand } from '../Brand';
 import { SITE } from '../../data/constants';
@@ -10,7 +9,6 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
-  const { t } = useTranslation();
   const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear());
 
   useEffect(() => {

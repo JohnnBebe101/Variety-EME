@@ -85,21 +85,21 @@ export const OurServices: React.FC<OurServicesProps> = ({ onNavigate }) => {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-10">
           <div className="max-w-lg">
             <span className="text-brand-accent text-sm font-semibold uppercase tracking-widest mb-3 block">
-              {t('common.services') || 'OUR SERVICES'}
+              {t('services') || 'OUR SERVICES'}
             </span>
             <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
-              {t('common.comprehensiveSolutions') || 'Comprehensive Engineering Solutions...'}
+              {t('comprehensiveSolutions') || 'Comprehensive Engineering Solutions...'}
             </h2>
           </div>
           <div className="max-w-md">
             <p className="text-gray-500 text-base leading-relaxed mb-4">
-              {t('common.servicesDescription') || 'We deliver end-to-end...'}
+              {t('servicesDescription') || 'We deliver end-to-end...'}
             </p>
             <button
               onClick={() => onNavigate?.('portfolio', undefined, '/portfolio')}
               className="inline-flex items-center gap-2 text-brand-accent font-semibold hover:text-brand-primary transition-colors"
             >
-              {t('common.viewAllServices') || 'All services'}
+              {t('viewAllServices') || 'All services'}
               <ArrowRight size={18} />
             </button>
           </div>

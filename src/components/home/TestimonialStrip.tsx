@@ -1,13 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import { TESTIMONIAL_DATA } from '../../data/constants';
 import { Section } from '../Section';
 
 export const TestimonialStrip: React.FC = () => {
-  const { t } = useTranslation('common');
-
   return (
     <Section variant="dark" className="py-10 overflow-hidden">
       <div className="container mx-auto px-6">

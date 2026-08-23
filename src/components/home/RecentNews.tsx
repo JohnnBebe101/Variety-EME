@@ -25,14 +25,14 @@ export const RecentNews: React.FC<RecentNewsProps> = ({ onNavigate }) => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
           <div>
             <span className="text-brand-accent text-sm font-semibold uppercase tracking-widest block mb-2">
-              {t('common.latestNews') || 'RECENT NEWS'}
+              {t('latestNews') || 'RECENT NEWS'}
             </span>
             <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 max-w-2xl">
-              {t('common.newsTitle') || 'Stay Updated with Our Latest Insights'}
+              {t('newsTitle') || 'Stay Updated with Our Latest Insights'}
             </h2>
           </div>
           <button onClick={handleViewAll} className="inline-flex items-center gap-2 text-brand-accent font-semibold text-sm hover:text-brand-primary transition-colors mt-2 md:mt-0">
-            {t('common.viewAllNews') || 'More News'}
+            {t('viewAllNews') || 'More News'}
             <ArrowRight size={16} />
           </button>
         </div>
@@ -76,7 +76,7 @@ export const RecentNews: React.FC<RecentNewsProps> = ({ onNavigate }) => {
                     onClick={() => onNavigate?.('home' as PageID, undefined, news.path)}
                     className="inline-flex items-center gap-1.5 text-brand-accent font-semibold text-sm hover:text-brand-primary transition-colors mt-auto"
                   >
-                    {t('common.readMore') || 'Read More'}
+                    {t('readMore') || 'Read More'}
                     <ArrowRight size={14} />
                   </button>
                 </div>

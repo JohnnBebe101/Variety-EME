@@ -26,13 +26,13 @@ export const RecentProjects: React.FC<RecentProjectsProps> = ({ onNavigate }) =>
       <div className="container mx-auto px-6">
         <div className="text-center mb-6">
           <span className="text-brand-accent text-sm font-semibold uppercase tracking-widest block mb-2">
-            {t('common.recentProjects') || 'RECENT PROJECTS'}
+            {t('recentProjects') || 'RECENT PROJECTS'}
           </span>
           <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-2">
-            {t('common.projectShowcase') || 'Showcasing Our Latest Deliveries'}
+            {t('projectShowcase') || 'Showcasing Our Latest Deliveries'}
           </h2>
           <p className="text-brand-muted max-w-2xl mx-auto text-base">
-            {t('common.projectShowcaseDesc') || 'A selection of recently completed projects across telecommunications, power, and ICT infrastructure.'}
+            {t('projectShowcaseDesc') || 'A selection of recently completed projects across telecommunications, power, and ICT infrastructure.'}
           </p>
         </div>
 
@@ -72,7 +72,7 @@ export const RecentProjects: React.FC<RecentProjectsProps> = ({ onNavigate }) =>
 
         <div className="text-center">
           <button onClick={handleViewAll} className="inline-flex items-center gap-2 text-brand-accent font-semibold text-sm hover:text-white transition-colors">
-            {t('common.viewAllProjects') || 'View All Projects'}
+            {t('viewAllProjects') || 'View All Projects'}
             <ArrowRight size={16} />
           </button>
         </div>

@@ -146,7 +146,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateT
                      </div>
                    )})}
                 </nav>
-               <div className="p-8 border-t border-white/10 bg-brand-primary/30"><button onClick={() => { handleNavigate('home', undefined, '/contact'); }} className="w-full bg-brand-accent text-brand-primary py-5 min-h-[44px] rounded-2xl font-semibold uppercase text-sm tracking-wide shadow-xl active:scale-95 hover:bg-white transition-all flex items-center justify-center gap-3">{t('common.contact')} <ArrowRight size={16} /></button></div>
+               <div className="p-8 border-t border-white/10 bg-brand-primary/30"><button onClick={() => { handleNavigate('home', undefined, '/contact'); }} className="w-full bg-brand-accent text-brand-primary py-5 min-h-[44px] rounded-2xl font-semibold uppercase text-sm tracking-wide shadow-xl active:scale-95 hover:bg-white transition-all flex items-center justify-center gap-3">{t('contact')} <ArrowRight size={16} /></button></div>
             </motion.div>
           </>
         )}

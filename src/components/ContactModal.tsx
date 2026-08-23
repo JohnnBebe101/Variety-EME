@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import { Brand } from './Brand';
 import { SITE } from '../data/constants';
 
@@ -12,7 +11,6 @@ interface ContactModalProps {
 }
 
 export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, subject = '' }) => {
-  const { t } = useTranslation('common');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');

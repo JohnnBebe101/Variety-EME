@@ -42,13 +42,13 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
           {/* Left: Contact Info */}
           <div>
             <span className="text-brand-accent text-sm font-semibold uppercase tracking-widest block mb-2">
-              {t('common.requestAQuote') || 'CONTACT'}
+              {t('requestAQuote') || 'CONTACT'}
             </span>
             <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
-              {t('common.contactFormTitle') || 'REQUEST A QUOTE'}
+              {t('contactFormTitle') || 'REQUEST A QUOTE'}
             </h2>
             <p className="text-gray-500 text-sm leading-relaxed mb-6 max-w-md">
-              {t('common.contactFormDesc') || 'Have a project in mind? Fill out the form and our team will get back to you within 24 hours with a personalized quote.'}
+              {t('contactFormDesc') || 'Have a project in mind? Fill out the form and our team will get back to you within 24 hours with a personalized quote.'}
             </p>
 
             <div className="space-y-4">
@@ -57,7 +57,7 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                   <MapPin size={18} className="text-brand-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm text-gray-900">{t('common.address') || 'Our Office'}</h3>
+                  <h3 className="font-semibold text-sm text-gray-900">{t('address') || 'Our Office'}</h3>
                   <p className="text-gray-500 text-sm mt-0.5">{SITE.contact.address}</p>
                 </div>
               </div>
@@ -66,7 +66,7 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                   <Phone size={18} className="text-brand-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm text-gray-900">{t('common.phone') || 'Call Us'}</h3>
+                  <h3 className="font-semibold text-sm text-gray-900">{t('phone') || 'Call Us'}</h3>
                   <a href={`tel:${SITE.contact.phone.replace(/\s/g, '')}`} className="text-gray-500 text-sm hover:text-brand-primary transition-colors mt-0.5 block">
                     {SITE.contact.phone}
                   </a>
@@ -77,7 +77,7 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                   <Mail size={18} className="text-brand-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm text-gray-900">{t('common.email') || 'Email Us'}</h3>
+                  <h3 className="font-semibold text-sm text-gray-900">{t('email') || 'Email Us'}</h3>
                   <a href={`mailto:${SITE.contact.email}`} className="text-gray-500 text-sm hover:text-brand-primary transition-colors mt-0.5 block">
                     {SITE.contact.email}
                   </a>
@@ -98,10 +98,10 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                   <CheckCircle2 size={24} className="text-green-600" />
                 </div>
                 <h3 className="font-display text-xl font-bold text-gray-900 mb-2">
-                  {t('common.formSuccessTitle') || 'Message Sent Successfully!'}
+                  {t('formSuccessTitle') || 'Message Sent Successfully!'}
                 </h3>
                 <p className="text-gray-500 text-sm">
-                  {t('common.formSuccessDesc') || 'Thank you for reaching out. Our team will contact you within 24 hours.'}
+                  {t('formSuccessDesc') || 'Thank you for reaching out. Our team will contact you within 24 hours.'}
                 </p>
               </motion.div>
             ) : (
@@ -109,7 +109,7 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-xs font-medium text-gray-700 mb-1">
-                      {t('common.name') || 'Full Name'} <span className="text-brand-accent">*</span>
+                      {t('name') || 'Full Name'} <span className="text-brand-accent">*</span>
                     </label>
                     <input
                       type="text"
@@ -119,12 +119,12 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all"
-                      placeholder={t('common.namePlaceholder') || 'John Doe'}
+                      placeholder={t('namePlaceholder') || 'John Doe'}
                     />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-xs font-medium text-gray-700 mb-1">
-                      {t('common.email') || 'Email Address'} <span className="text-brand-accent">*</span>
+                      {t('email') || 'Email Address'} <span className="text-brand-accent">*</span>
                     </label>
                     <input
                       type="email"
@@ -134,7 +134,7 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all"
-                      placeholder={t('common.emailPlaceholder') || 'john@company.com'}
+                      placeholder={t('emailPlaceholder') || 'john@company.com'}
                     />
                   </div>
                 </div>
@@ -142,7 +142,7 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="phone" className="block text-xs font-medium text-gray-700 mb-1">
-                      {t('common.phone') || 'Phone Number'}
+                      {t('phone') || 'Phone Number'}
                     </label>
                     <input
                       type="tel"
@@ -151,12 +151,12 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all"
-                      placeholder={t('common.phonePlaceholder') || '+251 9XX XXX XXX'}
+                      placeholder={t('phonePlaceholder') || '+251 9XX XXX XXX'}
                     />
                   </div>
                   <div>
                     <label htmlFor="subject" className="block text-xs font-medium text-gray-700 mb-1">
-                      {t('common.subject') || 'Project Type'} <span className="text-brand-accent">*</span>
+                      {t('subject') || 'Project Type'} <span className="text-brand-accent">*</span>
                     </label>
                     <select
                       id="subject"
@@ -166,20 +166,20 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                       required
                       className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all bg-white"
                     >
-                      <option value="">{t('common.selectSubject') || 'Select a service area'}</option>
-                      <option value="telecommunications">{t('common.services.telecom.title') || 'Telecommunications'}</option>
-                      <option value="power">{t('common.services.power.title') || 'Power & Energy'}</option>
-                      <option value="ict">{t('common.services.ict.title') || 'ICT & Data Center'}</option>
-                      <option value="msp">{t('common.services.msp.title') || 'Managed Services'}</option>
-                      <option value="training">{t('common.services.training.title') || 'Training & Academy'}</option>
-                      <option value="other">{t('common.other') || 'Other'}</option>
+                      <option value="">{t('selectSubject') || 'Select a service area'}</option>
+                      <option value="telecommunications">{t('telecommunications') || 'Telecommunications'}</option>
+                      <option value="power">{t('powerEnergy') || 'Power & Energy'}</option>
+                      <option value="ict">{t('ictDataCenter') || 'ICT & Data Center'}</option>
+                      <option value="msp">{t('managedServices') || 'Managed Services'}</option>
+                      <option value="training">{t('trainingAcademy') || 'Training & Academy'}</option>
+                      <option value="other">{t('other') || 'Other'}</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-xs font-medium text-gray-700 mb-1">
-                    {t('common.message') || 'Project Details'} <span className="text-brand-accent">*</span>
+                    {t('message') || 'Project Details'} <span className="text-brand-accent">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -189,7 +189,7 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                     required
                     rows={4}
                     className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all resize-none"
-                    placeholder={t('common.messagePlaceholder') || 'Describe your project requirements, timeline, budget range, and any specific needs...'}
+                    placeholder={t('messagePlaceholder') || 'Describe your project requirements, timeline, budget range, and any specific needs...'}
                   />
                 </div>
 
@@ -204,18 +204,18 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                       </svg>
-                      {t('common.sending') || 'Sending...'}
+                      {t('sending') || 'Sending...'}
                     </>
                   ) : (
                     <>
-                      {t('common.submitQuote') || 'Submit Quote Request'}
+                      {t('submitQuote') || 'Submit Quote Request'}
                       <Send size={16} />
                     </>
                   )}
                 </button>
 
                 <p className="text-xs text-gray-400 text-center">
-                  {t('common.privacyNote') || 'By submitting, you agree to our Privacy Policy and Terms of Service.'}
+                  {t('privacyNote') || 'By submitting, you agree to our Privacy Policy and Terms of Service.'}
                 </p>
               </form>
             )}

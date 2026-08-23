@@ -99,17 +99,17 @@ export const CorporatePages = {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-brand-surface p-8 rounded-2xl border border-white/5">
               <Zap className="text-brand-accent mb-4" size={32} />
-              <h4 className="font-bold text-brand-foreground mb-2">{t('common.power')}</h4>
+              <h4 className="font-bold text-brand-foreground mb-2">{t('power')}</h4>
               <p className="text-brand-muted text-sm">{pillars?.power}</p>
             </div>
             <div className="bg-brand-surface p-8 rounded-2xl border border-white/5">
               <Radio className="text-brand-accent mb-4" size={32} />
-              <h4 className="font-bold text-brand-foreground mb-2">{t('common.telecom')}</h4>
+              <h4 className="font-bold text-brand-foreground mb-2">{t('telecom')}</h4>
               <p className="text-brand-muted text-sm">{pillars?.telecom}</p>
             </div>
             <div className="bg-brand-surface p-8 rounded-2xl border border-white/5">
               <Server className="text-brand-accent mb-4" size={32} />
-              <h4 className="font-bold text-brand-foreground mb-2">{t('common.ict')}</h4>
+              <h4 className="font-bold text-brand-foreground mb-2">{t('ict')}</h4>
               <p className="text-brand-muted text-sm">{pillars?.ict}</p>
             </div>
           </div>

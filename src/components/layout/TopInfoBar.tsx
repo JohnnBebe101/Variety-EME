@@ -1,11 +1,8 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { Phone, Mail, MapPin, Linkedin, Facebook, Twitter, Award } from 'lucide-react';
 import { SITE } from '../../data/constants';
 
 export const TopInfoBar: React.FC = () => {
-  const { t } = useTranslation('common');
-
   return (
     <header className="h-[32px] bg-[#0f0f1a] flex items-center border-b border-white/5">
       <div className="container mx-auto px-4 flex items-center justify-between overflow-hidden">

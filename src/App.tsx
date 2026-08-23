@@ -210,13 +210,13 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       );
       case 'telecom': return (
         <>
-          <MetaTags title={t('common.services.telecom.title')} description={t('common.services.telecom.items', { returnObjects: true })[0]} />
+          <MetaTags title={t('telecomTitle')} description={t('telecomItems', { returnObjects: true })[0]} />
           <InfrastructurePages.Telecom onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'telecommunications': return (
         <>
-          <MetaTags title={t('common.services.telecom.title')} description={t('common.services.telecom.items', { returnObjects: true })[0]} />
+          <MetaTags title={t('telecomTitle')} description={t('telecomItems', { returnObjects: true })[0]} />
           <TelecomPage onNavigate={navigateTo} />
         </>
       );
@@ -360,13 +360,13 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       );
       case 'ict_datacenter': return (
         <>
-          <MetaTags title={t('common.services.ict.title')} description={t('common.services.ict.description')} />
+          <MetaTags title={t('ictTitle')} description={t('ictDescription')} />
           <ICTPage onNavigate={navigateTo} />
         </>
       );
       case 'power': return (
         <>
-          <MetaTags title={t('common.services.power.title')} description={t('common.services.power.description')} />
+          <MetaTags title={t('powerTitle')} description={t('powerDescription')} />
           <PowerPage onNavigate={navigateTo} />
         </>
       );
@@ -449,7 +449,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
           <ClientTrustBar />
           
           <Section className="bg-brand-primary overflow-hidden border-b border-white/5">
-             <div className="mb-8 flex items-center gap-3"><LogoSymbol className="w-6 h-6 opacity-30" /><span className={UI_CLASSES.tag + " text-brand-muted/70 border-l-2 border-brand-accent pl-3"}>{t('common.strategicDeliveryNetwork')}</span></div>
+             <div className="mb-8 flex items-center gap-3"><LogoSymbol className="w-6 h-6 opacity-30" /><span className={UI_CLASSES.tag + " text-brand-muted/70 border-l-2 border-brand-accent pl-3"}>{t('strategicDeliveryNetwork')}</span></div>
              <div className="flex gap-20 items-center animate-marquee whitespace-nowrap opacity-[0.1] hover:opacity-[0.8] transition-opacity duration-700">{PARTNERS.concat(PARTNERS).map((n, i) => (<span key={i} className="text-sm md:text-base font-semibold text-brand-foreground tracking-tighter uppercase">{n.name}</span>))}</div>
 </Section>
             
@@ -460,7 +460,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
           <RecentProjects onNavigate={navigateTo} />
 
 <Section id="excellence" className="bg-brand-primary overflow-hidden py-8">
-              <div className="max-w-2xl mb-6"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2 border-l-2 border-brand-accent pl-3`}>Our Certifications</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>{t('common.integrityFramework')}</h2></div>
+              <div className="max-w-2xl mb-6"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2 border-l-2 border-brand-accent pl-3`}>Our Certifications</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>{t('integrityFramework')}</h2></div>
               <div className="bg-brand-surface rounded-xl overflow-hidden grid lg:grid-cols-3 shadow-lg">
                 <div className="lg:col-span-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-brand-surface to-brand-primary">
                   <AnimatePresence mode="wait"><motion.div key={activeISO} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-28 h-28 bg-white rounded-full p-4 shadow-lg flex flex-col items-center justify-center"><span className="text-[6px] font-bold uppercase tracking-widest text-brand-primary/40 mb-0.5">Certified</span><span className="text-xs font-semibold text-brand-primary tracking-tight">{ISO_DATA.find(i => i.id === activeISO)?.standard || `ISO ${activeISO}`}</span></motion.div></AnimatePresence>

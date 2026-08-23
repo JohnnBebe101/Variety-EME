@@ -18,10 +18,10 @@ export const FAQSection: React.FC = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-8">
           <span className="text-brand-accent text-sm font-semibold uppercase tracking-widest block mb-2">
-            {t('common.frequentlyAsked') || 'F.A.Q'}
+            {t('frequentlyAsked') || 'F.A.Q'}
           </span>
           <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 max-w-2xl mx-auto">
-            {t('common.faqTitle') || 'All these years, our different services have delivered long lasting innovation'}
+            {t('faqTitle') || 'All these years, our different services have delivered long lasting innovation'}
           </h2>
         </div>
 

@@ -12,10 +12,10 @@ export const PartnersSection: React.FC = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <span className="text-brand-accent text-sm font-semibold uppercase tracking-widest block mb-4">
-            {t('common.strategicAlliances') || 'STRATEGIC ALLIANCES'}
+            {t('strategicAlliances') || 'STRATEGIC ALLIANCES'}
           </span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 max-w-2xl mx-auto">
-            {t('common.globalPartnerNetwork') || 'Global Partner Network'}
+            {t('globalPartnerNetwork') || 'Global Partner Network'}
           </h2>
         </div>
 
