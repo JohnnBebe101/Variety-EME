@@ -35,7 +35,7 @@ import {
   Stethoscope,
   TreePine,
   HardHat,
-  Download,
+  Clock,
   ChevronRight
 } from 'lucide-react';
 import { portfolioProjects } from '../data/portfolioData';
@@ -344,21 +344,18 @@ Portfolio: ({ onBack, heroImage, gradientFallback }: PageProps) => {
           </div>
         </div>
         
-        {/* Download Company Profile */}
+        {/* Company Profile — Coming Soon */}
         <div className="py-8 flex justify-center">
-          <a 
-            href="/assets/Variety-EME-Company-Profile.pdf" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-brand-surface border border-white/10 px-8 py-4 rounded-xl hover:border-brand-accent hover:shadow-lg transition-all duration-300"
+          <div 
+            className="inline-flex items-center gap-3 bg-brand-surface border border-white/10 px-8 py-4 rounded-xl opacity-50 cursor-not-allowed transition-all duration-300"
           >
-            <Download size={20} className="text-brand-accent" />
+            <Clock size={20} className="text-brand-accent" />
             <div className="text-left">
-              <p className="text-sm font-semibold text-brand-foreground">Download Company Profile</p>
-              <p className="text-[10px] text-brand-muted">Variety EME Company Profile (PDF)</p>
+              <p className="text-sm font-semibold text-brand-foreground">Company Profile — Coming Soon</p>
+              <p className="text-[10px] text-brand-muted">Full profile with project case studies</p>
             </div>
             <ChevronRight size={16} className="text-brand-muted" />
-          </a>
+          </div>
         </div>
         
         {/* CTA Banner */}

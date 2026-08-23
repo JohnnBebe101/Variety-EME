@@ -1,5 +1,4 @@
 // src/data/heroSlides.ts
-// Authoritative source: Variety-EME-Company-Profile.pdf
 // All copy is final and approved — do NOT paraphrase
 
 import { LucideIcon, Sparkles, Signal, Zap, Server, GraduationCap, Briefcase } from 'lucide-react';

@@ -443,7 +443,9 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
             description={heroT('heroSub')}
             schema={organizationSchema}
           />
-          <HeroSection onNavigate={navigateTo} mode="static" />
+          <div className="pt-12 md:pt-16 lg:pt-20">
+            <HeroSection onNavigate={navigateTo} mode="static" />
+          </div>
           <OurServices onNavigate={navigateTo} />
 <TestimonialStrip />
           <ClientTrustBar />

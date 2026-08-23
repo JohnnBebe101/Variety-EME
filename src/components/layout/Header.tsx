@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu, Phone, Mail, MapPin, Linkedin, Facebook, Twitter, Award, ShoppingCart } from 'lucide-react';
 import { Brand } from '../Brand';
-import { LogoSymbol } from '../LogoSymbol';
 import { NAV_CONFIG } from '../../data/constants';
 import { PageID } from '../../types';
 import { SITE } from '../../data/constants';
@@ -160,11 +159,11 @@ export const Header: React.FC<HeaderProps> = ({
       </header>
 
       {/* Main Navbar - Logo Left, Nav Center */}
-      <header className="fixed top-[60px] left-0 w-full z-[100] h-14 bg-brand-primary/95 border-b border-white/10 shadow-2xl backdrop-blur-md">
+      <header className="fixed top-[60px] left-0 w-full z-[100] h-14 bg-brand-primary/95 border-b border-white/10 shadow-2xl backdrop-blur-md overflow-visible">
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           {/* Left: Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => navigateTo('home')}>
-            <Brand forceInvert={true} />
+            <Brand forceInvert={true} headerMode={true} />
           </div>
           
           {/* Center: Nav Links */}
