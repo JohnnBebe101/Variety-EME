@@ -1,8 +1,10 @@
 
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
-const ContactModal = lazy(() => import('../ContactModal').then(module => ({ default: module.ContactModal })));
+import { ssrSafeLazy } from '../../utils/ssrSafeLazy';
+
+const ContactModal = ssrSafeLazy(() => import('../ContactModal'), '/src/components/ContactModal');
 import { PageID } from '../../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';

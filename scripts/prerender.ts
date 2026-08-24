@@ -4,39 +4,11 @@ import { fileURLToPath } from 'url';
 import { createServer } from 'vite';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { PRERENDER_ROUTES } from '../src/config/routes.config';
+import { registerSSRModule } from '../src/utils/ssrSafeLazy';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-
-const routes = [
-  { path: '/', page: 'home' },
-  { path: '/telecommunications', page: 'telecommunications' },
-  { path: '/telecommunications/mobile-rollout', page: 'telecommunications_mobile_rollout' },
-  { path: '/telecommunications/fiber-optics', page: 'telecommunications_fiber_optics' },
-  { path: '/telecommunications/tower-civil-works', page: 'telecommunications_tower_civil_works' },
-  { path: '/telecommunications/operations-maintenance', page: 'telecommunications_operations_maintenance' },
-  { path: '/telecommunications/warehouse-management', page: 'telecommunications_warehouse_management' },
-  { path: '/ict-datacenter', page: 'ict_datacenter' },
-  { path: '/ict-datacenter/data-center-design', page: 'ict_datacenter_data_center_design' },
-  { path: '/ict-datacenter/enterprise-networking', page: 'ict_datacenter_enterprise_networking' },
-  { path: '/ict-datacenter/system-development', page: 'ict_datacenter_system_development' },
-  { path: '/ict-datacenter/cybersecurity-managed', page: 'ict_datacenter_cybersecurity_managed' },
-  { path: '/ict-datacenter/training-consultancy', page: 'ict_datacenter_training_consultancy' },
-  { path: '/power', page: 'power' },
-  { path: '/power/transmission-distribution', page: 'power_transmission_distribution' },
-  { path: '/power/minigrid-systems', page: 'power_minigrid_systems' },
-  { path: '/power/backup-power', page: 'power_backup_power' },
-  { path: '/power/building-electromechanical', page: 'power_building_electromechanical' },
-  { path: '/academy', page: 'academy' },
-  { path: '/academy/overview', page: 'academy_overview' },
-  { path: '/academy/fiber-optics-certification', page: 'academy_fiber_optics_certification' },
-  { path: '/academy/telecom-automation-training', page: 'academy_telecom_automation_training' },
-  { path: '/academy/managed-services', page: 'academy_managed_services' },
-  { path: '/academy/institutional-partnerships', page: 'academy_institutional_partnerships' },
-  { path: '/portfolio', page: 'portfolio' },
-  { path: '/about', page: 'about' },
-  { path: '/contact', page: 'contact' },
-];
 
 async function prerender() {
   const vite = await createServer({
@@ -52,9 +24,32 @@ async function prerender() {
     const { default: App, HelmetProvider } = await vite.ssrLoadModule('/src/App.tsx');
     const { HelmetData } = await vite.ssrLoadModule('react-helmet-async');
 
-    // Load translations manually for SSR
+    // Pre-load all lazy modules so renderToString resolves them synchronously
+    const lazyModules = [
+      // Barrel chunks (used by React.lazy indirect property access)
+      { key: '/src/components/CorporatePages.tsx',         path: '/src/components/CorporatePages.tsx',              ssr: false },
+      { key: '/src/components/sections/services/index.ts', path: '/src/components/sections/services/index.ts',      ssr: false },
+      { key: '/src/components/sections/excellence/index.ts', path: '/src/components/sections/excellence/index.ts',  ssr: false },
+      { key: '/src/components/sections/infrastructure/TelecomOverview.tsx', path: '/src/components/sections/infrastructure/TelecomOverview.tsx', ssr: false },
+      // Direct page chunks (used by ssrSafeLazy — must register default export)
+      { key: '/src/pages/TelecomPage.tsx',     path: '/src/pages/TelecomPage.tsx',     ssr: true },
+      { key: '/src/pages/ICTPage.tsx',         path: '/src/pages/ICTPage.tsx',         ssr: true },
+      { key: '/src/pages/PowerPage.tsx',       path: '/src/pages/PowerPage.tsx',       ssr: true },
+      { key: '/src/pages/MSPPage.tsx',         path: '/src/pages/MSPPage.tsx',         ssr: true },
+      { key: '/src/pages/AcademyPage.tsx',     path: '/src/pages/AcademyPage.tsx',     ssr: true },
+      { key: '/src/components/LegalPage.tsx',  path: '/src/components/LegalPage.tsx',  ssr: true },
+      { key: '/src/components/home/HomePage.tsx', path: '/src/components/home/HomePage.tsx', ssr: true },
+      { key: '/src/components/ContactModal.tsx', path: '/src/components/ContactModal.tsx', ssr: true },
+    ];
+    for (const mod of lazyModules) {
+      const loaded = await vite.ssrLoadModule(mod.path);
+      if (mod.ssr) {
+        registerSSRModule(mod.key, loaded.default);
+      }
+    }
+
     const translations = await fs.readJson(path.resolve(root, 'public/locales/en/translation.json'));
-    
+
     i18n.use(initReactI18next);
     await i18n.init({
       lng: 'en',
@@ -72,46 +67,48 @@ async function prerender() {
       }
     });
 
-    console.log('Test translation in prerender.ts:', i18n.t('common.heroTitle'));
-    
-    for (const route of routes) {
-      const helmetData = new HelmetData({});
-      
-      // Render the app for the current route
-      const appHtml = ReactDOMServer.renderToString(
-        React.createElement(HelmetProvider, { helmetData },
-          React.createElement(App, { initialPage: route.page, i18n })
-        )
-      );
+    let successCount = 0;
+    let failCount = 0;
 
-      console.log(`Rendered HTML length for ${route.path}: ${appHtml.length}`);
-      console.log('helmetData keys:', Object.keys(helmetData));
-      console.log('helmetData.context keys:', Object.keys(helmetData.context));
-      
-      const { helmet } = helmetData.context;
-      if (!helmet) {
-        console.error('Helmet context not populated for route:', route.path);
-        console.log('helmetData.context keys:', Object.keys(helmetData.context));
-        continue;
+    for (const route of PRERENDER_ROUTES) {
+      try {
+        const helmetData = new HelmetData({});
+
+        const appHtml = ReactDOMServer.renderToString(
+          React.createElement(HelmetProvider, { helmetData },
+            React.createElement(App, { initialPage: route.page, i18n })
+          )
+        );
+
+        const { helmet } = helmetData.context;
+        if (!helmet) {
+          console.error(`[SKIP] Helmet context not populated for ${route.path}`);
+          failCount++;
+          continue;
+        }
+
+        let html = template
+          .replace('<!--ssr-outlet-->', appHtml)
+          .replace('<!-- helmet-title -->', helmet.title.toString())
+          .replace('<!-- helmet-meta -->', helmet.meta.toString())
+          .replace('<!-- helmet-link -->', helmet.link.toString())
+          .replace('<!-- helmet-script -->', helmet.script.toString());
+
+        const outDir = path.resolve(root, 'dist', route.path.slice(1));
+        await fs.ensureDir(outDir);
+        await fs.writeFile(path.join(outDir, 'index.html'), html);
+
+        successCount++;
+        console.log(`  \u2713 ${route.path}`);
+      } catch (e) {
+        failCount++;
+        console.error(`  \u2717 FAILED: ${route.path}`, e);
       }
-
-      // Inject the rendered HTML and meta tags into the template
-      let html = template
-        .replace('<!--ssr-outlet-->', appHtml)
-        .replace('<!-- helmet-title -->', helmet.title.toString())
-        .replace('<!-- helmet-meta -->', helmet.meta.toString())
-        .replace('<!-- helmet-link -->', helmet.link.toString())
-        .replace('<!-- helmet-script -->', helmet.script.toString());
-
-      // Determine output path
-      const outDir = path.resolve(root, 'dist', route.path.slice(1));
-      await fs.ensureDir(outDir);
-      await fs.writeFile(path.join(outDir, 'index.html'), html);
-      
-      console.log(`Pre-rendered: ${route.path}`);
     }
+
+    console.log(`\nPre-render complete: ${successCount} succeeded, ${failCount} failed`);
   } catch (e) {
-    console.error(e);
+    console.error('Pre-render aborted:', e);
   } finally {
     await vite.close();
   }

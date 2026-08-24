@@ -1,61 +1,28 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { HelmetProvider } from 'react-helmet-async';
 import { I18nextProvider } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { 
-  ChevronDown, 
-  ArrowRight, 
-  Menu, 
-  X,
-  Radio,
-  Phone,
-  MapPin,
-  Cpu, 
-  Server, 
-  Layers, 
-  CheckCircle2, 
-  Zap,
-} from 'lucide-react';
 
 import { PageID } from './types';
 import { getPathFromPageId, getRouteFromPath } from './utils/routes';
-import { SITE, HERO, PARTNERS, STATS, UI_CLASSES, NAV_CONFIG, ISO_DATA } from './data/constants';
 import { Layout } from './components/layout/Layout';
-import { LogoSymbol } from './components/LogoSymbol';
-import { Brand } from './components/Brand';
-import HeroSection from './components/hero/HeroSection';
-import { ClientTrustBar } from './components/ClientTrustBar';
-import { ServiceCard } from './components/ServiceCard';
-import { ContactModal } from './components/ContactModal';
-import { CountUp } from './components/CountUp';
-import { Section } from './components/Section';
-import { OurServices } from './components/home/OurServices';
-import { TestimonialStrip } from './components/home/TestimonialStrip';
-import { WhatWeOffer } from './components/home/WhatWeOffer';
-import { RecentProjects } from './components/home/RecentProjects';
-import { CTABanner } from './components/home/CTABanner';
-import { FAQSection } from './components/home/FAQSection';
-import { PartnersSection } from './components/home/PartnersSection';
-import { ContactQuoteForm } from './components/home/ContactQuoteForm';
-import { RecentNews } from './components/home/RecentNews';
-import { CorporatePages } from './components/CorporatePages';
-import { 
-  InfrastructurePages, 
-  InnovationPages, 
-  ServicePages,
-  ExcellencePages 
-} from './components/PageSections';
-
 import { MetaTags } from './components/MetaTags';
-import TelecomPage from './pages/TelecomPage';
-import ICTPage from './pages/ICTPage';
-import PowerPage from './pages/PowerPage';
-import MSPPage from './pages/MSPPage';
-import AcademyPage from './pages/AcademyPage';
-import { LegalPage } from './components/LegalPage';
+import { ssrSafeLazy } from './utils/ssrSafeLazy';
+
+// ── Lazy-loaded route components (code-split) ──────────────────────────
+const CorporatePages = lazy(() => import('./components/CorporatePages'));
+const ServicePages = lazy(() => import('./components/sections/services/index'));
+const ExcellencePages = lazy(() => import('./components/sections/excellence/index'));
+const TelecomOverview = lazy(() => import('./components/sections/infrastructure/TelecomOverview'));
+const HomePage = ssrSafeLazy(() => import('./components/home/HomePage'), '/src/components/home/HomePage');
+const TelecomPage = ssrSafeLazy(() => import('./pages/TelecomPage'), '/src/pages/TelecomPage');
+const ICTPage = ssrSafeLazy(() => import('./pages/ICTPage'), '/src/pages/ICTPage');
+const PowerPage = ssrSafeLazy(() => import('./pages/PowerPage'), '/src/pages/PowerPage');
+const MSPPage = ssrSafeLazy(() => import('./pages/MSPPage'), '/src/pages/MSPPage');
+const AcademyPage = ssrSafeLazy(() => import('./pages/AcademyPage'), '/src/pages/AcademyPage');
+const LegalPage = ssrSafeLazy(() => import('./components/LegalPage'), '/src/components/LegalPage');
 
 interface AppProps {
   initialPage?: PageID;
@@ -64,7 +31,6 @@ interface AppProps {
 
 const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
   const { t } = useTranslation(undefined, { i18n: i18nProp });
-  const { t: heroT } = useTranslation('hero', { i18n: i18nProp });
   const initialRoute = (() => {
     if (initialPage !== 'home') {
       return { page: initialPage, openContact: false };
@@ -93,31 +59,6 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
   const [currentPage, setCurrentPage] = useState<PageID>(initialRoute.page);
   const [isContactOpen, setIsContactOpen] = useState(initialRoute.openContact ?? false);
   const [contactSubject, setContactSubject] = useState<string>('');
-  const [activeISO, setActiveISO] = useState("9001");
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const h = () => setIsScrolled(window.scrollY > 30);
-    const handlePopState = () => {
-      const route = getRouteFromPath(window.location.pathname);
-      if (route.openContact) {
-        setIsContactOpen(true);
-      } else {
-        setCurrentPage(route.page);
-        setIsContactOpen(false);
-      }
-    };
-
-    window.addEventListener('scroll', h);
-    window.addEventListener('popstate', handlePopState);
-
-    return () => {
-      window.removeEventListener('scroll', h);
-      window.removeEventListener('popstate', handlePopState);
-    };
-  }, []);
 
   const navigateTo = (page: PageID, hash?: string, routePath?: string) => {
     const path = routePath || getPathFromPageId(page);
@@ -125,16 +66,12 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
 
     if (route.openContact) {
       setIsContactOpen(true);
-      setIsMobileOpen(false);
-      setActiveMenu(null);
       if (typeof window !== 'undefined') {
         window.history.pushState({}, '', path);
       }
     } else {
       setCurrentPage(route.page);
       setIsContactOpen(false);
-      setIsMobileOpen(false);
-      setActiveMenu(null);
 
       if (typeof window !== 'undefined') {
         window.history.pushState({}, '', path);
@@ -151,20 +88,6 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
   };
 
   const renderContent = () => {
-    const organizationSchema = {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": SITE.name,
-      "url": "https://varietyeme.com",
-      "logo": "https://varietyeme.com/logo.png",
-      "description": heroT('heroSub'),
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Addis Ababa",
-        "addressCountry": "Ethiopia"
-      }
-    };
-
     switch(currentPage) {
       case 'identity': return (
         <>
@@ -211,7 +134,7 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
       case 'telecom': return (
         <>
           <MetaTags title={t('telecomTitle')} description={t('telecomItems', { returnObjects: true })[0]} />
-          <InfrastructurePages.Telecom onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
+          <TelecomOverview onBack={() => navigateTo('home')} heroImage="/assets/images/hero/hero-overview.webp" gradientFallback="from-black/5 to-transparent" />
         </>
       );
       case 'telecommunications': return (
@@ -436,71 +359,22 @@ const App: React.FC<AppProps> = ({ initialPage = 'home', i18n: i18nProp }) => {
           <MSPPage onNavigate={navigateTo} />
         </>
       );
-      default: return (
-        <>
-          <MetaTags 
-            title={SITE.name + " | " + SITE.tagline} 
-            description={heroT('heroSub')}
-            schema={organizationSchema}
-          />
-          <div className="pt-12 md:pt-16 lg:pt-20">
-            <HeroSection onNavigate={navigateTo} mode="static" />
-          </div>
-          <OurServices onNavigate={navigateTo} />
-<TestimonialStrip />
-          <ClientTrustBar />
-          
-          <Section className="bg-brand-primary overflow-hidden border-b border-white/5">
-             <div className="mb-8 flex items-center gap-3"><LogoSymbol className="w-6 h-6 opacity-30" /><span className={UI_CLASSES.tag + " text-brand-muted/70 border-l-2 border-brand-accent pl-3"}>{t('strategicDeliveryNetwork')}</span></div>
-             <div className="flex gap-20 items-center animate-marquee whitespace-nowrap opacity-[0.1] hover:opacity-[0.8] transition-opacity duration-700">{PARTNERS.concat(PARTNERS).map((n, i) => (<span key={i} className="text-sm md:text-base font-semibold text-brand-foreground tracking-tighter uppercase">{n.name}</span>))}</div>
-</Section>
-            
-            <div className="w-16 h-px bg-brand-accent/30 mx-auto" />
-            
-<WhatWeOffer onNavigate={navigateTo} />
-
-          <RecentProjects onNavigate={navigateTo} />
-
-<Section id="excellence" className="bg-brand-primary overflow-hidden py-8">
-              <div className="max-w-2xl mb-6"><span className={`text-brand-accent ${UI_CLASSES.tag} mb-2 border-l-2 border-brand-accent pl-3`}>Our Certifications</span><h2 className={`${UI_CLASSES.sectionTitle} text-brand-foreground text-lg`}>{t('integrityFramework')}</h2></div>
-              <div className="bg-brand-surface rounded-xl overflow-hidden grid lg:grid-cols-3 shadow-lg">
-                <div className="lg:col-span-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-brand-surface to-brand-primary">
-                  <AnimatePresence mode="wait"><motion.div key={activeISO} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-28 h-28 bg-white rounded-full p-4 shadow-lg flex flex-col items-center justify-center"><span className="text-[6px] font-bold uppercase tracking-widest text-brand-primary/40 mb-0.5">Certified</span><span className="text-xs font-semibold text-brand-primary tracking-tight">{ISO_DATA.find(i => i.id === activeISO)?.standard || `ISO ${activeISO}`}</span></motion.div></AnimatePresence>
-                </div>
-                <div className="lg:col-span-2 p-3 md:p-4 bg-white/5 divide-y divide-white/5">{ISO_DATA.map((iso) => (<div key={iso.id} className="py-2 cursor-pointer group relative" onClick={() => setActiveISO(iso.id)}><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className={`w-8 h-8 rounded-md flex items-center justify-center ${activeISO === iso.id ? (iso.id === 'ecovadis' ? 'bg-violet-500 text-white' : 'bg-brand-accent text-brand-primary') : 'bg-white/5 text-white/10'}`}><CheckCircle2 size={14} /></div><h3 className={`text-xs font-semibold tracking-tight ${activeISO === iso.id ? 'text-brand-foreground' : 'text-brand-foreground/30'}`}>{iso.standard}</h3>{(iso.status === 'certified' || iso.status === 'rated') && <span className={`absolute right-8 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${iso.status === 'certified' ? 'bg-green-500/20 border border-green-500/40 text-green-400' : 'bg-violet-500/20 border border-violet-500/40 text-violet-400'}`}>{iso.status === 'rated' ? 'Rated' : 'Certified'}</span>}</div><ChevronDown size={16} className={`transition-all ${activeISO === iso.id ? 'rotate-180 text-brand-accent' : 'text-white/5'}`} /></div>{activeISO === iso.id && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-xs text-gray-400 leading-relaxed mt-2 pl-11">{iso.description}</motion.p>}</div>))}</div>
-              </div>
-            </Section>
-
-            <div className="w-16 h-px bg-brand-accent/30 mx-auto" />
-
-          <Section className="bg-brand-primary text-brand-foreground relative z-10 text-center">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">
-              {STATS.map((st, i) => (
-                <div key={i}>
-                  <div className="text-h2 font-bold tabular-nums mb-3 tracking-tight leading-none"><CountUp value={st.value} suffix={st.suffix || ""} /></div>
-                  <p className="text-sm font-medium uppercase tracking-widest text-gray-400">{t(st.label)}</p>
-                </div>
-              ))}
-            </div>
-</Section>
-           
-<CTABanner onNavigate={navigateTo} />
-
-          <FAQSection />
-
-          <PartnersSection />
-
-          <ContactQuoteForm onNavigate={navigateTo} />
-
-          <RecentNews onNavigate={navigateTo} />
-        </>
-      );
+      default: return <HomePage onNavigate={navigateTo} />;
     }
   };
 
   const content = (
     <Layout currentPage={currentPage} navigateTo={navigateTo} isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} contactSubject={contactSubject}>
-      {renderContent()}
+      <Suspense fallback={
+        <div className="min-h-screen bg-brand-primary flex items-center justify-center">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-10 h-10 border-2 border-brand-accent/30 border-t-brand-accent rounded-full animate-spin" />
+            <span className="text-xs font-semibold uppercase tracking-widest text-brand-accent/60">Loading...</span>
+          </div>
+        </div>
+      }>
+        {renderContent()}
+      </Suspense>
     </Layout>
   );
 
