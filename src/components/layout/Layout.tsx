@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
+import { TopInfoBar } from './TopInfoBar';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { ssrSafeLazy } from '../../utils/ssrSafeLazy';
@@ -12,19 +13,15 @@ import { Brand } from '../Brand';
 import { X, ChevronRight, ArrowRight } from 'lucide-react';
 import { NAV_CONFIG } from '../../data/constants';
 import { getPathFromPageId } from '../../utils/routes';
+import { useSite } from '../../context/SiteContext';
 
 interface LayoutProps {
   children: React.ReactNode;
-  currentPage: PageID;
-  navigateTo: (page: PageID, hash?: string, routePath?: string) => void;
-  isContactOpen?: boolean;
-  setIsContactOpen?: (open: boolean) => void;
-  contactSubject?: string;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateTo, isContactOpen: externalIsContactOpen, setIsContactOpen: externalSetIsContactOpen, contactSubject = '' }) => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { t } = useTranslation();
-  const [isContactOpen, setIsContactOpen] = useState(externalIsContactOpen ?? false);
+  const { navigateTo, isContactOpen, setIsContactOpen, contactSubject } = useSite();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -34,16 +31,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateT
     setExpandedCategory(prev => prev === label ? null : label);
   };
 
-  // Sync external state if provided
-  useEffect(() => {
-    if (externalIsContactOpen !== undefined) {
-      setIsContactOpen(externalIsContactOpen);
-    }
-  }, [externalIsContactOpen]);
-
   const handleCloseContact = () => {
     setIsContactOpen(false);
-    externalSetIsContactOpen?.(false);
   };
 
   useEffect(() => {
@@ -72,6 +61,13 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateT
       className="min-h-screen bg-brand-primary selection:bg-brand-accent selection:text-brand-primary"
       suppressHydrationWarning={true}
     >
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[999] focus:bg-brand-accent focus:text-brand-primary focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus:text-sm"
+      >
+        Skip to main content
+      </a>
+      <TopInfoBar />
       <Header 
         isScrolled={isScrolled}
         activeMenu={activeMenu}
@@ -148,13 +144,13 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, navigateT
                      </div>
                    )})}
                 </nav>
-               <div className="p-8 border-t border-white/10 bg-brand-primary/30"><button onClick={() => { handleNavigate('home', undefined, '/contact'); }} className="w-full bg-brand-accent text-brand-primary py-5 min-h-[44px] rounded-2xl font-semibold uppercase text-sm tracking-wide shadow-xl active:scale-95 hover:bg-white transition-all flex items-center justify-center gap-3">{t('contact')} <ArrowRight size={16} /></button></div>
+               <div className="p-8 border-t border-white/10 bg-brand-primary/30"><button onClick={() => { handleNavigate('contact', undefined, '/contact'); }} className="w-full bg-brand-accent text-brand-primary py-5 min-h-[44px] rounded-2xl font-semibold uppercase text-sm tracking-wide shadow-xl active:scale-95 hover:bg-white transition-all flex items-center justify-center gap-3">{t('contact')} <ArrowRight size={16} /></button></div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         {children}
       </main>
 

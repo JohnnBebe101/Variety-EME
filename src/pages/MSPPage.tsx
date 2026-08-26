@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronRight, ShieldCheck, Zap, Users, ChevronDown, Menu } from 'lucide-react';
-import { mspVerticals, mspProjects, mspHero, MSPVertical } from '../data/mspData';
+import { mspVerticals, mspProjects, mspHero } from '../data/mspData';
 import { PageID } from '../types';
 
 interface NavItem {
@@ -10,7 +10,12 @@ interface NavItem {
   verticalId?: number;
 }
 
-const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: string) => void }> = ({ onNavigate }) => {
+interface MSPPageProps {
+  onNavigate: (page: PageID, hash?: string, path?: string) => void;
+  currentPath: string;
+}
+
+const MSPPage: React.FC<MSPPageProps> = ({ onNavigate, currentPath: _currentPath }) => {
   const [expandedVertical, setExpandedVertical] = useState<number | null>(1);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeNavIndex, setActiveNavIndex] = useState<number>(0);
@@ -26,7 +31,10 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
 
   const getPageIdFromPath = (path: string): PageID => {
     const pathToPageId: Record<string, PageID> = {
-      '/msp': 'msp',
+      '/msp/overview': 'msp_overview',
+      '/msp/noc-services': 'msp_noc',
+      '/msp/infrastructure': 'msp_infrastructure',
+      '/msp/cybersecurity': 'msp_cybersecurity',
       '/msp/ict-connectivity': 'msp_ict_connectivity',
       '/msp/security-access': 'msp_security_access',
       '/msp/fire-safety': 'msp_fire_safety',
@@ -42,15 +50,16 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
   };
 
   const navLinks: NavItem[] = [
-    { label: 'Overview', path: '/msp', pageId: 'msp', verticalId: undefined },
-    { label: 'ICT & Connectivity', path: '/msp/ict-connectivity', pageId: 'msp_ict_connectivity', verticalId: 1 },
-    { label: 'Security & Access', path: '/msp/security-access', pageId: 'msp_security_access', verticalId: 2 },
-    { label: 'Fire Safety', path: '/msp/fire-safety', pageId: 'msp_fire_safety', verticalId: 3 },
-    { label: 'HVAC & Environment', path: '/msp/hvac', pageId: 'msp_hvac', verticalId: 4 },
-    { label: 'Power & Energy', path: '/msp/power-energy', pageId: 'msp_power_energy', verticalId: 5 },
+    { label: 'Overview', path: '/msp/overview', pageId: 'msp_overview', verticalId: undefined },
+    { label: 'Network Operations Center (NOC)', path: '/msp/noc-services', pageId: 'msp_noc', verticalId: 1 },
+    { label: 'Infrastructure Management', path: '/msp/infrastructure', pageId: 'msp_infrastructure', verticalId: 2 },
+    { label: 'Managed Cybersecurity', path: '/msp/cybersecurity', pageId: 'msp_cybersecurity', verticalId: 3 },
+    { label: 'ICT & Connectivity', path: '/msp/ict-connectivity', pageId: 'msp_ict_connectivity', verticalId: 4 },
+    { label: 'Security & Access Control', path: '/msp/security-access', pageId: 'msp_security_access', verticalId: 5 },
+    { label: 'Fire Safety & Protection', path: '/msp/fire-safety', pageId: 'msp_fire_safety', verticalId: 6 },
+    { label: 'HVAC & Environmental Control', path: '/msp/hvac', pageId: 'msp_hvac', verticalId: 7 },
+    { label: 'Power & Energy Solutions', path: '/msp/power-energy', pageId: 'msp_power_energy', verticalId: 8 },
   ];
-
-  const activeVertical = mspVerticals.find(v => v.id === (activeNavIndex === 0 ? 1 : activeNavIndex)) || mspVerticals[0];
 
   const renderActiveContent = () => {
     if (activeNavIndex === 0) {
@@ -194,7 +203,7 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
         <div className="absolute inset-0">
-          <img src={mspHero.heroImage} alt={mspHero.heroAlt} className="w-full h-full object-cover" />
+          <img src={mspHero.heroImage} alt={mspHero.heroAlt} className="w-full h-full object-cover" loading="eager" />
           <div className={`absolute inset-0 bg-gradient-to-r ${mspHero.gradientFallback}`} />
         </div>
         <div className="absolute inset-0 flex items-center px-12 lg:px-24 max-w-7xl mx-auto">
@@ -284,7 +293,7 @@ const MSPPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: strin
                   {mspProjects.map((p) => (
                     <div key={p.id} className="bg-brand-surface rounded-xl border border-white/5 p-6 hover:shadow-md transition-shadow duration-200">
                       <div className="w-full h-40 rounded-lg bg-brand-surface mb-4 overflow-hidden">
-                        <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
+                        <img src={p.image} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
                       </div>
                       <span className="text-xs font-medium text-brand-accent uppercase tracking-wide">{p.category}</span>
                       <h4 className="font-semibold text-brand-foreground mt-1 mb-1">{p.title}</h4>

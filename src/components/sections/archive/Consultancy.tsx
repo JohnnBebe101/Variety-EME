@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+﻿import { useTranslation } from 'react-i18next';
 import { SubPageLayout } from '../../SubPageLayout';
 import { UI_CLASSES } from '../../../data/constants';
 import { PageProps } from '../PageProps';
@@ -19,3 +19,4 @@ const Consultancy = ({ onBack, heroImage, gradientFallback }: PageProps) => {
 };
 
 export default Consultancy;
+

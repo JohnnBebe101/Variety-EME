@@ -29,7 +29,7 @@ export const WhatWeOffer: React.FC<WhatWeOfferProps> = ({ onNavigate }) => {
               {t('whatWeOffer') || 'WHAT WE OFFER'}
             </h2>
             <p className="text-gray-500 text-base leading-relaxed mb-6 max-w-sm">
-              {t('whatWeOfferDescription') || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'}
+              {t('whatWeOfferDescription') || 'From telecommunications infrastructure to power systems and ICT solutions — we deliver end-to-end electromechanical engineering across Ethiopia and East Africa.'}
             </p>
             <button
               onClick={() => handleNavigate('/about')}

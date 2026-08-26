@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { X, MapPin, Phone, Mail, Send } from 'lucide-react';
 import { Brand } from './Brand';
-import { SITE } from '../data/constants';
+import { useContactForm } from '../hooks/useContactForm';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -10,115 +10,35 @@ interface ContactModalProps {
   subject?: string;
 }
 
+const SERVICES = [
+  'Telecommunications',
+  'Power & Energy',
+  'ICT & Data Center',
+  'Academy & Training',
+  'Managed Services',
+  'Other'
+];
+
 export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, subject = '' }) => {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [company, setCompany] = useState('');
-  const [phone, setPhone] = useState('');
-  const [service, setService] = useState(subject);
-  const [message, setMessage] = useState('');
-  const [honeypot, setHoneypot] = useState('');
-  const [status, setStatus] = useState<'idle'|'sending'|'success'|'error'>('idle');
-  const [statusMessage, setStatusMessage] = useState('');
-  const messageInputRef = useRef<HTMLTextAreaElement>(null);
-
-  const handleFocusMessage = () => {
-    if (message === DEFAULT_MESSAGE) {
-      setMessage('');
-    }
-  };
-
-  const handleBlurMessage = () => {
-    if (message === '') {
-      setMessage('');
-    }
-  };
+  const {
+    formData,
+    honeypot,
+    setHoneypot,
+    status,
+    statusMessage,
+    messageInputRef,
+    DEFAULT_MESSAGE,
+    handleChange,
+    handleFocusMessage,
+    handleSubmit,
+    resetForm,
+  } = useContactForm({ initialService: subject });
 
   useEffect(() => {
     if (isOpen) {
-      setFullName('');
-      setEmail('');
-      setCompany('');
-      setPhone('');
-      setService('');
-      setMessage('');
-      setHoneypot('');
-      setStatus('idle');
-      setStatusMessage('');
+      resetForm();
     }
-  }, [isOpen]);
-
-  const DEFAULT_MESSAGE = 'Tell us about your project requirements, timeline, and how we can help...';
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (honeypot.trim().length > 0) {
-      setStatus('error');
-      setStatusMessage('Bot detection triggered.');
-      return;
-    }
-
-    if (!fullName || !email || !service) {
-      setStatus('error');
-      setStatusMessage('Please fill all required fields.');
-      return;
-    }
-
-    if (message === DEFAULT_MESSAGE || !message.trim()) {
-      setStatus('error');
-      setStatusMessage('Please describe your project requirements.');
-      return;
-    }
-
-    setStatus('sending');
-    setStatusMessage('Sending your inquiry...');
-
-    try {
-      const res = await fetch('/contact.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          fullName,
-          email,
-          company,
-          phone,
-          service,
-          message: message === DEFAULT_MESSAGE ? '' : message,
-          honeypot,
-        }),
-      });
-      const data = await res.json();
-
-      if (res.ok) {
-        setStatus('success');
-        setStatusMessage(data.message || 'Thank you! We will be in touch within 24 hours.');
-        setFullName('');
-        setEmail('');
-        setCompany('');
-        setPhone('');
-        setService('');
-        setMessage('');
-      } else {
-        setStatus('error');
-        setStatusMessage(data.error || 'Failed to send message. Please try again.');
-      }
-    } catch (err) {
-      setStatus('error');
-      setStatusMessage('Server error. Please try again later.');
-    }
-  };
-
-  const SERVICES = [
-    'Telecommunications',
-    'Power & Energy', 
-    'ICT & Data Center',
-    'Academy & Training',
-    'Managed Services',
-    'Other'
-  ];
+  }, [isOpen, resetForm]);
 
   return (
     <AnimatePresence>
@@ -195,16 +115,19 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, sub
             <div className="w-full lg:w-8/12 p-5 md:p-8 bg-brand-surface overflow-y-auto">
               <h3 className="text-lg font-semibold mb-4 text-brand-foreground">Send Us a Message</h3>
               
-              <form className="space-y-4" onSubmit={handleSubmit}>
+              <form className="space-y-4" onSubmit={handleSubmit} name="contact-modal" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Contact form">
+                <input type="hidden" name="form-name" value="contact-modal" />
+                <p className="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
                 {/* Name & Email Row */}
                 <div className="grid md:grid-cols-2 gap-3">
                   <div className="space-y-1">
-                    <label className="text-[10px] font-semibold uppercase text-brand-muted">
+                    <label htmlFor="modal-fullname" className="text-[10px] font-semibold uppercase text-brand-muted">
                       Full Name <span className="text-brand-accent">*</span>
                     </label>
                     <input 
-                      value={fullName} 
-                      onChange={(e) => setFullName(e.target.value)} 
+                      id="modal-fullname"
+                      value={formData.fullName} 
+                      onChange={(e) => handleChange('fullName', e.target.value)} 
                       type="text" 
                       placeholder="Your name"
                       className="w-full bg-brand-primary/30 p-2.5 rounded-lg outline-none font-medium text-brand-foreground border border-white/5 focus:border-brand-accent/50 transition-all placeholder:text-brand-muted/50 text-sm"
@@ -212,12 +135,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, sub
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[10px] font-semibold uppercase text-brand-muted">
+                    <label htmlFor="modal-email" className="text-[10px] font-semibold uppercase text-brand-muted">
                       Email <span className="text-brand-accent">*</span>
                     </label>
                     <input 
-                      value={email} 
-                      onChange={(e) => setEmail(e.target.value)} 
+                      id="modal-email"
+                      value={formData.email} 
+                      onChange={(e) => handleChange('email', e.target.value)} 
                       type="email" 
                       placeholder="your@email.com"
                       className="w-full bg-brand-primary/30 p-2.5 rounded-lg outline-none font-medium text-brand-foreground border border-white/5 focus:border-brand-accent/50 transition-all placeholder:text-brand-muted/50 text-sm"
@@ -229,24 +153,26 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, sub
                 {/* Company & Phone Row */}
                 <div className="grid md:grid-cols-2 gap-3">
                   <div className="space-y-1">
-                    <label className="text-[10px] font-semibold uppercase text-brand-muted">
+                    <label htmlFor="modal-company" className="text-[10px] font-semibold uppercase text-brand-muted">
                       Company
                     </label>
                     <input 
-                      value={company} 
-                      onChange={(e) => setCompany(e.target.value)} 
+                      id="modal-company"
+                      value={formData.company} 
+                      onChange={(e) => handleChange('company', e.target.value)} 
                       type="text" 
                       placeholder="Company name"
                       className="w-full bg-brand-primary/30 p-2.5 rounded-lg outline-none font-medium text-brand-foreground border border-white/5 focus:border-brand-accent/50 transition-all placeholder:text-brand-muted/50 text-sm"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[10px] font-semibold uppercase text-brand-muted">
+                    <label htmlFor="modal-phone" className="text-[10px] font-semibold uppercase text-brand-muted">
                       Phone
                     </label>
                     <input 
-                      value={phone} 
-                      onChange={(e) => setPhone(e.target.value)} 
+                      id="modal-phone"
+                      value={formData.phone} 
+                      onChange={(e) => handleChange('phone', e.target.value)} 
                       type="tel" 
                       placeholder="+251 xxx xxxx"
                       className="w-full bg-brand-primary/30 p-2.5 rounded-lg outline-none font-medium text-brand-foreground border border-white/5 focus:border-brand-accent/50 transition-all placeholder:text-brand-muted/50 text-sm"
@@ -256,12 +182,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, sub
                 
                 {/* Service Selection */}
                 <div className="space-y-1">
-                  <label className="text-[10px] font-semibold uppercase text-brand-muted">
+                  <label htmlFor="modal-service" className="text-[10px] font-semibold uppercase text-brand-muted">
                     Service <span className="text-brand-accent">*</span>
                   </label>
                   <select 
-                    value={service} 
-                    onChange={(e) => setService(e.target.value)}
+                    id="modal-service"
+                    value={formData.service} 
+                    onChange={(e) => handleChange('service', e.target.value)}
                     className="w-full bg-brand-primary/30 p-2.5 rounded-lg outline-none font-medium text-brand-foreground border border-white/5 focus:border-brand-accent/50 transition-all text-sm"
                     required
                   >
@@ -274,19 +201,19 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, sub
                 
                 {/* Message */}
                 <div className="space-y-1">
-                  <label className="text-[10px] font-semibold uppercase text-brand-muted">
+                  <label htmlFor="modal-message" className="text-[10px] font-semibold uppercase text-brand-muted">
                     Project Details <span className="text-brand-accent">*</span>
                   </label>
                   <textarea 
+                    id="modal-message"
                     ref={messageInputRef}
-                    value={message} 
-                    onChange={(e) => setMessage(e.target.value)}
+                    value={formData.message} 
+                    onChange={(e) => handleChange('message', e.target.value)}
                     onFocus={handleFocusMessage}
-                    onBlur={handleBlurMessage}
                     rows={4}
                     placeholder={DEFAULT_MESSAGE}
                     className={`w-full bg-brand-primary/30 p-3 rounded-lg outline-none font-medium text-brand-foreground border border-white/5 focus:border-brand-accent/50 transition-all placeholder:text-brand-muted/50 resize-none text-sm ${
-                      message === DEFAULT_MESSAGE ? 'italic' : ''
+                      formData.message === DEFAULT_MESSAGE ? 'italic' : ''
                     }`}
                     required
                   />
@@ -330,3 +257,5 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, sub
     </AnimatePresence>
   );
 };
+
+export default ContactModal;

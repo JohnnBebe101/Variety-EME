@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, CheckCircle2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { SITE, PARTNERS, STATS, UI_CLASSES, ISO_DATA } from '../../data/constants';
+import { SITE, PARTNERS, STATS, UI_CLASSES, ISO_DATA, FAQ_DATA } from '../../data/constants';
 import { PageID } from '../../types';
 import { MetaTags } from '../MetaTags';
 import HeroSection from '../hero/HeroSection';
@@ -43,6 +43,19 @@ export default function HomePage({ onNavigate }: HomePageProps) {
     }
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": FAQ_DATA.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <>
       <MetaTags
@@ -50,6 +63,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         description={heroT('heroSub')}
         schema={organizationSchema}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <div className="pt-12 md:pt-16 lg:pt-20">
         <HeroSection onNavigate={onNavigate} mode="static" />
       </div>

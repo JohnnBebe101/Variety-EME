@@ -16,8 +16,24 @@ export const ClientTrustBar: React.FC = () => {
         <div className="flex-grow overflow-hidden relative">
           <div className="flex gap-12 items-center animate-marquee whitespace-nowrap py-0.5 opacity-60 group-hover:opacity-100 transition-opacity duration-700">
             {PARTNERS.concat(PARTNERS).map((partner, i) => (
-              <span key={i} className="text-xs md:text-sm font-semibold text-white tracking-tight uppercase inline-block">
-                {partner.name}
+              <span key={i} className="inline-flex items-center">
+                {partner.logo ? (
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="h-5 md:h-6 w-auto object-contain brightness-0 invert opacity-70 hover:opacity-100 transition-opacity"
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.style.display = 'none';
+                      const fallback = target.nextElementSibling as HTMLElement;
+                      if (fallback) fallback.style.display = 'inline';
+                    }}
+                  />
+                ) : null}
+                <span className={`text-xs md:text-sm font-semibold text-white tracking-tight uppercase ${partner.logo ? 'hidden' : 'inline'}`}>
+                  {partner.name}
+                </span>
               </span>
             ))}
           </div>

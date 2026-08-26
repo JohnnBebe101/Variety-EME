@@ -23,14 +23,14 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  isScrolled,
+  isScrolled: _isScrolled,
   activeMenu,
   setActiveMenu,
   navigateTo,
   setIsMobileOpen
 }) => {
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [, setPhraseIndex] = useState(0);
+  const [, setIsAnimating] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const clearDropdownTimeout = useCallback(() => {
@@ -182,7 +182,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={() => nav.page && navigateTo(nav.page, undefined, nav.path)}
                     onMouseEnter={() => {
                       clearDropdownTimeout();
-                      hasDropdown && setActiveMenu(nav.label);
+                      if (hasDropdown) setActiveMenu(nav.label);
                     }}
                     onMouseLeave={() => {
                       if (hasDropdown) {
@@ -228,7 +228,7 @@ export const Header: React.FC<HeaderProps> = ({
                           <button onClick={() => nav.page && navigateTo(nav.page, undefined, nav.path)} className="text-xs font-semibold uppercase tracking-wide text-white hover:text-brand-accent mt-4">{nav.overview.cta} →</button>
                         </div>
                         <div className="col-span-7 bg-white p-4 grid grid-cols-1 gap-1">
-                          {nav.items.slice(0, 5).map((item) => (
+                          {nav.items.map((item) => (
                             <button 
                               key={item.label} 
                               onClick={() => navigateTo(item.page as PageID, undefined, item.path)} 

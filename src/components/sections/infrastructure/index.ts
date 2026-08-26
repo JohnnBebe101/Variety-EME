@@ -1,1 +1,1 @@
-export { default as TelecomOverview } from './TelecomOverview';
+// export { default as TelecomOverview } from './TelecomOverview'; // Archived - moved to ../archive/

@@ -14,12 +14,13 @@ interface SidebarCategory {
 interface PageSidebarProps {
   category: SidebarCategory;
   currentPath: string;
+  currentCategory?: string;
   onNavigate: (path: string) => void;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const PageSidebar: React.FC<PageSidebarProps> = ({ category, currentPath, onNavigate, isOpen, onClose }) => {
+export const PageSidebar: React.FC<PageSidebarProps> = ({ category, currentPath, currentCategory, onNavigate, isOpen, onClose }) => {
   return (
     <>
       {/* Mobile Overlay */}
@@ -58,7 +59,7 @@ export const PageSidebar: React.FC<PageSidebarProps> = ({ category, currentPath,
         {/* Navigation Links */}
         <nav className="p-2 lg:p-4 space-y-1">
           {category.links.map((link, index) => {
-            const isActive = currentPath === link.path;
+            const isActive = currentPath === link.path || (currentCategory && link.path.startsWith('/' + currentCategory + '/'));
             return (
               <button
                 key={index}
@@ -131,7 +132,10 @@ export const SIDEBAR_CONFIG: Record<string, SidebarCategory> = {
   msp: {
     title: 'Managed Services',
     links: [
-      { label: 'Overview', path: '/msp' },
+      { label: 'Overview', path: '/msp/overview' },
+      { label: 'Network Operations Center (NOC)', path: '/msp/noc-services' },
+      { label: 'Infrastructure Management', path: '/msp/infrastructure' },
+      { label: 'Managed Cybersecurity', path: '/msp/cybersecurity' },
       { label: 'ICT & Connectivity', path: '/msp/ict-connectivity' },
       { label: 'Security & Access Control', path: '/msp/security-access' },
       { label: 'Fire Safety & Protection', path: '/msp/fire-safety' },

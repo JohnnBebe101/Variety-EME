@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { portfolioProjects } from '../data/portfolioData';
 
 const PortfolioSlider = () => {
@@ -34,6 +33,7 @@ const PortfolioSlider = () => {
               src={portfolioProjects[currentIndex].image} 
               alt={portfolioProjects[currentIndex].title}
               className="w-full h-full object-cover opacity-80"
+              loading="lazy"
             />
           </motion.div>
         </AnimatePresence>

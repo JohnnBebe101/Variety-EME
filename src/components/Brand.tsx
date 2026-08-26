@@ -18,6 +18,7 @@ export const Brand: React.FC<BrandProps> = ({ forceInvert = true, className = ""
           src={IMAGES.logo.white} 
           alt="Variety EME" 
           className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-28 lg:h-28"
+          loading="eager"
         />
       </div>
     ) : (
@@ -25,6 +26,7 @@ export const Brand: React.FC<BrandProps> = ({ forceInvert = true, className = ""
         src={IMAGES.logo.white} 
         alt="Variety EME" 
         className="logo-white w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 shrink-0 transition-transform duration-500 hover:scale-105"
+        loading="eager"
       />
     )}
     <div className="flex flex-col leading-none text-left">

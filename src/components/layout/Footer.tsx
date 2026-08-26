@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MapPin, Phone, Linkedin, Facebook } from 'lucide-react';
 import { Brand } from '../Brand';
 import { SITE } from '../../data/constants';
@@ -9,11 +9,7 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
-  const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear());
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-brand-primary text-brand-foreground pt-16 pb-8 px-4 md:px-8 lg:px-12 bg-[radial-gradient(ellipse_80%_40%_at_50%_0%,rgba(var(--color-brand-accent)/0.04),transparent)]">
@@ -45,9 +41,9 @@ export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
             <h5 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-accent mb-4">Quick Links</h5>
             <ul className="space-y-2.5">
               <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('home')}>Home</li>
-              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('identity', undefined, '/about')}>About Us</li>
+              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('about')}>About Us</li>
               <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('contact', undefined, '/contact')}>Contact</li>
-              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('portfolio-detailed')}>Portfolio</li>
+              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('portfolio')}>Portfolio</li>
             </ul>
           </div>
           
@@ -58,7 +54,7 @@ export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
               <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('telecommunications')}>Telecom</li>
               <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('ict_datacenter')}>ICT & Data Center</li>
               <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('power')}>Power</li>
-              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('academy_overview')}>Training</li>
+              <li className="text-sm text-brand-foreground/50 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigateTo('academy')}>Training</li>
             </ul>
           </div>
           
@@ -87,12 +83,12 @@ export const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
             <p className="text-sm text-brand-foreground/50 mb-3">
               Ready to deliver your next infrastructure project?
             </p>
-            <a href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accent hover:text-white transition-colors mt-2">
+            <button onClick={() => navigateTo('contact', undefined, '/contact')} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accent hover:text-white transition-colors mt-2">
               Get in Touch →
-            </a>
-            <a href="/contact" className="inline-flex items-center gap-2 text-sm text-brand-foreground/50 hover:text-white transition-colors mt-2 block">
+            </button>
+            <button onClick={() => navigateTo('contact', undefined, '/contact')} className="inline-flex items-center gap-2 text-sm text-brand-foreground/50 hover:text-white transition-colors mt-2 block">
               Request Site Assessment →
-            </a>
+            </button>
           </div>
         </div>
         

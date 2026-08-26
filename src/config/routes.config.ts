@@ -1,4 +1,4 @@
-import { PageID } from '../types';
+﻿import { PageID } from '../types';
 
 export interface RouteEntry {
   path: string;
@@ -51,11 +51,11 @@ export const ROUTES: RouteEntry[] = [
   { path: '/msp/noc-services', page: 'msp_noc', prerender: true, meta: { title: 'Network Operations Center', description: '24/7 NOC monitoring and management services' } },
   { path: '/msp/infrastructure', page: 'msp_infrastructure', prerender: true, meta: { title: 'Infrastructure Management', description: 'Server, storage and network device management' } },
   { path: '/msp/cybersecurity', page: 'msp_cybersecurity', prerender: true, meta: { title: 'Managed Cybersecurity', description: 'Security monitoring and incident response' } },
-  { path: '/msp/ict-connectivity', page: 'msp_ict_connectivity', prerender: false, meta: { title: 'ICT & Connectivity', description: 'Enterprise networking, structured cabling, and managed support services' } },
-  { path: '/msp/security-access', page: 'msp_security_access', prerender: false, meta: { title: 'Security & Access Control', description: 'Smart CCTV surveillance and biometric access control systems' } },
-  { path: '/msp/fire-safety', page: 'msp_fire_safety', prerender: false, meta: { title: 'Fire Safety & Protection', description: 'Fire detection, suppression systems, and compliance monitoring' } },
-  { path: '/msp/hvac', page: 'msp_hvac', prerender: false, meta: { title: 'HVAC & Environmental Control', description: 'Climate management and Building Management System integration' } },
-  { path: '/msp/power-energy', page: 'msp_power_energy', prerender: false, meta: { title: 'Power & Energy Solutions', description: 'UPS backup power and energy management solutions' } },
+  { path: '/msp/ict-connectivity', page: 'msp_ict_connectivity', prerender: true, meta: { title: 'ICT & Connectivity', description: 'Enterprise networking, structured cabling, and managed support services' } },
+  { path: '/msp/security-access', page: 'msp_security_access', prerender: true, meta: { title: 'Security & Access Control', description: 'Smart CCTV surveillance and biometric access control systems' } },
+  { path: '/msp/fire-safety', page: 'msp_fire_safety', prerender: true, meta: { title: 'Fire Safety & Protection', description: 'Fire detection, suppression systems, and compliance monitoring' } },
+  { path: '/msp/hvac', page: 'msp_hvac', prerender: true, meta: { title: 'HVAC & Environmental Control', description: 'Climate management and Building Management System integration' } },
+  { path: '/msp/power-energy', page: 'msp_power_energy', prerender: true, meta: { title: 'Power & Energy Solutions', description: 'UPS backup power and energy management solutions' } },
 
   // ── Training Academy ──────────────────────────────────────────────────
   { path: '/academy', page: 'academy', prerender: true, meta: { title: 'Training Academy', description: 'Practitioner-led engineering and ICT training' } },
@@ -63,14 +63,15 @@ export const ROUTES: RouteEntry[] = [
   { path: '/academy/fiber-optics-certification', page: 'academy_fiber_optics_certification', prerender: true, meta: { title: 'Fiber Optics Certification (CFOT/CFOS)', description: 'FOA-aligned fiber optics certification programs for technicians and specialists.' } },
   { path: '/academy/telecom-automation-training', page: 'academy_telecom_automation_training', prerender: true, meta: { title: 'Telecom & Automation Training', description: 'Telecom and industrial automation training programs for operators and engineers.' } },
   { path: '/academy/institutional-partnerships', page: 'academy_institutional_partnerships', prerender: true, meta: { title: 'Institutional Partnerships', description: 'Corporate and institutional training partnerships' } },
-  { path: '/academy/managed-services', page: 'msp_overview', prerender: false, meta: { title: 'Managed Services Training', description: 'Managed services training programs' } },
+  // Legacy redirect: Academy managed services training redirects to MSP Overview
+  // { path: '/academy/managed-services', page: 'msp_overview', prerender: false, meta: { title: 'Managed Services Training', description: 'Managed services training programs' } },
 
   // ── Corporate ─────────────────────────────────────────────────────────
   { path: '/portfolio', page: 'portfolio', prerender: true, meta: { title: 'Our Portfolio', description: 'Project portfolio and case studies' } },
   { path: '/about', page: 'about', prerender: true, meta: { title: 'About Us', description: 'Variety EME corporate identity and overview' } },
   { path: '/contact', page: 'contact', openContact: true, prerender: true, meta: { title: 'Contact Us', description: 'Get in touch with Variety EME' } },
-  { path: '/privacy-policy', page: 'privacy_policy', prerender: false, meta: { title: 'Privacy Policy', description: 'Variety EME Privacy Policy' } },
-  { path: '/terms-of-service', page: 'terms_of_service', prerender: false, meta: { title: 'Terms of Service', description: 'Variety EME Terms of Service' } },
+  { path: '/privacy-policy', page: 'privacy_policy', prerender: true, meta: { title: 'Privacy Policy', description: 'Variety EME Privacy Policy' } },
+  { path: '/terms-of-service', page: 'terms_of_service', prerender: true, meta: { title: 'Terms of Service', description: 'Variety EME Terms of Service' } },
 
   // ── Legacy redirects (prerender: false — kept for URL compat only) ────
   { path: '/telecom', page: 'telecommunications', prerender: false, meta: { title: 'Telecommunications', description: 'End-to-end telecom infrastructure services' } },
@@ -93,15 +94,73 @@ export const ROUTES: RouteEntry[] = [
 
 // ── Derived helpers ──────────────────────────────────────────────────────
 
-/** Routes that should be pre-rendered at build time */
+/** Routes that should be pre-rendered at build time (prerender === true) */
 export const PRERENDER_ROUTES = ROUTES.filter(r => r.prerender);
 
-/** Path → RouteInfo lookup (replaces ROUTE_MAP in routes.ts) */
+/** Path -> RouteInfo lookup. Used by getRouteFromPath() in routes.ts */
 export const ROUTE_MAP: Record<string, { page: PageID; openContact?: boolean }> = Object.fromEntries(
   ROUTES.map(r => [r.path, { page: r.page, openContact: r.openContact }])
 );
 
-/** PageID → Path lookup (replaces PAGE_PATH_MAP in routes.ts) */
-export const PAGE_PATH_MAP: Partial<Record<PageID, string>> = Object.fromEntries(
-  ROUTES.filter(r => !r.openContact).map(r => [r.page, r.path])
-);
+/** Canonical path for each PageID — single source of truth for URL generation.
+ *  Legacy redirect routes (e.g., /telecom, /om, /academy/managed-services) are deliberately excluded.
+ *  This ensures getPathFromPageId() always returns the canonical, SEO-friendly URL.
+ */
+const CANONICAL_PATHS: Record<PageID, string> = {
+  home: '/',
+  telecommunications: '/telecommunications',
+  telecommunications_mobile_rollout: '/telecommunications/mobile-rollout',
+  telecommunications_fiber_optics: '/telecommunications/fiber-optics',
+  telecommunications_tower_civil_works: '/telecommunications/tower-civil-works',
+  telecommunications_operations_maintenance: '/telecommunications/operations-maintenance',
+  telecommunications_warehouse_management: '/telecommunications/warehouse-management',
+  ict_datacenter: '/ict-datacenter',
+  ict_datacenter_data_center_design: '/ict-datacenter/data-center-design',
+  ict_datacenter_enterprise_networking: '/ict-datacenter/enterprise-networking',
+  ict_datacenter_system_development: '/ict-datacenter/system-development',
+  ict_datacenter_cybersecurity_managed: '/ict-datacenter/cybersecurity-managed',
+  ict_datacenter_training_consultancy: '/ict-datacenter/training-consultancy',
+  power: '/power',
+  power_transmission_distribution: '/power/transmission-distribution',
+  power_minigrid_systems: '/power/minigrid-systems',
+  power_backup_power: '/power/backup-power',
+  power_building_electromechanical: '/power/building-electromechanical',
+  academy: '/academy',
+  academy_overview: '/academy/overview',
+  academy_fiber_optics_certification: '/academy/fiber-optics-certification',
+  academy_telecom_automation_training: '/academy/telecom-automation-training',
+  academy_institutional_partnerships: '/academy/institutional-partnerships',
+  msp: '/msp',
+  msp_overview: '/msp/overview',
+  msp_noc: '/msp/noc-services',
+  msp_infrastructure: '/msp/infrastructure',
+  msp_cybersecurity: '/msp/cybersecurity',
+  msp_ict_connectivity: '/msp/ict-connectivity',
+  msp_security_access: '/msp/security-access',
+  msp_fire_safety: '/msp/fire-safety',
+  msp_hvac: '/msp/hvac',
+  msp_power_energy: '/msp/power-energy',
+  portfolio: '/portfolio',
+  about: '/about',
+  contact: '/contact',
+  privacy_policy: '/privacy-policy',
+  terms_of_service: '/terms-of-service',
+  identity: '/about',
+  leadership: '/about',
+  board: '/about',
+  'portfolio-detailed': '/portfolio',
+  presence: '/academy/institutional-partnerships',
+  ict: '/ict-datacenter',
+  coresite: '/ict-datacenter/data-center-design',
+  datacenters: '/ict-datacenter/data-center-design',
+  'ai-iot': '/ict-datacenter/cybersecurity-managed',
+  mobility: '/academy/telecom-automation-training',
+  awards: '/about',
+  iso: '/about',
+  consultancy: '/ict-datacenter/system-development',
+  ehs: '/academy/overview',
+  };
+
+/** PageID -> Path lookup. Used by getPathFromPageId() in routes.ts.
+ *  Returns canonical paths only (legacy redirects excluded). */
+export const PAGE_PATH_MAP: Partial<Record<PageID, string>> = CANONICAL_PATHS;

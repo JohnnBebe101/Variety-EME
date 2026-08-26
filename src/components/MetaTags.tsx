@@ -10,7 +10,6 @@ interface MetaTagsProps {
 }
 
 export const MetaTags: React.FC<MetaTagsProps> = ({ title, description, url, image, schema }) => {
-  console.log(`Rendering MetaTags for title: ${title}`);
   const siteName = "Variety ElectroMechanical Engineering";
   const fullTitle = `${title} | ${siteName}`;
   const defaultUrl = "https://varietyeme.com";

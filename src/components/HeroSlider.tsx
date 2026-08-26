@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { HERO, UI_CLASSES } from '../data/constants';
+import { HERO } from '../data/constants';
 import PortfolioSlider from './PortfolioSlider';
 
 import { PageID } from '../types';
@@ -44,7 +44,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenContact, navigateT
               className="w-full h-full object-cover brightness-[0.70]"
               alt={slide.alt}
               loading="eager"
-              // @ts-ignore
+              // fetchPriority is a valid non-standard attribute not yet in React types
               fetchPriority="high"
               role="presentation"
               decoding="async"

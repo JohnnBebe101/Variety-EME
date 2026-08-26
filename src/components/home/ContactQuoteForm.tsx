@@ -10,7 +10,7 @@ interface ContactQuoteFormProps {
   onNavigate?: (page: PageID, hash?: string, routePath?: string) => void;
 }
 
-export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }) => {
+export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate: _onNavigate }) => {
   const { t } = useTranslation('common');
   const [formData, setFormData] = useState({
     name: '',
@@ -28,10 +28,33 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log('Form submitted:', formData);
-    setStatus('success');
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+
+    try {
+      const formBody = new URLSearchParams({
+        'form-name': 'contact-quote',
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+      }).toString();
+
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formBody,
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+
     setTimeout(() => setStatus('idle'), 5000);
   };
 
@@ -105,7 +128,9 @@ export const ContactQuoteForm: React.FC<ContactQuoteFormProps> = ({ onNavigate }
                 </p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" name="contact-quote" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="contact-quote" />
+                <p className="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-xs font-medium text-gray-700 mb-1">

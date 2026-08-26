@@ -6,6 +6,7 @@ export const portfolioProjects = [
     description: "Nationwide tower deployment and commissioning",
     image: "/assets/images/portfolio/ethio-telecom-tower-rollout.webp",
     client: "Ethio Telecom / Nokia",
+    year: 2023
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const portfolioProjects = [
     description: "66 stations across 3 routes",
     image: "/assets/images/portfolio/optical-tansmission-network.webp",
     client: "Huawei / AAICTDA",
+    year: 2023
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const portfolioProjects = [
     description: "67 towns across 3 EEPCO projects",
     image: "/assets/images/portfolio/rural-electrification.webp",
     client: "EEPCO",
+    year: 2022
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ export const portfolioProjects = [
     description: "Regional data center design and build",
     image: "/assets/images/portfolio/mofed-dc.webp",
     client: "Ministry of Finance",
+    year: 2024
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ export const portfolioProjects = [
     description: "500+ nodes, 30m² data center",
     image: "/assets/images/portfolio/entoto-tvet-1.webp",
     client: "Huawei / AAICTDA",
+    year: 2024
   },
   {
     id: 6,
@@ -46,6 +51,7 @@ export const portfolioProjects = [
     description: "High-voltage transmission towers",
     image: "/assets/images/portfolio/400-kv-tower.webp",
     client: "KEC International",
+    year: 2022
   },
 ];
 

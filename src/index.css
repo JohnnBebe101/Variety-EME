@@ -26,7 +26,7 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Rubik', 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -113,4 +113,15 @@ body {
 
 .logo-text-glow:hover {
   text-shadow: 0 0 30px rgba(255, 107, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

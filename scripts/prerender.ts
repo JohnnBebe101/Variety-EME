@@ -30,7 +30,6 @@ async function prerender() {
       { key: '/src/components/CorporatePages.tsx',         path: '/src/components/CorporatePages.tsx',              ssr: false },
       { key: '/src/components/sections/services/index.ts', path: '/src/components/sections/services/index.ts',      ssr: false },
       { key: '/src/components/sections/excellence/index.ts', path: '/src/components/sections/excellence/index.ts',  ssr: false },
-      { key: '/src/components/sections/infrastructure/TelecomOverview.tsx', path: '/src/components/sections/infrastructure/TelecomOverview.tsx', ssr: false },
       // Direct page chunks (used by ssrSafeLazy — must register default export)
       { key: '/src/pages/TelecomPage.tsx',     path: '/src/pages/TelecomPage.tsx',     ssr: true },
       { key: '/src/pages/ICTPage.tsx',         path: '/src/pages/ICTPage.tsx',         ssr: true },

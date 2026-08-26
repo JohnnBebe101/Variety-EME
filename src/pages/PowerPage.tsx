@@ -27,12 +27,12 @@ const PowerPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: str
         transform transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
         pt-20
       `}>
-        <PageSidebar category={sidebarCategory} currentPath="/power" onNavigate={handleNavClick} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        <PageSidebar category={sidebarCategory} currentPath="/power" currentCategory="power" onNavigate={handleNavClick} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       </aside>
       
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block fixed left-0 top-32 w-60">
-        <PageSidebar category={sidebarCategory} currentPath="/power" onNavigate={handleNavClick} isOpen={false} onClose={() => {}} />
+        <PageSidebar category={sidebarCategory} currentPath="/power" currentCategory="power" onNavigate={handleNavClick} isOpen={false} onClose={() => {}} />
       </aside>
       
       {/* Main Content with sidebar offset */}
@@ -40,7 +40,7 @@ const PowerPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: str
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
         <div className="absolute inset-0">
-          <img src={powerHero.heroImage} alt={powerHero.heroAlt} className="w-full h-full object-cover" />
+          <img src={powerHero.heroImage} alt={powerHero.heroAlt} className="w-full h-full object-cover" loading="eager" />
           <div className={`absolute inset-0 bg-gradient-to-r ${powerHero.gradientFallback}`} />
         </div>
         <div className="absolute inset-0 flex items-center px-12 lg:px-24 max-w-7xl mx-auto">
@@ -133,7 +133,7 @@ const PowerPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: str
             {powerProjects.map((p) => (
               <div key={p.id} className="bg-brand-primary rounded-xl border border-white/5 p-6 hover:shadow-md transition-shadow duration-200">
                 <div className="w-full h-36 rounded-lg bg-brand-surface mb-4 overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
+                  <img src={p.image} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <span className="text-xs font-medium text-brand-accent uppercase tracking-wide">{p.category}</span>
                 <h4 className="font-semibold text-brand-foreground mt-1 mb-1">{p.title}</h4>

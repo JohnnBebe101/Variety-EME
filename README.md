@@ -1,11 +1,11 @@
-# InfinEth Solutions - Static Site
+# Variety EME - Static Site
 
 Ethiopia's leading provider of Telecom Infrastructure, ICT Systems Design, and Electro-Mechanical Engineering.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
-- Node.js (v18+)
+- Node.js (v20+)
 - npm
 
 ### Installation
@@ -14,54 +14,78 @@ npm install
 ```
 
 ### Development
-Run the local development server with hot reload:
 ```bash
 npm run dev
 ```
 
 ### Build for Production
-Generate a production-ready static site in the `dist/` folder:
 ```bash
 npm run build
 ```
-This command performs the following steps:
-1. `vite build`: Compiles assets and generates the base SPA.
-2. `npm run prerender`: Pre-renders all static routes into HTML files for SEO.
-3. `npm run generate-sitemap`: Generates `sitemap.xml` for search engines.
+Runs: `vite build` -> `prerender` (31 routes) -> `generate-sitemap`.
 
-## 📁 Project Structure
+### Testing
+```bash
+npm test              # Run all tests
+npm run test:watch    # Watch mode
+npm run test:coverage # Coverage report
+```
 
-- `src/data/constants.ts`: **Primary location for content updates.** Edit this file to change navigation, ISO data, or partner lists.
-- `public/locales/en/translation.json`: Contains all UI text strings for easy internationalization management.
-- `scripts/`: Contains build-time scripts for SSG and Sitemap generation.
-- `src/components/PageSections.tsx`: Contains the content for various sub-pages.
+### Linting & Formatting
+```bash
+npm run lint          # Check for lint errors
+npm run lint:fix      # Auto-fix lint errors
+npm run format        # Format with Prettier
+npm run format:check  # Check formatting
+```
 
-## 🌐 Environment Variables
+## Project Structure
 
-Create a `.env` file in the root directory for any environment-specific configuration:
+```
+src/
+  config/routes.config.ts  — Single source of truth for all routes (57 entries)
+  utils/routes.ts          — Navigation helpers (getRouteFromPath, getPathFromPageId)
+  utils/ssrSafeLazy.ts     — SSR-safe lazy loading utility
+  components/
+    sections/              — Page section components (services/, excellence/, infrastructure/)
+    layout/                — Header, Footer, Layout
+    home/                  — HomePage, ContactQuoteForm, OurServices, etc.
+  hooks/                   — Custom React hooks
+  pages/                   — Full-page components (MSPPage, LegalPage, etc.)
+  data/constants.ts        — Site content, navigation, ISO data, partners
+scripts/
+  prerender.ts             — SSG: pre-renders all routes to HTML
+  generate-sitemap.ts      — Generates sitemap.xml
+public/
+  _headers                 — Netlify security headers
+  _redirects               — SPA fallback rules
+  .htaccess                — Apache security headers + caching
+```
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `VITE_PROXY_URL` | URL for the backend API proxy (if used for forms/contact) | - |
-| `GEMINI_API_KEY` | API key for AI-powered features (if enabled) | - |
+## Key Architecture Decisions
 
-## 🛠 Deployment
+- **Route Config**: All routes defined once in `src/config/routes.config.ts`. App.tsx, prerender.ts, and sitemap derive from this.
+- **Code Splitting**: Page components use `ssrSafeLazy()` for SSR-compatible lazy loading. 14 lazy chunks, ~266KB main bundle.
+- **Contact Forms**: Both `ContactQuoteForm` and `ContactModal` submit via Netlify Forms (form-name: `contact-quote` and `contact-modal`).
+- **State Management**: React Context for global UI state (current page, contact modal). No external state library.
+- **SSR/SSG**: Pre-renders 31 routes at build time using `ReactDOMServer.renderToString()`.
 
-The `dist/` folder is ready to be uploaded to any static hosting provider.
+## Environment Variables
 
-### Netlify / Vercel
-The project includes a `public/_redirects` file to handle client-side routing fallbacks. Ensure your deployment settings point to the `dist` directory as the publish directory.
+| Variable | Description |
+|----------|-------------|
+| `VITE_SITE_URL` | Canonical URL for sitemap generation |
 
-## 🧪 Quality Assurance Checklist
+## Deployment
 
-Before every production deployment, verify the following:
-1. **Navigation**: Click through all menu items and ensure routes render correctly.
-2. **SEO**: Check that each page has a unique `<title>` and `<meta name="description">` in the source code.
-3. **Responsiveness**: Test on mobile, tablet, and desktop resolutions.
-4. **Performance**: Run a Lighthouse audit; scores should ideally be 90+.
-5. **Console**: Ensure no red errors appear in the browser developer console.
+Deploy to Netlify. The `dist/` folder is the publish directory.
 
-## 📄 Maintenance
+- `public/_headers` — Security headers (CSP, HSTS, X-Frame-Options)
+- `public/_redirects` — SPA fallback for client-side routing
+- `netlify.toml` — Build configuration (Node 20, publish dir: dist)
 
-- **Adding Routes**: To add a new pre-rendered page, update the `routes` array in both `scripts/prerender.ts` and `scripts/generate-sitemap.ts`.
-- **Updating Dependencies**: Dependencies are pinned in `package.json` for stability. Use `npm update` cautiously and test thoroughly.
+## Maintenance
+
+- **Adding Routes**: Add entry to `src/config/routes.config.ts`. Everything else derives from this.
+- **Updating Page Content**: Edit component files under `src/components/sections/` or `src/pages/`.
+- **Adding Tests**: Place test files alongside source files (`*.test.ts` / `*.test.tsx`).

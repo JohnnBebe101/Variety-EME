@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { heroSlides, HeroSlide } from '../../data/heroSlides';
+import { heroSlides } from '../../data/heroSlides';
 import { ANIM } from '../../data/animationConstants';
 import { useSlideTimer } from '../../hooks/useSlideTimer';
 import HeroSlideContent from './HeroSlideContent';
@@ -25,7 +25,7 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, mode = 'slider' }) => {
-  const { currentSlide, progress, isPaused, pause, resume, goToSlide } = useSlideTimer(heroSlides.length);
+  const { currentSlide, progress, pause, resume, goToSlide } = useSlideTimer(heroSlides.length);
   
   const activeSlide = heroSlides[currentSlide];
   

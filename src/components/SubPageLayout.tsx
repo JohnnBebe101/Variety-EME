@@ -43,6 +43,7 @@ interface SubPageLayoutProps {
   currentPath?: string;
   onNavigate?: (path: string) => void;
   onBack: () => void;
+  onParentOverview?: () => void;
 }
 
 export const SubPageLayout: React.FC<SubPageLayoutProps> = ({ 
@@ -57,7 +58,8 @@ export const SubPageLayout: React.FC<SubPageLayoutProps> = ({
   gradientFallback = "from-black/5 to-transparent", 
   currentPath = '',
   onNavigate,
-  onBack 
+  onBack,
+  onParentOverview
 }) => {
   const { t } = useTranslation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -169,11 +171,11 @@ export const SubPageLayout: React.FC<SubPageLayoutProps> = ({
 
             {/* Back to Overview */}
             <div className="mt-24 pt-12 border-t border-white/5 flex justify-between items-center">
-              <button onClick={onBack} className="flex items-center gap-4 text-brand-accent font-semibold uppercase text-xs tracking-wide group py-3 min-h-[44px]">
+              <button onClick={onParentOverview || onBack} className="flex items-center gap-4 text-brand-accent font-semibold uppercase text-xs tracking-wide group py-3 min-h-[44px]">
                 <div className="w-10 h-10 rounded-full border border-brand-accent flex items-center justify-center group-hover:bg-brand-accent group-hover:text-brand-primary transition-all active:scale-90"><ChevronRight className="rotate-180" size={16} /></div>
                 {t('backToOverview')}
               </button>
-              <Brand forceInvert={true} onClick={onBack} className="opacity-20 hover:opacity-100 transition-opacity" />
+              <Brand forceInvert={true} onClick={onParentOverview || onBack} className="opacity-20 hover:opacity-100 transition-opacity" />
             </div>
           </div>
         </div>

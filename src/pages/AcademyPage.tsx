@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronRight, ShieldCheck, Zap, Users, Menu } from 'lucide-react';
-import { academyServices, academyProjects, academyHero } from '../data/academyData';
+import { academyServices, academyHero } from '../data/academyData';
 import { PageID } from '../types';
 import { PageSidebar, SIDEBAR_CONFIG } from '../components/PageSidebar';
 
@@ -27,12 +27,12 @@ const AcademyPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: s
         transform transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
         pt-20
       `}>
-        <PageSidebar category={sidebarCategory} currentPath="/academy" onNavigate={handleNavClick} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        <PageSidebar category={sidebarCategory} currentPath="/academy" currentCategory="academy" onNavigate={handleNavClick} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       </aside>
       
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block fixed left-0 top-32 w-60">
-        <PageSidebar category={sidebarCategory} currentPath="/academy" onNavigate={handleNavClick} isOpen={false} onClose={() => {}} />
+        <PageSidebar category={sidebarCategory} currentPath="/academy" currentCategory="academy" onNavigate={handleNavClick} isOpen={false} onClose={() => {}} />
       </aside>
       
       {/* Main Content with sidebar offset */}
@@ -40,7 +40,7 @@ const AcademyPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: s
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
         <div className="absolute inset-0">
-          <img src={academyHero.heroImage} alt={academyHero.heroAlt} className="w-full h-full object-cover" />
+          <img src={academyHero.heroImage} alt={academyHero.heroAlt} className="w-full h-full object-cover" loading="eager" />
           <div className={`absolute inset-0 bg-gradient-to-r ${academyHero.gradientFallback}`} />
         </div>
         <div className="absolute inset-0 flex items-center px-12 lg:px-24 max-w-7xl mx-auto">

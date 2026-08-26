@@ -41,7 +41,6 @@ export type PageID =
   | 'privacy_policy'
   | 'terms_of_service'
   | 'identity' | 'leadership' | 'board' | 'portfolio-detailed' | 'presence'
-  | 'telecom' | 'om' | 'mobile-network' | 'energy-mgmt'
   | 'ict' | 'coresite' | 'ai-iot' | 'mobility' | 'datacenters'
   | 'awards' | 'iso' | 'consultancy' | 'ehs';
 

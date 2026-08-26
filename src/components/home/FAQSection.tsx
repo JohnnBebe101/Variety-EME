@@ -25,7 +25,7 @@ export const FAQSection: React.FC = () => {
           </h2>
         </div>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto" role="region" aria-label="Frequently Asked Questions">
           <div className="space-y-3">
             {FAQ_DATA.map((faq, index) => (
               <motion.div
@@ -36,32 +36,43 @@ export const FAQSection: React.FC = () => {
                 transition={{ duration: 0.4, delay: index * 0.08 }}
               >
                 <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
-                    aria-expanded={openIndex === index}
+                  <h3>
+                    <button
+                      onClick={() => toggleFAQ(index)}
+                      id={`faq-button-${index}`}
+                      aria-controls={`faq-panel-${index}`}
+                      className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+                      aria-expanded={openIndex === index}
+                    >
+                      <span className="font-semibold text-base text-gray-900 pr-8">
+                        {faq.question}
+                      </span>
+                      <ChevronDown
+                        size={18}
+                        className={`text-brand-accent flex-shrink-0 transition-transform duration-300 ${
+                          openIndex === index ? 'rotate-180' : ''
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    id={`faq-panel-${index}`}
+                    role="region"
+                    aria-labelledby={`faq-button-${index}`}
+                    hidden={openIndex !== index}
                   >
-                    <span className="font-semibold text-base text-gray-900 pr-8">
-                      {faq.question}
-                    </span>
-                    <ChevronDown
-                      size={18}
-                      className={`text-brand-accent flex-shrink-0 transition-transform duration-300 ${
-                        openIndex === index ? 'rotate-180' : ''
-                      }`}
-                      aria-hidden="true"
-                    />
-                  </button>
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: openIndex === index ? 'auto' : 0, opacity: openIndex === index ? 1 : 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-5 pb-5 border-t border-gray-100">
-                      <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
-                    </div>
-                  </motion.div>
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: openIndex === index ? 'auto' : 0, opacity: openIndex === index ? 1 : 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 border-t border-gray-100">
+                        <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
+                      </div>
+                    </motion.div>
+                  </div>
                 </div>
               </motion.div>
             ))}

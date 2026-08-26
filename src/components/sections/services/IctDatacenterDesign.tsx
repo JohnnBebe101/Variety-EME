@@ -1,9 +1,9 @@
-import { SubPageLayout } from '../../SubPageLayout';
-import { PageProps } from '../PageProps';
+﻿import { SubPageLayout } from '../../SubPageLayout';
+import { ServicePageProps } from '../PageProps';
 import { SectionBlock, ReferenceBlock, CalloutBox, RelatedServices, PageCtaBar } from '../helpers';
 
-const IctDatacenterDesign = ({ onBack, heroImage, gradientFallback, currentPath, onNavigate }: PageProps) => (
-  <SubPageLayout onBack={onBack} tag="ICT & Data Center" title="Data Center Design & Build" description="Data center site assessment, rack and cabling infrastructure, power and cooling systems, structured cabling, server room build-out, acceptance testing." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={onNavigate}>
+const IctDatacenterDesign = ({ onBack, heroImage, gradientFallback, currentPath, onNavigate, onParentOverview }: ServicePageProps) => (
+  <SubPageLayout onBack={onBack} onParentOverview={onParentOverview} tag="ICT & Data Center" title="Data Center Design & Build" description="Data center site assessment, rack and cabling infrastructure, power and cooling systems, structured cabling, server room build-out, acceptance testing." heroImage={heroImage} gradientFallback={gradientFallback} currentPath={currentPath} onNavigate={(path) => onNavigate('home', undefined, path)}>
     <div className="space-y-10">
       <SectionBlock title="Capability Detail">
         Data center site assessment, rack and cabling infrastructure, power and cooling systems, structured cabling, server room build-out, acceptance testing.
@@ -15,8 +15,8 @@ const IctDatacenterDesign = ({ onBack, heroImage, gradientFallback, currentPath,
       <CalloutBox>
         ISO 27001:2022 — Information Security Management
       </CalloutBox>
-      <PageCtaBar />
-      <RelatedServices links={[
+      <PageCtaBar onNavigate={(path) => onNavigate('home', undefined, path)} />
+      <RelatedServices onNavigate={(path) => onNavigate('home', undefined, path)} links={[
         { label: 'Enterprise Networking, Storage & Backup', path: '/ict-datacenter/enterprise-networking' },
         { label: 'Cybersecurity & Managed Services', path: '/ict-datacenter/cybersecurity-managed' }
       ]} />
@@ -25,3 +25,5 @@ const IctDatacenterDesign = ({ onBack, heroImage, gradientFallback, currentPath,
 );
 
 export default IctDatacenterDesign;
+
+

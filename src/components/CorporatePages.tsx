@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { 
   ShieldCheck, 
   ArrowRight, 
@@ -7,7 +7,6 @@ import {
   Users,
   Clock,
   ChevronRight,
-  Award,
   Zap,
   Radio,
   Server,
@@ -17,18 +16,10 @@ import { portfolioProjects } from '../data/portfolioData';
 import { useTranslation } from 'react-i18next';
 import { SubPageLayout } from './SubPageLayout';
 import { UI_CLASSES } from '../data/constants';
-import { LogoSymbol } from './LogoSymbol';
-
-interface PageProps {
-  onBack: () => void;
-  heroImage?: string;
-  gradientFallback?: string;
-  currentPath?: string;
-  onNavigate?: (path: string) => void;
-}
+import { CorporatePageProps } from './sections/PageProps';
 
 export const CorporatePages = {
-  Identity: ({ onBack, heroImage, gradientFallback }: PageProps) => {
+  Identity: ({ onBack, heroImage, gradientFallback, currentPath: _currentPath }: CorporatePageProps) => {
     const { t } = useTranslation();
     const isoCerts = t('corporate.identity.isos', { returnObjects: true }) as string[];
     const safeIsos = Array.isArray(isoCerts) ? isoCerts : [];
@@ -64,7 +55,7 @@ export const CorporatePages = {
               </div>
             </div>
           </div>
-          <div className="rounded-[3rem] overflow-hidden shadow-xl h-[400px] bg-slate-200"><img src="/assets/images/hero/hero-overview.webp" className="w-full h-full object-cover" alt="Variety EME Office" /></div>
+          <div className="rounded-[3rem] overflow-hidden shadow-xl h-[400px] bg-slate-200"><img src="/assets/images/hero/hero-overview.webp" className="w-full h-full object-cover" alt="Variety EME Office" loading="eager" /></div>
         </div>
         
         <div className="mb-12">
@@ -233,48 +224,13 @@ export const CorporatePages = {
             </>
           )}
         </div>
+      
       </SubPageLayout>
     );
   },
-  Leadership: ({ onBack, heroImage, gradientFallback }: PageProps) => {
-    const { t } = useTranslation();
-    const team = t('corporate.leadership.members', { returnObjects: true }) as any[];
-    const safeMembers = Array.isArray(team) ? team : [];
-    
-    return (
-      <SubPageLayout onBack={onBack} tag={t('corporate.leadership.tag')} title={t('corporate.leadership.title')} description={t('corporate.leadership.description')} heroImage={heroImage} gradientFallback={gradientFallback}>
-        <div className="grid md:grid-cols-3 gap-8">
-          {safeMembers.map((l, i) => (
-            <div key={i} className="bg-brand-surface p-10 rounded-[2.5rem] border border-white/5 group shadow-sm hover:shadow-xl transition-all">
-              <div className="w-16 h-16 bg-brand-primary rounded-full mb-6 flex items-center justify-center text-white font-black text-xl uppercase shadow-lg">{l.n.charAt(0)}</div>
-              <h3 className={UI_CLASSES.cardTitle + " text-brand-foreground mb-1.5"}>{l.n}</h3><p className="text-brand-accent text-xs font-semibold uppercase tracking-wide mb-4">{l.r}</p><p className="text-brand-muted font-medium text-xs leading-relaxed">{l.b}</p>
-            </div>
-          ))}
-        </div>
-      </SubPageLayout>
-    );
-  },
-  Board: ({ onBack, heroImage, gradientFallback }: PageProps) => {
-    const { t } = useTranslation();
-    const members = t('corporate.board.items', { returnObjects: true }) as string[];
-    const safeItems = Array.isArray(members) ? members : [];
-    
-    return (
-      <SubPageLayout onBack={onBack} tag={t('corporate.board.tag')} title={t('corporate.board.title')} description={t('corporate.board.description')} heroImage={heroImage} gradientFallback={gradientFallback}>
-        <div className="bg-brand-surface text-brand-foreground rounded-[3rem] p-12 md:p-20 relative overflow-hidden border border-white/5">
-          <div className="absolute top-0 right-0 opacity-[0.02] pointer-events-none"><LogoSymbol className="w-80 h-80 scale-150" forceInvert={true} /></div>
-          <div className="relative z-10 grid md:grid-cols-2 gap-16">
-            <div className="space-y-6"><h3 className="text-h2 font-semibold tracking-tight text-brand-accent">{t('corporate.board.oversight_title')}</h3><p className="text-brand-muted font-medium leading-relaxed text-sm">{t('corporate.board.oversight_desc')}</p><div className="flex gap-4"><ShieldCheck size={32} className="text-brand-accent" /><Award size={32} className="text-brand-primary" /></div></div>
-            <div className="space-y-4">{safeItems.map(item => <div key={item} className="pb-4 border-b border-white/10 flex justify-between items-center group cursor-pointer hover:border-brand-accent transition-colors"><span className="text-lg font-bold">{item}</span><ArrowRight size={18} className="text-brand-accent group-hover:translate-x-2 transition-transform" /></div>)}</div>
-          </div>
-        </div>
-      </SubPageLayout>
-    );
-  },
-  Portfolio: ({ onBack, heroImage, gradientFallback }: PageProps) => {
+  Portfolio: ({ onBack, heroImage, gradientFallback, currentPath: _currentPath }: CorporatePageProps) => {
     const { t } = useTranslation();
     const safeProjects = Array.isArray(portfolioProjects) ? portfolioProjects : [];
-    const categories = ['All', 'Telecom', 'Power', 'ICT'];
     
     const stats = [
       { value: '66', label: 'Stations', desc: 'Optical transmission deployed' },
@@ -285,7 +241,7 @@ export const CorporatePages = {
     return (
       <SubPageLayout onBack={onBack} tag={t('corporate.portfolio.tag')} title={t('corporate.portfolio.title')} description={t('corporate.portfolio.description')} heroImage={heroImage} gradientFallback={gradientFallback}>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {safeProjects.map((p, i) => (
+          {safeProjects.map((p, _i) => (
             <div key={p.id} className="group relative h-[320px] overflow-hidden rounded-2xl shadow-lg cursor-pointer">
               <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover brightness-75 group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" loading="lazy" />
               <div className="absolute inset-0 p-6 flex flex-col justify-end text-white z-10">
@@ -310,22 +266,31 @@ export const CorporatePages = {
           </div>
         </div>
         
-        <div className="py-14 bg-brand-surface rounded-3xl border border-white/5">
-          <div className="px-8">
-            <p className="text-xs font-semibold uppercase tracking-widest text-brand-accent mb-8">Featured References</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {safeProjects.slice(0, 3).map((p) => (
-                <div key={p.id} className="bg-brand-primary rounded-xl border border-white/5 p-5 hover:shadow-md transition-shadow">
-                  <div className="w-full h-28 rounded-lg bg-brand-surface mb-4 overflow-hidden">
-                    <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
-                  </div>
-                  <span className="text-xs font-medium text-brand-accent uppercase tracking-wide">{p.category}</span>
-                  <h4 className="font-semibold text-brand-foreground mt-1 mb-1 text-sm">{p.title}</h4>
-                  <p className="text-xs text-brand-muted">{p.description}</p>
-                  <p className="text-[10px] text-brand-muted/60 mt-2">{p.client}</p>
+        <div className="py-16">
+          <div className="grid grid-cols-3 gap-6">
+            {stats.map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="text-4xl md:text-5xl font-black text-brand-accent mb-2">{stat.value}</div>
+                <div className="text-sm font-semibold text-brand-foreground uppercase tracking-wide">{stat.label}</div>
+                <div className="text-xs text-brand-muted mt-1">{stat.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="py-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {safeProjects.slice(0, 3).map((p) => (
+              <div key={p.id} className="bg-brand-primary rounded-xl border border-white/5 p-5 hover:shadow-md transition-shadow">
+                <div className="w-full h-28 rounded-lg bg-brand-surface mb-4 overflow-hidden">
+                  <img src={p.image} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
                 </div>
-              ))}
-            </div>
+                <span className="text-xs font-medium text-brand-accent uppercase tracking-wide">{p.category}</span>
+                <h4 className="font-semibold text-brand-foreground mt-1 mb-1 text-sm">{p.title}</h4>
+                <p className="text-xs text-brand-muted">{p.description}</p>
+                <p className="text-[10px] text-brand-muted/60 mt-2">{p.client}</p>
+              </div>
+            ))}
           </div>
         </div>
         
@@ -379,23 +344,6 @@ export const CorporatePages = {
               </p>
             </div>
           </div>
-        </div>
-      </SubPageLayout>
-    );
-  },
-  Presence: ({ onBack, heroImage, gradientFallback }: PageProps) => {
-    const { t } = useTranslation();
-    const locations = t('corporate.presence.items', { returnObjects: true }) as any[];
-    const safeItems = Array.isArray(locations) ? locations : [];
-    
-    return (
-      <SubPageLayout onBack={onBack} tag={t('corporate.presence.tag')} title={t('corporate.presence.title')} description={t('corporate.presence.description')} heroImage={heroImage} gradientFallback={gradientFallback}>
-        <div className="grid md:grid-cols-4 gap-6">
-          {safeItems.map((o, i) => (
-            <div key={i} className="p-8 bg-brand-surface rounded-[2rem] border border-white/5 shadow-sm text-center">
-              <MapPin size={28} className="text-brand-accent mx-auto mb-4" /><h3 className={UI_CLASSES.cardTitle + " text-brand-foreground mb-1"}>{o.c}</h3><p className="text-brand-muted text-[9px] font-bold uppercase tracking-widest">{o.t}</p>
-            </div>
-          ))}
         </div>
       </SubPageLayout>
     );

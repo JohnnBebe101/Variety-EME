@@ -1,6 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Linkedin, Facebook, Twitter } from 'lucide-react';
+import { Linkedin, Facebook, Twitter } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { PageID } from '../../types';
 import { Section } from '../Section';
@@ -31,7 +30,7 @@ export const CTABanner: React.FC<CTABannerProps> = ({ onNavigate }) => {
               {t('ctaBannerTitle') || 'Get full range of premium Industrial services for your business'}
             </h2>
             <p className="text-gray-500 text-base leading-relaxed mb-5 max-w-xl">
-              {t('ctaBannerDesc') || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
+              {t('ctaBannerDesc') || 'Ready to start your project? Our team of certified engineers is standing by to discuss your requirements and provide a detailed proposal within 24 hours.'}
             </p>
             <div className="flex flex-wrap items-center gap-3 justify-center lg:justify-start">
               <button

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LucideIcon, Zap, Radio, Server, GraduationCap, Building2, CheckCircle, Users, Globe } from 'lucide-react';
+import { LucideIcon, Zap, Radio, Server, Building2, CheckCircle, Users, Globe } from 'lucide-react';
 
 interface QuickStat {
   icon: LucideIcon;

@@ -1,7 +1,7 @@
 // src/data/heroSlides.ts
 // All copy is final and approved — do NOT paraphrase
 
-import { LucideIcon, Sparkles, Signal, Zap, Server, GraduationCap, Briefcase } from 'lucide-react';
+import { LucideIcon, Sparkles, Signal, Zap, Server, GraduationCap } from 'lucide-react';
 
 export interface HeroSlide {
   id: number;
@@ -24,7 +24,7 @@ export interface HeroSlide {
   proofChipsLabel?: string;
   cta: {
     primary: { label: string; action: 'scroll' | 'link'; target: string };
-    secondary: { label: string; action: 'link'; target: string };
+    secondary: { label: string; action: 'link' | 'scroll'; target: string };
     tertiary?: { label: string; action: 'link'; target: string; subject?: string };
   };
   // New fields for reconstructed first slide
