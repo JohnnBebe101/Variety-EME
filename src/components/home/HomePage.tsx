@@ -64,7 +64,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         schema={organizationSchema}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <div className="pt-12 md:pt-16 lg:pt-20">
+      <div className="pt-20 md:pt-24 lg:pt-28">
         <HeroSection onNavigate={onNavigate} mode="static" />
       </div>
       <OurServices onNavigate={onNavigate} />

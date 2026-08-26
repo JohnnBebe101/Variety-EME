@@ -3,6 +3,7 @@ import { Linkedin, Facebook, Twitter } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { PageID } from '../../types';
 import { Section } from '../Section';
+import { SITE } from '../../data/constants';
 
 interface CTABannerProps {
   onNavigate?: (page: PageID, hash?: string, routePath?: string) => void;
@@ -54,13 +55,13 @@ export const CTABanner: React.FC<CTABannerProps> = ({ onNavigate }) => {
               {t('followUs') || 'Get connected with us'}
             </span>
             <div className="flex items-center gap-3">
-              <a href="https://www.linkedin.com/company/variety-eme" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
+              <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
                 <Linkedin size={18} />
               </a>
-              <a href="https://www.facebook.com/varietyeme" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
+              <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
                 <Facebook size={18} />
               </a>
-              <a href="https://twitter.com/varietyeme" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
+              <a href={SITE.social.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
                 <Twitter size={18} />
               </a>
             </div>

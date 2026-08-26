@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
-import { TopInfoBar } from './TopInfoBar';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { ssrSafeLazy } from '../../utils/ssrSafeLazy';
@@ -67,7 +66,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       >
         Skip to main content
       </a>
-      <TopInfoBar />
       <Header 
         isScrolled={isScrolled}
         activeMenu={activeMenu}

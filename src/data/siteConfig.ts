@@ -9,5 +9,11 @@ export const SITE = {
     phone: "+251 11 000 0000",
     address: "Bole Sub-city, Addis Ababa, Ethiopia",
     email: "info@varietyeme.com"
+  },
+  social: {
+    linkedin: "https://www.linkedin.com/company/variety-eme",
+    facebook: "https://www.facebook.com/varietyeme",
+    twitter: "https://twitter.com/varietyeme",
+    google: "https://g.page/variety-eme"
   }
 };

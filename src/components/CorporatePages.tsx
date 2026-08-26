@@ -23,7 +23,7 @@ export const CorporatePages = {
     const { t } = useTranslation();
     const isoCerts = t('corporate.identity.isos', { returnObjects: true }) as string[];
     const safeIsos = Array.isArray(isoCerts) ? isoCerts : [];
-    const pillars = t('corporate.identity.pillars', { returnObjects: true }) as any;
+    const pillars = t('corporate.identity.pillars', { returnObjects: true }) as { power?: string; telecom?: string; ict?: string; academy?: string };
     const whyItems = t('corporate.identity.why', { returnObjects: true }) as string[];
     const safeWhy = Array.isArray(whyItems) ? whyItems : [];
     const delivery = t('corporate.identity.delivery', { returnObjects: true }) as string[];
@@ -85,7 +85,7 @@ export const CorporatePages = {
         </div>
 
         {(() => {
-          const trackItems = t('corporate.identity.track_items', { returnObjects: true }) as any[];
+          const trackItems = t('corporate.identity.track_items', { returnObjects: true }) as { metric: string; desc: string }[];
           if (Array.isArray(trackItems) && trackItems.length > 0 && trackItems[0]?.metric) {
             return (
               <div className="mb-12">
@@ -153,7 +153,7 @@ export const CorporatePages = {
         </div>
 
         {(() => {
-          const presence = t('corporate.identity.presence', { returnObjects: true }) as any[];
+          const presence = t('corporate.identity.presence', { returnObjects: true }) as { location: string; role: string; detail: string }[];
           if (Array.isArray(presence) && presence.length > 0 && presence[0]?.location) {
             return (
               <div className="mb-12">
@@ -206,7 +206,7 @@ export const CorporatePages = {
               
               <div className="grid md:grid-cols-3 gap-6">
                 {(() => {
-                  const departments = t('corporate.identity.departments', { returnObjects: true }) as any[];
+                  const departments = t('corporate.identity.departments', { returnObjects: true }) as { name: string; branches: string[] }[];
                   return Array.isArray(departments) ? departments.map((dept, i) => (
                     <div key={i} className="bg-brand-surface rounded-2xl border border-white/5 p-6">
                       <h4 className="font-bold text-brand-accent text-center mb-4 pb-3 border-b border-white/10">{dept.name}</h4>
@@ -252,18 +252,6 @@ export const CorporatePages = {
               </div>
             </div>
           ))}
-        </div>
-        
-        <div className="py-16">
-          <div className="grid grid-cols-3 gap-6">
-            {stats.map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-4xl md:text-5xl font-black text-brand-accent mb-2">{stat.value}</div>
-                <div className="text-sm font-semibold text-brand-foreground uppercase tracking-wide">{stat.label}</div>
-                <div className="text-xs text-brand-muted mt-1">{stat.desc}</div>
-              </div>
-            ))}
-          </div>
         </div>
         
         <div className="py-16">

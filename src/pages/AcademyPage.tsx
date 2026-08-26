@@ -25,7 +25,7 @@ const AcademyPage: React.FC<{ onNavigate: (page: PageID, hash?: string, path?: s
       <aside className={`
         fixed lg:hidden top-0 left-0 h-full w-72 bg-brand-surface border-r border-white/10 z-50
         transform transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-        pt-20
+        pt-28
       `}>
         <PageSidebar category={sidebarCategory} currentPath="/academy" currentCategory="academy" onNavigate={handleNavClick} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       </aside>

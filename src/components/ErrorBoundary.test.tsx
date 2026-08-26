@@ -8,7 +8,7 @@ const originalError = console.error;
 beforeEach(() => { console.error = vi.fn(); });
 afterEach(() => { console.error = originalError; });
 
-function ThrowingComponent() {
+function ThrowingComponent(): React.ReactElement {
   throw new Error('Test error');
 }
 

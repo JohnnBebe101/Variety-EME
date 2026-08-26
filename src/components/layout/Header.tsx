@@ -127,13 +127,13 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Right: Social Icons + Badge */}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3">
-              <a href="https://www.linkedin.com/company/variety-eme" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+              <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
                 <Linkedin size={12} />
               </a>
-              <a href="https://www.facebook.com/varietyeme" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+              <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
                 <Facebook size={12} />
               </a>
-              <a href="https://twitter.com/varietyeme" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
+              <a href={SITE.social.twitter} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-accent transition-colors">
                 <Twitter size={12} />
               </a>
             </div>

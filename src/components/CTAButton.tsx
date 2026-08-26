@@ -7,7 +7,7 @@ export interface CTAButtonProps {
   subject?: string;
   variant?: 'primary' | 'secondary';
   className?: string;
-  onNavigate?: (page: PageID, hash?: string, routePath?: string) => void;
+  onNavigate: (page: PageID, hash?: string, routePath?: string) => void;
 }
 
 export const CTAButton: React.FC<CTAButtonProps> = ({ 
@@ -24,11 +24,7 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
   const secondaryStyles = 'bg-transparent border border-white/20 text-brand-foreground hover:border-brand-accent hover:text-brand-accent';
   
   const handleClick = () => {
-    if (onNavigate) {
-      onNavigate('contact', undefined, `/contact?subject=${encodeURIComponent(subject)}`);
-    } else {
-      window.location.href = `/contact?subject=${encodeURIComponent(subject)}`;
-    }
+    onNavigate('contact', undefined, `/contact?subject=${encodeURIComponent(subject)}`);
   };
   
   return (

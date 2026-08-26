@@ -7,7 +7,7 @@ vi.mock('framer-motion', () => ({
   motion: {
     div: React.forwardRef<HTMLDivElement>((props, ref) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { initial, animate, exit, transition, whileHover, whileTap, ...rest } = props as any;
+      const { initial, animate, exit, transition, whileHover, whileTap, ...rest } = props as Record<string, unknown>;
       return <div ref={ref} {...rest} />;
     }),
   },

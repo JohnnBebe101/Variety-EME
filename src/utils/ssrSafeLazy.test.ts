@@ -7,9 +7,9 @@ const originalWindow = globalThis.window;
 
 afterEach(() => {
   if (originalWindow === undefined) {
-    delete (globalThis as any).window;
+    delete (globalThis as Record<string, unknown>).window;
   } else {
-    (globalThis as any).window = originalWindow;
+    (globalThis as Record<string, unknown>).window = originalWindow;
   }
 });
 
@@ -25,7 +25,7 @@ describe('ssrSafeLazy', () => {
   });
 
   it('in SSR (no window) with registered module returns callable component', () => {
-    delete (globalThis as any).window;
+    delete (globalThis as Record<string, unknown>).window;
     const MockComponent = () => React.createElement('div', null, 'ssr-test');
     registerSSRModule('/ssr/test', MockComponent);
 
@@ -38,13 +38,13 @@ describe('ssrSafeLazy', () => {
   });
 
   it('in SSR (no window) throws if module not registered', () => {
-    delete (globalThis as any).window;
+    delete (globalThis as Record<string, unknown>).window;
     const LazyComp = ssrSafeLazy(
       () => Promise.resolve({ default: () => null }),
       '/ssr/unregistered'
     );
     expect(() => {
-      (LazyComp as any)({});
+      (LazyComp as (props: Record<string, unknown>) => React.ReactNode)({});
     }).toThrow('not pre-loaded');
   });
 });

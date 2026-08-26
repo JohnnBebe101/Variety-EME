@@ -28,7 +28,7 @@ const LegalPage = ssrSafeLazy(() => import('./components/LegalPage'), '/src/comp
  * Inner app component that consumes SiteContext.
  * Handles page rendering based on currentPage from context.
  */
-const AppInner: React.FC<{ i18n?: any }> = ({ i18n: i18nProp }) => {
+const AppInner: React.FC<{ i18n?: import('i18next').i18n }> = ({ i18n: i18nProp }) => {
   const { t } = useTranslation(undefined, { i18n: i18nProp });
   const { currentPage, navigateTo } = useSite();
 
@@ -273,7 +273,7 @@ const AppInner: React.FC<{ i18n?: any }> = ({ i18n: i18nProp }) => {
 
 interface AppProps {
   initialPage?: PageID;
-  i18n?: any;
+  i18n?: import('i18next').i18n;
 }
 
 /**

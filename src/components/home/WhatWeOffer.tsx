@@ -49,8 +49,8 @@ export const WhatWeOffer: React.FC<WhatWeOfferProps> = ({ onNavigate }) => {
                 viewport={{ once: true, margin: '-30px' }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
               >
-                <div className="w-11 h-11 bg-brand-primary/5 rounded-lg flex items-center justify-center mb-3">
-                  <item.icon size={20} className="text-brand-primary" />
+                <div className="w-11 h-11 bg-brand-primary/5 text-brand-primary rounded-lg flex items-center justify-center mb-3">
+                  <item.icon size={20} />
                 </div>
                 <h3 className="text-base font-semibold text-gray-900 mb-1">{item.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed mb-2">{item.description}</p>

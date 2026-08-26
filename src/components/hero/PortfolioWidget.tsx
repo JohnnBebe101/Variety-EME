@@ -28,7 +28,7 @@ export default function ProjectProofWidget() {
     }, 280);
   };
 
-  const startTimers = () => {
+  useEffect(() => {
     if (timerRef.current) clearInterval(timerRef.current);
     if (progressRef.current) clearInterval(progressRef.current);
 
@@ -46,18 +46,20 @@ export default function ProjectProofWidget() {
 
     timerRef.current = setInterval(() => {
       if (!isPaused.current) {
-        goTo(current + 1);
+        setVisible(false);
+        setProgress(0);
+        setTimeout(() => {
+          setCurrent((current + 1 + total) % total);
+          setVisible(true);
+        }, 280);
       }
     }, ROTATION_INTERVAL);
-  };
 
-  useEffect(() => {
-    startTimers();
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
       if (progressRef.current) clearInterval(progressRef.current);
     };
-  }, [current]);
+  }, [current, total]);
 
   const item = projectShowcase[current];
   const categoryStyle = CATEGORY_COLORS[item.category] ?? 'text-white/60 bg-white/10';

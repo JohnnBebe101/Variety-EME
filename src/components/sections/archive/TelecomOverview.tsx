@@ -6,7 +6,7 @@ import { TowerControl as Tower, Radio, Layers } from 'lucide-react';
 
 const TelecomOverview = ({ onBack, heroImage, gradientFallback }: PageProps) => {
   const { t } = useTranslation();
-  const items = t('infrastructure.telecom.items', { returnObjects: true }) as any[];
+  const items = t('infrastructure.telecom.items', { returnObjects: true }) as { t: string; d: string }[];
   const safeItems = Array.isArray(items) ? items : [];
   const icons = [Tower, Radio, Layers];
   return (
